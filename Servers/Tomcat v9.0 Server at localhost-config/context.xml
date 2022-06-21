@@ -27,6 +27,6 @@
     <Manager pathname="" />
     -->
     
-    <!-- url, username, password는 dao내에서 DB접속에 쓰던걸  -->
+      <!-- url, username, password는 dao내에서 DB접속에 쓰던걸  -->
       <Resource auth="Container" driverClassName="com.mysql.cj.jdbc.Driver" maxActive="300" maxWait="1000" name="jdbc/mysql" password="1111" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/jdbcprac2?serverTimezone=UTC" username="root"/>
 </Context>
