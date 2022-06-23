@@ -15,11 +15,14 @@
 			<h1 style="color: Green;">글 목록</h1>
 			<table class="table table-success">
 				<thead>
-					<tr>
+					<tr> 
 						<th>글번호</th>
 						<th>글제목</th>
 						<th>글쓴이</th>
 						<th>글내용</th>
+						<th>카테고리</th>
+						<th>경기 날짜</th>
+						<th>경기 장소</th>
 						<th>쓴 날짜</th>
 						<th>수정 날짜</th>
 					</tr>
@@ -29,10 +32,13 @@
 						<c:forEach var="board" items="${boardList }">
 							<tr>
 							<td>${board.bno }</td>
-							<td><a href="/board/detail?bno=${board.bno}&page=${pageMaker.cri.page}
+							<td><a href="/mainBoard/detail?bno=${board.bno}&page=${pageMaker.cri.page}
 							      &searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${board.title }</a></td>
 							<td>${board.writer }</td>
 							<td>${board.content }</td>
+							<td>${board.catego }</td>
+							<td>${board.gamedate }</td>
+							<td>${board.gameplace }</td>
 							<td>${board.regdate }</td>
 							<td>${board.updatedate }</td>
 							</tr>						
@@ -40,13 +46,13 @@
 					</tr>
 				</tbody>
 			</table>
-			<a class="btn btn-primary" href="/board/insert">글 쓰기</a>
+			<a class="btn btn-primary" href="/mainBoard/insert">글 쓰기</a>
 			<hr/>
 			<ul class="pagination">
 				<!-- Prev -->
 				<c:if test="${pageMaker.prev }">
 					<li class="page-item">
-						<a class="page-link" href="/board/list?page=${pageMaker.startPage - 1 }
+						<a class="page-link" href="/mainBoard/list?page=${pageMaker.startPage - 1 }
 						&searchType=${pageMaker.cri.searchType }&keyword=${pageMaker.cri.keyword}" aria-lable="Prev">
 							<span aria-hidden="true">&laquo;</span>
 						</a>
@@ -58,7 +64,7 @@
 					<li class="page-item 
 						<c:out value="${pageMaker.cri.page == pNum ? 'active' : '' }"/>">
 						<a class="page-link"
-							href="/board/list?page=${pNum }&searchType=${pageMaker.cri.searchType }&keyword=${pageMaker.cri.keyword}">
+							href="/mainBoard/list?page=${pNum }&searchType=${pageMaker.cri.searchType }&keyword=${pageMaker.cri.keyword}">
 							${pNum }
 						</a>
 					</li>	
@@ -67,7 +73,7 @@
 				<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
 					<li class="page-item">
 						<a class="page-link"
-							href="/board/list?page=${pageMaker.endPage + 1}&searchType=${pageMaker.cri.searchType }&keyword=${pageMaker.cri.keyword}">
+							href="/mainBoard/list?page=${pageMaker.endPage + 1}&searchType=${pageMaker.cri.searchType }&keyword=${pageMaker.cri.keyword}">
 							&raquo;	
 						</a>
 					</li>

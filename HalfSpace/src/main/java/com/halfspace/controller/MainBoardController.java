@@ -48,7 +48,7 @@ public class MainBoardController {
 		log.info(service.getBoardCount(cri));
 		log.info(pageMaker);
 		model.addAttribute("pageMaker", pageMaker);
-		return "/board/list";
+		return "/mainBoard/list";
 	}
 	
 	// 글 번호를 입력받아서(주소창에서 bno=? 형식으로) 해당 글의 디테일 페이지를 보여주는
@@ -62,7 +62,7 @@ public class MainBoardController {
 		MainBoardVO board = service.getDetail(bno);
 		log.info(board);
 		model.addAttribute("board", board );
-		return "/board/detail";
+		return "/mainBoard/detail";
 	}
 	
 	// 글쓰기는 말 그대로 글을 써주는 로직인데
@@ -72,7 +72,7 @@ public class MainBoardController {
 	// boardForm.jsp로 연결되도록 만들어주세요.
 	@GetMapping("/insert")
 	public String insertBoardForm() {
-		return "/board/insertForm";
+		return "/mainBoard/insertForm";
 	}
 	
 	@PostMapping("/insert")
@@ -82,7 +82,7 @@ public class MainBoardController {
 		// redirect를 사용해야 전체 글 목록을 로딩해온 다음 화면을 열어줍니다.
 		// 스프링 컨트롤러에서 리다이렉트를 할 때는 
 		// 목적주소 앞에 redirect: 을 추가로 붙입니다.
-		return "redirect:/board/list";
+		return "redirect:/mainBoard/list";
 	}
 	
 	// 글삭제 post방식으로 처리하도록 합니다.
