@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halfspace.mapper.PostMapper">
+
+	<sql id = "search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				(TITLE like '%'|| #{keyword} || '%') AND
+			</if>
+			<if test="searchType == 'c'.toString()">
+				(CONTENT like '%' || #{keyword} || '%') AND
+			</if>
+			<if test="searchType == 'w'.toString()">
+				(WRITER like '%' || #{keyword} || '%') AND
+			</if>
+			<if test="searchType == 'tc'.toString()">
+				((TITLE like '%' || #{keyword} || '%')
+					OR
+				(CONTENT like '%' || #{keyword} || '%')) AND
+			</if>
+			<if test="searchType == 'cw'.toString()">
+				((CONTENT like '%' || #{keyword} || '%')
+					OR
+				(WRITER like '%' || #{keyword} || '%')) AND
+			</if>
+			<if test="searchType == 'tcw'.toString()">
+				((TITLE like '%' || #{keyword} || '%')
+					OR
+				(CONTENT like '%' || #{keyword} || '%')
+					OR
+				(WRITER like '%' || #{keyword} || '%')) AND
+			</if>
+		</if>
+	</sql>
+	
+	<select id="getList" resultType="com.ict.persistence.BoardVO">
+	
+		<![CDATA[
+		SELECT * FROM
+			(SELECT 
+			/*+ INDEX_DESC(post_tbl pk_post) */
+			rownum rn, post_tbl.* FROM post_tbl
+				WHERE 
+				
+		]]>
+		
+		<include refid="search"></include>
+		
+		<![CDATA[		
+			rownum <=(${page} * 10))
+			WHERE rn > (${page} - 1) * 10
+		]]>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO post_tbl (pono, title, content, writer)
+			VALUES
+		(post_num.nextval, #{title}, #{content}, #{writer})
+	</insert>
+	
+	<delete id="delete">
+		DELETE FROM post_tbl WHERE pono = #{pono}
+	</delete>
+	
+	<update id="update">
+		UPDATE post_tbl 
+			SET 
+		title=#{title}, content=#{content}, 
+		writer=#{writer}, updatedate=SYSDATE
+			WHERE pono = #{pono}
+	</update>
+	
+	<select id="getDetail" resultType="com.ict.persistence.PostVO">
+		SELECT * FROM post_tbl WHERE pono = #{pono}
+	</select>
+
+	<select id="getPostCount" resultType="long">
+		
+			SELECT COUNT(*) FROM post_tbl WHERE
+	
+			<include refid="search"></include>
+			
+			pono > 0
+	</select>
+
+	
+
+</mapper>
