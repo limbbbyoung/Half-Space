@@ -95,7 +95,7 @@ public class MainBoardController {
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("searchType", cri.getSearchType());
 		rttr.addAttribute("keyword", cri.getKeyword());
-		return "redirect:/board/list";
+		return "redirect:/mainBoard/list";
 	}
 	
 	// 글 수정 로직
@@ -103,7 +103,7 @@ public class MainBoardController {
 	public String updateForm(Long bno, Model model) {
 		MainBoardVO board = service.getDetail(bno);
 		model.addAttribute("board", board);
-		return "/board/updateForm";
+		return "/mainBoard/updateForm";
 	}
 	
 	@PostMapping("/update")
@@ -122,7 +122,7 @@ public class MainBoardController {
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("searchType", cri.getSearchType());
 		rttr.addAttribute("keyword", cri.getKeyword());
-		return "redirect:/board/detail";
+		return "redirect:/mainBoard/detail";
 	}
 }
 

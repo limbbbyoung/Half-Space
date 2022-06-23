@@ -66,8 +66,8 @@
 	
 	<!-- 글쓰기 -->
 	<insert id="insert">
-		INSERT INTO board_tbl(bno, title, content, writer, gameplace) VALUES
-			(board_num.nextval, #{title}, #{content}, #{writer}, #{gameplace})
+		INSERT INTO board_tbl(bno, title, catego, content, writer, gameplace, gamedate) VALUES
+			(board_num.nextval, #{title}, #{catego}, #{content}, #{writer}, #{gameplace}, #{gamedate})
 	</insert>
 	
 	<!-- 글 삭제하기 -->

@@ -18,7 +18,7 @@
  	경기날짜 : ${board.gamedate } <br/>
  	경기장소 : ${board.gameplace } <br/>
  	글내용 : <textarea rows="20" cols="50">${board.content }</textarea>
- 	<form action="/board/delete" method="post">
+ 	<form action="/mainBoard/delete" method="post">
 	 	<input type="hidden" value="${board.bno }" name="bno">
 	 	<input type="hidden" name="page" value="${param.page }">
 		<input type="hidden" name="searchType" value="${param.searchType}">
@@ -26,14 +26,14 @@
 	 	<button type="submit">글 삭제하기</button>
  	</form>
  	
- 	<form action="/board/updateForm" method="post">
+ 	<form action="/mainBoard/updateForm" method="post">
 	 	<input type="hidden" value="${board.bno }" name="bno">
 	 	<input type="hidden" name="page" value="${param.page }">
 	    <input type="hidden" name="searchType" value="${param.searchType}">
 	    <input type="hidden" name="keyword" value="${param.keyword}">
 	 	<button type="submit">글 수정하기</button>
  	</form>
- 	<a class="btn btn-primary" href="/board/list?page=${param.page }&searchType=${param.searchType }&keyword=${param.keyword}">글 목록</a>
+ 	<a class="btn btn-primary" href="/mainBoard/list?page=${param.page }&searchType=${param.searchType }&keyword=${param.keyword}">글 목록</a>
  	<!-- 댓글 -->
  	<ul id="replies">
  	
