@@ -5,28 +5,28 @@
 <mapper namespace="com.halfspace.mapper.CommentMapper">
 
 	<select id="getList" resultType="com.halfspace.persistence.CommentVO">
-		SELECT * FROM reply_tbl
+		SELECT * FROM comment_tbl
 			WHERE cno = #{cno}
 		ORDER BY cno DESC
 	</select>
 	
 	<insert id="create">
-		INSERT INTO reply_tbl
-		(rno, bno, reply, replyer)
+		INSERT INTO comment_tbl
+		(cno, pono, user_id, c_content)
 			VALUES
-		(reply_num.nextval, #{bno}, #{reply}, #{replyer})
+		(comment_num.nextval, #{pono}, #{user_id}, #{c_content})
 	</insert>
 	
 	<update id="update">
-		UPDATE reply_tbl
+		UPDATE comment_tbl
 			SET
-		reply = #{reply}, updateDate = SYSDATE
-		WHERE rno = #{rno}
+		c_content = #{c_content}, updateDate = SYSDATE
+		WHERE cno = #{cno}
 	</update>
 	
 	<delete id="delete">
-		DELETE FROM reply_tbl
-			WHERE rno = #{rno}
+		DELETE FROM comment_tbl
+			WHERE cno = #{cno}
 	</delete>
 
 </mapper>
