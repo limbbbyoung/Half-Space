@@ -13,7 +13,7 @@ public class PostVO {
 	private String content;
 	private String image;
 	private long hit;
-	private Date regdate;
+	private Date regDate;
 	private Date updateDate;
 	
 }

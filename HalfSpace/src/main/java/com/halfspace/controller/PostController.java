@@ -39,6 +39,7 @@ public class PostController {
 		List<PostVO> postList = service.getList(cri);
 		
 		model.addAttribute("postList", postList );
+		log.info(postList);
 		
 		// PageMaker 생성 
 		PageMaker pageMaker = new PageMaker();
