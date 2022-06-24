@@ -35,7 +35,7 @@
 		</if>
 	</sql>
 	
-	<select id="getList" resultType="com.ict.persistence.BoardVO">
+	<select id="getList" resultType="com.halfspace.persistence.PostVO">
 	
 		<![CDATA[
 		SELECT * FROM
@@ -72,7 +72,7 @@
 			WHERE pono = #{pono}
 	</update>
 	
-	<select id="getDetail" resultType="com.ict.persistence.PostVO">
+	<select id="getDetail" resultType="com.halfspace.persistence.PostVO">
 		SELECT * FROM post_tbl WHERE pono = #{pono}
 	</select>
 
