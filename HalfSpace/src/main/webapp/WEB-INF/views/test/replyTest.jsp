@@ -6,7 +6,7 @@
 	<!-- .css, .js, 그림파일 등은 src/main/webapp/resources 폴더 아래에 저장한 다음
 	/resources/ 경로 형식으로 적으면 가져올 수 있습니다.
 	이렇게 경로가 자동으로 잡히는 이유는 servlet-context.xml에 설정이 잡혀있기 때문입니다. -->
-	<link rel="stylesheet" href="/resources/restTest/modal.css">
+	<link rel="stylesheet" href="/resources/reply/modal.css">
 <meta charset="UTF-8">
 <title>ReplyTest</title>
 </head>
@@ -23,7 +23,7 @@
 			REPLYER <input type="text" name="replyer" id="newReplyWriter">
 		</div>
 		<div>
-			REPLY TEXT <input type="text" name="replyContext" id="newReplyText">
+			REPLY TEXT <input type="text" name="replyContent" id="newReplyText">
 		</div>
 		<button id="replyAddBtn">ADD REPLY</button>
 	</div>
@@ -71,10 +71,10 @@
 												\${date.getFullYear()}년
 											    \${(date.getMonth()+1)}월
 												\${date.getDate()}일`;
-												
+												console.log(this.reply_content);
 							str += `<div class='replyLi' data-rno='\${this.rno}'>
 									<strong>@\${this.replyer}</strong> - \${formattedTime} <br/>
-									<div class="replyText"> \${this.replyContent} </div> 
+									<div class="replyText"> \${this.reply_content} </div> 
 									<button type='button' class='btn btn-info'>수정/삭제</button>
 									</div>`;
 					});
@@ -101,7 +101,7 @@
 				data : JSON.stringify({
 					bno : bno,
 					replyer : replyer,
-					replyContent : replyContent
+					reply_content : reply
 				}),
 				success : function(result){
 					if(result == "SUCCESS"){
@@ -125,14 +125,14 @@
 			// 1. prev().prev()... 등과 같이 연쇄적으로 prev, next를 걸어서 고르기
 			// 2. prev("태그선택자")를 써서 뒤쪽이나 앞쪽 형제 중 조건에 맞는것만 선택
 			// 3. siblings("태그선택자")는 next, prev 모두를 범위로 조회합니다.
-			let reply = $(this).parent(); // this 키워드를 내부에서 쓸려면 화살표 함수를 쓰면 안됨
+			let reply_content = $(this).parent(); // this 키워드를 내부에서 쓸려면 화살표 함수를 쓰면 안됨
 			// this는 해당 버튼을 지정, 따라서 버튼의 부모태그는 <li>이다.
 			
 			// attr() : attribute, attr("태그 내 속성명") => 해당 속성에 부여된 값을 가져옵니다.
 			// ex) <li data-rno="33"> => rno에 33을 저장해줍니다. data-rno는 태그 내부에 rno 데이터를 저장한다는 의미.
-			let rno = reply.attr("data-rno");
-			reply = $(this).prev(".replyText");
-			let replytext = reply.text(); // .text()는 태그 안에 있는 모든 텍스트를 다 가져옴
+			let rno = reply_content.attr("data-rno");
+			reply_content = $(this).prev(".replyText");
+			let replytext = reply_content.text(); // .text()는 태그 안에 있는 모든 텍스트를 다 가져옴
 			
 			$(".modal-title").html(rno);
 			$("#replyText").val(replytext);
@@ -148,5 +148,7 @@
 	<script src="/resources/reply/delete.js"></script>
 	<!-- 수정로직 파일 첨부 -->
 	<script src="/resources/reply/modify.js"></script>
+	<!-- 닫기버튼  -->
+	<script src="/resources/reply/modalclose.js"></script>
 </body>
 </html>
