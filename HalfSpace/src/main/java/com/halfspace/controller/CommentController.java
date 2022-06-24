@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,13 +45,13 @@ public class CommentController {
 				produces = {MediaType.APPLICATION_ATOM_XML_VALUE,
 							MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<CommentVO>> list (
-				@PathVariable("cno") Long cno) {
+				@PathVariable("pono") Long pono) {
 		
 		ResponseEntity<List<CommentVO>> entity = null;
 		
 		try {
 			entity = new ResponseEntity<>(
-					service.listComment(cno), HttpStatus.OK);
+					service.listComment(pono), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
