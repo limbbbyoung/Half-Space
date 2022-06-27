@@ -105,7 +105,7 @@ public class PostController {
 	
 	} // deletPost END
 	
-	@PostMapping("/postForm")
+	@PostMapping("/updateForm")
 	public String updateForm(Long pono, Model model) {
 		
 		PostVO post = service.getDetail(pono);
