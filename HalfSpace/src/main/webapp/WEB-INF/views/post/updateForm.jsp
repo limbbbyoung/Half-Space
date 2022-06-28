@@ -10,6 +10,7 @@
 	<form action="/post/update" method="post">
 		<input type="text" name="title" value="${post.title }" required/>
 		<input type="text" name="writer" value="${post.writer  }" required/>
+		<input type="text" name="catego" value="${post.catego}" required />
 		<textarea name="content" required>${post.content }</textarea>
 		<input type="hidden" name="pono" value="${post.pono}">
 		<input type="hidden" name="page" value="${param.page}"/>

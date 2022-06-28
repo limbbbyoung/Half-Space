@@ -55,9 +55,9 @@
 	</select>
 	
 	<insert id="insert">
-		INSERT INTO post_tbl (pono, title, content, writer)
+		INSERT INTO post_tbl (pono, title, content, writer, catego)
 			VALUES
-		(post_num.nextval, #{title}, #{content}, #{writer})
+		(post_num.nextval, #{title}, #{content}, #{writer}, #{catego})
 	</insert>
 	
 	<delete id="delete">
@@ -68,7 +68,7 @@
 		UPDATE post_tbl 
 			SET 
 		title=#{title}, content=#{content}, 
-		writer=#{writer}, updatedate=SYSDATE
+		writer=#{writer}, catego=#{catego}, updatedate=SYSDATE
 			WHERE pono = #{pono}
 	</update>
 	
