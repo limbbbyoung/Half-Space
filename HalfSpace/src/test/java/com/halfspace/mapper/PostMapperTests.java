@@ -17,7 +17,9 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class PostMapperTests {
 
-	// search criteria 생성 시 필요한 page를 정의해야함.
+	// 수정 요망 ------------!!!
+	// search criteria 생성 시 필요한 page를 정의해야
+	// list를 가져올 수 있음
 	
 	@Autowired
 	private PostMapper mapper;
