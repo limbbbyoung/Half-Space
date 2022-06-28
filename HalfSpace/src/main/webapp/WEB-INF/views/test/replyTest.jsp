@@ -131,17 +131,15 @@
 			// attr() : attribute, attr("태그 내 속성명") => 해당 속성에 부여된 값을 가져옵니다.
 			// ex) <li data-rno="33"> => rno에 33을 저장해줍니다. data-rno는 태그 내부에 rno 데이터를 저장한다는 의미.
 			let rno = reply_content.attr("data-rno");
+			$(".modal-title").html(rno);
 			reply_content = $(this).prev(".replyText");
 			let replytext = reply_content.text(); // .text()는 태그 안에 있는 모든 텍스트를 다 가져옴
 			
-			$(".modal-title").html(rno);
 			$("#replyText").val(replytext);
 			$("#modDiv").show("slow");
 			// 화면 기능을 구성할 때 원하는 태그만을 골라서 디테일하게 기능을 구현하는데 있어서
 			// 어려움을 느낄 것으로 예상, 그러므로 이 점에 집중해서 화면단 기능 구성
 		}); 
-		
-		
 	</script>
 	
 	<!-- delete.js 내부에 코드를 모두 작성한 다음에 link 태그를 활용해 파일을 첨부 -->

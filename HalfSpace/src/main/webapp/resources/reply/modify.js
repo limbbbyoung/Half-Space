@@ -12,7 +12,7 @@ $("#replyModBtn").on("click", function(){
 		            "X-HTTP-Method-Override" : "PUT"
 		        },
 		        contentType : "application/json",
-		        data : JSON.stringify({reply:replytext}),
+		        data : JSON.stringify({reply_content:replytext}),
 		        dataType : 'text',
 		        success : function(result){
 		            console.log("result: " + result);

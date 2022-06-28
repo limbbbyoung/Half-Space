@@ -38,7 +38,7 @@ public class OracleConnectionPoolTest {
 	}
 	
 	// SqlSessionFactory test
-	//@Test
+	// @Test
 	public void testMyBatis() {
 		try(SqlSession session = sqlSessionFactory.openSession();
 				Connection con = session.getConnection();){
