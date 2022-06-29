@@ -32,44 +32,34 @@
 	</form>
 	
 		
+		
 
-	<!-- 댓글달리는 영역 -->
-	<div class="row">
-		<h3 class="text-primary">댓글</h3>
-		<div id="replies">
-			<!-- 댓글이 들어갈 위치 -->
-		</div>
-	</div><!-- /.row -->
+	<ul id="comment">
 	
-	<!-- 댓글쓰기 -->
-	<div class = "row box-box-success">
-		<div class="box-header">
-			<h2 class="text-primary">댓글 작성</h2>
-		</div><!-- header -->
-		<div class="box-body">
-			<strong>Writer</strong>
-			<input type="text" id="newReplyer" placeholder="작성자" class="form-control">
-			<strong>ReplyText</strong>
-			<input type="text" id="newReplyText" placeholder="내용" class="form-control">
-		</div><!-- body -->
-		<div class="box-footer">
-			<button type="button" class="btn btn-success" id="replyAddBtn">Add Reply</button>
-		</div><!-- footer -->
-	</div>	
+	</ul>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
-	<!-- 모달창 -->
-	<div id="modDiv" style="display:none;">
-		<div class="modal-title"></div>
-		<div>
-			<input type="text" id="replyText">
-		</div>
-		<div>
-			<button type="button" id="replyModBtn">수정하기</button>
-			<button type="button" id="replyDelBtn">삭제하기</button>
-			<button type="button" id="closeBtn">닫기</button>
-		</div>
-	</div>
-	
+	<script type="text/javascript">
+		let pono = ${post.pono}
+		
+		
+		// 댓글 전체 불러오기
+		function getAllList() {
+			$.getJSON("/comment/all/" + pono, function(data) {
+				
+				let str = "";
+				console.log(data.length);
+				
+				$(data).each(
+					function() {
+						str += `<li data-cno='\${this.cno}' class='commentLi'>\${this.cno} \${this.user_id} \${this.c_content}<button>수정/삭제</button></li>`;
+					});
+				$("#comment").html(str);
+			});
+		}
+		
+		getAllList();
+	</script>
 	
 
 </body>

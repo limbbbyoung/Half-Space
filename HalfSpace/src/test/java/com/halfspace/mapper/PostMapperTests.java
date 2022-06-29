@@ -19,7 +19,7 @@ public class PostMapperTests {
 
 	// 수정 요망 ------------!!!
 	// search criteria 생성 시 필요한 page를 정의해야
-	// list를 가져올 수 있음
+	// list를 가져올 수 있습니다.
 	
 	@Autowired
 	private PostMapper mapper;

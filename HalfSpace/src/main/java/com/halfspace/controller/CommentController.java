@@ -34,14 +34,14 @@ public class CommentController {
 		
 		try {
 			service.addComment(vo);
-			entity = new ResponseEntity<String>("Success", HttpStatus.OK);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {
 			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 		return entity;
-	}
+	} //  register END
 	
-	@GetMapping(value="/all/{cno}",
+	@GetMapping(value="/all/{pono}",
 				produces = {MediaType.APPLICATION_ATOM_XML_VALUE,
 							MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<CommentVO>> list (
@@ -57,7 +57,7 @@ public class CommentController {
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		return entity;
-	}
+	} // list END
 
 	@DeleteMapping(value="/{cno}",
 				produces = {MediaType.TEXT_PLAIN_VALUE})
@@ -75,7 +75,7 @@ public class CommentController {
 					e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 		return entity;
-	}
+	} // remove END
 	
 	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH},
 					value="/{cno}",
@@ -97,5 +97,5 @@ public class CommentController {
 			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 		return entity;
-	}
+	} // modify END
 }

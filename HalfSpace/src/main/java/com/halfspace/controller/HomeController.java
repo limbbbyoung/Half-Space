@@ -42,5 +42,10 @@ public class HomeController {
 		public void ajaxTest() {
 			
 		}
+		
+		@GetMapping("/comment/commentTest")
+		public void ajaxCommentTest() {
+			
+		}
 	
 }
