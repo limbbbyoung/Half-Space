@@ -46,7 +46,6 @@ public class MainBoardController {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalBoard(service.getBoardCount(cri));
 		log.info(service.getBoardCount(cri));
-		log.info(pageMaker);
 		model.addAttribute("pageMaker", pageMaker);
 		return "/mainBoard/list";
 	}

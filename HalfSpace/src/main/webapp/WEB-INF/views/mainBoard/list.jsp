@@ -6,13 +6,17 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <head>
+<style>
+	.container{padding: 20px;}
+	h1{color: #244875;}
+</style>
 <meta charset="UTF-8">
 <title>boardList</title>
 </head>
 <body>
 	<div class="container">
 		<div class="row">
-			<h1 style="color: Green;">글 목록</h1>
+			<h1>글 목록</h1>
 			<table class="table table-success">
 				<thead>
 					<tr> 
@@ -33,7 +37,7 @@
 							<tr>
 							<td>${board.bno }</td>
 							<td><a href="/mainBoard/detail?bno=${board.bno}&page=${pageMaker.cri.page}
-							      &searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${board.title }</a></td>
+							      &searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${board.title }[${board.replycount }]</a></td>
 							<td>${board.writer }</td>
 							<td>${board.content }</td>
 							<td>${board.catego }</td>
@@ -83,32 +87,32 @@
 		<div class="row">
 			<div class="box-body">
 				<select name="searchType" class="selectpicker">
-					<option value="n"
-					<c:out value="${pageMaker.cri.searchType == null ? 'selected' : '' }"/>>
+				<option value="n"
+					<c:out value="${pageMaker.cri.searchType == 'n' ? 'selected' : '' }"/>>
 						-
 					</option>
 					<option value="t"
-					<c:out value="${pageMaker.cri.searchType == null ? 'selected' : '' }"/>>
+					<c:out value="${pageMaker.cri.searchType == 't' ? 'selected' : '' }"/>>
 						제목
 					</option>
 					<option value="c"
-					<c:out value="${pageMaker.cri.searchType == null ? 'selected' : '' }"/>>
+					<c:out value="${pageMaker.cri.searchType == 'c' ? 'selected' : '' }"/>>
 						본문내용
 					</option>
 					<option value="w"
-					<c:out value="${pageMaker.cri.searchType == null ? 'selected' : '' }"/>>
+					<c:out value="${pageMaker.cri.searchType == 'w' ? 'selected' : '' }"/>>
 						글쓴이
 					</option>
 					<option value="tc"
-					<c:out value="${pageMaker.cri.searchType == null ? 'selected' : '' }"/>>
+					<c:out value="${pageMaker.cri.searchType == 'tc' ? 'selected' : '' }"/>>
 						제목+본문내용
 					</option>
 					<option value="cw"
-					<c:out value="${pageMaker.cri.searchType == null ? 'selected' : '' }"/>>
+					<c:out value="${pageMaker.cri.searchType == 'cw' ? 'selected' : '' }"/>>
 						글쓴이+본문내용
 					</option>
 					<option value="tcw"
-					<c:out value="${pageMaker.cri.searchType == null ? 'selected' : '' }"/>>
+					<c:out value="${pageMaker.cri.searchType == 'tcw' ? 'selected' : '' }"/>>
 						모든내용
 					</option>
 				</select>
@@ -130,6 +134,5 @@
 				+ "&keyword=" + $('#keywordInput').val();
 		});
 	</script>
-	${pageMaker }
 </body>
 </html>

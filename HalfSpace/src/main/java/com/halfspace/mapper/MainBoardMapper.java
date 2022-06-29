@@ -2,6 +2,8 @@ package com.halfspace.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.halfspace.persistence.MainBoardVO;
 import com.halfspace.persistence.SearchCriteria;
 
@@ -24,4 +26,8 @@ public interface MainBoardMapper {
 		
 		// boardCount
 		public Long getBoardCount(SearchCriteria cri);
+		
+		// 댓글이 써질때마다 board_tbl의 댓글 개수 업데이트하기
+		public void updateReplyCount(@Param("bno") Long bno,
+										@Param("amount") int amount);
 }

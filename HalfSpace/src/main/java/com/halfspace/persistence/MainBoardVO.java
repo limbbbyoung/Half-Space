@@ -18,6 +18,7 @@ public class MainBoardVO {
 	private Date updatedate;
 	private Date gamedate;
 	private String gameplace;
+	private Long replycount;
 	
 	/* Oracle DB 테이블 구조
 	-- board_tbl
