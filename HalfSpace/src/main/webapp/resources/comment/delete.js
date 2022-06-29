@@ -4,7 +4,7 @@ $("#replyDelBtn").on("click", function(){
 	
 	$.ajax({
 		type : 'delete',
-		url : '/comment/' + rno,
+		url : '/comment/' + cno,
 		header : {
 			"Content-Type" : "application/json",
 			"X-HTTP-Method-Overide" : "DELETE"

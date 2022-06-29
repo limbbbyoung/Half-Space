@@ -5,11 +5,11 @@ $("#replyModBtn").on("click", function() {
 	let replytext = $("#replyText").val();
 			
 	$.ajax({
-		type : 'put', // patch도 된다.
+		type : 'put', 
 		url : '/comment/' + cno,
 		header : {
 			"Content-Type" : "application/json",
-			"X-HTTP-Method-Override" : "PUT" // patch도 된다.
+			"X-HTTP-Method-Override" : "PUT"
 		},
 		contentType : "application/json",
 		data : JSON.stringify({c_content : replytext}),
