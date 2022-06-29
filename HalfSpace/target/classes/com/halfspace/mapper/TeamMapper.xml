@@ -4,12 +4,27 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.halfspace.mapper.TeamMapper">
 
-	<select id="myTeam">
+	<select id="myTeam" resultType="com.halfspace.persistence.TeamVO">
 		SELECT * FROM team_tbl WHERE team_id = #{teamId}
 	</select>
 	
-	<insert id="wecomeAboard">
-		
+	<insert id="welcomeAboard">
+		INSERT INTO team_tbl
+		(teammateId)
+			VALUES
+		(#{teammateId})
 	</insert>
+ 	
+ 	<update id="mateUpdate">
+ 		UPDATE team_tbl
+ 			SET
+ 		teammateId = #{teammateId}
+ 			WHERE team_id = #{teamId}
+ 	</update>
+ 	
+ 	<delete id="mateDelete">
+ 		DELETE FROM team_tbl
+ 			WHERE team_id = #{teamId}
+ 	</delete>
 
 </mapper>

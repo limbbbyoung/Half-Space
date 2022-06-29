@@ -10,5 +10,8 @@ public interface TeamMapper {
 	
 	public void welcomeAboard(Long teammateId);
 	
+	public void mateUpdate(Long teammateId);
+	
+	public void mateDelete(Long teammateId);
 	
 }
