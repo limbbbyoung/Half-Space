@@ -2,6 +2,7 @@ package com.halfspace.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,6 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.halfspace.persistence.CommentVO;
 import com.halfspace.service.CommentService;
 
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 @RestController
 @RequestMapping("/comment")
 public class CommentController {
@@ -88,12 +92,17 @@ public class CommentController {
 		ResponseEntity<String> entity = null;
 		
 		try {
+			vo.setCno(cno);
+			
 			service.modifyComment(vo);
 			
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 			
+			log.info("여기는 컨트롤러 : " + vo);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
+			log.info("여기는 컨트롤러 : " + vo);
 			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 		return entity;
