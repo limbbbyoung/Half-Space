@@ -9,15 +9,56 @@
 <style>
 	.container{padding: 20px;}
 	h1{color: #244875;}
+	a {
+	     color : #48734A;
+	     text-decoration-line : none;
+	  }
+	 #btn-filed, #searchBtn{
+        display: inline-block;
+        padding: 13px 20px;
+        background-color:#244875; 
+        color: white;
+        border-radius: 20px;
+        text-align: center;
+        line-height: 100%;
+    }
+    .my.pagination > .active > a, 
+	.my.pagination > .active > span, 
+	.my.pagination > .active > a:hover, 
+	.my.pagination > .active > span:hover, 
+	.my.pagination > .active > a:focus, 
+	.my.pagination > .active > span:focus {
+	  background: #244875;
+	  border-color: #244875;
+	}
+	table{
+		color :  #48734A; 
+		background-color: #DAF9D9;
+	}
+	.page-link {
+		color: #244875;
+	}
+	.my {
+		padding-top: 20px;
+	}
+	th {
+		color: #2FB34B;
+	}
 </style>
 <meta charset="UTF-8">
 <title>boardList</title>
 </head>
 <body>
+	<div class="header">
+	</div>
 	<div class="container">
 		<div class="row">
-			<h1>글 목록</h1>
-			<table class="table table-success">
+			<h1>
+			<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+			  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+			</svg>
+			매칭 글 목록</h1>
+			 <table class="table table-hover" style="color :  #48734A;">
 				<thead>
 					<tr> 
 						<th>글번호</th>
@@ -50,9 +91,8 @@
 					</tr>
 				</tbody>
 			</table>
-			<a class="btn btn-primary" href="/mainBoard/insert">글 쓰기</a>
-			<hr/>
-			<ul class="pagination">
+			<a class="btn" href="/mainBoard/insert" id="btn-filed">글 쓰기</a>
+			<ul class="pagination my justify-content-center">
 				<!-- Prev -->
 				<c:if test="${pageMaker.prev }">
 					<li class="page-item">
@@ -85,7 +125,7 @@
 			</ul>
 		</div><!-- .row 끝나는 지점 -->
 		<div class="row">
-			<div class="box-body">
+			<div class="box-body" style="text-align: center">
 				<select name="searchType" class="selectpicker">
 				<option value="n"
 					<c:out value="${pageMaker.cri.searchType == 'n' ? 'selected' : '' }"/>>
@@ -118,11 +158,12 @@
 				</select>
 				<input type="text" name="keyword" id="keywordInput" 
 					value="${pageMaker.cri.keyword }">
-				<button class="btn btn-success" id="searchBtn">Search</button>
+				<button class="btn" id="searchBtn">Search</button>
 			</div><!-- .box-body  -->
 		</div><!-- .row  -->
 	</div><!-- .container  -->
-	
+	<div class="footer">
+	</div>
 	<script type="text/javascript">
 	    // 검색버튼 작동
 		$('#searchBtn').on("click", function(event){

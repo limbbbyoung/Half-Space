@@ -6,56 +6,66 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/resources/reply/modal.css">
 <head>
+<style>
+	#btn-filed{
+		margin: 5px;
+	}
+</style>
 <meta charset="UTF-8">
 <title>boardDetail</title>
 </head>
 <body>
  	${board} <br/>
  	<hr>
- 	글제목 : ${board.title } <br/>
- 	글쓴이 : ${board.writer } <br/>
- 	카테고리 : ${board.catego } <br/>
- 	경기날짜 : ${board.gamedate } <br/>
- 	경기장소 : ${board.gameplace } <br/>
- 	글내용 : <textarea rows="20" cols="50">${board.content }</textarea>
- 	<form action="/mainBoard/delete" method="post">
-	 	<input type="hidden" value="${board.bno }" name="bno">
-	 	<input type="hidden" name="page" value="${param.page }">
-		<input type="hidden" name="searchType" value="${param.searchType}">
-		<input type="hidden" name="keyword" value="${param.keyword}">
-	 	<button type="submit">글 삭제하기</button>
- 	</form>
- 	
- 	<form action="/mainBoard/updateForm" method="post">
-	 	<input type="hidden" value="${board.bno }" name="bno">
-	 	<input type="hidden" name="page" value="${param.page }">
-	    <input type="hidden" name="searchType" value="${param.searchType}">
-	    <input type="hidden" name="keyword" value="${param.keyword}">
-	 	<button type="submit">글 수정하기</button>
- 	</form>
- 	<a class="btn btn-primary" href="/mainBoard/list?page=${param.page }&searchType=${param.searchType }&keyword=${param.keyword}">글 목록</a>
- 	<!-- 댓글 -->
- 	<ul id="replies">
- 	
- 	</ul>
- 	
- 	<hr>
-		<div class="row box-box-success" style="width: 400px; padding: 20px;">
-			<div class="box-header">
-				<h2 class="text-primary">댓글 작성</h2>
-			</div><!-- header -->
-			<div class="box-body">
-				<strong>Writer</strong>
-				<input type="text" name="replyer" id="newReplyWriter" class="form-control">
-				<strong>ReplyText</strong>
-				<input type="text" name="reply" id="newReplyText" class="form-control">
-			</div><!-- body -->
-			<div class="box-footer">
-		        <button type="button" id="replyAddBtn" class="btn btn-primary">ADD REPLY</button>
-			</div><!-- footer -->
-		</div>
- 	
- 	
+ 	<div class="container">
+ 		<div class="row">
+ 			<div class="col-6">
+ 				글제목 : ${board.title } <br/>
+			 	글쓴이 : ${board.writer } <br/>
+			 	카테고리 : ${board.catego } <br/>
+			 	경기날짜 : ${board.gamedate } <br/>
+			 	경기장소 : ${board.gameplace } <br/>
+			 	글내용 : ${board.content }
+			 	<form action="/mainBoard/delete" method="post">
+				 	<input type="hidden" value="${board.bno }" name="bno">
+				 	<input type="hidden" name="page" value="${param.page }">
+					<input type="hidden" name="searchType" value="${param.searchType}">
+					<input type="hidden" name="keyword" value="${param.keyword}">
+				 	<button type="submit" class="btn btn-primary" id="btn-filed">글 삭제하기</button>
+			 	</form>
+			 	
+			 	<form action="/mainBoard/updateForm" method="post">
+				 	<input type="hidden" value="${board.bno }" name="bno">
+				 	<input type="hidden" name="page" value="${param.page }">
+				    <input type="hidden" name="searchType" value="${param.searchType}">
+				    <input type="hidden" name="keyword" value="${param.keyword}">
+				 	<button type="submit" class="btn btn-primary" id="btn-filed">글 수정하기</button>
+			 	</form>
+			 	<a class="btn btn-primary" id="btn-filed" href="/mainBoard/list?page=${param.page }&searchType=${param.searchType }&keyword=${param.keyword}">글 목록</a>
+ 			</div><!-- .col 끝나는 지점 -->
+ 			<div class="col-6">
+ 					<!-- 댓글 -->
+				 	<ul id="replies">
+				 	
+				 	</ul>
+				 	<div class="row box-box-success" style="width: 400px; padding: 20px;">
+					<div class="box-header">
+						<h2 class="text-primary">댓글 작성</h2>
+					</div><!-- header -->
+					<div class="box-body">
+						<strong>Writer</strong>
+						<input type="text" name="replyer" id="newReplyWriter" class="form-control">
+						<strong>ReplyText</strong>
+						<input type="text" name="reply" id="newReplyText" class="form-control">
+					</div><!-- body -->
+					<div class="box-footer">
+				        <button type="button" id="replyAddBtn" class="btn btn-primary">ADD REPLY</button>
+					</div><!-- footer -->
+				</div>
+ 			</div><!-- .col 끝나는 지점 -->
+ 		</div><!-- .row 끝나는 지점 -->
+ 	</div><!-- .container 끝나는 지점 -->
+ 	<hr>	
 	<!-- modal -->
 	<div id="modDiv" style="display:none;">
 		<div class="modal-title"></div>
@@ -68,7 +78,7 @@
 			<button type="button" id="closeBtn">Close</button>
 		</div>
 	</div>
-	
+	 	
  	<!-- jquery는 이곳에 -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<!-- 댓글 목록을 가져오는 JS파일 첨부 -->
