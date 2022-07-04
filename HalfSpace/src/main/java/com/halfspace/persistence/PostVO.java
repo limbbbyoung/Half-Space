@@ -6,14 +6,15 @@ import lombok.Data;
 @Data
 public class PostVO {
 	
-	private long pono;
+	private Long pono;
 	private String title;
 	private String catego;
 	private String writer;
 	private String content;
 	private String image;
-	private long hit;
+	private Long hit;
 	private Date regDate;
 	private Date updateDate;
+	private Long commentCnt;
 	
 }

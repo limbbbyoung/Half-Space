@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- jquery CDN -->
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">	
+<script src="https://kit.fontawesome.com/8907bd9180.js" crossorigin="anonymous"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,174 +12,131 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<h2>comment 나와주세요</h2>
+	${post}
+	<br/>
+	<a href="/post/list?page=${param.page}&searchType=${param.searchType}&keyword=${param.keyword}"><button>목록으로 돌아가기</button></a>
 	
-	<div>
-		<div>
-			user_id<input type="text" name="user_id" id="newWriter">
+	<form action="/post/delete" method="post">
+		<input type="hidden" name="pono" value="${post.pono}"/>
+		<input type="hidden" name="page" value="${param.page}"/>
+		<input type="hidden" name="searchType" value="${param.searchType}"/>
+		<input type="hidden" name="keyword" value="${param.keyword}"/>
+		<input type="submit" value="삭제하기">
+	</form>
+	<form action="/post/updateForm" method="post">
+		<input type="hidden" name="pono" value="${post.pono}"/>
+		<input type="hidden" name="page" value="${param.page}"/>
+		<input type="hidden" name="searchType" value="${param.searchType}"/>
+		<input type="hidden" name="keyword" value="${param.keyword}"/>
+		<input type="submit" value="수정하기">
+	</form>
+
+	<!-- comment div -->
+	<div class="row">
+		<h3 class="text-primary">댓글</h3>
+		<div id="comment">
+			<!-- comment 들어갈 위치 -->
 		</div>
-		<div>
-			c_content<input type="text" name="c_content" id="newContent">
-		</div>
-		<button id="commentAdd">댓글 생성</button>
 	</div>
 	
-	<!-- comment 영역 -->
-	<ul id="comment">
 	
-	</ul>
+	<!-- comment add btn -->
+	<div class = "row box-box-success">
+		<div class="box-header">
+			<h2 class="text-primary">댓글 작성</h2>
+		</div>
+		<div class="box-body">
+			<strong>writer</strong>
+			<input type="text" id="newWriter" placeholder="writer" class="form-control">
+			<strong>c_content</strong>
+			<input type="text" id="newContent" placeholder="c_content" class="form-control">
+		</div><!-- body end -->
+		<div class="box-footer">
+			<button type="button" class="btn btn-success" id="commentAdd">댓글 작성</button>
+		</div>
+	</div><!-- comadd btn END -->
 	
-	
+	<!-- 모달창 -->
 	<div id="modDiv" style="display:none;">
 		<div class="modal-title"></div>
 		<div>
 			<input type="text" id="comText">
 		</div>
 		<div>
-			<button type="button" id="comModBtn">Modify</button>
-			<button type="button" id="comDelBtn">Delete</button>
-			<button type="button" id="closeBtn">Close</button>
+			<button type="button" id="comModBtn">수정하기</button>
+			<button type="button" id="comDelBtn">삭제하기</button>
+			<button type="button" id="closeBtn">닫기</button>
 		</div>
 	</div>
 	
 	
+	<div class="card mb-2">
+		<div class="card-header bg-light">
+		        <i class="fa fa-comment fa"></i> REPLY
+		</div>
+		<div class="card-body">
+			<ul class="list-group list-group-flush">
+			    <li class="list-group-item">
+					<div class="form-inline mb-2">
+						<label for="replyId"><i class="fa fa-user-circle-o fa-2x"></i></label>
+						<input type="text" class="form-control" placeholder="Enter yourId" id="replyId">
+						<!--  <label for="replyPassword" class="ml-4"><i class="fa fa-unlock-alt fa-2x"></i></label>
+						<input type="password" class="form-control ml-2" placeholder="Enter password" id="replyPassword">
+						-->
+					</div>
+					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+					<button type="button" class="btn btn-dark mt-3" onClick="javascript:addReply();">post reply</button>
+			    </li>
+			</ul>
+		</div>
+	</div>
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
 	<script type="text/javascript">
-		let pono = 9223;
-		
-		
-		// 댓글 전체 불러오기
-		function getAllList() {
+	let pono = 9232;
+	
+	
+	function getAllList(){
+		// json 데이터를 얻어오는 로직 실행
+		$.getJSON("/comment/all/" + pono, function(data){
 			
 			let str = "";
+			console.log(data.length);
 			
-			$.getJSON("/comment/all/" + pono, function(data) {
-				
-				
-				console.log(data.length);
-				
-				$(data).each(
-					function() {
-						str += `<li data-cno='\${this.cno}' class='commentLi'>\${this.cno} \${this.user_id} \${this.c_content}<button>수정/삭제</button></li>`;
-					});
-				console.log(str);
-				$("#comment").html(str);
-			});
-		}
-		
-		getAllList();
-		
-		// 아래는 commentAdd 로직
-		
-		$("#commentAdd").on("click", function() {
-			
-			let writer = $("#newWriter").val();
-			let c_content = $("#newContent").val();
-			
-			$.ajax({
-				type : 'post',
-				url : '/comment',
-				headers : {
-					"Content-Type" : "application/json",
-					"X-HTTP-Method-Override" : "POST"
-				},
-				dataType : 'text',
-				data : JSON.stringify({
-					pono : pono,
-					user_id : writer,
-					c_content : c_content
-				}),
-				
-				success : function(result) {
-					
-					if(result == 'SUCCESS') {
-						alert("등록되었습니다.")
+			$(data).each(
+					function(){					
+						let timestamp = this.updateDate;
 						
-						getAllList();
+						let date = new Date(timestamp);
 						
-						$("#newWriter").val('');
-						$("newContent").val('');
-						
-					}
-				}
-				
-			});
-		});// 댓글 등록 END
-		
-		$("#comment").on("click", ".commentLi button", function() {
-			
-			let c_content = $(this).parent();
-			
-			let cno = c_content.attr("data-cno");
-			
-			let comText = c_content.text();
-			
-			$(".modal-title").html(cno);
-			$("#comText").val(comText);
-			$("#modDiv").show("slow");
-			
-		}); // modal 보여주기 END
-	
-		// 삭제버튼 이벤트
-		$("#comDelBtn").on("click", function(){
-			let cno = $(".modal-title").html();
-			
-			$.ajax({
-				type : 'delete',
-				url : '/comment/' + cno,
-				header : {
-					"Content-Type" : "application/json",
-					"X-HTTP-Method-Overide" : "DELETE"
-				},
-				dataType : "text",
-				success : function(result){
-					console.log("result: " + result);
-					if(result == 'SUCCESS'){
-						alert("삭제 되었습니다.");
-						// 모달닫기
-						$("#modDiv").hide("slow");
-						// 삭제된 이후 목록 가져와서 갱신하기
-						getAllList();
-					}
-				}
-			})
-		}); // comDelBtn END
-		
-		// 수정버튼 작동
-		$("#comModBtn").on("click", function(){
-		    let cno = $(".modal-title").html();
-		    console.log(cno);
-		    let comText = $("#comText").val();
+						let formattedTime = `게시일 : 
+											\${date.getFullYear()}년
+										    \${(date.getMonth()+1)}월
+											\${date.getDate()}일`;
+											console.log(this.reply_content);
+						str += `<div class='commentLi' data-cno='\${this.cno}'>
+								<strong>@\${this.user_id}</strong> - \${formattedTime} <br/>
+								<div class="comText"> \${this.c_content} </div> 
+								<button type='button' class='btn btn-info'>수정/삭제</button>
+								</div>`;
+				});
+			console.log(str);
+			$("#comment").html(str);
+		});
+	}
+	getAllList();
 
-		    $.ajax({
-		        type : 'put',
-		        url : '/comment/' + cno, 
-		        header : {
-		            "Content-Type" : "application/json",
-		            "X-HTTP-Method-Override" : "PUT"
-		        },
-		        contentType : "application/json",
-		        data : JSON.stringify({c_content:comText}),
-		        dataType : 'text',
-		        success : function(result){
-		            console.log("result: " + result);
-		            if(result == 'SUCCESS'){
-		                alert("수정 되었습니다.");
-		                // modal 닫기
-		                $('#modDiv').hide("slow");
-		                // 삭제된 이후 목록 가져와서 갱신하기
-		                getAllList();
-		            }
-		        }
-		    });
-		}); // modify END
 
-		
+
 	</script>
-	
+	<!--comment script src -->
+	<script src="/resources/comment/modalshow.js"></script>
+	<script src="/resources/comment/commentAdd.js"></script>
+	<script src="/resources/comment/modalclose.js"></script>
+	<script src="/resources/comment/modify.js"></script>
+	<script src="/resources/comment/delete.js"></script>	
+
 </body>
 </html>
