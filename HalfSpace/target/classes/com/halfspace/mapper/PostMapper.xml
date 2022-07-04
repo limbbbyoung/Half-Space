@@ -84,6 +84,12 @@
 			
 			pono > 0
 	</select>
+	
+	<update id="updateCommentCnt">
+		UPDATE post_tbl
+			SET
+		commentCnt = commentCnt + #{amount} WHERE pono = #{pono}
+	</update>
 
 	
 

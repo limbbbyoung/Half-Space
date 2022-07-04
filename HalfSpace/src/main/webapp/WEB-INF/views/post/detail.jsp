@@ -72,45 +72,48 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
 	<script type="text/javascript">
-		let pono = ${post.pono}
-		
-		
-		function getAllList(){
-			// json 데이터를 얻어오는 로직 실행
-			$.getJSON("/comment/all/" + pono, function(data){
-				
-				let str = "";
-				console.log(data.length);
-				
-				$(data).each(
-						function(){					
-							let timestamp = this.updateDate;
-							
-							let date = new Date(timestamp);
-							
-							let formattedTime = `게시일 : 
-												\${date.getFullYear()}년
-											    \${(date.getMonth()+1)}월
-												\${date.getDate()}일`;
-												console.log(this.reply_content);
-							str += `<div class='commentLi' data-cno='\${this.cno}'>
-									<strong>@\${this.user_id}</strong> - \${formattedTime} <br/>
-									<div class="comText"> \${this.c_content} </div> 
-									<button type='button' class='btn btn-info'>수정/삭제</button>
-									</div>`;
-					});
-				console.log(str);
-				$("#comment").html(str);
-			});
-		}
-		getAllList();
-	</script>
-	<script src="/resources/comment/comList.js"/>
-	<script src="/resources/comment/delete.js"/>
-	<script src="/resources/comment/modify.js"/>
-	<script src="/resources/comment/commentAdd.js"/>
-	<script src="/resources/comment/modalClose.js"/>
+	let pono = ${post.pono}
 	
+	
+	function getAllList(){
+		// json 데이터를 얻어오는 로직 실행
+		$.getJSON("/comment/all/" + pono, function(data){
+			
+			let str = "";
+			console.log(data.length);
+			
+			$(data).each(
+					function(){					
+						let timestamp = this.updateDate;
+						
+						let date = new Date(timestamp);
+						
+						let formattedTime = `게시일 : 
+											\${date.getFullYear()}년
+										    \${(date.getMonth()+1)}월
+											\${date.getDate()}일`;
+											console.log(this.reply_content);
+						str += `<div class='commentLi' data-cno='\${this.cno}'>
+								<strong>@\${this.user_id}</strong> - \${formattedTime} <br/>
+								<div class="comText"> \${this.c_content} </div> 
+								<button type='button' class='btn btn-info'>수정/삭제</button>
+								</div>`;
+				});
+			console.log(str);
+			$("#comment").html(str);
+		});
+	}
+	getAllList();
+
+
+
+	</script>
+	<!--comment script src -->
+	<script src="/resources/comment/modalshow.js"></script>
+	<script src="/resources/comment/commentAdd.js"></script>
+	<script src="/resources/comment/modalclose.js"></script>
+	<script src="/resources/comment/modify.js"></script>
+	<script src="/resources/comment/delete.js"></script>	
 
 </body>
 </html>

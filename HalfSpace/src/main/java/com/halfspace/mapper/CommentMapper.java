@@ -14,5 +14,6 @@ public interface CommentMapper {
 	public void update(CommentVO vo);
 	
 	public void delete(Long cno);
-
+	
+	public Long getPono(Long pono);
 }

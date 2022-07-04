@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.halfspace.mapper.CommentMapper;
 import com.halfspace.mapper.PostMapper;
@@ -20,7 +21,12 @@ public class CommentServiceImpl implements CommentService {
 	private PostMapper postmapper;
 	
 	@Override
+	@Transactional
 	public void addComment(CommentVO vo) {
+		Long pono = vo.getPono();
+		
+		postmapper.updateCommentCnt(pono, 1);
+		
 		mapper.create(vo);
 	}
 	
@@ -35,7 +41,10 @@ public class CommentServiceImpl implements CommentService {
 	}
 	
 	@Override
+	@Transactional
 	public void removeComment(Long cno) {
+		Long pono = mapper.getPono(cno);
+		postmapper.updateCommentCnt(pono, -1);
 		mapper.delete(cno);
 	}
 

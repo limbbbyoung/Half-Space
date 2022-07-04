@@ -28,5 +28,10 @@
 		DELETE FROM comment_tbl
 			WHERE cno = #{cno}
 	</delete>
+	
+	<select id="getPono" resultType="long">
+		SELECT pono FROM comment_tbl
+			WHERE cno = #{cno}
+	</select>
 
 </mapper>

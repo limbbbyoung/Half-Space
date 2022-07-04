@@ -24,7 +24,7 @@
 			<c:forEach var="post" items="${postList}">
 				<tr>
 					<td>${post.pono}</td>
-					<td><a href="/post/detail?page=${pageMaker.cri.page}&pono=${post.pono}&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${post.title }</a></td>
+					<td><a href="/post/detail?page=${pageMaker.cri.page}&pono=${post.pono}&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${post.title }[${post.commentCnt}]</a></td>
 					<td>${post.writer}</td>
 					<td>${post.regDate}</td>
 					<td>${post.updateDate}</td>
