@@ -5,50 +5,14 @@
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- 웹사이트 배경 이미지 -->
+<link rel="stylesheet" type="text/css" href="/resources/mainboard/list.css">
 <head>
-<style>
-	.container{padding: 20px;}
-	h1{color: #244875;}
-	a {
-	     color : #48734A;
-	     text-decoration-line : none;
-	  }
-	 #btn-filed, #searchBtn{
-        display: inline-block;
-        padding: 13px 20px;
-        background-color:#244875; 
-        color: white;
-        border-radius: 20px;
-        text-align: center;
-        line-height: 100%;
-    }
-    .my.pagination > .active > a, 
-	.my.pagination > .active > span, 
-	.my.pagination > .active > a:hover, 
-	.my.pagination > .active > span:hover, 
-	.my.pagination > .active > a:focus, 
-	.my.pagination > .active > span:focus {
-	  background: #244875;
-	  border-color: #244875;
-	}
-	table{
-		color :  #48734A; 
-		background-color: #DAF9D9;
-	}
-	.page-link {
-		color: #244875;
-	}
-	.my {
-		padding-top: 20px;
-	}
-	th {
-		color: #2FB34B;
-	}
-</style>
 <meta charset="UTF-8">
 <title>boardList</title>
 </head>
 <body>
+	<div class="bgimg">
 	<div class="header">
 	</div>
 	<div class="container">
@@ -64,7 +28,6 @@
 						<th>글번호</th>
 						<th>글제목</th>
 						<th>글쓴이</th>
-						<th>글내용</th>
 						<th>카테고리</th>
 						<th>경기 날짜</th>
 						<th>경기 장소</th>
@@ -80,7 +43,6 @@
 							<td><a href="/mainBoard/detail?bno=${board.bno}&page=${pageMaker.cri.page}
 							      &searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${board.title }[${board.replycount }]</a></td>
 							<td>${board.writer }</td>
-							<td>${board.content }</td>
 							<td>${board.catego }</td>
 							<td>${board.gamedate }</td>
 							<td>${board.gameplace }</td>
@@ -164,6 +126,7 @@
 	</div><!-- .container  -->
 	<div class="footer">
 	</div>
+	</div><!-- .bgimg 끝나는 지점 -->
 	<script type="text/javascript">
 	    // 검색버튼 작동
 		$('#searchBtn').on("click", function(event){

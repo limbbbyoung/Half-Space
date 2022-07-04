@@ -1,6 +1,9 @@
 package com.halfspace.controller;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -122,6 +125,12 @@ public class MainBoardController {
 		rttr.addAttribute("searchType", cri.getSearchType());
 		rttr.addAttribute("keyword", cri.getKeyword());
 		return "redirect:/mainBoard/detail";
+	}
+	
+	@GetMapping("/welcomeHome")
+	public String welcomeHome() {
+		
+		return "mainBoard/welcomeHome";
 	}
 }
 

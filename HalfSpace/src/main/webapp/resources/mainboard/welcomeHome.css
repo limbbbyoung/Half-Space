@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+
+	body, html { 
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    }
+	
+	.bgimg {
+	    border: 0;
+	    padding: 0; 
+	    height: 100vh;
+        width: 100vw;
+	    background-image: url("https://cdn.pixabay.com/photo/2016/11/25/19/02/soccer-1859046_960_720.jpg");
+	    background-position: center;
+	    background-size: cover;
+        background-repeat : no-repeat;
+	}
+	

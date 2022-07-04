@@ -7,16 +7,22 @@
 <link rel="stylesheet" href="/resources/reply/modal.css">
 <head>
 <style>
-	#btn-filed{
-		margin: 5px;
-	}
+	 #btn-filed, #replyAddBtn{
+	 	margin-bottom : 10px;
+	 	padding : 10px 10px;
+        display: inline-block;
+        background-color:#244875; 
+        color: white;
+        border-radius: 20px;
+        text-align: center;
+        line-height: 100%;
+    }
 </style>
 <meta charset="UTF-8">
 <title>boardDetail</title>
 </head>
 <body>
- 	${board} <br/>
- 	<hr>
+	<div class="header"></div><!-- .header끝나는 지점 -->
  	<div class="container">
  		<div class="row">
  			<div class="col-6">
@@ -31,7 +37,7 @@
 				 	<input type="hidden" name="page" value="${param.page }">
 					<input type="hidden" name="searchType" value="${param.searchType}">
 					<input type="hidden" name="keyword" value="${param.keyword}">
-				 	<button type="submit" class="btn btn-primary" id="btn-filed">글 삭제하기</button>
+				 	<button type="submit" class="btn" id="btn-filed">글 삭제하기</button>
 			 	</form>
 			 	
 			 	<form action="/mainBoard/updateForm" method="post">
@@ -39,9 +45,9 @@
 				 	<input type="hidden" name="page" value="${param.page }">
 				    <input type="hidden" name="searchType" value="${param.searchType}">
 				    <input type="hidden" name="keyword" value="${param.keyword}">
-				 	<button type="submit" class="btn btn-primary" id="btn-filed">글 수정하기</button>
+				 	<button type="submit" class="btn" id="btn-filed">글 수정하기</button>
 			 	</form>
-			 	<a class="btn btn-primary" id="btn-filed" href="/mainBoard/list?page=${param.page }&searchType=${param.searchType }&keyword=${param.keyword}">글 목록</a>
+			 	<a class="btn" id="btn-filed" href="/mainBoard/list?page=${param.page }&searchType=${param.searchType }&keyword=${param.keyword}">글 목록</a>
  			</div><!-- .col 끝나는 지점 -->
  			<div class="col-6">
  					<!-- 댓글 -->
@@ -50,7 +56,7 @@
 				 	</ul>
 				 	<div class="row box-box-success" style="width: 400px; padding: 20px;">
 					<div class="box-header">
-						<h2 class="text-primary">댓글 작성</h2>
+						<h2 style="color: #244875;">댓글 작성</h2>
 					</div><!-- header -->
 					<div class="box-body">
 						<strong>Writer</strong>
@@ -59,12 +65,13 @@
 						<input type="text" name="reply" id="newReplyText" class="form-control">
 					</div><!-- body -->
 					<div class="box-footer">
-				        <button type="button" id="replyAddBtn" class="btn btn-primary">ADD REPLY</button>
+				        <button type="button" id="replyAddBtn" class="btn">ADD REPLY</button>
 					</div><!-- footer -->
 				</div>
  			</div><!-- .col 끝나는 지점 -->
  		</div><!-- .row 끝나는 지점 -->
  	</div><!-- .container 끝나는 지점 -->
+ 	<div class="footer"></div><!-- .footer 끝나는 지점 -->
  	<hr>	
 	<!-- modal -->
 	<div id="modDiv" style="display:none;">
