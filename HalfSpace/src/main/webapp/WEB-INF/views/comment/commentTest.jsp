@@ -3,6 +3,7 @@
 <!-- jquery CDN -->
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">	
+<script src="https://kit.fontawesome.com/8907bd9180.js" crossorigin="anonymous"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,6 +66,28 @@
 			<button type="button" id="comModBtn">수정하기</button>
 			<button type="button" id="comDelBtn">삭제하기</button>
 			<button type="button" id="closeBtn">닫기</button>
+		</div>
+	</div>
+	
+	
+	<div class="card mb-2">
+		<div class="card-header bg-light">
+		        <i class="fa fa-comment fa"></i> REPLY
+		</div>
+		<div class="card-body">
+			<ul class="list-group list-group-flush">
+			    <li class="list-group-item">
+					<div class="form-inline mb-2">
+						<label for="replyId"><i class="fa fa-user-circle-o fa-2x"></i></label>
+						<input type="text" class="form-control" placeholder="Enter yourId" id="replyId">
+						<!--  <label for="replyPassword" class="ml-4"><i class="fa fa-unlock-alt fa-2x"></i></label>
+						<input type="password" class="form-control ml-2" placeholder="Enter password" id="replyPassword">
+						-->
+					</div>
+					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+					<button type="button" class="btn btn-dark mt-3" onClick="javascript:addReply();">post reply</button>
+			    </li>
+			</ul>
 		</div>
 	</div>
 
