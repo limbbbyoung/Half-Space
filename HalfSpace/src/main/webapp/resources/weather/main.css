@@ -1,0 +1,271 @@
+body
+{
+    background-color: skyblue;    
+}
+#bigSymbol 
+{
+    width: 17vh;
+}
+#convertDegree
+{   
+    border: solid 0.1vh lightgray;
+    float: right;
+}
+#img-button 
+{
+    background:  no-repeat;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+#middle 
+{
+    height : 40vh;
+    margin : auto;
+    width : 80vw;
+    text-align : center;
+}
+#firstMiddle 
+{
+    margin : auto;
+    height : 24.5vh;
+    width : 76vw;
+}
+
+#middleSym 
+{    
+    text-align: right;
+    display: table-cell;
+    vertical-align: middle;
+    height: 21vh;
+    width: 34vw;
+    margin-left: 1.5vw;
+    float: left;
+}
+
+#middleText 
+{
+    color: white;
+    text-align: left;
+    margin: auto;
+    display: table-cell;
+    vertical-align: middle;
+    height: 21vh;
+    width: 39vw;
+    float: right;
+    font-size: 12vh;
+}
+
+#secondMiddle 
+{
+    color: white;
+    font-size: 3vh;
+    margin : auto;
+    height : 5vh;
+    width : 76vw;
+    text-align : center;
+}
+
+#thirdMiddle 
+{
+    color: white;
+    font-size:3vh;
+    margin : auto;
+    height : 5.5vh;
+    width : 76vw;
+    text-align : center;
+}
+
+#currentTime p
+{
+    color: white;
+    text-align: center;
+    margin-top: 0;
+    font-size: 3vh;    
+}
+#footer
+{
+    border-radius: 20px;
+    height: 30vh;
+    margin : auto;
+    width: 80vw;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.transparent8 
+{ zoom: 1; /* ie 5,6,7 bug fix */ 
+    filter: alpha(opacity=80); 
+    opacity: 0.8; 
+}
+
+#header
+{
+    
+    height: 20vh;
+    margin : auto;
+    width: 80vw;
+}
+#location
+{
+    text-align: center;
+}
+#location img
+{
+    display: inline-block;
+    width: 5vh;
+}
+#location p
+{
+    color: white;
+    display: inline-block;
+    font-size: 6vh;
+    margin-top: 0;
+    margin-bottom: 1vh;
+}
+#refresh img
+{
+    margin-left: 5vw;
+    width: 5vh;
+    transition: .5s;
+}
+
+.degreeButtons
+{
+    background-color: #e7e7e7; 
+    border: none;
+    color: black;
+    display: inline-block;
+    font-size: 2.5vh;
+    float: right;
+    padding: 1vh 1vw;
+    outline: none;
+    text-align: center;
+    text-decoration: none;
+}
+.degreeButtons:hover
+{   
+    background-color: white;
+    border: none;
+    color: black;
+}
+.selected
+{
+    background-color: white;
+}
+.img-button:hover 
+{
+    -webkit-transform: rotate(360deg);
+}
+.footer-col
+{    
+    border-color: green;
+    display: inline-block;
+    height: 14vh;
+    margin-right: 2vw;
+    margin-left: 2vw;
+    vertical-align: top;
+    width: 30vw;
+}
+.footer-col img
+{
+    display: inline-block;
+    margin-bottom: 8vh;
+    margin-top: 2vh;
+    vertical-align: middle;
+    width : 9vh;
+}
+.footer-col-left
+{
+    float:left;
+}
+.footer-info
+{
+    display: inline-block;
+    font-size: 4vh;
+    vertical-align: top;
+}
+.footer-time
+{
+    display: inline-block;
+    margin-top: 5vh;
+    font-size: 3vh;
+    float: right;
+    vertical-align: top;
+    margin-left: 2.5vw;
+}
+
+.footer-row
+{
+    
+    border-color: white;
+    color: white;
+    height : 15vh;
+    text-align: center;
+}
+.first
+{
+    border-bottom : solid;
+    border-width : 0.1vh;
+}
+
+/**********************************************/
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
