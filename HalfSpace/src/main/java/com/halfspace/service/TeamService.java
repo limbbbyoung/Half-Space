@@ -1,10 +1,8 @@
-package com.halfspace.mapper;
-
-import java.util.List;
+package com.halfspace.service;
 
 import com.halfspace.persistence.TeamVO;
 
-public interface TeamMapper {
+public interface TeamService {
 
 	public TeamVO teamDetail(Long teamNum);
 	
