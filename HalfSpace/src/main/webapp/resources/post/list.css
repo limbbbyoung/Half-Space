@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+	.container{padding: 20px;}
+	
+	h1{color: #244875;}
+	
+	a {
+	     color : #48734A;
+	     text-decoration-line : none;
+	  }
+	  
+	 #btn-filed, #searchBtn{
+        display: inline-block;
+        padding: 13px 20px;
+        background-color:#244875; 
+        color: white;
+        border-radius: 20px;
+        text-align: center;
+        line-height: 100%;
+    }
+    
+    .my.pagination > .active > a, 
+	.my.pagination > .active > span, 
+	.my.pagination > .active > a:hover, 
+	.my.pagination > .active > span:hover, 
+	.my.pagination > .active > a:focus, 
+	.my.pagination > .active > span:focus {
+	  background: #244875;
+	  border-color: #244875;
+	}
+	
+	table{
+		color :  #48734A; 
+		background-color: #DAF9D9;
+	}
+	
+	.page-link {
+		color: #244875;
+	}
+	
+	.my {
+		padding-top: 20px;
+	}
+	
+	th {
+		color: #2FB34B;
+	}

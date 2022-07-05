@@ -8,10 +8,59 @@
 <!-- 웹사이트 배경 이미지 -->
 <link rel="stylesheet" type="text/css" href="/resources/mainboard/welcomeHome.css">
 <head>
+<style>
+    #HeadLine{color: white;
+       text-align: center;
+       font-size: 100px;}
+	.nav-link{color: black;
+			  display: flex;
+			  justify-content: center;
+			  align-items: center;
+  			  min-height: 65vh;}
+
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="bgimg"></div>
+	<div class="bgimg">
+		<div class="header">
+		</div><!-- .header -->
+		<div class="container">
+			<div class="row">
+				<div class="col-2">
+				</div><!-- .col-4 -->
+				<div class="col-8">
+					<h1 id="HeadLine">HalfSpace</h1>
+					<ul class="nav justify-content-center">
+					  <li class="nav-item">
+					    <h1><a class="nav-link" aria-current="page" href="/mainBoard/list">
+					    소셜매치
+					    </a></h1>
+					  </li>
+					  <li class="nav-item">
+					    <h1><a class="nav-link" href="#">
+					    날씨
+					    </a></h1>
+					  </li>
+					  <li class="nav-item">
+					    <h1><a class="nav-link" href="/post/list">
+					    자유게시판
+					    </a></h1>
+					  </li>
+					  <li class="nav-item">
+					    <h1><a class="nav-link" href="#">
+					    QnA
+					    </a></h1>
+					  </li>
+					</ul>
+				</div><!-- .col-4 -->
+				<div class="col-2">
+				</div><!-- .col-4 -->
+			</div><!-- .row -->
+		</div><!-- .container -->
+		<div class="footer">
+		</div><!-- .footer -->
+	</div>
 </body>
 </html>

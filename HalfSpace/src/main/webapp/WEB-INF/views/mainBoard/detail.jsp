@@ -80,9 +80,9 @@
 			<input type="text" id="replyText" style="width: 200px; height: 50px;">
 		</div>
 		<div>
-			<button type="button" id="replyModBtn">Modify</button>
-			<button type="button" id="replyDelBtn">Delete</button>
-			<button type="button" id="closeBtn">Close</button>
+			<button type="button" id="replyModBtn">수정하기</button>
+			<button type="button" id="replyDelBtn">삭제하기</button>
+			<button type="button" id="closeBtn">닫기</button>
 		</div>
 	</div>
 	 	

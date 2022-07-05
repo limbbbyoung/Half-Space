@@ -12,7 +12,6 @@
 <title>boardList</title>
 </head>
 <body>
-	<div class="bgimg">
 	<div class="header">
 	</div>
 	<div class="container">
@@ -125,8 +124,7 @@
 		</div><!-- .row  -->
 	</div><!-- .container  -->
 	<div class="footer">
-	</div>
-	</div><!-- .bgimg 끝나는 지점 -->
+	</div><!-- .footer 끝나는 지점 -->
 	<script type="text/javascript">
 	    // 검색버튼 작동
 		$('#searchBtn').on("click", function(event){
