@@ -130,7 +130,7 @@ public class MainBoardController {
 	@GetMapping("/welcomeHome")
 	public String welcomeHome() {
 		
-		return "mainBoard/welcomeHome";
+		return "/mainBoard/welcomeHome";
 	}
 }
 
