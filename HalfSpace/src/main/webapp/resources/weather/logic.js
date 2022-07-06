@@ -1,8 +1,8 @@
-const ENCODING = "eJVC2XHsGkMlocNixoRGg8uajgatlRCy1dIXeadtEd2307rzXgpKE2eFO16atA6obabrsCrC7hrlG9faUIiMig%3D%3D";
-const DECODING = "eJVC2XHsGkMlocNixoRGg8uajgatlRCy1dIXeadtEd2307rzXgpKE2eFO16atA6obabrsCrC7hrlG9faUIiMig==";
+const API_SOURCE = "https://api.openweathermap.org/data/2.5/weather?";
+const API_KEY = "&appid=5d0d3ea800ea71bd1d4fad5c78379542";
 
-const REFRESH = document.getElementById('img-button'); // 새로고침 버튼
-const LOC = document.getElementById('location').children[1]; // 현재 위치
+const refresh = document.getElementById('img-button'); // 새로고침 버튼
+const loc = document.getElementById('location').children[1]; // 현재 위치
 const currentTime = document.getElementById('currentTime').children[0]; // 현재 시각
 const middleText = document.getElementById('middleText'); // 현재 온도
 const secondMiddle = document.getElementById('secondMiddle'); // 최저/최고 온도
@@ -11,47 +11,45 @@ const sunrise = document.getElementsByClassName('footer-time')[0]; // 일출
 const sunset = document.getElementsByClassName('footer-time')[1]; // 일몰
 const humidity = document.getElementsByClassName('footer-time')[2] // 습도
 const wind = document.getElementsByClassName('footer-time')[3] // 바람
-const convButton = document.getElementsByClassName('degreeButtons')[1].style.backgroundColor; // 전환 버튼
+let convButton = document.getElementsByClassName('degreeButtons')[1].style.backgroundColor; // 전환 버튼
 
-var lat, lon, obj;
+let lat, lon, obj;
 
-function infoUpdate() {
+function locationUpdate() {
 
-    let add = apiSource + "lat=" + lat + "&lon=" + lon + apiKey;
-
-    console.log('infoUpdate-lat : '+lat);
-    console.log('infoUpdate-lon : '+lon);
-
-    navigator.geolocation.watchPosition(function(position) {
-        
-        lat = position.coords.latitude.toFixed(4);
-        lon = position.coords.longitude.toFixed(4);
-        console.log('geolocation-lat : ' + lat);
-        console.log('geolocation-lon : ' + lon);
-        infoUpdate(); // 여기 위치하면 refresh가 미작동, 오류발생은 X
-    });
+    function location() {
+		navigator.geolocation.getCurrentPosition(
+			function(position) {
+				lat = position.coords.latitude;
+				lon = position.coords.longitude;
+			}
+		)
+	} // 현재 위도, 경도 확인 코드
+	
+	location();
+	
+	let add = API_SOURCE + "lat=" + lat + "&lon=" + lon + API_KEY;
 
     fetch(add).then(function(response) {
         return response.json();
     }).then(function(json) {
-        console.log('fetch then : '+json)
         obj = json;
-    })
+    }) // add에 저장된 위도,경도로 JSON을 받아와 obj에 저장하는 코드 
+    
+    console.log(obj);
 
     if (lat !== undefined) {
-        loc.innerHTML = obj.name + ', ' +obj.sys.country;
+        loc.innerHTML = obj.name + ' , ' + obj.sys.country;
         currentTime.innerHTML = setTime();
 
-        if (convButton === 'white') {
-            middleText.innerHTML = (obj.main.temp - 273.15).toFixed(0) + '°C';
+        if (convButton === "white") {
+            middleText.innerHTML = (obj.main.temp - 273.15) + '°C';
             secondMiddle.innerHTML = (obj.main.temp_max - 273.15) + '°C / ' + (obj.main.temp_min - 273.15) + '°C';
-        } else if (convButton === 'rgb(231, 231, 231)') {
-            middleText.innerHTML = (((obj.main.temp - 273.15) * (9/5)) + 32).toFixed(0) + '°F';
-            secondMiddle.innerHTML = (((obj.main.temp_max - 273.15) * (9 / 5)) + 32).toFixed(0)  + '°F / ' + (((obj.main.temp_min - 273.15) * (9 / 5)) + 32).toFixed(0) + '°F';
+        } else if (convButton === "#e7e7e7") {
+            middleText.innerHTML = (((obj.main.temp - 273.15) * (9/5)) + 32) + '°F';
+            secondMiddle.innerHTML = (((obj.main.temp_max - 273.15) * (9 / 5)) + 32)  + '°F / ' + (((obj.main.temp_min - 273.15) * (9 / 5)) + 32) + '°F';
         }
 
-        //middleText.innerHTML = (obj.main.temp - 273.15).toFixed(0) + '°C';
-        //secondMiddle.innerHTML = (obj.main.temp_max - 273.15) + '°C / ' + (obj.main.temp_min - 273.15) + '°C';
         thirdMiddle.innerHTML = obj.weather[0].main;
         sunrise.innerHTML = timeStamp(obj.sys.sunrise);
         sunset.innerHTML = timeStamp(obj.sys.sunset);
@@ -101,7 +99,7 @@ function setTime() {
 
 function convertButton() {
 
-    var buttons = document.getElementsByClassName("degreeButtons");
+    let buttons = document.getElementsByClassName("degreeButtons");
     
     buttons[0].onclick = function() {   
         buttons[0].style.backgroundColor = "white"
@@ -116,12 +114,12 @@ function convertButton() {
         middleText.innerHTML = (obj.main.temp - 273.15).toFixed(0) + '°C';
         secondMiddle.innerHTML = (obj.main.temp_max - 273.15) + '°C / ' + (obj.main.temp_min - 273.15) + '°C';
     };
-
+    
 }
 
-refresh.onclick = infoUpdate;
+refresh.onclick = locationUpdate; // 새로고침 버튼
+
 convertButton();
+locationUpdate();
 
-infoUpdate();
-
-setInterval(function() {infoUpdate();}, 5000);
+setInterval(function() {locationUpdate();}, 5000); // 5초마다 현재 정보 갱신
