@@ -1,4 +1,4 @@
-package com.ict.security;
+package com.halfspace.security;
 
 import java.io.IOException;
 

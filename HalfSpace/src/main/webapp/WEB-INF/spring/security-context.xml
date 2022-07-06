@@ -13,10 +13,12 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
-	<bean id="HalfSpaceAccessDenied" class="com.ict.security.HalfSpaceAccessDeniedHandler"/>
-	<bean id="HalfSpaceLoginSuccess" class="com.ict.security.HalfSpaceLoginSuccessHandler"/>
+	<bean id="HalfSpaceAccessDenied" class="com.halfspace.security.HalfSpaceAccessDeniedHandler"/>
+	<bean id="HalfSpaceLoginSuccess" class="com.halfspace.security.HalfSpaceLoginSuccessHandler"/>
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
-	 
+	<bean id="HalfSpaceUserDetailsService" class="com.halfspace.security.HalfSpaceUserDetailsService"/>
+	
+	
 	<security:http>
 	
 		<security:intercept-url pattern="/login/all" access="permitAll" />
@@ -38,9 +40,11 @@
 	
 	<!-- security 인증 매니저 -->
 	<security:authentication-manager>
-		<security:authentication-provider>
+		<security:authentication-provider
+			user-service-ref="HalfSpaceUserDetailsService">
 					
-				<security:jdbc-user-service data-source-ref="dataSource"/>
+				<!-- <security:jdbc-user-service data-source-ref="dataSource"/>  -->
+				
 				<security:password-encoder ref="bcryptPasswordEncoder"/>
 		
 		</security:authentication-provider>
