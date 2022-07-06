@@ -13,7 +13,28 @@
 </head>
 <body>
 	<div class="header">
-	</div>
+		<nav class="navbar">
+		  <div class="container-fluid">
+		    <a class="navbar-brand" href="/mainBoard/welcomeHome"><img src="../resources/images/halfspacelogo.png" alt="" width="334" height="110" class="d-inline-block align-text-top">
+		    </a>
+		     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse navbar-collapse" id="navbarNav">
+		      <ul class="navbar-nav">
+		        <li class="nav-item">
+		          <a class="nav-link active" aria-current="page" href="/mainBoard/welcomeHome">Home</a>
+		        </li>
+		      </ul>
+		    </div>
+		    <form class="d-flex">
+		      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+		      <button class="btn btn-outline-success" type="submit">Search</button>
+		    </form>
+		  </div>
+		</nav>
+	</div><!-- .header -->
+	<hr/>
 	<div class="container">
 		<div class="row">
 			<h1>
@@ -21,7 +42,7 @@
 			  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
 			</svg>
 			매칭 글 목록</h1>
-			 <table class="table table-hover" style="color :  #48734A;">
+			 <table class="table table-hover" style="color: #48734A">
 				<thead>
 					<tr> 
 						<th>글번호</th>
@@ -123,7 +144,23 @@
 			</div><!-- .box-body  -->
 		</div><!-- .row  -->
 	</div><!-- .container  -->
+	<hr/>
 	<div class="footer">
+		<div class="row">
+			<div class="col-4"></div><!-- .col -->
+			<div class="col-4" style="text-align: center;">
+				<img src="../resources/images/halfspacelogo.png" alt="halfspaceLogo" width="254" height="80" class="d-inline-block align-text-top">
+			    <br/>
+			    <p>Spring Project A조<br/>
+				임병영<br/>
+		        김동완<br/>
+		        신동호<br/>
+			    | 서울특별시 마포구 백범로 23 3층<br/> 
+			    | 대표 전화번호 010-0000-0000<br/>
+				<b>COPYRIGHT HalfSpace C&C ALL RIGHT RESERVED</b></p>
+			</div><!-- .col -->
+			<div class="col-4"></div><!-- .col -->
+		</div><!-- .row -->
 	</div><!-- .footer 끝나는 지점 -->
 	<script type="text/javascript">
 	    // 검색버튼 작동
