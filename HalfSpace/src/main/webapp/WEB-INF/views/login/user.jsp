@@ -9,5 +9,7 @@
 <body>
 user 접속
 
+<a href="/hsLogout">로그아웃</a>
+
 </body>
 </html>

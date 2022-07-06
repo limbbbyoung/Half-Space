@@ -11,14 +11,14 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 
 import lombok.extern.log4j.Log4j;
 @Log4j
-public class halfSpaceAccessDeniedHandler implements AccessDeniedHandler{
+public class HalfSpaceAccessDeniedHandler implements AccessDeniedHandler{
 
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response,
 			AccessDeniedException accessDeniedException) throws IOException, ServletException {
 		// halfSpace 로그인 에러 후에 처리할 코드들을 작성합니다.
 		
-		log.error("[[[[[[[halfSpace 커스텀 접근 거부 핸들러 실행");
+		log.error("[[[[[[[halfSpace 접근 거부 핸들러 실행");
 		log.error("/accessError 페이지로 리다이렉트]]]]]]]]]]" );
 		
 		
