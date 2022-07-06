@@ -46,7 +46,7 @@
 					    </a></h1>
 					  </li>
 					  <li class="nav-item">
-					    <h1><a class="nav-link" href="#">
+					    <h1><a class="nav-link" href="/weather/today">
 					    날씨
 					    </a></h1>
 					  </li>
