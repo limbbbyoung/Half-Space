@@ -1,5 +1,6 @@
 package com.halfspace.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ public class LoginController {
 		
 	}
 
-	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_USER')")
 	@GetMapping("/user")
 	public void doUser() {
 		
@@ -27,6 +28,7 @@ public class LoginController {
 		
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
 	@GetMapping("/manager")
 	public void doManager() {
 		
@@ -34,6 +36,7 @@ public class LoginController {
 		
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/admin")
 	public void doAdmin() {
 		

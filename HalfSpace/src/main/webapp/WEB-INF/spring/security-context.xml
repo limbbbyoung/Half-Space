@@ -22,20 +22,17 @@
 	<security:http>
 	
 		<security:intercept-url pattern="/login/all" access="permitAll" />
-	
-		<security:intercept-url pattern="/login/user" access="hasRole('ROLE_USER')" />
-	
-		<security:intercept-url pattern="/login/manager" access="hasRole('ROLE_MANAGER')"/>
-	
-		<security:intercept-url pattern="/login/admin" access="hasRole('ROLE_ADMIN')"/>
 		
 		<security:form-login login-page="/hsLogin"
 			authentication-success-handler-ref="HalfSpaceLoginSuccess"/>
 		
-		<security:logout logout-url="/hsLogout" invalidate-session="true"/>
+		<security:logout logout-url="/hsLogout" invalidate-session="true"
+			delete-cookies="remember-me,JSESSIONID"/>
 		
 		<!-- <security:access-denied-handler error-page="/accessError"/> -->
 		<security:access-denied-handler ref="HalfSpaceAccessDenied"/>
+		
+		<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800"/>
 	</security:http>
 	
 	<!-- security 인증 매니저 -->
