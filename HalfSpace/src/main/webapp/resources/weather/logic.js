@@ -26,7 +26,7 @@ function locationUpdate() {
 		)
 	} // 현재 위도, 경도 확인 코드
 	
-	location();
+	location(); // 위도, 경도 확인
 	
 	let add = API_SOURCE + "lat=" + lat + "&lon=" + lon + API_KEY;
 
@@ -34,7 +34,7 @@ function locationUpdate() {
         return response.json();
     }).then(function(json) {
         obj = json;
-    }) // add에 저장된 위도,경도로 JSON을 받아와 obj에 저장하는 코드 
+    }) // add에 저장된 위도, 경도로 JSON을 받아와 obj에 저장하는 코드
     
     console.log(obj);
 
@@ -49,8 +49,25 @@ function locationUpdate() {
             middleText.innerHTML = (((obj.main.temp - 273.15) * (9/5)) + 32) + '°F';
             secondMiddle.innerHTML = (((obj.main.temp_max - 273.15) * (9 / 5)) + 32)  + '°F / ' + (((obj.main.temp_min - 273.15) * (9 / 5)) + 32) + '°F';
         }
-
-        thirdMiddle.innerHTML = obj.weather[0].main;
+        
+        if (obj.weather[0].main === "Thunderstorm") {
+			thirdMiddle.innerHTML = "천둥";
+		} else if (obj.weather[0].main === "Drizzle") {
+			thirdMiddle.innerHTML = "가랑비";
+		} else if (obj.weather[0].main === "Rain") {
+			thirdMiddle.innerHTML = "비";
+		} else if (obj.weather[0].main === "Snow") {
+			thirdMiddle.innerHTML = "눈";
+		} else if (obj.weather[0].main === "Atmosphere") {
+			thirdMiddle.innerHTML = "안개";
+		} else if (obj.weather[0].main === "Clear") {
+			thirdMiddle.innerHTML = "쾌청";
+		} else if (obj.weather[0].main === "Clouds") {
+			thirdMiddle.innerHTML = "구름";
+		} // 이게 맞나...?
+		
+		
+		
         sunrise.innerHTML = timeStamp(obj.sys.sunrise);
         sunset.innerHTML = timeStamp(obj.sys.sunset);
         humidity.innerHTML = obj.main.humidity + '%';
