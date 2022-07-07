@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 위의 스키마 작성 후, 어떤 인터페이스의 메서드를 쿼리문과 
+연결해 줄지 아래와 같이 인터페이스 파일부터 mapper태그로 연결합니다. -->
+<mapper namespace="com.halfspace.mapper.CafeListMapper">
+	
+		<resultMap type="com.halfspace.persistence.CafeListVO" id="CafeListMap">
+			 <result property="cafeNo" column="cafeno"/>
+			 <result property="cafeAddress" column="cafe_address"/>
+			 <result property="cafeMaster" column="cafemaster"/>
+			 <result property="regDate" column="cafe_regdate"/>
+		</resultMap>
+		
+	<select id="getList" resultMap="UserMap">
+		SELECT * FROM Cafelist_tbl
+	</select>
+
+</mapper>
