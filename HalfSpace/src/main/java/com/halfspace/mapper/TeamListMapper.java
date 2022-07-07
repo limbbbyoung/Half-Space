@@ -9,13 +9,13 @@ public interface TeamListMapper {
 
 	public List<TeamListVO> teamList(SearchCriteria cri);
 	
-	public TeamListVO teamListDetail(Long listno);
+	public TeamListVO getDetail(Long listno);
 	
-	public void teamListCreate(TeamListVO vo);
+	public void insert(TeamListVO vo);
 	
-	public void teamListUpdate(TeamListVO vo);
+	public void update(TeamListVO vo);
 	
-	public void teamListDelete(Long listno);
+	public void delete(Long listno);
 
 	public void updateMemberCnt(Long listno);
 
