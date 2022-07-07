@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halfspace.mapper.TeamListMapper">
+	
+		
+	<insert id="teamListCreate">
+		INSERT INTO 
+			teamlist(listno, name, coach)
+		VALUES
+			(teamlist_num.nextval, #{name}, #{coach})
+	</insert>
+ 	
+ 	<!-- 
+ 	<select id="teamListDetail" resultType="com.halfspace.persistence.TeamListVO">
+		SELECT * FROM team_tbl WHERE listno = #{listno}
+	</select>
+ 	
+ 	<update id="teamListUpdate">
+ 		UPDATE team_tbl
+ 			SET
+ 		name = #{name}, coach = #{coach}, logo = #{logo}, intro = #{intro}
+ 			WHERE tno = #{tno}
+ 	</update>
+ 	
+ 	<update id="addMatchCount">
+ 		UPDATE team_tbl
+ 			SET
+ 				match_cnt = (match_cnt+1)
+ 		WHERE tno = #{tno}
+ 	</update>
+ 	
+ 	<update id="delMember">
+ 		UPDATE team_tbl SET member_cnt = member_cnt-1 WHERE tno = #{tno};
+ 	</update>
+ 	
+ 	
+ 	<delete id="teamDelete">
+ 		DELETE FROM team_tbl
+ 			WHERE tno = #{tno}
+ 	</delete>
+ 	 -->
+ 	
+ 	
+</mapper>

@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.halfspace.mapper.TeamMapper;
 
 import com.halfspace.persistence.SearchCriteria;
+import com.halfspace.persistence.TeamListVO;
 import com.halfspace.persistence.TeamVO;
 
 import lombok.extern.log4j.Log4j;
@@ -52,30 +53,21 @@ public class TeamMapperTests {
 		
 	} // CreateTeamPlz END
 
-	//@Test
-	public void testCreate300Team() {
-		try {
-			Connection con = ds.getConnection();
-			String sql = "INSERT INTO team_tbl(tno, name, coach, logo, intro) "
-					+ "VALUES(team_num.nextval, ?, ?, ?, ?)";
-
+	@Test
+	public void testCreate50Team(TeamVO vo, TeamListVO lvo) {
 		
-			for (int i=1; i<=300; i++) {
-				PreparedStatement pstmt = con.prepareStatement(sql);
-				
-				
-					pstmt.setString(1, "team" + i);
-					pstmt.setString(2, "coach" + i);
-					pstmt.setString(3, "테스트팀" + i);
-					pstmt.setString(4, "테스트로고" + i);
-					
-								pstmt.execute();
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		} // testCreate100Team END
-	
+		for(Long i=1L; i<=50; i++) {
+			
+			vo.setTno(i);
+			vo.setCoach("user" + i);
+			vo.setName("team" + i);
+			vo.setLogo("logo" +  i);
+			vo.setIntro(i + "번째 팀입니다.");			
 		}
+		
+		mapper.teamCreate(vo);
+		
+	}
 	
 	
 	//@Test
@@ -111,26 +103,7 @@ public class TeamMapperTests {
 	} // getDetailTest() END
 	
 	
-	//@Test
-	public void addMemberTest(Long tno) {
-		
-		 tno = 299L;
-		
-		mapper.addMember(tno);
-	
-		log.info(mapper.teamDetail(tno));
-	} // addMemberTest END
-	
-	
-	//@Test
-	public void deleteMemberTest(Long tno) {
-		
-		tno = 299L;
-		
-		mapper.delMember(tno);
-		
-	}//deleteMemberTest END
-	
+
 	
 	
 	

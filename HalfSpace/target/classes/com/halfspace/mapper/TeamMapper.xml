@@ -4,43 +4,28 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.halfspace.mapper.TeamMapper">
 
+
 	<select id="teamDetail" resultType="com.halfspace.persistence.TeamVO">
 		SELECT * FROM team_tbl WHERE tno = #{tno}
 	</select>
 	
 	<insert id="teamCreate">
-		INSERT INTO team_tbl
-		(tno, name, logo, coach, intro, regDate)
-			VALUES
-		(team_num.nextval, #{name}, #{logo}, #{coach}, #{intro}, SYSDATE)
+		INSERT ALL
+			INTO teamlist(listno, name, coach)
+				VALUES (teamlist_num.nextval, #{name}, #{coach})
+			INTO team_tbl(tno, name, coach, logo, intro)
+				VALUES (team_num.nextval, #{name}, #{coach}, #{logo}, #{intro})
+			SELECT * FROM DUAL
 	</insert>
  	
  	<update id="teamUpdate">
  		UPDATE team_tbl
  			SET
- 		name = #{name}, logo = #{logo}, coach = #{coach}, intro = #{intro}
+ 		name = #{name}, coach = #{coach}, logo = #{logo}, intro = #{intro}
  			WHERE tno = #{tno}
  	</update>
  	
- 	<update id="addMember">
- 		UPDATE team_tbl
- 			SET
- 		member_cnt = (member_cnt+1)
- 			WHERE tno = #{tno}
- 	</update>
- 	
- 	<update id="addMatchCount">
- 		UPDATE team_tbl
- 			SET
- 				match_cnt = (match_cnt+1)
- 		WHERE tno = #{tno}
- 	</update>
- 	
- 	<update id="delMember">
- 		UPDATE team_tbl SET member_cnt = member_cnt-1 WHERE tno = #{tno};
- 	</update>
- 	
- 	
+
  	<delete id="teamDelete">
  		DELETE FROM team_tbl
  			WHERE tno = #{tno}

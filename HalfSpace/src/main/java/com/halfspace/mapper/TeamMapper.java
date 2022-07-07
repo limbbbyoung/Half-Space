@@ -3,6 +3,7 @@ package com.halfspace.mapper;
 import java.util.List;
 
 import com.halfspace.persistence.SearchCriteria;
+import com.halfspace.persistence.TeamListVO;
 import com.halfspace.persistence.TeamVO;
 
 public interface TeamMapper {
@@ -10,6 +11,8 @@ public interface TeamMapper {
 	public List<TeamVO> teamList(SearchCriteria cri);
 	
 	public TeamVO teamDetail(Long tno);
+	
+	public TeamListVO teamListDetail(Long tno);
 	
 	public void teamCreate(TeamVO vo);
 	
@@ -22,5 +25,6 @@ public interface TeamMapper {
 	public void delMember(Long tno);
 	
 	public void addMatchCnt(Long tno);
+	
 	
 }
