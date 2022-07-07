@@ -1,4 +1,4 @@
-package com.ict.security;
+package com.halfspace.security;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

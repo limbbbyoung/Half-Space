@@ -5,26 +5,45 @@
 <mapper namespace="com.halfspace.mapper.TeamMapper">
 
 	<select id="teamDetail" resultType="com.halfspace.persistence.TeamVO">
-		SELECT * FROM team_tbl WHERE team_no = #{teamNum}
+		SELECT * FROM team_tbl WHERE tno = #{tno}
 	</select>
 	
 	<insert id="teamCreate">
 		INSERT INTO team_tbl
-		(team_no, team_name, team_logo, coach, team_info)
+		(tno, name, logo, coach, intro, regDate)
 			VALUES
-		(team_num.nextval, #{teamName}, #{teamLogo}, #{coach}, #{teamInfo})
+		(team_num.nextval, #{name}, #{logo}, #{coach}, #{intro}, SYSDATE)
 	</insert>
  	
  	<update id="teamUpdate">
  		UPDATE team_tbl
  			SET
- 		team_name = #{teamName}, team_logo = #{teamLogo}, coach = #{coach}, team_info = #{teamInfo}
- 			WHERE team_no = #{teamNum}
+ 		name = #{name}, logo = #{logo}, coach = #{coach}, intro = #{intro}
+ 			WHERE tno = #{tno}
  	</update>
+ 	
+ 	<update id="addMember">
+ 		UPDATE team_tbl
+ 			SET
+ 		member_cnt = (member_cnt+1)
+ 			WHERE tno = #{tno}
+ 	</update>
+ 	
+ 	<update id="addMatchCount">
+ 		UPDATE team_tbl
+ 			SET
+ 				match_cnt = (match_cnt+1)
+ 		WHERE tno = #{tno}
+ 	</update>
+ 	
+ 	<update id="delMember">
+ 		UPDATE team_tbl SET member_cnt = member_cnt-1 WHERE tno = #{tno};
+ 	</update>
+ 	
  	
  	<delete id="teamDelete">
  		DELETE FROM team_tbl
- 			WHERE team_no = #{teamNum}
+ 			WHERE tno = #{tno}
  	</delete>
 
 </mapper>
