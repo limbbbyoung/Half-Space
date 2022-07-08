@@ -20,4 +20,16 @@ public class CafeServiceImpl implements CafeService{
 		return null;
 	}
 
+	@Override
+	public void addList(CafeListVO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void createTable(CafeListVO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

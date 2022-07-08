@@ -25,7 +25,18 @@ public class CafeListMapperTests {
 		log.info(mapper.getList());
 	}
 	
-	@Test 
+	@Test
+	public void addListTest() {
+		
+		CafeListVO vo = new CafeListVO();
+
+		vo.setCafeMaster("0708Felix");
+		vo.setCafeAddress("임의의 웹주소가 들어갔다고 침");
+		
+		mapper.insert(vo);
+	}
+	
+	//@Test 
 	public void createTableTest() {
 		
 		CafeListVO vo = new CafeListVO();
