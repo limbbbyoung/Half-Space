@@ -11,7 +11,7 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 @RequestMapping("/login/*")
-public class LoginController {
+public class LoginController { // 수업시간에 배운 교안에서는 SecurityController가 되는 Controller임.
 
 	@GetMapping("/all")
 	public void doAll() {
