@@ -12,7 +12,7 @@
     <div id='header'>
         <div id='refresh'>
             <button id="img-button" type="submit">
-                <img class="img-button" src="icons\refresh.png">
+                <img class="img-button" src="../resources/images/refresh.png">
             </button>
             <div id="convertDegree">
                 <button class="degreeButtons" value="false">℉</button>				
@@ -20,64 +20,60 @@
             </div>
         </div>
         <div id="location">
-            <img src="icons\mapMarker.png">
-            <p>서울시</p>
-        </div>  
+            <img src="../resources/images/mapMarker.png">
+            <p></p>
+        </div>
         <div id="currentTime">
-            <p>8월 17일 토요일 오전 12:38</p>
+            <p></p>
         </div>      
     </div>
     <div id='middle'>
         <div style="height:1.5vh;"></div>
             <div id='firstMiddle'>
                 <div style="height:1.5vh;"></div>
-                <div id="middleSym" >
-                        <img id="bigSymbol" src="icons\moon.png">
+                <div id="middleSym">
+                	<img id="bigSymbol">
                 </div>
-                <div id="middleText">25℃</div>
+                <div id="middleText"></div>
             </div>
             <div style="height:1vh"></div>
-            <div id='secondMiddle'>
-                29℃ / 22℃            
-            </div>
+            <div id='secondMiddle'></div>
             <div style="height:1vh"></div>
-            <div id='thirdMiddle'>
-                맑음
-            </div>
+            <div id='thirdMiddle'></div>
         </div>
     <div id='footer'>
         <div class='footer-row first'>
-                <div class='footer-col'>
-                    <div class='footer-col-left'>
-                        <img src="icons\sunrise.png">
-                        <p class='footer-info'>일출</p>
-                    </div>
-                    <p class='footer-time'>6:02 AM</p>
-                </div> 
-                <div class='footer-col'>
-                    <div class='footer-col-left'>
-                        <img src="icons\sunset.png">
-                        <p class='footer-info'>일몰</p>
-                    </div>
-                    <p class='footer-time'>7:05 PM</p>
-                </div> 
+            <div class='footer-col'>
+                <div class='footer-col-left'>
+                    <img src="../resources/images/sunrise.png">
+                    <p class='footer-info'></p>
+                </div>
+                <p class='footer-time'></p>
+            </div> 
+            <div class='footer-col'>
+                <div class='footer-col-left'>
+                    <img src="../resources/images/sunset.png">
+                    <p class='footer-info'></p>
+                </div>
+                <p class='footer-time'></p>
+            </div> 
         </div>
         <div class='footer-row'>
             <div class='footer-col'>
                 <div class='footer-col-left'>
-                    <img src="icons\humidity.png">
-                    <p class='footer-info'>습도</p>
+                    <img src="../resources/images/humidity.png">
+                    <p class='footer-info'></p>
                 </div>
-                <p class='footer-time'>73%</p>
+                <p class='footer-time'></p>
             </div> 
             <div class='footer-col'>
                 <div class='footer-col-left'>
-                    <img src="icons\wind.jpg">
-                    <p class='footer-info'>바람</p>
+                    <img src="../resources/images/wind.jpg">
+                    <p class='footer-info'></p>
                 </div>
-                <p class='footer-time'>6m/s</p>
+                <p class='footer-time'></p>
             </div> 
-    </div>
+    	</div>
     </div>
     <script src="/resources/weather/logic.js"></script>
 </body>
