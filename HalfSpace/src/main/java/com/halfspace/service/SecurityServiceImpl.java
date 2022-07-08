@@ -16,10 +16,11 @@ public class SecurityServiceImpl implements SecurityService{
 	// 트렌젝션 걸면 더 좋음
 	// @Transactional
 	@Override
-	public void insertMember(UserVO vo) {
-	
-		mapper.read(vo.getUserName());
+	public void insertUser(UserVO vo) {
 		
+		mapper.insertUserTbl(vo);
+		
+		mapper.insertUserAuth(vo);	
 	}
 
 }

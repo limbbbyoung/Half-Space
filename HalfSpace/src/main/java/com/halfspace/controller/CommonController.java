@@ -11,7 +11,6 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Controller
-@RequestMapping("/Common")
 public class CommonController {
 
 	@GetMapping("/accessError")

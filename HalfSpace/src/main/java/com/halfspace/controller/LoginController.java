@@ -87,8 +87,7 @@ public class LoginController { // 수업시간에 배운 교안에서는 Securit
 		}
 		log.info(vo.getAuthList());
 		
-		log.info("가입시 받는 데이터들 : " + vo);
-		log.info("사용자가 선택한 권한목록 : " + role);
+		service.insertUser(vo);
 	}
 
 

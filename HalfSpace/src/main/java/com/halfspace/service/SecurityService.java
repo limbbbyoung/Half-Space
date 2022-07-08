@@ -6,6 +6,6 @@ import com.halfspace.domain.UserVO;
 // User기준에서 하나의 기능을 만들고자 한다면 하나의 서비스를 생성하면 됨
 public interface SecurityService {
 	
-	public void insertMember(UserVO vo);
+	public void insertUser(UserVO vo);
 
 }
