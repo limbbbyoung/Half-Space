@@ -5,7 +5,6 @@
 <mapper namespace="com.halfspace.mapper.UserMapper">
 
 	<resultMap type="com.halfspace.domain.UserVO" id="UserMap">
-		
 		 <id property="userId" column="userid"/>
 		 <result property="userId" column="userid"/>
 		 <result property="userPw" column="userpw"/>
