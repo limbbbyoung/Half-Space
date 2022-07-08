@@ -19,6 +19,6 @@ public interface TeamListMapper {
 
 	public void updateMemberCnt(Long listno);
 	
-	public void getTeamListCnt(SearchCriteria cri);
+	public Long getTeamListCnt(SearchCriteria cri);
 
 }

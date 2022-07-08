@@ -18,9 +18,9 @@ public class TeamListServiceImpl implements TeamListService{
 	private TeamListMapper mapper;
 
 	@Override
-	public List<TeamListVO> getList(SearchCriteria cri) {
+	public List<TeamListVO> teamList(SearchCriteria cri) {
 		
-		return null;
+		return mapper.teamList(cri);
 	}
 
 	@Override
@@ -54,8 +54,8 @@ public class TeamListServiceImpl implements TeamListService{
 
 	@Override
 	public Long getTeamListCnt(SearchCriteria cri) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return mapper.getTeamListCnt(cri);
 	}
 	
 }

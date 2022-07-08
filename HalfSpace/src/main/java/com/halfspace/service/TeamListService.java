@@ -7,7 +7,7 @@ import com.halfspace.persistence.TeamListVO;
 
 public interface TeamListService {
 
-	public List<TeamListVO> getList(SearchCriteria cri);
+	public List<TeamListVO> teamList(SearchCriteria cri);
 	
 	public TeamListVO getDetail(Long listno);
 	

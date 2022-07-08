@@ -28,7 +28,17 @@ public class TeamListMapperTests {
 	@Autowired
 	private DataSource ds;
 	
-	
+	//@Test
+	public void insertIntoTeamList() {
+		
+		TeamListVO vo = new TeamListVO();
+		
+		vo.setCoach("user" + 50);
+		vo.setName("testteam" + 51);
+		
+		mapper.insert(vo);
+		
+	}
 	//@Test
 	public void testCreate50Team() {
 		
@@ -73,7 +83,7 @@ public class TeamListMapperTests {
 		
 	} // teamListDsInsertTest
 	
-	//@Test
+	@Test
 	public void getDetailTest() {
 		
 		TeamListVO vo = new TeamListVO();
@@ -85,7 +95,7 @@ public class TeamListMapperTests {
 	} // 
 	
 	
-	@Test
+	//@Test
 	public void updateTeamList() {
 		
 		TeamListVO vo = new TeamListVO();

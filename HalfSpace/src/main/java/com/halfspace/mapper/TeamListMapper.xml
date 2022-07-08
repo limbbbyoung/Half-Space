@@ -4,6 +4,59 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.halfspace.mapper.TeamListMapper">
 
+	<sql id = "search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				(TITLE like '%'|| #{keyword} || '%') AND
+			</if>
+			<if test="searchType == 'c'.toString()">
+				(CONTENT like '%' || #{keyword} || '%') AND
+			</if>
+			<if test="searchType == 'w'.toString()">
+				(WRITER like '%' || #{keyword} || '%') AND
+			</if>
+			<if test="searchType == 'tc'.toString()">
+				((TITLE like '%' || #{keyword} || '%')
+					OR
+				(CONTENT like '%' || #{keyword} || '%')) AND
+			</if>
+			<if test="searchType == 'cw'.toString()">
+				((CONTENT like '%' || #{keyword} || '%')
+					OR
+				(WRITER like '%' || #{keyword} || '%')) AND
+			</if>
+			<if test="searchType == 'tcw'.toString()">
+				((TITLE like '%' || #{keyword} || '%')
+					OR
+				(CONTENT like '%' || #{keyword} || '%')
+					OR
+				(WRITER like '%' || #{keyword} || '%')) AND
+			</if>
+		</if>
+	</sql>
+	
+	<select id="teamList" resultType="com.halfspace.persistence.TeamListVO">
+	
+		<![CDATA[
+		SELECT * FROM
+			(SELECT 
+			/*+ INDEX_DESC(teamlist pk_teamlist) */
+			rownum rn, teamlist.* FROM teamlist
+				WHERE 
+				
+		]]>
+		
+		<include refid="search"></include>
+		
+		<![CDATA[		
+			rownum <=(${page} * 10))
+			WHERE rn > (${page} - 1) * 10
+		]]>
+	</select>
+	
+
+
+
 	<insert id="insert">
 		INSERT INTO teamlist (listno, name, coach)
 			VALUES
@@ -28,6 +81,14 @@
 		SELECT * FROM teamlist WHERE listno = #{listno}
 	</select>
 
+	<select id="getTeamListCnt" resultType="long">
+		
+			SELECT COUNT(*) FROM teamlist WHERE
+	
+			<include refid="search"></include>
+			
+			listno > 0
+	</select>
 	
 	<update id="updateMemberCnt">
 		UPDATE teamlist
