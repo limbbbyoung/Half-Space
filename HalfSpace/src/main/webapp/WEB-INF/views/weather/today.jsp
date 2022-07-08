@@ -15,8 +15,8 @@
                 <img class="img-button" src="icons\refresh.png">
             </button>
             <div id="convertDegree">
-                <button class="degreeButtons">℉</button>				
-                <button class="degreeButtons selected">℃</button>
+                <button class="degreeButtons" value="false">℉</button>				
+                <button class="degreeButtons selected" value="true">℃</button>
             </div>
         </div>
         <div id="location">
@@ -42,7 +42,7 @@
             </div>
             <div style="height:1vh"></div>
             <div id='thirdMiddle'>
-                안개
+                맑음
             </div>
         </div>
     <div id='footer'>
