@@ -24,9 +24,8 @@ public class TeamListServiceImpl implements TeamListService{
 	}
 
 	@Override
-	public TeamListVO myteam(Long listno) {
-		// TODO Auto-generated method stub
-		return null;
+	public TeamListVO getDetail(Long listno) {
+		return mapper.getDetail(listno);
 	}
 
 	@Override

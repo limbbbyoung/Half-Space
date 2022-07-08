@@ -28,13 +28,13 @@ public class TeamListMapperTests {
 	@Autowired
 	private DataSource ds;
 	
-	/* 검증이 필요한 로직입니다. 실행하지 마세요
+	
 	//@Test
 	public void testCreate50Team() {
 		
 		TeamListVO vo = new TeamListVO();
 			
-			for(int i = 2; i<=50; i++) {
+			for(Long i = 1L; i<=50; i++) {
 			
 		
 				vo.setCoach("user" + i);
@@ -44,10 +44,7 @@ public class TeamListMapperTests {
 				
 			}
 				
-			
-
 	} // testCreate50List END
-	*/
 	
 	
 	// DataSource로 팀 50개를 생성합니다.
@@ -59,7 +56,7 @@ public class TeamListMapperTests {
 			Connection con = ds.getConnection();
 			String sql = "INSERT INTO teamlist(listno, name, coach)	VALUES(teamlist_num.nextval, ?, ?)";
 			
-			for(int i=2; i<=50; i++) {
+			for(int i=1; i<=50; i++) {
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				
 				pstmt.setString(1, "testteam" + i);
@@ -75,6 +72,32 @@ public class TeamListMapperTests {
 		}
 		
 	} // teamListDsInsertTest
+	
+	//@Test
+	public void getDetailTest() {
+		
+		TeamListVO vo = new TeamListVO();
+		
+		vo.setListno(50L);
+		
+		mapper.getDetail(vo.getListno());
+		
+	} // 
+	
+	
+	@Test
+	public void updateTeamList() {
+		
+		TeamListVO vo = new TeamListVO();
+		
+		vo.setListno(50L);
+		vo.setName("updateTeam50");
+		vo.setCoach("user50");
+		
+		mapper.update(vo);
+		
+	} // updateTeamList() END
+	
 	
 	
 

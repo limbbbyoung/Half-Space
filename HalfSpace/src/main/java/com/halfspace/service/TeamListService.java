@@ -9,7 +9,7 @@ public interface TeamListService {
 
 	public List<TeamListVO> getList(SearchCriteria cri);
 	
-	public TeamListVO myteam(Long listno);
+	public TeamListVO getDetail(Long listno);
 	
 	public void insert(TeamListVO vo);
 	

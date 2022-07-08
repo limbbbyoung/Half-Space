@@ -6,7 +6,7 @@ import com.halfspace.persistence.SearchCriteria;
 import com.halfspace.persistence.TeamListVO;
 
 public interface TeamListMapper {
-
+	
 	public List<TeamListVO> teamList(SearchCriteria cri);
 	
 	public TeamListVO getDetail(Long listno);

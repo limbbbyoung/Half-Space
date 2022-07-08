@@ -42,12 +42,12 @@ public class PostMapperTests {
 		mapper.insert(vo);
 	}
 	
-	@Test
+	//@Test
 	public void deleteTest() {
 		mapper.delete(9229L);
 	}
 	
-	//@Test
+	@Test
 	public void updateTest() {
 		
 		PostVO vo = new PostVO();		

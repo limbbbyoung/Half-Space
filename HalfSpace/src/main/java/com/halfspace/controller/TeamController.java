@@ -46,14 +46,14 @@ public class TeamController {
 	}
 	*/
 	
-	@RequestMapping(value="/myteam",
+	@RequestMapping(value="/detail",
 					method= {RequestMethod.GET, RequestMethod.POST})
-	public String myteam(@RequestParam(value="tno") Long tno, Model model) {
-		System.out.println("myteam으로 가기");
-		TeamListVO myteam = service.myteam(tno);
-		log.info(myteam);
-		model.addAttribute("myteam", myteam );
-		return "/team/myteam"  ;
+	public String myteam(@RequestParam(value="listno") Long listno, Model model) {
+		System.out.println("teamlist service getDetail으로 가기");
+		TeamListVO teamList = service.getDetail(listno);
+		log.info(teamList);
+		model.addAttribute("teamList", teamList );
+		return "/team/detail"  ;
 		
 	}
 	
