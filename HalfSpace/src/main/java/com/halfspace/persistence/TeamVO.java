@@ -7,13 +7,16 @@ import lombok.Data;
 @Data
 public class TeamVO {
 	
-	private Long teamNum;
-	private String teamName;
-	private String teamLogo;
-	private Date teamRegDate;
+	private Long tno;
+	private String name;
 	private String coach;
+	private String logo;
 	private Long memberCnt;
 	private Long matchCnt;
-	private String teamInfo;
+	private String intro;
+	private Long win;
+	private Long draw;
+	private Long lose;
 
+	
 }

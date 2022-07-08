@@ -1,4 +1,4 @@
-package com.ict.security;
+package com.halfspace.security;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -140,7 +140,7 @@ public class UserTests {
 		}
 	} // testCryptUserDB() END
 	
-	@Test
+	//@Test
 	public void testInsertAuth() {
 		try {
 			Connection con = ds.getConnection();
