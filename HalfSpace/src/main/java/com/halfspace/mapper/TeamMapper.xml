@@ -30,5 +30,11 @@
  		DELETE FROM team_tbl
  			WHERE tno = #{tno}
  	</delete>
+ 	
+ 	<select id="getTeamListCnt" resultType="long">
+ 		SELECT count(*) FROM teamlist WHERE
+ 			<include refid="search"></include>
+ 		listno > 0
+ 	</select>
 
 </mapper>

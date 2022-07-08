@@ -17,6 +17,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class TeamListTests {
 	
+
 	@Autowired
 	private TeamListMapper mapper;
 	
@@ -31,7 +32,7 @@ public class TeamListTests {
 		}
 		log.info(vo);
 		
-		mapper.teamListCreate(vo);		
+		mapper.insert(vo);
 	} // testCreate50List END
 	
 	/*

@@ -4,7 +4,7 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.halfspace.mapper.TeamListMapper">
 	
-		
+		<!-- 
 	<sql id = "search">
 		<if test="searchType != null">
 			<if test="searchType == 't'.toString()">
@@ -36,7 +36,7 @@
 		</if>
 	</sql>
 	
-	<!-- 
+	
 	<select id="teamList" resultType="com.halfspace.persistence.TeamListVO">
 	
 		<![CDATA[
@@ -62,7 +62,7 @@
 			VALUES
 		(teamlist_num.nextval, #{name}, #{coach})
 	</insert>
-	
+	<!-- 
 	<delete id="delete">
 		DELETE FROM teamlist WHERE listno = #{listno}
 	</delete>
@@ -84,5 +84,5 @@
 		memberCnt = memberCnt + #{amount} WHERE listno = #{listno}
 	</update>
 
- 	
+ 	 -->
 </mapper>

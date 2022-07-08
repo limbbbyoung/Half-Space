@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.halfspace.mapper.TeamMapper;
+import com.halfspace.persistence.SearchCriteria;
 import com.halfspace.persistence.TeamVO;
 
 @Service
@@ -13,8 +14,8 @@ public class TeamServiceImpl implements TeamService {
 	private TeamMapper mapper;
 	
 	@Override
-	public TeamVO teamDetail(Long teamNum) {
-		return mapper.teamDetail(teamNum);
+	public TeamVO teamDetail(Long tno) {
+		return mapper.teamDetail(tno);
 	}
 	
 	@Override
@@ -28,8 +29,10 @@ public class TeamServiceImpl implements TeamService {
 	}
 	
 	@Override
-	public void teamDelete(Long teamNum) {
-		mapper.teamDelete(teamNum);
+	public void teamDelete(Long tno) {
+		mapper.teamDelete(tno);
 	}
+
+
 
 }

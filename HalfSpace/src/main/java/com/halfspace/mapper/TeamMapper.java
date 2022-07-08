@@ -26,5 +26,7 @@ public interface TeamMapper {
 	
 	public void addMatchCnt(Long tno);
 	
+	public Long getTeamListCnt(SearchCriteria cri);
+	
 	
 }
