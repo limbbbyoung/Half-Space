@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.halfspace.mapper.TeamListMapper">
-	
-		<!-- 
+
 	<sql id = "search">
 		<if test="searchType != null">
 			<if test="searchType == 't'.toString()">
@@ -55,14 +54,16 @@
 			WHERE rn > (${page} - 1) * 10
 		]]>
 	</select>
-	 -->
+
 	 
 	<insert id="insert">
 		INSERT INTO teamlist (listno, name, coach)
 			VALUES
 		(teamlist_num.nextval, #{name}, #{coach})
 	</insert>
-	<!-- 
+	
+	
+
 	<delete id="delete">
 		DELETE FROM teamlist WHERE listno = #{listno}
 	</delete>
@@ -84,5 +85,5 @@
 		memberCnt = memberCnt + #{amount} WHERE listno = #{listno}
 	</update>
 
- 	 -->
+ 
 </mapper>
