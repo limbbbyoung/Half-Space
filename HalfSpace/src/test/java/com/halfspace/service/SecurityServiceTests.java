@@ -32,13 +32,6 @@ public class SecurityServiceTests {
 	public void insertUser() {
 		
 		UserVO vo = new UserVO();
-		AuthVO authvo = new AuthVO();
-		authvo.setUserId("klk2254");
-		authvo.setAuth("ROLE_ADMIN");
-		
-		List<AuthVO> list = new ArrayList();
-		
-		list.add(authvo);
 		
 		vo.setUserId("klk2254");
 		vo.setUserPw("2254");
@@ -48,6 +41,14 @@ public class SecurityServiceTests {
 		vo.setEmail("klk2254@naver.com");
 		vo.setAddress("경기도");
 		vo.setPhoneNum("01010001000");
+		
+		AuthVO authvo = new AuthVO();
+		String authvoId = vo.getUserId();
+		authvo.setUserId(authvoId);
+		authvo.setAuth("ROLE_ADMIN");
+		List<AuthVO> list = new ArrayList();
+		list.add(authvo);
+		
 		vo.setAuthList(list);
 		
 		service.insertUser(vo);

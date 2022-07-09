@@ -43,7 +43,7 @@
 		<foreach collection="authList" item="item" separator=" ">
 			INTO USER_AUTH(userid, auth)
 				VALUES
-			(#{item.userid}, #{item.auth})
+			(#{item.userId}, #{item.auth})
 		</foreach>
 		SELECT * 
 			FROM DUAL
