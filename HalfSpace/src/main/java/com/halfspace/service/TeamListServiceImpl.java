@@ -1,5 +1,7 @@
 package com.halfspace.service;
 
+
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ public class TeamListServiceImpl implements TeamListService{
 
 	@Autowired
 	private TeamListMapper mapper;
+	
 
 	@Override
 	public List<TeamListVO> teamList(SearchCriteria cri) {
@@ -62,9 +65,10 @@ public class TeamListServiceImpl implements TeamListService{
 	}
 
 	@Override
-	public TeamListVO teamMap(Long listno) {
-		// TODO Auto-generated method stub
-		return null;
+	public TeamListVO teamListMap(Long listno) {
+		
+		return mapper.read(listno);
 	}
+	
 	
 }

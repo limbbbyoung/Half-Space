@@ -27,7 +27,7 @@ public interface TeamListMapper {
 	
 	public Long getTeamListCnt(SearchCriteria cri);
 	
-	public TeamListVO teamMap(Long listno);
+	public TeamListVO read(Long listno);
 	
 
 }

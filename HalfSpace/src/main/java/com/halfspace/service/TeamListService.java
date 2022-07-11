@@ -21,6 +21,7 @@ public interface TeamListService {
 	
 	public Long getTeamListCnt(SearchCriteria cri);
 	
-	public TeamListVO teamMap(Long listno);
+	public TeamListVO teamListMap(Long listno);
+
 
 }

@@ -1,13 +1,18 @@
 package com.halfspace.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.function.Function;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.ui.Model;
 
+import com.halfspace.domain.AuthVO;
 import com.halfspace.mapper.TeamListMapper;
 import com.halfspace.persistence.TeamListVO;
 import com.halfspace.persistence.TeamVO;
@@ -27,7 +32,7 @@ public class TeamServiceTests {
 	@Autowired
 	private TeamListMapper mapper;
 	
-	@Test
+	//@Test
 	public void testCreate50Team() {
 		TeamListVO vo = new TeamListVO();
 		
@@ -49,4 +54,18 @@ public class TeamServiceTests {
 			}
 				
 	} // testCreate50List END
+	
+	@Test
+	public void TeamReadServiceTest( ) {
+		
+		TeamListVO vo = service.teamListMap(1L);
+		
+		vo.getTeamVO();
+		
+		log.info(vo.getTeamVO());
+		
+		
+		
+		
+	} // TeamReadServiceTest END
 }

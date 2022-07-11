@@ -15,7 +15,7 @@ public class TeamListVO {
 	private Date regdate;
 	private Long memberCnt;
 	
-	private List<TeamVO> teamVO;
+	private List<TeamVO> TeamVO;
 
 
 

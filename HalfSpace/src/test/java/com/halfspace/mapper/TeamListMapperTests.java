@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -31,29 +32,19 @@ public class TeamListMapperTests {
 	@Autowired
 	private DataSource ds;
 	
-	//@Test
-	public void insertIntoTeamList() {
-		
-		TeamListVO vo = new TeamListVO();
-		
-		vo.setCoach("user" + 50);
-		vo.setName("testteam" + 51);
-		
-		mapper.insertTeamList(vo);
-		
-	} // insertIntoTeamList
 	
-	@Test
+	//@Test
 	public void testCreate50Team() {
 		TeamListVO vo = new TeamListVO();
 		
 		 vo.setTeamVO(new ArrayList<TeamVO>());
-		 Date date = new Date();
+		 
+		 
+
 			for(Long i = 1L; i<=50; i++) {
 				vo.setListno(i);
 				vo.setCoach("user" + i);
 				vo.setName("testteam" + i);
-				vo.setRegdate(date);
 				vo.getTeamVO().add(new TeamVO());
 				vo.getTeamVO().get(i.intValue()).setTno(i);
 				vo.getTeamVO().get(i.intValue()).setCoach(vo.getCoach());
@@ -100,7 +91,7 @@ public class TeamListMapperTests {
 		
 		TeamListVO vo = new TeamListVO();
 		
-		vo.setListno(50L);
+		vo.setListno(5L);
 		
 		mapper.getDetail(vo.getListno());
 		
@@ -130,14 +121,17 @@ public class TeamListMapperTests {
 	} //updateMemberCntTest END
 	
 	
-	//@Test
-	public void teamMapReadTest() {
+	@Test
+	public void teamListMapReadTest() {
 		
 		Long listno = 1L;
+		TeamListVO vo = new TeamListVO();
 		
-		TeamListVO vo = mapper.teamMap(listno);
+		vo = mapper.read(listno);
 		
-		vo.getTeamVO();
+		
+		
+		log.info("------------" + vo);
 		
 	}// teamMapReadTest END
 

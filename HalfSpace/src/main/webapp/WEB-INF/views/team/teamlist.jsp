@@ -24,7 +24,7 @@
 					<c:forEach var="teamList" items="${teamList}">
 						<tr>
 							<td>${teamList.listno}</td>
-							<td><a href="/team/detail?page=${pageMaker.cri.page}&listno=${teamList.listno}&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${teamList.name}</a></td>
+							<td><a href="/team/myteam?page=${pageMaker.cri.page}&listno=${teamList.listno}&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${teamList.name}</a></td>
 							<td>${teamList.coach}</td>
 							<td>${teamList.regdate}</td>
 							<td>${teamList.memberCnt}

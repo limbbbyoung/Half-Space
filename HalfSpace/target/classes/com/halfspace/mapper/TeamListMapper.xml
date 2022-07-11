@@ -43,7 +43,7 @@
 		<result property="coach" column="coach"/>
 		<result property="regdate" column="regdate"/>
 		<result property="memberCnt" column="member_cnt"/>
-		<collection property="teamVO" resultMap="teamMap"></collection>
+		<collection property="TeamVO" resultMap="teamMap"></collection>
 	</resultMap>
 	
 	<resultMap type="com.halfspace.persistence.TeamVO" id="teamMap">
@@ -59,9 +59,9 @@
 		<result property="lose" column="lose"/>
 	</resultMap>
 	
-	<select id="teamMap" resultMap="teamListMap">
+	<select id="read" resultMap="teamListMap">
 		SELECT
-    		l.listno, l.name, l.coach, l.regdate, l.member_cnt, t.logo, t.intro, t.match_cnt, t.win, t.draw, t.lose
+    		l.listno, l.name, l.coach, l.regdate, l.member_cnt, t.tno, t.logo, t.intro, t.match_cnt, t.win, t.draw, t.lose
     	FROM
     		teamlist l LEFT OUTER JOIN team_tbl t ON l.listno = t.tno
     	WHERE
