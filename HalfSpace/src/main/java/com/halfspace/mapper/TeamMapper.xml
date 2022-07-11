@@ -4,10 +4,14 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.halfspace.mapper.TeamMapper">
 
+<<<<<<< HEAD
 
 
 
 <!-- 
+=======
+	<!-- 
+>>>>>>> felix
 	<select id="teamDetail" resultType="com.halfspace.persistence.TeamVO">
 		SELECT * FROM team_tbl WHERE tno = #{tno}
 	</select>
@@ -34,5 +38,9 @@
  			<include refid="search"></include>
  		listno > 0
  	</select>
+<<<<<<< HEAD
  -->
+=======
+	 -->
+>>>>>>> felix
 </mapper>

@@ -24,7 +24,7 @@ public class PostMapperTests {
 	@Autowired
 	private PostMapper mapper;
 	
-	//@Test
+	@Test
 	public void getListTest(SearchCriteria cri) {
 		
 		log.info(mapper.getList(cri));

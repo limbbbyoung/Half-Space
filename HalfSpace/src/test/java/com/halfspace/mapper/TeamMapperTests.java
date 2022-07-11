@@ -103,9 +103,5 @@ public class TeamMapperTests {
 	} // getDetailTest() END
 	
 	
-
-	
-	
-	
 } // ALL TEST END
 	
