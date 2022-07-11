@@ -92,7 +92,7 @@ public class TeamListMapperTests {
 		
 		mapper.getDetail(vo.getListno());
 		
-	} // 
+	} // getDetailTest END
 	
 	
 	//@Test
@@ -119,11 +119,11 @@ public class TeamListMapperTests {
 	
 	
 	@Test
-	public TeamListVO teamMapReadTest() {
+	public void teamMapReadTest() {
 		
 		Long listno = 1L;
 		
-		return mapper.teamMap(listno);
+		log.info(mapper.teamMap(listno));
 		
 	}// teamMapReadTest END
 
