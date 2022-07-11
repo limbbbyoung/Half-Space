@@ -11,7 +11,6 @@ public class TeamVO {
 	private String name;
 	private String coach;
 	private String logo;
-	private Long memberCnt;
 	private Long matchCnt;
 	private String intro;
 	private Long win;

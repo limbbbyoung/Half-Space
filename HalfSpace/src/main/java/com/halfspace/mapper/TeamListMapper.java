@@ -2,11 +2,13 @@ package com.halfspace.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.halfspace.persistence.SearchCriteria;
 import com.halfspace.persistence.TeamListVO;
 
 public interface TeamListMapper {
-
+	
 	public List<TeamListVO> teamList(SearchCriteria cri);
 	
 	public TeamListVO getDetail(Long listno);
@@ -17,8 +19,13 @@ public interface TeamListMapper {
 	
 	public void delete(Long listno);
 
-	public void updateMemberCnt(Long listno);
+	public void updateMemberCnt(@Param("listno") Long listno,
+			@Param("amount") int amount);
+
 	
-	public void getTeamListCnt(SearchCriteria cri);
+	public Long getTeamListCnt(SearchCriteria cri);
+	
+	public TeamListVO teamMap(Long listno);
+	
 
 }
