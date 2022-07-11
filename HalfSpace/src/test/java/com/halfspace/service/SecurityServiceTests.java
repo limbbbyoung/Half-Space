@@ -31,16 +31,19 @@ public class SecurityServiceTests {
 	@Test
 	public void insertUser() {
 		
+		log.info(LocalDate.now());
+		Date date = new Date();
+		
 		UserVO vo = new UserVO();
 		
-		vo.setUserId("klk2254");
-		vo.setUserPw("2254");
-		vo.setUserName("이이오사");
+		vo.setUserId("klk4454");
+		vo.setUserPw("4454");
+		vo.setUserName("사사오사");
 		vo.setGender("Y");
-		vo.setBirthdate(LocalDate.now());
-		vo.setEmail("klk2254@naver.com");
-		vo.setAddress("경기도");
-		vo.setPhoneNum("01010001000");
+		vo.setBirthdate(date);
+		vo.setEmail("klk4454@naver.com");
+		vo.setAddress("서울 신촌");
+		vo.setPhoneNum("01012341234");
 		
 		AuthVO authvo = new AuthVO();
 		String authvoId = vo.getUserId();
