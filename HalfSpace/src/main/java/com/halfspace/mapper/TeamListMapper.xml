@@ -3,8 +3,7 @@
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.halfspace.mapper.TeamListMapper">
-	
-		<!-- 
+
 	<sql id = "search">
 		<if test="searchType != null">
 			<if test="searchType == 't'.toString()">
@@ -37,6 +36,40 @@
 	</sql>
 	
 	
+	<resultMap type="com.halfspace.persistence.TeamListVO" id="teamListMap">
+		<id property="listno" column="listno"/>
+		<result property="listno" column="listno"/>
+		<result property="name" column="name"/>
+		<result property="coach" column="coach"/>
+		<result property="regdate" column="regdate"/>
+		<result property="memberCnt" column="member_cnt"/>
+		<collection property="teamVO" resultMap="teamMap"></collection>
+	</resultMap>
+	
+	<resultMap type="com.halfspace.persistence.TeamVO" id="teamMap">
+		<id property="tno" column="tno"/>
+		<result property="tno" column="tno"/>
+		<result property="name" column="name"/>
+		<result property="coach" column="coach"/>
+		<result property="logo" column="logo"/>
+		<result property="intro" column="intro"/>
+		<result property="matchCnt" column="match_cnt"/>
+		<result property="win" column="win"/>
+		<result property="draw" column="draw"/>
+		<result property="lose" column="lose"/>
+	</resultMap>
+	
+	<select id="teamMap" resultMap="teamListMap">
+		SELECT
+    		l.listno, l.name, l.coach, l.regdate, l.member_cnt, t.logo, t.intro, t.match_cnt, t.win, t.draw, t.lose
+    	FROM
+    		teamlist l LEFT OUTER JOIN team_tbl t ON l.listno = t.tno
+    	WHERE
+    		l.listno = #{listno};
+	</select>
+	
+	
+	
 	<select id="teamList" resultType="com.halfspace.persistence.TeamListVO">
 	
 		<![CDATA[
@@ -55,14 +88,18 @@
 			WHERE rn > (${page} - 1) * 10
 		]]>
 	</select>
-	 -->
-	 
+	
+
+
+
 	<insert id="insert">
 		INSERT INTO teamlist (listno, name, coach)
 			VALUES
 		(teamlist_num.nextval, #{name}, #{coach})
 	</insert>
-	<!-- 
+	
+	
+
 	<delete id="delete">
 		DELETE FROM teamlist WHERE listno = #{listno}
 	</delete>
@@ -71,18 +108,29 @@
 		UPDATE teamlist
 			SET 
 		name=#{name}, coach=#{coach}
+			WHERE
+		listno = #{listno}
 	</update>
 	
 	<select id="getDetail" resultType="com.halfspace.persistence.TeamListVO">
 		SELECT * FROM teamlist WHERE listno = #{listno}
 	</select>
 
+	<select id="getTeamListCnt" resultType="long">
+		
+			SELECT COUNT(*) FROM teamlist WHERE
+	
+			<include refid="search"></include>
+			
+			listno > 0
+	</select>
 	
 	<update id="updateMemberCnt">
 		UPDATE teamlist
 			SET
-		memberCnt = memberCnt + #{amount} WHERE listno = #{listno}
+		member_cnt = member_cnt + #{amount}
+			WHERE listno = #{listno}
 	</update>
-
- 	 -->
+	
+	
 </mapper>

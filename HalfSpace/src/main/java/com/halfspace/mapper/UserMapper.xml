@@ -31,7 +31,23 @@
 				WHERE
 			u.userid = #{userId}
 	</select>
-		
+	
+	<insert id="insertUserTbl">
+		INSERT INTO user_tbl (userid, userpw, username, gender, birthdate, email, phone_num, address)
+			VALUES 
+		(#{userId}, #{userPw}, #{userName}, #{gender}, #{birthdate}, #{email}, #{phoneNum}, #{address})			
+	</insert>	
+	
+	<update id="insertUserAuth">
+		INSERT ALL  
+		<foreach collection="authList" item="item" separator=" ">
+			INTO USER_AUTH(userid, auth)
+				VALUES
+			(#{item.userId}, #{item.auth})
+		</foreach>
+		SELECT * 
+			FROM DUAL
+	</update>
 </mapper>
 
 

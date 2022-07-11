@@ -4,18 +4,20 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.halfspace.mapper.TeamMapper">
 
+<<<<<<< HEAD
 
+
+
+<!-- 
+=======
+	<!-- 
+>>>>>>> felix
 	<select id="teamDetail" resultType="com.halfspace.persistence.TeamVO">
 		SELECT * FROM team_tbl WHERE tno = #{tno}
 	</select>
 	
 	<insert id="teamCreate">
-		INSERT ALL
-			INTO teamlist(listno, name, coach)
-				VALUES (teamlist_num.nextval, #{name}, #{coach})
-			INTO team_tbl(tno, name, coach, logo, intro)
-				VALUES (team_num.nextval, #{name}, #{coach}, #{logo}, #{intro})
-			SELECT * FROM DUAL
+
 	</insert>
  	
  	<update id="teamUpdate">
@@ -36,5 +38,9 @@
  			<include refid="search"></include>
  		listno > 0
  	</select>
-
+<<<<<<< HEAD
+ -->
+=======
+	 -->
+>>>>>>> felix
 </mapper>

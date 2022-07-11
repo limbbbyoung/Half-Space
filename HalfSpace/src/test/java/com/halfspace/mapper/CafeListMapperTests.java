@@ -30,8 +30,8 @@ public class CafeListMapperTests {
 		
 		CafeListVO vo = new CafeListVO();
 
-		vo.setCafeMaster("0708Felix");
-		vo.setCafeAddress("임의의 웹주소가 들어갔다고 침");
+		vo.setCafeMaster("다르게0708Felix");
+		vo.setCafeAddress("다르게임의의 웹주소가 들어갔다고 침");
 		
 		mapper.insert(vo);
 	}

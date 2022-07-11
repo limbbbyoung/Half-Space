@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.halfspace.persistence.MainBoardVO;
+
 import com.halfspace.persistence.PageMaker;
 import com.halfspace.persistence.SearchCriteria;
 import com.halfspace.persistence.TeamListVO;
@@ -25,8 +25,8 @@ public class TeamController {
 	@Autowired
 	private TeamListService service;
 	
-	/*
-	@RequestMapping(value="/teamlist")
+	
+	@RequestMapping(value="/teamlist",
 					method= {RequestMethod.GET, RequestMethod.POST})
 	public String teamList(SearchCriteria cri, Model model) {
 		
@@ -34,26 +34,32 @@ public class TeamController {
 			cri.setPage(1);
 		}
 		
-		List<TeamListVO> teamList = service.getList(cri);
+		List<TeamListVO> teamList = service.teamList(cri);
 		
 		model.addAttribute("teamList", teamList);
 		
 		PageMaker pageMaker = new PageMaker();
 		
 		pageMaker.setCri(cri);
-		pageMaker.setTotalBoard(service.get);
+		pageMaker.setTotalBoard(service.getTeamListCnt(cri));
+		
+		log.info(service.getTeamListCnt(cri));
+		
+		model.addAttribute("pageMaker", pageMaker);
+		
+		return "/team/teamlist";
 		
 	}
-	*/
 	
-	@RequestMapping(value="/myteam",
+	
+	@RequestMapping(value="/detail",
 					method= {RequestMethod.GET, RequestMethod.POST})
-	public String myteam(@RequestParam(value="tno") Long tno, Model model) {
-		System.out.println("myteam으로 가기");
-		TeamListVO myteam = service.myteam(tno);
-		log.info(myteam);
-		model.addAttribute("myteam", myteam );
-		return "/team/myteam"  ;
+	public String myteam(@RequestParam(value="listno")Long listno, Model model) {
+		System.out.println("teamlist service getDetail으로 가기");
+		TeamListVO teamList = service.getDetail(listno);
+		log.info(teamList);
+		model.addAttribute("teamList", teamList );
+		return "/team/detail";
 		
 	}
 	

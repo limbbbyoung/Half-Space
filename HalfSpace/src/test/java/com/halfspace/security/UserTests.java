@@ -140,7 +140,7 @@ public class UserTests {
 		}
 	} // testCryptUserDB() END
 	
-	//@Test
+	@Test
 	public void testInsertAuth() {
 		try {
 			Connection con = ds.getConnection();

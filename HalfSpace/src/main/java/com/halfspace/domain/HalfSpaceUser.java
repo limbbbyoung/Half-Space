@@ -12,6 +12,8 @@ import lombok.Getter;
 @Getter
 public class HalfSpaceUser extends User{
 	
+	private static final long serialVersionUID = 1L;
+	
 	private UserVO user;
 	
 	public HalfSpaceUser(String username, String password, Collection<? extends GrantedAuthority> auth) {
