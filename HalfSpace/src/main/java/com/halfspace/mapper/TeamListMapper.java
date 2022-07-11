@@ -13,7 +13,9 @@ public interface TeamListMapper {
 	
 	public TeamListVO getDetail(Long listno);
 	
-	public void insert(TeamListVO vo);
+	public void insertTeamList(TeamListVO vo);
+	
+	public void insertTeamTbl(TeamListVO vo);
 	
 	public void update(TeamListVO vo);
 	

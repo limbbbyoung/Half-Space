@@ -65,7 +65,7 @@
     	FROM
     		teamlist l LEFT OUTER JOIN team_tbl t ON l.listno = t.tno
     	WHERE
-    		l.listno = #{listno};
+    		l.listno = #{listno}
 	</select>
 	
 	
@@ -92,11 +92,22 @@
 
 
 
-	<insert id="insert">
+	<insert id="insertTeamList">
 		INSERT INTO teamlist (listno, name, coach)
 			VALUES
 		(teamlist_num.nextval, #{name}, #{coach})
 	</insert>
+	
+	<update id="insertTeamTbl">
+		INSERT ALL
+		<foreach collection="teamMap" item="item" separator=" ">
+			INTO team_tbl(tno, name, coach, logo, intro)
+				VALUES
+			(#{item.listno}, #{item.name}, #{item.coach}, #{item.logo}, #{item.intro})
+		</foreach>
+		SELECT *
+			FROM DUAL
+	</update>
 	
 	
 

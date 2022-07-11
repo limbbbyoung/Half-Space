@@ -1,10 +1,14 @@
 package com.halfspace.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.halfspace.persistence.PageMaker;
 import com.halfspace.persistence.SearchCriteria;
 import com.halfspace.persistence.TeamListVO;
+import com.halfspace.persistence.TeamVO;
 import com.halfspace.service.TeamListService;
 
 import lombok.extern.log4j.Log4j;
@@ -62,5 +67,32 @@ public class TeamController {
 		return "/team/detail";
 		
 	}
+	
+	@PostMapping(value="/teamCreate")
+	public void teamCreatePost(TeamListVO vo, String[] role) {
+		
+		vo.setTeamVO(new ArrayList<TeamVO>());
+		
+		for(int i = 0; i < role.length; i++) {
+			vo.getTeamVO().add(new TeamVO());
+			vo.getTeamVO().get(i).setTno(vo.getListno());
+			vo.getTeamVO().get(i).setCoach(vo.getCoach());
+			vo.getTeamVO().get(i).setName(vo.getName());
+			
+		}
+		
+		log.info("teamVo 디버깅 : " + vo.getTeamVO());
+		log.info("teamlist + team_tbl 디버깅 : " + vo);
+		
+		service.insert(vo);
+		
+	} // teamCreatePost END
+	
+	@GetMapping(value="/teamCreate")
+	public String teamCreateGet() {
+		
+		return "/team/teamCreate";
+		
+	} // teamCreateGet END
 	
 }

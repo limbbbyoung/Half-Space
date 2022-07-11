@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.halfspace.mapper.TeamListMapper;
 import com.halfspace.persistence.SearchCriteria;
@@ -28,9 +29,11 @@ public class TeamListServiceImpl implements TeamListService{
 		return mapper.getDetail(listno);
 	}
 
+	@Transactional
 	@Override
 	public void insert(TeamListVO vo) {
-		// TODO Auto-generated method stub
+		mapper.insertTeamList(vo);
+		mapper.insertTeamTbl(vo);
 		
 	}
 
@@ -56,6 +59,12 @@ public class TeamListServiceImpl implements TeamListService{
 	public Long getTeamListCnt(SearchCriteria cri) {
 		
 		return mapper.getTeamListCnt(cri);
+	}
+
+	@Override
+	public TeamListVO teamMap(Long listno) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

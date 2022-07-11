@@ -32,6 +32,8 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			
+			<a href="/team/teamCreate">팀 생성</a>
 
 
 </body>

@@ -3,6 +3,8 @@ package com.halfspace.mapper;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.Date;
 
 import javax.sql.DataSource;
 
@@ -13,6 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.halfspace.persistence.TeamListVO;
+import com.halfspace.persistence.TeamVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -36,21 +39,30 @@ public class TeamListMapperTests {
 		vo.setCoach("user" + 50);
 		vo.setName("testteam" + 51);
 		
-		mapper.insert(vo);
+		mapper.insertTeamList(vo);
 		
-	}
-	//@Test
+	} // insertIntoTeamList
+	
+	@Test
 	public void testCreate50Team() {
-		
 		TeamListVO vo = new TeamListVO();
-			
-			for(Long i = 1L; i<=50; i++) {
-			
 		
+		 vo.setTeamVO(new ArrayList<TeamVO>());
+		 Date date = new Date();
+			for(Long i = 1L; i<=50; i++) {
+				vo.setListno(i);
 				vo.setCoach("user" + i);
 				vo.setName("testteam" + i);
+				vo.setRegdate(date);
+				vo.getTeamVO().add(new TeamVO());
+				vo.getTeamVO().get(i.intValue()).setTno(i);
+				vo.getTeamVO().get(i.intValue()).setCoach(vo.getCoach());
+				vo.getTeamVO().get(i.intValue()).setName(vo.getName());
+				vo.getTeamVO().get(i.intValue()).setIntro("testteam" + i + " 입니다. 안녕하세요!");
+				vo.getTeamVO().get(i.intValue()).setLogo("testteam" + i + "로고 입니다.");
 				
-				mapper.insert(vo);
+				mapper.insertTeamList(vo);
+				mapper.insertTeamTbl(vo);
 				
 			}
 				
@@ -118,12 +130,14 @@ public class TeamListMapperTests {
 	} //updateMemberCntTest END
 	
 	
-	@Test
+	//@Test
 	public void teamMapReadTest() {
 		
 		Long listno = 1L;
 		
-		log.info(mapper.teamMap(listno));
+		TeamListVO vo = mapper.teamMap(listno);
+		
+		vo.getTeamVO();
 		
 	}// teamMapReadTest END
 

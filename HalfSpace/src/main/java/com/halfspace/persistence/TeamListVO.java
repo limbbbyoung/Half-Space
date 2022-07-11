@@ -1,6 +1,7 @@
 package com.halfspace.persistence;
 
-import java.sql.Date;
+
+import java.util.Date;
 import java.util.List;
 
 import lombok.Data;
@@ -15,6 +16,8 @@ public class TeamListVO {
 	private Long memberCnt;
 	
 	private List<TeamVO> teamVO;
+
+
 
 
 	

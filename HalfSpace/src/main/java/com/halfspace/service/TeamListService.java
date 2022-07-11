@@ -20,5 +20,7 @@ public interface TeamListService {
 	public void updateMemberCnt(Long listno);
 	
 	public Long getTeamListCnt(SearchCriteria cri);
+	
+	public TeamListVO teamMap(Long listno);
 
 }
