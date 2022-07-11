@@ -83,7 +83,7 @@ public class TeamListMapperTests {
 		
 	} // teamListDsInsertTest
 	
-	@Test
+	//@Test
 	public void getDetailTest() {
 		
 		TeamListVO vo = new TeamListVO();
@@ -108,8 +108,24 @@ public class TeamListMapperTests {
 		
 	} // updateTeamList() END
 	
+	//@Test
+	public void updateMemberCntTest() {
+		Long listno = 50L;
+		int amount = 1;
+		
+		mapper.updateMemberCnt(listno, amount);
+		
+	} //updateMemberCntTest END
 	
 	
+	@Test
+	public TeamListVO teamMapReadTest() {
+		
+		Long listno = 1L;
+		
+		return mapper.teamMap(listno);
+		
+	}// teamMapReadTest END
 
 
 }
