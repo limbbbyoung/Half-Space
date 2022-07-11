@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.halfspace.domain.AuthVO;
 import com.halfspace.domain.HalfSpaceUser;
 import com.halfspace.domain.UserVO;
-import com.halfspace.service.SecurityService;
+import com.halfspace.service.UserService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -24,7 +24,7 @@ import lombok.extern.log4j.Log4j;
 public class LoginController { // 수업시간에 배운 교안에서는 SecurityController가 되는 Controller임.
 
 	@Autowired
-	private SecurityService service;
+	private UserService service;
 	
 	@Autowired
 	private PasswordEncoder pwen;

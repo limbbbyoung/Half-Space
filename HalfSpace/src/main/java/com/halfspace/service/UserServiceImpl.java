@@ -8,13 +8,13 @@ import com.halfspace.domain.UserVO;
 import com.halfspace.mapper.UserMapper;
 
 @Service
-public class SecurityServiceImpl implements SecurityService{
+public class UserServiceImpl implements UserService{
 
 	@Autowired
 	private UserMapper mapper;
 	
 	// 트렌젝션 걸면 더 좋음
-	// @Transactional
+	@Transactional
 	@Override
 	public void insertUser(UserVO vo) {
 		

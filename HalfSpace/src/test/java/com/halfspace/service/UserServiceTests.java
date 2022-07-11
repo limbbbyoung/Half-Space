@@ -22,19 +22,17 @@ import lombok.extern.log4j.Log4j;
 	"file:src/main/webapp/WEB-INF/spring/security-context.xml"
 })
 @Log4j
-public class SecurityServiceTests {
+public class UserServiceTests {
 	
 	@Autowired
-	private SecurityService service;
+	private UserService service;
 	
 	
 	@Test
 	public void insertUser() {
 		
-		log.info(LocalDate.now());
-		Date date = new Date();
-		
-		UserVO vo = new UserVO();
+		Date date = new Date(); // birthdate 값 입력을 위한 Date 생성
+		UserVO vo = new UserVO(); 
 		
 		vo.setUserId("klk4454");
 		vo.setUserPw("4454");
