@@ -5,7 +5,7 @@
 <mapper namespace="com.halfspace.mapper.TeamMapper">
 
 	<select id="teamDetail" resultType="com.halfspace.persistence.TeamVO">
-		SELECT * FROM team_tbl WHERE tno = #{listno}
+		SELECT * FROM team_tbl WHERE tno = #{tno}
 	</select>
 	
 	<insert id="teamCreate">

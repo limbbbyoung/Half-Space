@@ -39,7 +39,7 @@
 	
 	
 	
-	<select id="teamList" resultType="com.halfspace.persistence.TeamListVO">
+	<select id="getTeamList" resultType="com.halfspace.persistence.TeamListVO">
 	
 		<![CDATA[
 		SELECT * FROM
@@ -59,7 +59,7 @@
 	</select>
 	
 
-	<insert id="insertTeamList">
+	<insert id="addTeamList">
 		INSERT INTO teamlist (listno, name, coach)
 			VALUES
 		(teamlist_num.nextval, #{name}, #{coach})
@@ -77,13 +77,14 @@
 			SET 
 		name=#{name}, coach=#{coach}
 			WHERE
-		listno = #{listno}
+		listno = #{tno}
 	</update>
 	
 	<select id="getDetail" resultType="com.halfspace.persistence.TeamListVO">
 		SELECT * FROM teamlist WHERE listno = #{listno}
 	</select>
 
+	<!-- 페이지네이션을 위한 팀리스트 글 갯수 구해오기 -->
 	<select id="getTeamListCnt" resultType="long">
 		
 			SELECT COUNT(*) FROM teamlist WHERE

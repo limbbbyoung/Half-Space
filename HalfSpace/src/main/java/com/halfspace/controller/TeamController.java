@@ -19,7 +19,6 @@ import com.halfspace.persistence.PageMaker;
 import com.halfspace.persistence.SearchCriteria;
 import com.halfspace.persistence.TeamListVO;
 import com.halfspace.persistence.TeamVO;
-import com.halfspace.service.TeamListService;
 import com.halfspace.service.TeamService;
 
 import lombok.extern.log4j.Log4j;
@@ -30,29 +29,28 @@ import lombok.extern.log4j.Log4j;
 public class TeamController {
 
 	@Autowired
-	private TeamListService service;
-	
-	@Autowired
-	private TeamService tservice;
+	private TeamService service;
 	
 	@RequestMapping(value="/teamlist",
 					method= {RequestMethod.GET, RequestMethod.POST})
 	public String teamList(SearchCriteria cri, Model model) {
-		
+		// page 파라미터값이 주어지지 않을때 default 1
 		if(cri.getPage() == 0) {
 			cri.setPage(1);
 		}
+		// 팀 리스트를 불러와서 List에 저장
+		List<TeamListVO> teamList = service.getTeamList(cri);
 		
-		List<TeamListVO> teamList = service.teamList(cri);
-		
+		// model 객체에 데이터를 담아서 JSP 페이지에 전송
 		model.addAttribute("teamList", teamList);
 		
+		// 페이지네이션을 위한 PageMaker 생성자 생성
 		PageMaker pageMaker = new PageMaker();
 		
 		pageMaker.setCri(cri);
 		pageMaker.setTotalBoard(service.getTeamListCnt(cri));
 		
-		log.info(service.getTeamListCnt(cri));
+		log.info("팀 리스트에 등록 팀 갯수 : " + service.getTeamListCnt(cri));
 		
 		model.addAttribute("pageMaker", pageMaker);
 		
@@ -60,64 +58,55 @@ public class TeamController {
 		
 	}
 	
-	@RequestMapping(value="/myteam",
+	@RequestMapping(value="/teamDetail",
 					method= {RequestMethod.GET, RequestMethod.POST})
-	public String myteam(@RequestParam(value="listno")Long listno, Model model) {
+	public String teamDetail(@RequestParam(value="listno")Long listno, Model model) {
 		
-		log.info("listno 어디갔스까 : " + listno);
+		TeamVO myteam = service.teamDetail(listno);
 		
-		System.out.println("teamlist service myteam으로 가기");
+		log.info("팀의 정보 : " + myteam);
 		
-		
-		TeamListVO myteam = service.getDetail(listno);
-		TeamVO teamList = tservice.teamDetail(listno);
-		
-		model.addAttribute("teamList", teamList);
-		
-		log.info("myteam의 info입니다. : " + myteam);
 		model.addAttribute("myteam", myteam);
-		return "/team/myteam";
+		
+		return "/team/teamDetail";
 		
 	}
 	
-	@PostMapping(value="/teamCreate")
-	public String teamCreatePost(TeamListVO vo) {
-		
-		service.insert(vo);
-	
-		return "redirect:/team/teamlist";
-
-	
-	} // teamCreatePost END
-	
-	@PostMapping(value="/teamCreateForm")
-	public String teamCreateGet() {
+	@GetMapping(value="/teamCreate")
+	public String teamCreateForm() {
 		
 		return "/team/teamCreateForm";
 		
-	} // teamCreateGet END
+	} // teamCreateForm END
+
+	@PostMapping(value="/teamCreate")
+	public String teamCreate(TeamVO vo) {
+		log.info(vo);
+		
+		service.teamCreate(vo);
 	
-	@PostMapping(value="/updateTeam")
-	public String updateTeamGet(TeamListVO vo, RedirectAttributes rttr) {
-		service.update(vo);
-		rttr.addAttribute("listno", vo.getListno());
-		return "redirect:/team/myteam";
-	}
+		return "redirect:/team/teamlist";
+	} // teamCreate END
 	
 	@PostMapping(value="/updateTeamForm")
-	public String updateForm(Long listno, Model model) {
-		TeamListVO myteam = service.getDetail(listno);
+	public String updateForm(Long tno, Model model) {
 		
-		TeamVO teamvo = tservice.teamDetail(listno);
-		model.addAttribute("myteam", myteam);
-		model.addAttribute("teamvo", teamvo);
+		TeamVO team = service.teamDetail(tno);
+		model.addAttribute("team", team);
 		return "/team/updateTeamForm";
 	}
 	
+	@PostMapping(value="/updateTeam")
+	public String updateTeamForm(TeamVO vo, RedirectAttributes rttr) {
+		service.teamUpdate(vo);
+		rttr.addAttribute("tno", vo.getTno());
+		return "redirect:/team/teamDetail";
+	}
+	
 	@PostMapping("/delete")
-	public String deleteTeam(Long listno) {
+	public String deleteTeam(Long rno) {
 
-		service.delete(listno);
+		service.teamDelete(rno);
 		
 		return "redirect:/team/teamlist";
 	}

@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.sql.DataSource;
@@ -38,7 +39,7 @@ public class TeamListMapperTests {
 	
 	
 	// DataSource로 팀 50개를 생성합니다.
-	//@Test
+	// @Test
 	public void teamListDsInsertTest() {
 		
 		try {
@@ -63,31 +64,6 @@ public class TeamListMapperTests {
 		
 	} // teamListDsInsertTest
 	
-	
-	@Test
-	public void testCreate50Team(TeamVO vo, TeamListVO lvo) {
-		
-			try {
-				
-				Connection con = ds.getConnection();
-				String sql = "INSERT INTO team_tbl(tno, name, coach, logo, intro ) VALUES (?, ?, ?, ?, ?)";
-				for(int i=1; i<=50; i++) {
-					PreparedStatement pstmt = con.prepareStatement(sql);
-					
-					pstmt.setLong(1, i);
-					pstmt.setString(2, "testteam" + i);
-					pstmt.setString(3, "user" + i);
-					pstmt.setString(4, "logo" + i);
-					pstmt.setString(5, i + "번째팀입니다안녕하세요");
-					
-					pstmt.execute();
-				}
-				
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-	}
-	
 	//@Test
 	public void getDetailTest() {
 		
@@ -109,7 +85,7 @@ public class TeamListMapperTests {
 		vo.setName("updateTeam50");
 		vo.setCoach("user50");
 		
-		mapper.update(vo);
+		// mapper.update(vo);
 		
 	} // updateTeamList() END
 	
@@ -123,19 +99,10 @@ public class TeamListMapperTests {
 	} //updateMemberCntTest END
 	
 	
-	//@Test
-	public void teamListMapReadTest() {
-		
-		Long listno = 1L;
-		TeamListVO vo = new TeamListVO();
-		
-		//vo = mapper.read(listno);
-		
-		
-		
-		log.info("------------" + vo);
-		
-	}// teamMapReadTest END
+	@Test
+	public void getTeamList(){
+		log.info(mapper.getTeamList(null));
+	}
 
 
 }

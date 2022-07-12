@@ -7,13 +7,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>TeamList Page</title>
 </head>
 <body>
+		<div class="header"></div><!-- .header -->
+		<div class="container">
 			<table class="table table-hover" style="color :  #48734A;">
 				<thead>
 					<tr>
-						<th>팀번호</th>
 						<th>이름</th>
 						<th>감독</th>
 						<th>창단일</th>
@@ -23,8 +24,7 @@
 				<tbody>
 					<c:forEach var="teamList" items="${teamList}">
 						<tr>
-							<td>${teamList.listno}</td>
-							<td><a href="/team/myteam?page=${pageMaker.cri.page}&listno=${teamList.listno}&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${teamList.name}</a></td>
+							<td><a href="/team/teamDetail?page=${pageMaker.cri.page}&listno=${teamList.listno}&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${teamList.name}</a></td>
 							<td>${teamList.coach}</td>
 							<td>${teamList.regdate}</td>
 							<td>${teamList.memberCnt}
@@ -35,9 +35,10 @@
 			
 			<form action="/team/teamCreateForm" method="post">
 					<input type="hidden" name="listno" value="${myteam.listno}"/>
-					<button type="submit" class="btn" id="btn-filed">팀 창단하기</button>
+					<button type="submit" class="btn btn-primary" id="btn-filed">팀 창단하기</button>
 					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 			</form>
-
+		</div><!-- .container -->
+		<div class="footer"></div><!-- .footer -->
 </body>
 </html>

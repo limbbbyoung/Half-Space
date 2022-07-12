@@ -16,29 +16,31 @@
 		<div class="row">
 			<div class="col-6">
 				
-				팀 이름 : ${myteam.name} <br/>
-				감독 : ${myteam.coach} <br/>
-				창단일 : ${myteam.regdate} <br/>
-				선수단 총원 : ${myteam.memberCnt} <br/>
-			로고 : ${teamList.logo}<br/>
-			소개 : ${teamList.intro}<br/>
-			승 : ${teamList.win}<br/>
-			무 : ${teamList.draw}<br/>
-			패 : ${teamList.lose}<br/>
+				* 팀 이름 : ${myteam.name} <br/>
+				* 감독 : ${myteam.coach} <br/>
+				* 창단일 : ${myteam.regdate} <br/>
+				* 선수단 총원 : ${myteam.memberCnt} <br/>
+			    * 로고 : ${teamList.logo}<br/>
+			    * 소개 : ${teamList.intro}<br/>
+			    * 승 : ${teamList.win}<br/>
+			    * 무 : ${teamList.draw}<br/>
+			    * 패 : ${teamList.lose}<br/>
 			<br/>
 			<br/>
 				<form action="/team/updateTeamForm" method="post">
-					<input type="hidden" name="listno" value="${myteam.listno}"/>
+					<input type="hidden" name="rno" value="${myteam.rno}"/>
 					<input type="hidden" name="name" value="${myteam.name}"/>
 					<input type="hidden" name="coach" value="${myteam.coach}"/>
 					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 					<button type="submit" class="btn" id="btn-filed">팀 수정하기</button>
 				</form>
+				
 				<form action="/team/delete" method="post">
-					<input type="hidden" name="listno" value="${myteam.listno}"/>
+					<input type="hidden" name="rno" value="${myteam.rno}"/>
 					<button type="submit" class="btn" id="btn-filed">팀 삭제하기</button>
 					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 				</form>
+				
 				<a class="btn" id="btn-filed" href="/team/teamlist?">글 목록</a>
 			
 

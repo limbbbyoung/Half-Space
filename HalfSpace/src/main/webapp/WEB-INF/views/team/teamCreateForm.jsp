@@ -11,13 +11,14 @@
 </style>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Team Create Form</title>
 </head>
 <body>
 <div class="container">	
 	 <form action="/team/teamCreate" method="post">
      팀 명 : <input class="form-control" type="text" name="name" placeholder="팀명을 입력해주세요." required><br/>
      감독(유저명) : <input class="form-control" type="text" name="coach" placeholder="user_tbl에 존재하는 user를 넣어주세요" required><br/>
+     간단한 팀 소개글 : <input class="form-control" type="text" name="intro" placeholder="팀을 간단하게 소개해주세요." required><br/>
      <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
      <button type="submit" class="btn btn-success" >글 작성하기</button>
      </form>
