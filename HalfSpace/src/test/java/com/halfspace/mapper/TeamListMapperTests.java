@@ -71,7 +71,7 @@ public class TeamListMapperTests {
 				
 				Connection con = ds.getConnection();
 				String sql = "INSERT INTO team_tbl(tno, name, coach, logo, intro ) VALUES (?, ?, ?, ?, ?)";
-				for(int i=6; i<=50; i++) {
+				for(int i=1; i<=50; i++) {
 					PreparedStatement pstmt = con.prepareStatement(sql);
 					
 					pstmt.setLong(1, i);

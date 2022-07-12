@@ -3,6 +3,7 @@ package com.halfspace.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.halfspace.mapper.TeamListMapper;
 import com.halfspace.mapper.TeamMapper;
 import com.halfspace.persistence.SearchCriteria;
 import com.halfspace.persistence.TeamVO;
@@ -12,6 +13,9 @@ public class TeamServiceImpl implements TeamService {
 	
 	@Autowired
 	private TeamMapper mapper;
+	
+	@Autowired
+	private TeamListMapper listmapper;
 	
 	@Override
 	public TeamVO teamDetail(Long listno) {
