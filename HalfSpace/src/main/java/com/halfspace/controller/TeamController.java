@@ -85,24 +85,13 @@ public class TeamController {
 	
 	@PreAuthorize("permitAll")
 	@PostMapping(value="/teamCreate")
-	public void teamCreatePost(TeamListVO vo, String[] role) {
-		
-		vo.setTeamVO(new ArrayList<TeamVO>());
-		
-		for(int i = 0; i < role.length; i++) {
-			vo.getTeamVO().add(new TeamVO());
-			vo.getTeamVO().get(i).setTno(vo.getListno());
-			vo.getTeamVO().get(i).setCoach(vo.getCoach());
-			vo.getTeamVO().get(i).setName(vo.getName());
-			
-		}
-		
-		log.info("teamVo 디버깅 : " + vo.getTeamVO());
-		
-		log.info("teamlist + team_tbl 디버깅 : " + vo);
+	public String teamCreatePost(TeamListVO vo, String[] role) {
 		
 		service.insert(vo);
-		
+	
+		return "redirect:/team/teamlist";
+
+	
 	} // teamCreatePost END
 	
 	@PreAuthorize("permitAll")
