@@ -55,14 +55,14 @@ public class TeamServiceTests {
 				
 	} // testCreate50List END
 	
-	@Test
+	//@Test
 	public void TeamReadServiceTest( ) {
 		
-		TeamListVO vo = service.teamListMap(1L);
+		//TeamListVO vo = service.teamListMap(1L);
 		
-		vo.getTeamVO();
+		//vo.getTeamVO();
 		
-		log.info(vo.getTeamVO());
+		//log.info(vo.getTeamVO());
 		
 		
 		

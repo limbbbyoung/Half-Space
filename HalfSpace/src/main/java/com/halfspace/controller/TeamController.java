@@ -35,7 +35,6 @@ public class TeamController {
 	@Autowired
 	private TeamService tservice;
 	
-	@PreAuthorize("permitAll")
 	@RequestMapping(value="/teamlist",
 					method= {RequestMethod.GET, RequestMethod.POST})
 	public String teamList(SearchCriteria cri, Model model) {
@@ -61,7 +60,6 @@ public class TeamController {
 		
 	}
 	
-	@PreAuthorize("permitAll")
 	@RequestMapping(value="/myteam",
 					method= {RequestMethod.GET, RequestMethod.POST})
 	public String myteam(@RequestParam(value="listno")Long listno, Model model) {
@@ -71,21 +69,19 @@ public class TeamController {
 		System.out.println("teamlist service myteam으로 가기");
 		
 		
-		TeamListVO teamListMap = service.teamListMap(listno);
-
+		TeamListVO myteam = service.getDetail(listno);
 		TeamVO teamList = tservice.teamDetail(listno);
 		
 		model.addAttribute("teamList", teamList);
 		
-		log.info("teamListMap의 info입니다. : " + teamListMap);
-		model.addAttribute("myteam", teamListMap);
+		log.info("myteam의 info입니다. : " + myteam);
+		model.addAttribute("myteam", myteam);
 		return "/team/myteam";
 		
 	}
 	
-	@PreAuthorize("permitAll")
 	@PostMapping(value="/teamCreate")
-	public String teamCreatePost(TeamListVO vo, String[] role) {
+	public String teamCreatePost(TeamListVO vo) {
 		
 		service.insert(vo);
 	
@@ -94,29 +90,30 @@ public class TeamController {
 	
 	} // teamCreatePost END
 	
-	@PreAuthorize("permitAll")
-	@GetMapping(value="/teamCreate")
+	@PostMapping(value="/teamCreateForm")
 	public String teamCreateGet() {
 		
-		return "/team/teamCreate";
+		return "/team/teamCreateForm";
 		
 	} // teamCreateGet END
 	
-	@PreAuthorize("permitAll")
-	@GetMapping(value="/updateTeam")
-	public String updateTeamGet() {
-		return "/team/updateTeam";
+	@PostMapping(value="/updateTeam")
+	public String updateTeamGet(TeamListVO vo, RedirectAttributes rttr) {
+		service.update(vo);
+		rttr.addAttribute("listno", vo.getListno());
+		return "redirect:/team/myteam";
 	}
 	
-	@PreAuthorize("permitAll")
-	@PostMapping(value="/updateTeam")
+	@PostMapping(value="/updateTeamForm")
 	public String updateForm(Long listno, Model model) {
 		TeamListVO myteam = service.getDetail(listno);
+		
+		TeamVO teamvo = tservice.teamDetail(listno);
 		model.addAttribute("myteam", myteam);
-		return "/team/updateTeam";
+		model.addAttribute("teamvo", teamvo);
+		return "/team/updateTeamForm";
 	}
 	
-	@PreAuthorize("permitAll")
 	@PostMapping("/delete")
 	public String deleteTeam(Long listno) {
 
@@ -124,6 +121,8 @@ public class TeamController {
 		
 		return "redirect:/team/teamlist";
 	}
+	
+	
 	
 	
 }

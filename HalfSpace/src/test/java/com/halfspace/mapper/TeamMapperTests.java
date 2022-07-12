@@ -60,7 +60,7 @@ public class TeamMapperTests {
 			
 			vo.setTno(i);
 			vo.setCoach("user" + i);
-			vo.setName("team" + i);
+			vo.setName("testteam" + i);
 			vo.setLogo("logo" +  i);
 			vo.setIntro(i + "번째 팀입니다.");			
 		}

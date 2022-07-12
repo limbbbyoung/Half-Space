@@ -27,23 +27,25 @@
 			패 : ${teamList.lose}<br/>
 			<br/>
 			<br/>
-				<form action="/team/updateTeam" method="post">
+				<form action="/team/updateTeamForm" method="post">
 					<input type="hidden" name="listno" value="${myteam.listno}"/>
 					<input type="hidden" name="name" value="${myteam.name}"/>
 					<input type="hidden" name="coach" value="${myteam.coach}"/>
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 					<button type="submit" class="btn" id="btn-filed">팀 수정하기</button>
 				</form>
-				<form action="/post/delete" method="post">
+				<form action="/team/delete" method="post">
 					<input type="hidden" name="listno" value="${myteam.listno}"/>
 					<button type="submit" class="btn" id="btn-filed">팀 삭제하기</button>
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 				</form>
+				<a class="btn" id="btn-filed" href="/team/teamlist?">글 목록</a>
 			
 
 			
 	<!-- jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
-	<!-- List 로직 -->
-	<script type="text/javascript">
+
 </body>
 </html>

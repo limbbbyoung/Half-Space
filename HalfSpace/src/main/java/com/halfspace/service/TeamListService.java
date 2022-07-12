@@ -15,13 +15,11 @@ public interface TeamListService {
 	
 	public void delete(Long listno);
 	
-	public void update(Long listno);
+	public void update(TeamListVO vo);
 	
-	public void updateMemberCnt(Long listno);
+	public void updateMemberCnt(Long listno, int amount);
 	
 	public Long getTeamListCnt(SearchCriteria cri);
-	
-	public TeamListVO teamListMap(Long listno);
 
 
 }

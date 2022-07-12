@@ -33,8 +33,11 @@
 				</tbody>
 			</table>
 			
-			<a href="/team/teamCreate">팀 생성</a>
-
+			<form action="/team/teamCreateForm" method="post">
+					<input type="hidden" name="listno" value="${myteam.listno}"/>
+					<button type="submit" class="btn" id="btn-filed">팀 창단하기</button>
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+			</form>
 
 </body>
 </html>

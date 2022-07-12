@@ -32,29 +32,23 @@ public class TeamListServiceImpl implements TeamListService{
 		return mapper.getDetail(listno);
 	}
 
-	@Transactional
-	@Override
-	public void insert(TeamListVO vo) {
-		mapper.insertTeamList(vo);
-		mapper.insertTeamTbl(vo);
-		
-	}
+
 
 	@Override
 	public void delete(Long listno) {
-		// TODO Auto-generated method stub
+		mapper.delete(listno);
 		
 	}
 
 	@Override
-	public void update(Long listno) {
-		// TODO Auto-generated method stub
+	public void update(TeamListVO vo) {
+		mapper.update(vo);
 		
 	}
 
 	@Override
-	public void updateMemberCnt(Long listno) {
-		// TODO Auto-generated method stub
+	public void updateMemberCnt(Long listno, int amount) {
+		mapper.updateMemberCnt(listno, amount);
 		
 	}
 
@@ -65,10 +59,10 @@ public class TeamListServiceImpl implements TeamListService{
 	}
 
 	@Override
-	public TeamListVO teamListMap(Long listno) {
-		
-		return mapper.read(listno);
+	public void insert(TeamListVO vo) {
+		mapper.insertTeamList(vo);
 	}
-	
+
+
 	
 }
