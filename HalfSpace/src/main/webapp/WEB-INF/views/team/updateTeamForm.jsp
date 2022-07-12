@@ -10,6 +10,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	${teamList}
+	<form action="/team/updateTeam" method="post">
+		팀 이름 수정 : <input type="text" name="name" placeholder="${myteam.name}" required/><br/>
+		감독 위임 : <input type="text" name="coach" placeholder="${myteam.coach}" required/>
+		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+		<input type="hidden" name="listno" value="${myteam.listno}">
+		<input type="submit">
+	
+	</form>
+
 </body>
 </html>

@@ -13,8 +13,8 @@ public interface TeamListMapper {
 	
 	public TeamListVO getDetail(Long listno);
 	
-	public void insert(TeamListVO vo);
-	
+	public void insertTeamList(TeamListVO vo);
+
 	public void update(TeamListVO vo);
 	
 	public void delete(Long listno);
@@ -25,7 +25,6 @@ public interface TeamListMapper {
 	
 	public Long getTeamListCnt(SearchCriteria cri);
 	
-	public TeamListVO teamMap(Long listno);
 	
 
 }

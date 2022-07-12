@@ -3,6 +3,9 @@ package com.halfspace.mapper;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -13,6 +16,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.halfspace.persistence.TeamListVO;
+import com.halfspace.persistence.TeamVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -26,35 +30,11 @@ public class TeamListMapperTests {
 	private TeamListMapper mapper;
 	
 	@Autowired
+	private TeamMapper tmapper;
+	
+	@Autowired
 	private DataSource ds;
 	
-	//@Test
-	public void insertIntoTeamList() {
-		
-		TeamListVO vo = new TeamListVO();
-		
-		vo.setCoach("user" + 50);
-		vo.setName("testteam" + 51);
-		
-		mapper.insert(vo);
-		
-	}
-	//@Test
-	public void testCreate50Team() {
-		
-		TeamListVO vo = new TeamListVO();
-			
-			for(Long i = 1L; i<=50; i++) {
-			
-		
-				vo.setCoach("user" + i);
-				vo.setName("testteam" + i);
-				
-				mapper.insert(vo);
-				
-			}
-				
-	} // testCreate50List END
 	
 	
 	// DataSource로 팀 50개를 생성합니다.
@@ -83,12 +63,37 @@ public class TeamListMapperTests {
 		
 	} // teamListDsInsertTest
 	
+	
+	@Test
+	public void testCreate50Team(TeamVO vo, TeamListVO lvo) {
+		
+			try {
+				
+				Connection con = ds.getConnection();
+				String sql = "INSERT INTO team_tbl(tno, name, coach, logo, intro ) VALUES (?, ?, ?, ?, ?)";
+				for(int i=1; i<=50; i++) {
+					PreparedStatement pstmt = con.prepareStatement(sql);
+					
+					pstmt.setLong(1, i);
+					pstmt.setString(2, "testteam" + i);
+					pstmt.setString(3, "user" + i);
+					pstmt.setString(4, "logo" + i);
+					pstmt.setString(5, i + "번째팀입니다안녕하세요");
+					
+					pstmt.execute();
+				}
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+	}
+	
 	//@Test
 	public void getDetailTest() {
 		
 		TeamListVO vo = new TeamListVO();
 		
-		vo.setListno(50L);
+		vo.setListno(5L);
 		
 		mapper.getDetail(vo.getListno());
 		
@@ -118,12 +123,17 @@ public class TeamListMapperTests {
 	} //updateMemberCntTest END
 	
 	
-	@Test
-	public void teamMapReadTest() {
+	//@Test
+	public void teamListMapReadTest() {
 		
 		Long listno = 1L;
+		TeamListVO vo = new TeamListVO();
 		
-		log.info(mapper.teamMap(listno));
+		//vo = mapper.read(listno);
+		
+		
+		
+		log.info("------------" + vo);
 		
 	}// teamMapReadTest END
 

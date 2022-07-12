@@ -24,7 +24,7 @@
 					<c:forEach var="teamList" items="${teamList}">
 						<tr>
 							<td>${teamList.listno}</td>
-							<td><a href="/team/detail?page=${pageMaker.cri.page}&listno=${teamList.listno}&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${teamList.name}</a></td>
+							<td><a href="/team/myteam?page=${pageMaker.cri.page}&listno=${teamList.listno}&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${teamList.name}</a></td>
 							<td>${teamList.coach}</td>
 							<td>${teamList.regdate}</td>
 							<td>${teamList.memberCnt}
@@ -32,7 +32,12 @@
 					</c:forEach>
 				</tbody>
 			</table>
-
+			
+			<form action="/team/teamCreateForm" method="post">
+					<input type="hidden" name="listno" value="${myteam.listno}"/>
+					<button type="submit" class="btn" id="btn-filed">팀 창단하기</button>
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+			</form>
 
 </body>
 </html>

@@ -10,7 +10,7 @@
 		 <result property="userPw" column="userpw"/>
 		 <result property="userName" column="username"/>
 		 <result property="gender" column="gender"/>
-		 <result property="birthDate" column="birthdate"/>
+		 <result property="birthdate" column="birthdate"/>
 		 <result property="email" column="email"/>
 		 <result property="phoneNum" column="phone_num"/>
 		 <result property="address" column="address"/>

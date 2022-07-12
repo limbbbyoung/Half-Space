@@ -70,6 +70,18 @@ public class LoginController { // 수업시간에 배운 교안에서는 Securit
 	@PreAuthorize("permitAll")
 	@PostMapping("/join")
 	public void join(UserVO vo, String[] role){
+		// vo에 정보들을 잘 받아오는지 체크
+		log.info(vo);
+		
+		// 전화번호 받아오기
+		//String phoneNum = ph1 + ph2 + ph3;
+		//log.info(phoneNum);
+		//vo.setPhoneNum(phoneNum);
+
+		// 주소값 받아오기
+		//String address = address1 + address2 + address3;
+		//log.info(address);
+		//vo.setAddress(address);
 		
 		String beforeCrPw = vo.getUserPw();
 		log.info("암호화 전 : " + vo.getUserPw());

@@ -1,10 +1,13 @@
 package com.halfspace.service;
 
+
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.halfspace.mapper.TeamListMapper;
 import com.halfspace.persistence.SearchCriteria;
@@ -16,6 +19,7 @@ public class TeamListServiceImpl implements TeamListService{
 
 	@Autowired
 	private TeamListMapper mapper;
+	
 
 	@Override
 	public List<TeamListVO> teamList(SearchCriteria cri) {
@@ -28,27 +32,23 @@ public class TeamListServiceImpl implements TeamListService{
 		return mapper.getDetail(listno);
 	}
 
-	@Override
-	public void insert(TeamListVO vo) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	public void delete(Long listno) {
-		// TODO Auto-generated method stub
+		mapper.delete(listno);
 		
 	}
 
 	@Override
-	public void update(Long listno) {
-		// TODO Auto-generated method stub
+	public void update(TeamListVO vo) {
+		mapper.update(vo);
 		
 	}
 
 	@Override
-	public void updateMemberCnt(Long listno) {
-		// TODO Auto-generated method stub
+	public void updateMemberCnt(Long listno, int amount) {
+		mapper.updateMemberCnt(listno, amount);
 		
 	}
 
@@ -57,5 +57,12 @@ public class TeamListServiceImpl implements TeamListService{
 		
 		return mapper.getTeamListCnt(cri);
 	}
+
+	@Override
+	public void insert(TeamListVO vo) {
+		mapper.insertTeamList(vo);
+	}
+
+
 	
 }
