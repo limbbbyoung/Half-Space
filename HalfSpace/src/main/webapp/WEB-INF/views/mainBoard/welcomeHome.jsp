@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <!-- springframework -->
-    <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %> 
 <!DOCTYPE html>
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -13,32 +12,22 @@
 <!-- google 폰트 적용 -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
-<style>
-	@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-    #HeadLine{color: white;
-       font-family : 'Roboto';
-       text-align: center;
-       font-size: 100px;}
-	.nav-link {
-			  color : white;
-			  display: flex;
-			  justify-content: center;
-			  align-items: center;
-  			  min-height: 65vh;}
-</style>
 <meta charset="UTF-8">
 <title>Welcome Half-Space</title>
 </head>
 <body>
 	<div class="bgimg">
 		<div class="header">
-		</div><!-- .header -->
+			<div id="HeadLine">
+				<img id="halfspaceLogo" src="../../resources/images/halfspacelogo.png">
+			</div>
+		</div>
+		
 		<div class="container">
 			<div class="row">
 				<div class="col-2">
-				</div><!-- .col-4 -->
+				</div>
 				<div class="col-8">
-					<h1 id="HeadLine">HalfSpace</h1>
 					<ul class="nav justify-content-center">
 					  <li class="nav-item">
 					    <h1><a class="nav-link" aria-current="page" href="/mainBoard/list">
@@ -61,13 +50,15 @@
 					    </a></h1>
 					  </li>
 					</ul>
-				</div><!-- .col-4 -->
+				</div>
 				<div class="col-2">
-				</div><!-- .col-4 -->
-			</div><!-- .row -->
-		</div><!-- .container -->
+				</div>
+			</div>
+		</div>
+		
 		<div class="footer">
-		</div><!-- .footer -->
+			<a href="https://kr.freepik.com/vectors/sport">Sport 벡터는 pikisuperstar - kr.freepik.com가 제작함</a>
+		</div>
 	</div>
 </body>
 </html>
