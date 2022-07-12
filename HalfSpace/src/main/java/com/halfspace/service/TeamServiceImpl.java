@@ -14,8 +14,8 @@ public class TeamServiceImpl implements TeamService {
 	private TeamMapper mapper;
 	
 	@Override
-	public TeamVO teamDetail(Long tno) {
-		return mapper.teamDetail(tno);
+	public TeamVO teamDetail(Long listno) {
+		return mapper.teamDetail(listno);
 	}
 	
 	@Override

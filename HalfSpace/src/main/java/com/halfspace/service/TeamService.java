@@ -5,7 +5,7 @@ import com.halfspace.persistence.TeamVO;
 
 public interface TeamService {
 
-	public TeamVO teamDetail(Long teamNum);
+	public TeamVO teamDetail(Long listno);
 	
 	public void teamCreate(TeamVO vo);
 	

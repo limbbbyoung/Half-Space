@@ -3,9 +3,9 @@
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.halfspace.mapper.TeamMapper">
-<!-- 
+
 	<select id="teamDetail" resultType="com.halfspace.persistence.TeamVO">
-		SELECT * FROM team_tbl WHERE tno = #{tno}
+		SELECT * FROM team_tbl WHERE tno = #{listno}
 	</select>
 	
 	<insert id="teamCreate">
@@ -23,6 +23,6 @@
  		DELETE FROM team_tbl
  			WHERE tno = #{tno}
  	</delete>
- -->
+
 
 </mapper>

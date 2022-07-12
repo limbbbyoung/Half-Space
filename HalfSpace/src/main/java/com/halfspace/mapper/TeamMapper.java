@@ -10,7 +10,7 @@ public interface TeamMapper {
 
 	public List<TeamVO> teamList(SearchCriteria cri);
 	
-	public TeamVO teamDetail(Long tno);
+	public TeamVO teamDetail(Long listno);
 	
 	public TeamListVO teamListDetail(Long tno);
 	
