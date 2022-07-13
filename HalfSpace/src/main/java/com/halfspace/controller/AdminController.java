@@ -7,12 +7,14 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.halfspace.domain.AuthVO;
 import com.halfspace.domain.UserVO;
-import com.halfspace.persistence.MainBoardVO;
 import com.halfspace.persistence.PageMaker;
 import com.halfspace.persistence.SearchCriteria;
 import com.halfspace.service.AdminService;
@@ -48,7 +50,7 @@ public class AdminController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalBoard(aservice.getUserCnt(cri));
-		log.info(aservice.getUserCnt(cri));
+		log.info("현재 총 유저 수 : " + aservice.getUserCnt(cri));
 		model.addAttribute("pageMaker", pageMaker);
 		return "/admin/userlist";
 	}
@@ -65,4 +67,29 @@ public class AdminController {
 		return "/admin/userdetail";
 		
 	} // adminReadUserDetail END
+	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+	@PostMapping("/deleteAuth")
+	public String adminDeleteAuth(String userId, SearchCriteria cri, RedirectAttributes rttr) {
+		
+		aservice.DeleteUserAuth(userId);
+		
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("searchType", cri.getSearchType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		return "redirect:/admin/userlist";
+		
+	} // adminDeleteAuth END
+	
+	
+	@PostMapping("/update")
+	public String updateUserAuthByAdmin(String userId, String auth, SearchCriteria cri, RedirectAttributes rttr) {
+		
+		aservice.updateUserAuth(userId, auth);
+		
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("searchType", cri.getSearchType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		return "redirect:/user/userdetail";
+	}
 }

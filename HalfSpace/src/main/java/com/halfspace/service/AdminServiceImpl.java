@@ -36,4 +36,16 @@ public class AdminServiceImpl implements AdminService{
 		return umapper.read(userId);
 	}
 
+	@Override
+	public void DeleteUserAuth(String userId) {
+		
+		amapper.DeleteUserAuth(userId);
+	}
+
+	@Override
+	public void updateUserAuth(String userId, String auth) {
+		
+		amapper.updateUserAuth(userId, auth);
+	}
+
 }

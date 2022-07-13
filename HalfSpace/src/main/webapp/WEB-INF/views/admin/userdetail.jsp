@@ -10,6 +10,9 @@
 </head>
 <body>
 	${user}
+	
+	<a href="">이 유저 권한 수정</a>
+	<a href="">이 유저</a>
 
 </body>
 </html>

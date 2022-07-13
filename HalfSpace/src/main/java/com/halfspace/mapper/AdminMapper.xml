@@ -60,4 +60,17 @@
 			rownum > 0
 	</select>
 	
+	<delete id="deleteUserAuth">
+		DELETE FROM user_auth
+			WHERE userId = #{userId}	
+	</delete>
+	
+	
+	<update id="updateUserAuth">
+		UPDATE user_auth SET 
+			auth = #{auth}
+		WHERE
+			userid = #{userId}
+	</update>
+	
 </mapper>

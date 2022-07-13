@@ -13,4 +13,11 @@ public interface AdminService {
 	
 	public UserVO read(String userId);
 
+	// 권한 삭제
+	public void DeleteUserAuth(String userId);
+	
+	// 권한 수정(권한 승급 or 강등)
+	public void updateUserAuth(String userId, String auth);
+
+	
 }
