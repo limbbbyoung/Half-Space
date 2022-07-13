@@ -17,7 +17,7 @@
  	<update id="teamUpdate">
  		UPDATE team_tbl
  			SET
- 		name = #{name}, coach = #{coach}, logo = #{logo}, intro = #{intro}
+ 		name = #{name}, coach = #{coach}, intro = #{intro}
  			WHERE tno = #{tno}
  	</update>
  	

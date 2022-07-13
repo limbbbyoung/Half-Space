@@ -11,6 +11,9 @@ import com.halfspace.persistence.SearchCriteria;
 import com.halfspace.persistence.TeamListVO;
 import com.halfspace.persistence.TeamVO;
 
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 @Service
 public class TeamServiceImpl implements TeamService {
 	
@@ -37,12 +40,11 @@ public class TeamServiceImpl implements TeamService {
 	}
 
 	@Override
-	public void teamUpdate(TeamVO vo) {
+	public void teamUpdate(TeamVO vo, TeamListVO teamListVO) {
 		// 팀 정보 수정
 		mapper.teamUpdate(vo);
 		// 팀 정보 수정에 따른 팀 리스트 정보 수정
-		teamListMapper.update(vo);
-		
+		teamListMapper.update(teamListVO);
 	}
 
 	@Override

@@ -15,7 +15,7 @@ public interface TeamService {
 	public void teamCreate(TeamVO vo);
 	
 	// 팀 정보 수정을 위한 Service
-	public void teamUpdate(TeamVO vo);
+	public void teamUpdate(TeamVO vo, TeamListVO teamListVO);
 	
 	// 팀 해체를 위한 Serivice
 	public void teamDelete(Long tno);

@@ -43,7 +43,6 @@
 			/*+ INDEX_DESC(teamlist pk_teamlist) */
 			rownum rn, teamlist.* FROM teamlist
 				WHERE 
-				
 		]]>
 		
 		<include refid="search"></include>
@@ -66,13 +65,12 @@
 		DELETE FROM teamlist WHERE listno = #{listno}
 	</delete>
 	
-	
 	<update id="update">
 		UPDATE teamlist
 			SET 
 		name=#{name}, coach=#{coach}
 			WHERE
-		listno = #{tno}
+		listno = #{listno}
 	</update>
 	
 	

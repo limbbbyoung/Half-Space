@@ -22,7 +22,7 @@
 				* 팀 이름 : ${myteam.name} <br/>
 				* 감독 : ${myteam.coach} <br/>
 				* 창단일 : ${strRegDate} <br/>
-				* 선수단 총원 : ${listInMyteam.memberCnt} <br/>
+				* 선수단 총원 : ${listInMyteam.member_cnt} <br/>
 			    * 로고 : ${myteam.logo}<br/>
 			    * 소개 : ${myteam.intro}<br/>
 			    * 승 : ${myteam.win}<br/>
@@ -46,7 +46,7 @@
 				</form>
 				<br>
 				
-				<a class="btn" id="btn-filed" href="/team/teamlist?">글 목록</a>			
+				<a class="btn" id="btn-filed" href="/team/teamlist?page=${param.page }">팀 목록</a>			
 			</div><!-- .col-6 -->
 			<div class="col-3"></div><!-- .col-3 -->
 		</div><!-- .row -->

@@ -15,15 +15,15 @@
 </head>
 <body>
 	<div class="container">	
-	 <form action="/mainBoard/insert" method="post">
-     글제목 : <input class="form-control" type="text" name="title" placeholder="제목을 입력해주세요." required><br/>
-     작성자 : <input class="form-control" type="text" name= "writer" placeholder="작성자" required><br/>
-     카테고리 : <input class="form-control" type="text" name= "catego" placeholder="카테고리" required><br/>
-     경기 장소 : <input class="form-control" type="text" name= "gameplace" placeholder="경기 장소" required><br/>
-     경기 날짜 : <input class="form-control" type="date" name= "gamedate" required><br/>
-     <p>글내용 : </p> <textarea class="form-control" cols="50" rows="12" name="content" required></textarea><br/>
-     <button type="submit" class="btn btn-success" >글 작성하기</button>
-     </form>
+		 <form action="/mainBoard/insert" method="post">
+		     글제목 : <input class="form-control" type="text" name="title" placeholder="제목을 입력해주세요." required><br/>
+		     작성자 : <input class="form-control" type="text" name="writer" placeholder="작성자" required><br/>
+		     카테고리 : <input class="form-control" type="text" name="catego" placeholder="카테고리" required><br/>
+		     경기 장소 : <input class="form-control" type="text" name="gameplace" placeholder="경기 장소" required><br/>
+		     경기 날짜 : <input class="form-control" type="date" name="gamedate" required><br/>
+		     <p>글내용 : </p> <textarea class="form-control" cols="50" rows="12" name="content" required></textarea><br/>
+		     <button type="submit" class="btn btn-success" >글 작성하기</button>
+	     </form>
     </div>
 </body>
 </html>

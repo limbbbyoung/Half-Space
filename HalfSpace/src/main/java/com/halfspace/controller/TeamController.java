@@ -94,7 +94,7 @@ public class TeamController {
 		
 	}
 	
-	@GetMapping(value="/teamCreate")
+	@GetMapping(value="/teamCreateForm")
 	public String teamCreateForm() {
 		
 		return "/team/teamCreateForm";
@@ -103,16 +103,16 @@ public class TeamController {
 
 	@PostMapping(value="/teamCreate")
 	public String teamCreate(TeamVO vo) {
-		log.info(vo);
 		
+		log.info(vo);
+						
 		service.teamCreate(vo);
-	
+		
 		return "redirect:/team/teamlist";
 	} // teamCreate END
 	
 	@PostMapping(value="/updateTeamForm")
 	public String updateForm(Long tno, Model model) {
-		
 		TeamVO team = service.teamDetail(tno);
 		model.addAttribute("team", team);
 		return "/team/updateTeamForm";
@@ -120,8 +120,19 @@ public class TeamController {
 	
 	@PostMapping(value="/updateTeam")
 	public String updateTeamForm(TeamVO vo, RedirectAttributes rttr) {
-		service.teamUpdate(vo);
-		rttr.addAttribute("tno", vo.getTno());
+		log.info("updateService를 위해 받아오는 VO : " + vo);
+		
+		// tno 전달이 안되므로 직접적으로 listno를 생성하여
+		// TeamListMapper쪽의 수정로직을 실행
+		TeamListVO teamListVO = mapper.getDetail(vo.getTno());
+		log.info(teamListVO);
+		
+		// 업데이트 로직 실행
+		service.teamUpdate(vo, teamListVO);
+		
+		// 원래있던 디테일 페이졸 가기 위해 listno 파라미터 전송
+		rttr.addAttribute("listno", vo.getTno());
+		
 		return "redirect:/team/teamDetail";
 	}
 	

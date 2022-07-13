@@ -12,5 +12,5 @@ public class TeamListVO {
 	private String name; // 팀이름
 	private String coach; // 감독이름
 	private Date regdate; // 팀 생성일
-	private Long memberCnt; // 팀원수
+	private Long member_cnt; // 팀원수
 }

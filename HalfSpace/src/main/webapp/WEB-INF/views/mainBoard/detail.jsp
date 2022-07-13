@@ -155,6 +155,44 @@
 				// 화면 기능을 구성할 때 원하는 태그만을 골라서 디테일하게 기능을 구현하는데 있어서
 				// 어려움을 느낄 것으로 예상, 그러므로 이 점에 집중해서 화면단 기능 구성
 			});  
+			
+			
+		$("#replyAddBtn").on("click", function(){
+				
+				let replyer = $("#newReplyWriter").val();
+				let reply = $("#newReplyText").val();
+				
+				var csrfHeaderName = "${_csrf.headerName}";
+				var csrfTokenValue="${_csrf.token}";
+				
+				$.ajax({
+					type : 'post',
+					url : '/replies',
+					beforeSend : function(xhr) {
+						 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+						 },
+					headers: {
+						"Content-Type" : "application/json",
+						"X-HTTP-Method-Override" : "POST"
+					},
+					dataType : 'text',
+					data : JSON.stringify({
+						bno : bno,
+						replyer : replyer,
+						reply_content : reply
+					}),
+					success : function(result){
+						if(result == "SUCCESS"){
+							
+							alert("등록되었습니다.");
+							getAllList();
+							$("#newReplyWriter").val('');
+							$("#newReplyText").val('');
+						}
+					}
+					
+				});
+			});
  	</script>
  	
  	<!-- modal 기능들 -->

@@ -56,8 +56,8 @@
 					    </a></h1>
 					  </li>
 					  <li class="nav-item">
-					    <h1><a class="nav-link" href="#">
-					    QnA
+					    <h1><a class="nav-link" href="/team/teamlist">
+					    팀 둘러보기
 					    </a></h1>
 					  </li>
 					</ul>
