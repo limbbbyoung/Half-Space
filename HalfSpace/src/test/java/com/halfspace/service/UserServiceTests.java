@@ -1,8 +1,7 @@
 package com.halfspace.service;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -30,15 +29,14 @@ public class UserServiceTests {
 	
 	@Test
 	public void insertUser() {
-		
-		Date date = new Date(); // birthdate 값 입력을 위한 Date 생성
+	
 		UserVO vo = new UserVO(); 
 		
-		vo.setUserId("klk4454");
-		vo.setUserPw("4454");
-		vo.setUserName("사사오사");
+		vo.setUserId("user100");
+		vo.setUserPw("1234");
+		vo.setUserName("유저100");
 		vo.setGender("Y");
-		vo.setBirthdate(date);
+		vo.setBirthdate(Date.valueOf("1999-09-09"));
 		vo.setEmail("klk4454@naver.com");
 		vo.setAddress("서울 신촌");
 		vo.setPhoneNum("01012341234");
@@ -52,6 +50,7 @@ public class UserServiceTests {
 		
 		vo.setAuthList(list);
 		
+		log.info(vo);
 		service.insertUser(vo);
 		
 	}

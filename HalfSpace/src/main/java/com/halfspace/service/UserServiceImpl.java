@@ -7,6 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.halfspace.domain.UserVO;
 import com.halfspace.mapper.UserMapper;
 
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -21,6 +24,8 @@ public class UserServiceImpl implements UserService{
 		mapper.insertUserTbl(vo);
 		
 		mapper.insertUserAuth(vo);	
+		
+		log.info("여기는 service : " + vo);
 	}
 
 }
