@@ -39,7 +39,7 @@ public class TeamListMapperTests {
 	
 	
 	// DataSource로 팀 50개를 생성합니다.
-	// @Test
+	@Test
 	public void teamListDsInsertTest() {
 		
 		try {
@@ -99,7 +99,7 @@ public class TeamListMapperTests {
 	} //updateMemberCntTest END
 	
 	
-	@Test
+	// @Test
 	public void getTeamList(){
 		log.info(mapper.getTeamList(null));
 	}

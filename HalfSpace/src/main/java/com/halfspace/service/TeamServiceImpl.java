@@ -29,16 +29,15 @@ public class TeamServiceImpl implements TeamService {
 	@Override
 	public void teamCreate(TeamVO vo) {
 		
-		// 팀 생성
-		mapper.teamCreate(vo);
 		// 팀 생성에 따른 팀 리스트에 새로 생성된 팀 추가
 		teamListMapper.addTeamList(vo);
+		// 팀 생성
+		mapper.teamCreate(vo);
 		
 	}
 
 	@Override
 	public void teamUpdate(TeamVO vo) {
-		
 		// 팀 정보 수정
 		mapper.teamUpdate(vo);
 		// 팀 정보 수정에 따른 팀 리스트 정보 수정
@@ -47,11 +46,11 @@ public class TeamServiceImpl implements TeamService {
 	}
 
 	@Override
-	public void teamDelete(Long teamNum) {
+	public void teamDelete(Long tno) {
 		// 팀 삭제
-		mapper.teamDelete(teamNum);
+		mapper.teamDelete(tno);
 		// 팀 삭제시 팀 목록에서 해당 팀 삭제
-		teamListMapper.delete(teamNum);
+		teamListMapper.delete(tno);
 	}
 
 	// 팀 목록을 보려할 때 팀 목록을 볼 수 있는 서비스

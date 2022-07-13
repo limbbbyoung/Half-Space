@@ -58,7 +58,7 @@ public class TeamMapperTests {
 		
 		TeamVO vo = new TeamVO();
 		
-		for(Long i=6L; i<=50; i++) {	
+		for(Long i=1L; i<=50; i++) {	
 			vo.setTno(i);
 			vo.setCoach("user" + i);
 			vo.setName("testteam" + i);

@@ -18,7 +18,7 @@ public interface TeamService {
 	public void teamUpdate(TeamVO vo);
 	
 	// 팀 해체를 위한 Serivice
-	public void teamDelete(Long teamNum);
+	public void teamDelete(Long tno);
 	
 	// 팀 목록을 보기 위한 Service
 	public List<TeamListVO> getTeamList(SearchCriteria cri);

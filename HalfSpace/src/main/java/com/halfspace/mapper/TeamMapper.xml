@@ -9,9 +9,9 @@
 	</select>
 	
 	<insert id="teamCreate">
-		INSERT INTO team_tbl(tno, name, coach, logo, intro )
+		INSERT INTO team_tbl(tno, name, coach, intro )
 			VALUES
-		(team_num.nextval, #{name}, #{coach}, #{logo}, #{intro})
+		(team_num.nextval, #{name}, #{coach}, #{intro})
 	</insert>
  	
  	<update id="teamUpdate">
