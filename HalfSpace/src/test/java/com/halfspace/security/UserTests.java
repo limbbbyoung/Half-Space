@@ -79,7 +79,7 @@ public class UserTests {
 	
 	
 	
-	@Test
+	//@Test
 	public void testCryptUserDB() {
 		try {
 			Connection con = ds.getConnection();
@@ -140,7 +140,7 @@ public class UserTests {
 		}
 	} // testCryptUserDB() END
 	
-	@Test
+	//@Test
 	public void testInsertAuth() {
 		try {
 			Connection con = ds.getConnection();
