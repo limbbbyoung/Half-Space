@@ -20,5 +20,6 @@
 		<input type="submit" value="로그인하기">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 	</form>
+	<span class="btn btn-mini"><a href="/login/join">회원가입</a></span>
 </body>
 </html>

@@ -1,4 +1,7 @@
 		// 아래는 commentAdd 로직
+		let csrfHeaderName = "${_csrf.headerName}";
+		let csrfTokenValue = "${_csrf.token}"
+		
 		
 		$("#commentAdd").on("click", function() {
 			
@@ -8,10 +11,16 @@
 			$.ajax({
 				type : 'post',
 				url : '/comment',
+				
 				headers : {
 					"Content-Type" : "application/json",
 					"X-HTTP-Method-Override" : "POST"
 				},
+				
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
+				
 				dataType : 'text',
 				data : JSON.stringify({
 					pono : pono,
