@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.halfspace.domain.AuthVO;
 import com.halfspace.domain.UserVO;
 import com.halfspace.mapper.AdminMapper;
 import com.halfspace.mapper.UserMapper;
@@ -43,9 +44,9 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public void updateUserAuth(String userId, String auth) {
+	public void updateUserAuth(AuthVO vo) {
 		
-		amapper.updateUserAuth(userId, auth);
+		amapper.updateUserAuth(vo);
 	}
 
 }

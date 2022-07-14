@@ -1,5 +1,6 @@
 package com.halfspace.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +28,15 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/admin/*")
 public class AdminController {
 
+	// 관리자 서비스
 	@Autowired
 	private AdminService aservice;
 	
+	// 유저 서비스 연동
 	@Autowired
 	private UserService uservice;
 	
+	// 암호화 비밀번호
 	@Autowired
 	private PasswordEncoder pwen;
  	
@@ -83,13 +87,16 @@ public class AdminController {
 	
 	
 	@PostMapping("/update")
-	public String updateUserAuthByAdmin(String userId, String auth, SearchCriteria cri, RedirectAttributes rttr) {
+	public String updateUserAuthByAdmin(AuthVO vo, SearchCriteria cri, RedirectAttributes rttr) {
 		
-		aservice.updateUserAuth(userId, auth);
+		log.info(vo);
 		
+		aservice.updateUserAuth(vo);
+		
+		rttr.addAttribute("userId", vo.getUserId());
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("searchType", cri.getSearchType());
 		rttr.addAttribute("keyword", cri.getKeyword());
-		return "redirect:/user/userdetail";
+		return "redirect:/admin/userdetail";
 	}
 }

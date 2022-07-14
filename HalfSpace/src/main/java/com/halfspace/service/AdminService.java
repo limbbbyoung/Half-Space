@@ -2,6 +2,7 @@ package com.halfspace.service;
 
 import java.util.List;
 
+import com.halfspace.domain.AuthVO;
 import com.halfspace.domain.UserVO;
 import com.halfspace.persistence.SearchCriteria;
 
@@ -17,7 +18,7 @@ public interface AdminService {
 	public void DeleteUserAuth(String userId);
 	
 	// 권한 수정(권한 승급 or 강등)
-	public void updateUserAuth(String userId, String auth);
+	public void updateUserAuth(AuthVO vo);
 
 	
 }
