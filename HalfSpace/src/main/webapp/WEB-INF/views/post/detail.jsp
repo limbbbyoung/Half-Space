@@ -84,10 +84,8 @@
 			<input type="text" id="comText">
 		</div>
 		<div>
-			<sec:authorize access="hasRole('ROLE_ADMIN')">
 				<button type="button" id="comModBtn">수정하기</button>
 				<button type="button" id="comDelBtn">삭제하기</button>
-			</sec:authorize>
 			<button type="button" id="closeBtn">닫기</button>
 		</div>
 	</div>
