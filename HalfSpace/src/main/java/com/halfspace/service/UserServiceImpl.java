@@ -28,4 +28,16 @@ public class UserServiceImpl implements UserService{
 		log.info("여기는 service : " + vo);
 	}
 
+	@Override
+	public UserVO read(String userId) {
+		
+		return mapper.read(userId);
+	}
+
+	@Override
+	public void updateUser(UserVO vo) {
+		mapper.updateUser(vo);
+		
+	}
+
 }

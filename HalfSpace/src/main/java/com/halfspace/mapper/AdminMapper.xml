@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halfspace.mapper.AdminMapper">
+	    <sql id="search">
+		    <if test="searchType != null">
+		    	<if test="searchType == 't'.toString()">
+		    		(TITLE like '%'||#{keyword}||'%') AND
+		    	</if>
+		    	<if test="searchType == 'c'.toString()">
+		    		(CONTENT like '%'||#{keyword}||'%') AND
+		    	</if>
+		    	<if test="searchType == 'w'.toString()">
+		    		(WRITER like '%'||#{keyword}||'%') AND
+		    	</if>
+		    	<if test="searchType == 'tc'.toString()">
+		    		((TITLE like '%'||#{keyword}||'%')
+		    			OR
+		    		 (CONTENT like '%'||#{keyword}||'%')) AND
+		    	</if>
+		    	<if test="searchType == 'cw'.toString()">
+		    		((CONTENT like '%'||#{keyword}||'%')
+		    			OR
+		    		 (WRITER like '%'||#{keyword}||'%')) AND
+		    	</if>
+		    	<if test="searchType == 'tcw'.toString()">
+		    		((TITLE like '%'||#{keyword}||'%')
+		    			OR
+		    		 (CONTENT like '%'||#{keyword}||'%')
+		    			OR
+		    		 (WRITER like '%'||#{keyword}||'%')) AND
+		    	</if>
+		    </if>	
+		</sql>	
+		
+	<select id="getUserList" resultType="com.halfspace.domain.UserVO">
+		<![CDATA[
+			SELECT * FROM (
+			SELECT 
+			ROWNUM rn, user_tbl.* FROM user_tbl 
+				WHERE 
+		]]>
+		
+	    <include refid="search"></include>
+	    
+		<![CDATA[	
+			rownum <= (${page}*10))
+			WHERE rn >(${page}-1)*10 
+				ORDER BY rn DESC
+		]]>	  
+		
+	</select>
+	
+	<select id="getUserCnt" resultType="long">
+			SELECT count(*) FROM user_tbl WHERE
+
+				<include refid="search"></include>
+
+			rownum > 0
+	</select>
+	
+	<delete id="deleteUserAuth">
+		DELETE FROM user_auth
+			WHERE userId = #{userId}	
+	</delete>
+	
+	
+	<update id="updateUserAuth">
+		UPDATE user_auth SET 
+			auth = #{auth}
+		WHERE
+			userid = #{userId}
+	</update>
+	
+</mapper>
