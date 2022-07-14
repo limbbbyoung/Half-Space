@@ -333,6 +333,9 @@
 				+ $('select option:selected').val()
 				+ "&keyword=" + $('#keywordInput').val();
 		});
+	    
+	  
+	    
 	</script>
 </body>
 </html>

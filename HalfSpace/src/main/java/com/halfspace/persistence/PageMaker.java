@@ -11,6 +11,7 @@ public class PageMaker {
 	private boolean prev;
 	private boolean next;
 	private int displayPageNum;
+	
 	// 현재 조회중인 페이지 정보를 획득하기 위해 선언
 	private Criteria cri;
 	

@@ -54,19 +54,17 @@ public class TeamMapperTests {
 	} // CreateTeamPlz END
 
 	@Test
-	public void testCreate50Team(TeamVO vo, TeamListVO lvo) {
+	public void testCreate50Team() {
 		
-		for(Long i=1L; i<=50; i++) {
-			
+		TeamVO vo = new TeamVO();
+		
+		for(Long i=1L; i<=50; i++) {	
 			vo.setTno(i);
 			vo.setCoach("user" + i);
 			vo.setName("testteam" + i);
-			vo.setLogo("logo" +  i);
-			vo.setIntro(i + "번째 팀입니다.");			
+			vo.setIntro(i + "번째 팀입니다.");
+			mapper.teamCreate(vo);
 		}
-		
-		mapper.teamCreate(vo);
-		
 	}
 	
 	
@@ -92,12 +90,12 @@ public class TeamMapperTests {
 	}
 	
 	
-	//@Test
+	// @Test
 	public void getDetailTest() {
 		
 		TeamVO vo = new TeamVO();
 		
-		vo.setTno(299L);
+		vo.setTno(5L);
 		
 		mapper.teamDetail(vo.getTno());
 	} // getDetailTest() END

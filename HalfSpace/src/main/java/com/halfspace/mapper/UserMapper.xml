@@ -48,6 +48,15 @@
 		SELECT * 
 			FROM DUAL
 	</update>
+	
+	<update id="updateUser">
+		UPDATE user_tbl SET
+			userpw = #{userPw}, username = #{userName}, gender = #{gender},
+			birthdate = #{birthdate}, email = #{email}, phone_num = #{phoneNum},
+			address = #{address}
+		WHERE
+			userid = #{userId}
+	</update>
 </mapper>
 
 

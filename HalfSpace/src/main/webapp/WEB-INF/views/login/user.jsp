@@ -1,7 +1,9 @@
+<%@page import="org.springframework.security.core.Authentication"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +21,10 @@ user 접속
  	<p>사용자의 아이디 : <sec:authentication property="principal.user.userId"/></p><hr/>
  	<p>사용자의 권한 목록 : <sec:authentication property="principal.user.authList"/></p><hr/>
 <a href="/hsLogout">로그아웃</a>
+	<br/>
+	<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+		<a href="/admin/userlist">관리자 페이지로</a>
+	</sec:authorize>
 
 </body>
 </html>

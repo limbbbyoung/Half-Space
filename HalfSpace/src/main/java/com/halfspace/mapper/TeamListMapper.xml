@@ -35,11 +35,7 @@
 		</if>
 	</sql>
 	
-
-	
-	
-	
-	<select id="teamList" resultType="com.halfspace.persistence.TeamListVO">
+	<select id="getTeamList" resultType="com.halfspace.persistence.TeamListVO">
 	
 		<![CDATA[
 		SELECT * FROM
@@ -47,7 +43,6 @@
 			/*+ INDEX_DESC(teamlist pk_teamlist) */
 			rownum rn, teamlist.* FROM teamlist
 				WHERE 
-				
 		]]>
 		
 		<include refid="search"></include>
@@ -58,16 +53,14 @@
 		]]>
 	</select>
 	
-
-	<insert id="insertTeamList">
+	<!-- 팀리스트에 팀추가 -->
+	<insert id="addTeamList">
 		INSERT INTO teamlist (listno, name, coach)
 			VALUES
 		(teamlist_num.nextval, #{name}, #{coach})
 	</insert>
 
-	
-	
-
+	<!-- 팀리스트에서 팀삭제 -->
 	<delete id="delete">
 		DELETE FROM teamlist WHERE listno = #{listno}
 	</delete>
@@ -80,10 +73,13 @@
 		listno = #{listno}
 	</update>
 	
+	
 	<select id="getDetail" resultType="com.halfspace.persistence.TeamListVO">
 		SELECT * FROM teamlist WHERE listno = #{listno}
 	</select>
 
+
+	<!-- 페이지네이션을 위한 팀리스트 글 갯수 구해오기 -->
 	<select id="getTeamListCnt" resultType="long">
 		
 			SELECT COUNT(*) FROM teamlist WHERE
@@ -92,6 +88,7 @@
 			
 			listno > 0
 	</select>
+	
 	
 	<update id="updateMemberCnt">
 		UPDATE teamlist
