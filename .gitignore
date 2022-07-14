@@ -9,6 +9,12 @@
 /settings/
 /target
 
+## 오라클 버전차이로 인한 각 버전의 오라클 정보
+db.properties
+pom.properties
+
+.settings/
+target/
 
 # Package Files #
 *.jar
@@ -32,5 +38,3 @@ bin/
 assets/
 build/
 .metadata/
-
-HalfSpace/target/m2e-wtp/web-resources/META-INF/maven/com.halfspace/controller/pom.properties

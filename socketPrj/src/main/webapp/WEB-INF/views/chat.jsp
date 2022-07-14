@@ -6,8 +6,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>웹소켓 채팅</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="https://cdns.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
 	<script type="text/javascript">
 		var webSocket = {
 			init:function(param){
@@ -15,11 +15,11 @@
 				this._initSocket();
 			},
 			sendChat: function(){
-				this._sendMessage('${param.roo_id}', 'CMD_MSG_SEND', $('#message').val());
+				this._sendMessage('${param.room_id}', 'CMD_MSG_SEND', $('#message').val());
 				$('#message').val('');
 			},
 			sendEnter: function(){
-				this._sendMessage('${param.roo_id}', 'CMD_ENTER', $('#message').val());
+				this._sendMessage('${param.room_id}', 'CMD_ENTER', $('#message').val());
 				$('#message').val('');
 			},
 			receiveMessage: function(msgData){
@@ -46,12 +46,15 @@
 			},
 			_initSocket: function(){
 				this._socket = new SockJS(this._url);
+				this._socket.onopen = function(evt){
+					webSocket.sendEnter();
+				};
 				this._socket.onmessage = function(evt) {
 					webSocket.receiveMessage(JSON.parse(evt.data));
 				};
 				this._socket.onclose = function(evt) {
-					webSocket.receiveMessage(JSON.parse(evt.data));
-				}
+					webSocket.closeMessage(JSON.parse(evt.data));
+				};
 			},
 			_sendMessage : function(room_id, cmd, msg){
 				var msgData = {
