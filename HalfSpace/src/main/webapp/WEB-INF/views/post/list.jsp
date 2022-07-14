@@ -14,7 +14,34 @@
 </head>
 <body>
 	<div class="header">
-	</div>
+		<nav class="navbar">
+		  <div class="container-fluid">
+		    <a class="navbar-brand" href="/mainBoard/welcomeHome"><img src="../resources/images/halfspacelogo.png" alt="" width="334" height="110" class="d-inline-block align-text-top">
+		    </a>
+		     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse navbar-collapse" id="navbarNav">
+		      <ul class="navbar-nav">
+		        <li class="nav-item">
+		          <a class="nav-link active" aria-current="page" href="/mainBoard/welcomeHome">Home</a>
+		        </li>
+		      </ul>
+		    </div>
+		    <sec:authorize access="isAnonymous()">
+			    <form class="d-flex">
+			      <!--  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+			    	<button class="btn btn-outline-success"><a href="/login/join">회원가입</a></button>
+			    </form>
+		  	</sec:authorize>
+		  	<sec:authorize access="isAuthenticated()">
+		  		<button class="btn btn-outline-success"><a href="/hsLogout">로그아웃</a></button>
+		  		<button class="btn btn-outline-success"><a href="/user/mypage">마이페이지</a></button>
+		  	</sec:authorize>
+		  	
+		  </div>
+		</nav>
+		</div><!-- header END -->
 	<div class="container">
 		<div class="row">
 			<h1>
@@ -109,6 +136,14 @@
 	</div><!-- .footer 끝나는 지점 -->
 	<!-- 검색 script -->
 	<script>
+		$(document).ready(function(){
+			
+			
+			
+		});
+	
+	
+	
 		//검색버튼 작동
 		$('#searchBtn').on("click", function(event){
 			self.location = "list"

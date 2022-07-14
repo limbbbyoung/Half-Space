@@ -13,5 +13,8 @@ public interface UserMapper {
 	
 	public void insertUserAuth(UserVO vo);
 	
+	public void updateUser(UserVO vo);
+	
+	
 
 }

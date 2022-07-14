@@ -9,5 +9,7 @@ public interface UserService {
 	public void insertUser(UserVO vo);
 	
 	public UserVO read(String userId);
+	
+	public void updateUser(UserVO vo);
 
 }
