@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	request.setCharacterEncoding("UTF-8");
-%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,11 +24,12 @@
 		 	<input type="text" name="address"><br><br>
 	     
 		<input type="checkbox" name="role" value="ROLE_ADMIN">어드민 권한&nbsp;&nbsp;&nbsp;  
-		<input type="checkbox" name="role" value="ROLE_MEMBER">정회원 권한&nbsp;&nbsp;&nbsp;  
+		<input type="checkbox" name="role" value="ROLE_MANAGER">매니저 권한&nbsp;&nbsp;&nbsp;  
 		<input type="checkbox" name="role" value="ROLE_USER">준회원 권한<br/>
-		<input type="hidden" name="${_csrf.parameterName }"
-								value="${_csrf.token }" />
+		<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
 		<input type="submit" value="가입하기">  
 	</form>
+
 </body>
 </html>

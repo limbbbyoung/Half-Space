@@ -4,6 +4,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/resources/comment/modal.css">
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,8 +84,10 @@
 			<input type="text" id="comText">
 		</div>
 		<div>
-			<button type="button" id="comModBtn">수정하기</button>
-			<button type="button" id="comDelBtn">삭제하기</button>
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
+				<button type="button" id="comModBtn">수정하기</button>
+				<button type="button" id="comDelBtn">삭제하기</button>
+			</sec:authorize>
 			<button type="button" id="closeBtn">닫기</button>
 		</div>
 	</div>
@@ -95,6 +98,10 @@
 	<!-- List 로직 -->
 	<script type="text/javascript">
 	let pono = ${post.pono}
+	let csrfHeaderName = ${_csrf.headerName};
+	let csrfTokenValue = ${_csrf.token};
+	
+	
 	
 	function getAllList(){
 		// json 데이터를 얻어오는 로직 실행
@@ -125,6 +132,51 @@
 		});
 	}
 	getAllList();
+	
+	// 아래는 commentAdd 로직
+
+	$("#commentAdd").on("click", function() {
+		
+		let writer = $("#newWriter").val();
+		let c_content = $("#newContent").val();
+		
+		$.ajax({
+			type : 'post',
+			url : '/comment',
+			
+			headers : {
+				"Content-Type" : "application/json",
+				"X-HTTP-Method-Override" : "POST"
+			},
+			
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			},
+			
+			dataType : 'text',
+			data : JSON.stringify({
+				pono : pono,
+				user_id : writer,
+				c_content : c_content
+			}),
+			
+			success : function(result) {
+				
+				if(result == 'SUCCESS') {
+					alert("등록되었습니다.")
+					
+					getAllList();
+					
+					$("#newWriter").val('');
+					$("newContent").val('');
+					
+				}
+			}
+			
+		});
+	});// 댓글 등록 END
+	
+	
 	</script>
 	
 	<!--comment script src -->

@@ -5,19 +5,19 @@
 <mapper namespace="com.halfspace.mapper.TeamMapper">
 
 	<select id="teamDetail" resultType="com.halfspace.persistence.TeamVO">
-		SELECT * FROM team_tbl WHERE tno = #{listno}
+		SELECT * FROM team_tbl WHERE tno = #{tno}
 	</select>
 	
 	<insert id="teamCreate">
-		INSERT INTO team_tbl(tno, name, coach, logo, intro )
+		INSERT INTO team_tbl(tno, name, coach, intro )
 			VALUES
-		(team_num.nextval, #{name}, #{coach}, #{logo}, #{intro})
+		(team_num.nextval, #{name}, #{coach}, #{intro})
 	</insert>
  	
  	<update id="teamUpdate">
  		UPDATE team_tbl
  			SET
- 		name = #{name}, coach = #{coach}, logo = #{logo}, intro = #{intro}
+ 		name = #{name}, coach = #{coach}, intro = #{intro}
  			WHERE tno = #{tno}
  	</update>
  	

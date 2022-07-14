@@ -28,8 +28,8 @@
 		      </ul>
 		    </div>
 		    <form class="d-flex">
-		      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-		      <button class="btn btn-outline-success" type="submit">Search</button>
+		      <!--  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+		      <button class="btn btn-outline-success"><a href="/login/join">회원가입</a></button>
 		    </form>
 		  </div>
 		</nav>
@@ -172,6 +172,9 @@
 				+ $('select option:selected').val()
 				+ "&keyword=" + $('#keywordInput').val();
 		});
+	    
+	  
+	    
 	</script>
 </body>
 </html>

@@ -3,12 +3,14 @@ package com.halfspace.controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.halfspace.domain.AuthVO;
 import com.halfspace.domain.HalfSpaceUser;
@@ -69,9 +71,11 @@ public class LoginController { // 수업시간에 배운 교안에서는 Securit
 	
 	@PreAuthorize("permitAll")
 	@PostMapping("/join")
-	public void join(UserVO vo, String[] role){
+	public String join(UserVO vo, String[] role, RedirectAttributes rttr) {
 		// vo에 정보들을 잘 받아오는지 체크
+		
 		log.info(vo);
+		log.info(role);
 		
 		// 전화번호 받아오기
 		//String phoneNum = ph1 + ph2 + ph3;
@@ -97,10 +101,22 @@ public class LoginController { // 수업시간에 배운 교안에서는 Securit
 			vo.getAuthList().get(i).setAuth(role[i]);
 			vo.getAuthList().get(i).setUserId(vo.getUserId());
 		}
-		log.info(vo.getAuthList());
+		log.info("가져온 vo의 authList : " + vo.getAuthList());
 		
-		service.insertUser(vo);
-	}
+		try {
+		
+			service.insertUser(vo);
+			return "/login/welcome";
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return "/login/join";
+		}
+		
+		
+		} // join END
+	
+	
 
 
 }

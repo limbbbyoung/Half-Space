@@ -1,5 +1,5 @@
 		// 아래는 commentAdd 로직
-		
+
 		$("#commentAdd").on("click", function() {
 			
 			let writer = $("#newWriter").val();
@@ -8,10 +8,17 @@
 			$.ajax({
 				type : 'post',
 				url : '/comment',
+				
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
+				
+				
 				headers : {
 					"Content-Type" : "application/json",
 					"X-HTTP-Method-Override" : "POST"
 				},
+				
 				dataType : 'text',
 				data : JSON.stringify({
 					pono : pono,
