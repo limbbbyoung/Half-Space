@@ -1,6 +1,6 @@
 package com.halfspace.controller;
 
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.halfspace.persistence.MainBoardVO;
-import com.halfspace.persistence.PageMaker;
-import com.halfspace.persistence.SearchCriteria;
 import com.halfspace.service.CafeService;
 
 import lombok.extern.log4j.Log4j;

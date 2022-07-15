@@ -25,6 +25,9 @@ user 접속
 	<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
 		<a href="/admin/userlist">관리자 페이지로</a>
 	</sec:authorize>
+<a class="btn" href="/user/mypage?userId="" id="btn-filed">
 
+	마이 페이지
+</a>
 </body>
 </html>
