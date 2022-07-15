@@ -1,0 +1,158 @@
+@charset "UTF-8";
+	body {
+	    -webkit-text-size-adjust: 100%;
+	    -webkit-tap-highlight-color: transparent;
+	    --animate-duration: 1s;
+	    --animate-delay: 1s;
+	    --animate-repeat: 1;
+	    --blue: #007bff;
+	    --indigo: #6610f2;
+	    --purple: #6f42c1;
+	    --pink: #e83e8c;
+	    --red: #dc3545;
+	    --orange: #fd7e14;
+	    --yellow: #ffc107;
+	    --green: #28a745;
+	    --teal: #20c997;
+	    --cyan: #17a2b8;
+	    --white: #fff;
+	    --gray: #6c757d;
+	    --gray-dark: #343a40;
+	    --primary: #007bff;
+	    --secondary: #6c757d;
+	    --success: #28a745;
+	    --info: #17a2b8;
+	    --warning: #ffc107;
+	    --danger: #dc3545;
+	    --light: #f8f9fa;
+	    --dark: #343a40;
+	    --breakpoint-xs: 0;
+	    --breakpoint-sm: 576px;
+	    --breakpoint-md: 768px;
+	    --breakpoint-lg: 992px;
+	    --breakpoint-xl: 1200px;
+	    --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+	    --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+	    box-sizing: border-box;
+	    margin: 0;
+	    font-weight: 400;
+	    line-height: 1.5;
+	    text-align: left;
+	    color: #1a1a1a;
+	    font-size: 14px;
+	    -webkit-font-smoothing: antialiased;
+	    font-family: 'Poppins', sans-serif;
+	    background: white;
+	    height: 100%;
+	    
+	}
+
+	.navi-container {
+	    text-align: left;
+	    color: #1a1a1a;
+	    font-size: 14px;
+	    -webkit-font-smoothing: antialiased;
+	    box-sizing: border-box;
+	    font-family: "sbaggro","nucleo-icons";
+	    font-weight: lighter;
+	    margin: 0;
+	    padding-top: 1rem;
+	}
+	
+	.menu-container {
+	    text-align: left;
+	    color: #1a1a1a;
+	    font-size: 14px;
+	    -webkit-font-smoothing: antialiased;
+	    box-sizing: border-box;
+	    margin: 0;
+	    font-family: "sbaggro","nucleo-icons";
+	    font-weight: lighter;
+	    padding-top: 1rem;
+	    border-bottom: 1px solid #ddd;
+	}
+	
+	.navi-content {
+	    text-align: left;
+	    color: #1a1a1a;
+	    font-size: 16px;
+	    -webkit-font-smoothing: antialiased;
+	    box-sizing: border-box;
+	    font-family: "sbaggro","nucleo-icons";
+	    font-weight: lighter;
+	    display: flex;
+	    justify-content: space-around;
+	    max-width: 800px;
+	    margin: auto;
+	}
+	
+	.footer {
+	    text-align: left;
+	    color: #1a1a1a;
+	    font-size: 14px;
+	    -webkit-font-smoothing: antialiased;
+	    box-sizing: border-box;
+	    display: block;
+	    font-family: "sbaggro","nucleo-icons";
+	    font-weight: lighter;
+	    margin: 0;
+	    background-color: #1a1a1a;
+	}
+	
+	.footer {
+	    text-align: left;
+	    color: #1a1a1a;
+	    font-size: 14px;
+	    -webkit-font-smoothing: antialiased;
+	    box-sizing: border-box;
+	    display: block;
+	    font-family: "sbaggro","nucleo-icons";
+	    font-weight: lighter;
+	    margin: 0;
+	    background-color: #1a1a1a;
+	    bottom: 0;
+	}
+	
+	.footer-container {
+	    color: #1a1a1a;
+	    font-size: 14px;
+	    -webkit-font-smoothing: antialiased;
+	    box-sizing: border-box;
+	    font-family: "sbaggro","nucleo-icons";
+	    font-weight: lighter;
+	    max-width: 600px;
+	    margin: auto;
+	    text-align: center;
+	    padding: 70px 0;
+	}
+	
+	.mt-3 {
+	    -webkit-font-smoothing: antialiased;
+	    text-align: center;
+	    box-sizing: border-box;
+	    margin-top: 1rem!important;
+	    margin: 0;
+	    color: #9a9a9a;
+	    font-weight: 300;
+	    font-family: "sbaggro";
+	    font-size: 12px;
+	}
+	
+	.copyright {
+	    -webkit-font-smoothing: antialiased;
+	    text-align: center;
+	    box-sizing: border-box;
+	    margin: 0;
+	    color: #9a9a9a;
+	    font-weight: 300;
+	    font-family: "sbaggro";
+	    font-size: 12px;
+	    padding: 20px 0;
+	}
+	
+	#nav_pill_btn1 {
+		margin-right: +5px;
+	}
+	
+	
+	

@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- BootStrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Styles -->
+<link rel="stylesheet" href="/resources/css/styles.css">
+<link rel="stylesheet" type="text/css" href="/resources/mainboard/list.css">
+<link href="https://webfontworld.github.io/sandbox/SBAggro.css" rel="stylesheet">
 <!-- 웹사이트 배경 이미지 -->
 <link rel="stylesheet" type="text/css" href="/resources/post/list.css">
 <head>
@@ -13,35 +19,51 @@
 <title>postList</title>
 </head>
 <body>
+<!-- header start -->
 	<div class="header">
-		<nav class="navbar">
-		  <div class="container-fluid">
-		    <a class="navbar-brand" href="/mainBoard/welcomeHome"><img src="../resources/images/halfspacelogo.png" alt="" width="334" height="110" class="d-inline-block align-text-top">
-		    </a>
-		     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-		      <span class="navbar-toggler-icon"></span>
-		    </button>
-		    <div class="collapse navbar-collapse" id="navbarNav">
-		      <ul class="navbar-nav">
-		        <li class="nav-item">
-		          <a class="nav-link active" aria-current="page" href="/mainBoard/welcomeHome">Home</a>
-		        </li>
-		      </ul>
-		    </div>
-		    <sec:authorize access="isAnonymous()">
-			    <form class="d-flex">
-			      <!--  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
-			    	<button class="btn btn-outline-success"><a href="/login/join">회원가입</a></button>
-			    </form>
-		  	</sec:authorize>
-		  	<sec:authorize access="isAuthenticated()">
-		  		<button class="btn btn-outline-success"><a href="/hsLogout">로그아웃</a></button>
-		  		<button class="btn btn-outline-success"><a href="/user/mypage">마이페이지</a></button>
-		  	</sec:authorize>
-		  	
-		  </div>
-		</nav>
-		</div><!-- header END -->
+		<div class="navi-container">
+			<div class="d-flex justify-content-between align-items-center mx-auto p-0" style="max-width:800px">
+				<a href="/mainBoard/welcomeHome">
+					<img class="ml-3" src="../resources/images/halfspacelogo.png" width="70">
+				</a>
+				<div class="user-info-container">
+					<input id="isLoggedIn" type="hidden" data-islogin="false">
+					<div class="user-info-wrap">
+						<sec:authorize access="isAnonymous()">
+							<a class="text-main btn-sm btn-neutral" href="/login/join">
+								<strong>회원가입</strong>
+							</a>
+							<a class="text-main btn-sm rounded-pill border" href="/login/user">
+								<strong>로그인</strong>
+							</a>
+						</sec:authorize>
+						<sec:authorize access="isAuthenticated()">
+							<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn1"href="/user/mypage">
+								<strong>내 정보</strong>
+							</a>
+							<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn2"href="/team/teamDetail">
+								<strong>내 팀</strong>
+							</a>
+						</sec:authorize>
+						<a class="px-3" id="sidebarCollapse" href="/user/mypage">
+							<img src="../resources/images/threedots.png" max-width="300px" height="10px">
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="menu-container">
+				<div class="navi-content">
+					<a class="active" href="/mainBoard/list">소셜매치</a>
+					<a href="/post/list">자유게시판</a>
+					<a href="/weather/today">날씨</a>
+					<a href="#">QnA</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- header END -->
+
+	<!-- body start -->
 	<div class="container">
 		<div class="row">
 			<h1>
@@ -71,8 +93,9 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			<a class="btn" href="/post/insert" id="btn-filed">글 쓰기</a>
-
+			<sec:authorize access="isAuthenticated()">
+				<a class="btn" href="/post/insert" id="btn-filed">글 쓰기</a>
+			</sec:authorize>
 			<!-- pagination start -->
 			<ul class="pagination my justify-content-center">
 				 <!-- Prev -->
@@ -115,13 +138,11 @@
 					<option value="w" ${pageMaker.cri.searchType == 'w' ? 'selected' : '' }>
 					글쓴이
 					</option>
-					<option value="tc" ${pageMaker.cri.searchType == 'tc' ? 'selected' : '' }>
-					제목 + 본문
+					<!-- catego -->
+					<option value="ca" ${pageMaker.cri.searchType == 'ca' ? 'selected' : '' }>
+					카테고리
 					</option>
-					<option value="cw" ${pageMaker.cri.searchType == 'cw' ? 'selected' : '' }>
-					본문 + 글쓴이
-					</option>
-					<option value="tcw" ${pageMaker.cri.searchType == 'tcw' ? 'selected' : '' }>
+					<option value="tcwca" ${pageMaker.cri.searchType == 'tcwca' ? 'selected' : '' }>
 					제목 + 본문 + 글쓴이
 					</option>
 				</select>

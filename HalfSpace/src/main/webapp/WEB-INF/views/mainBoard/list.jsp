@@ -1,171 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- BootStrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Styles -->
+<link rel="stylesheet" href="/resources/css/styles.css">
 <link rel="stylesheet" type="text/css" href="/resources/mainboard/list.css">
 <link href="https://webfontworld.github.io/sandbox/SBAggro.css" rel="stylesheet">
 <head>
 <meta charset="UTF-8">
 <title>boardList</title>
 <style>
-
-	body {
-	    -webkit-text-size-adjust: 100%;
-	    -webkit-tap-highlight-color: transparent;
-	    --animate-duration: 1s;
-	    --animate-delay: 1s;
-	    --animate-repeat: 1;
-	    --blue: #007bff;
-	    --indigo: #6610f2;
-	    --purple: #6f42c1;
-	    --pink: #e83e8c;
-	    --red: #dc3545;
-	    --orange: #fd7e14;
-	    --yellow: #ffc107;
-	    --green: #28a745;
-	    --teal: #20c997;
-	    --cyan: #17a2b8;
-	    --white: #fff;
-	    --gray: #6c757d;
-	    --gray-dark: #343a40;
-	    --primary: #007bff;
-	    --secondary: #6c757d;
-	    --success: #28a745;
-	    --info: #17a2b8;
-	    --warning: #ffc107;
-	    --danger: #dc3545;
-	    --light: #f8f9fa;
-	    --dark: #343a40;
-	    --breakpoint-xs: 0;
-	    --breakpoint-sm: 576px;
-	    --breakpoint-md: 768px;
-	    --breakpoint-lg: 992px;
-	    --breakpoint-xl: 1200px;
-	    --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-	    --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-	    box-sizing: border-box;
-	    margin: 0;
-	    font-weight: 400;
-	    line-height: 1.5;
-	    text-align: left;
-	    color: #1a1a1a;
-	    font-size: 14px;
-	    -webkit-font-smoothing: antialiased;
-	    font-family: 'Poppins', sans-serif;
-	    background: white;
-	    height: 100%;
-	    
-	}
-
-	.navi-container {
-	    text-align: left;
-	    color: #1a1a1a;
-	    font-size: 14px;
-	    -webkit-font-smoothing: antialiased;
-	    box-sizing: border-box;
-	    font-family: "sbaggro","nucleo-icons";
-	    font-weight: lighter;
-	    margin: 0;
-	    padding-top: 1rem;
-	}
-	
-	.menu-container {
-	    text-align: left;
-	    color: #1a1a1a;
-	    font-size: 14px;
-	    -webkit-font-smoothing: antialiased;
-	    box-sizing: border-box;
-	    margin: 0;
-	    font-family: "sbaggro","nucleo-icons";
-	    font-weight: lighter;
-	    padding-top: 1rem;
-	    border-bottom: 1px solid #ddd;
-	}
-	
-	.navi-content {
-	    text-align: left;
-	    color: #1a1a1a;
-	    font-size: 16px;
-	    -webkit-font-smoothing: antialiased;
-	    box-sizing: border-box;
-	    font-family: "sbaggro","nucleo-icons";
-	    font-weight: lighter;
-	    display: flex;
-	    justify-content: space-around;
-	    max-width: 800px;
-	    margin: auto;
-	}
-	
-	.footer {
-	    text-align: left;
-	    color: #1a1a1a;
-	    font-size: 14px;
-	    -webkit-font-smoothing: antialiased;
-	    box-sizing: border-box;
-	    display: block;
-	    font-family: "sbaggro","nucleo-icons";
-	    font-weight: lighter;
-	    margin: 0;
-	    background-color: #1a1a1a;
-	}
-	
-	.footer {
-	    text-align: left;
-	    color: #1a1a1a;
-	    font-size: 14px;
-	    -webkit-font-smoothing: antialiased;
-	    box-sizing: border-box;
-	    display: block;
-	    font-family: "sbaggro","nucleo-icons";
-	    font-weight: lighter;
-	    margin: 0;
-	    background-color: #1a1a1a;
-	    bottom: 0;
-	}
-	
-	.footer-container {
-	    color: #1a1a1a;
-	    font-size: 14px;
-	    -webkit-font-smoothing: antialiased;
-	    box-sizing: border-box;
-	    font-family: "sbaggro","nucleo-icons";
-	    font-weight: lighter;
-	    max-width: 600px;
-	    margin: auto;
-	    text-align: center;
-	    padding: 70px 0;
-	}
-	
-	.mt-3 {
-	    -webkit-font-smoothing: antialiased;
-	    text-align: center;
-	    box-sizing: border-box;
-	    margin-top: 1rem!important;
-	    margin: 0;
-	    color: #9a9a9a;
-	    font-weight: 300;
-	    font-family: "sbaggro";
-	    font-size: 12px;
-	}
-	
-	.copyright {
-	    -webkit-font-smoothing: antialiased;
-	    text-align: center;
-	    box-sizing: border-box;
-	    margin: 0;
-	    color: #9a9a9a;
-	    font-weight: 300;
-	    font-family: "sbaggro";
-	    font-size: 12px;
-	    padding: 20px 0;
-	}
-	
 </style>
 </head>
 <body>
+<!-- header start -->
 	<div class="header">
 		<div class="navi-container">
 			<div class="d-flex justify-content-between align-items-center mx-auto p-0" style="max-width:800px">
@@ -175,13 +29,23 @@
 				<div class="user-info-container">
 					<input id="isLoggedIn" type="hidden" data-islogin="false">
 					<div class="user-info-wrap">
-						<a class="text-main btn-sm btn-neutral" href="/users/join">
-							<strong>회원가입</strong>
-						</a>
-						<a class="text-main btn-sm rounded-pill border" href="/users/login">
-							<strong>로그인</strong>
-						</a>
-						<a class="px-3" id="sidebarCollapse" href="#">
+						<sec:authorize access="isAnonymous()">
+							<a class="text-main btn-sm btn-neutral" href="/login/join">
+								<strong>회원가입</strong>
+							</a>
+							<a class="text-main btn-sm rounded-pill border" href="/login/user">
+								<strong>로그인</strong>
+							</a>
+						</sec:authorize>
+						<sec:authorize access="isAuthenticated()">
+							<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn1"href="/user/mypage">
+								<strong>내 정보</strong>
+							</a>
+							<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn2"href="/team/teamDetail">
+								<strong>내 팀</strong>
+							</a>
+						</sec:authorize>
+						<a class="px-3" id="sidebarCollapse" href="/user/mypage">
 							<img src="../resources/images/threedots.png" max-width="300px" height="10px">
 						</a>
 					</div>
@@ -197,6 +61,9 @@
 			</div>
 		</div>
 	</div>
+	<!-- header END -->
+	
+	<!-- body start -->
 	<div class="container">
 		<div class="row">
 			<h1>
@@ -235,7 +102,9 @@
 					</tr>
 				</tbody>
 			</table>
-			<a class="btn" href="/mainBoard/insert" id="btn-filed">글 쓰기</a>
+			<sec:authorize access="isAuthenticated()">
+				<a class="btn" href="/mainBoard/insert" id="btn-filed">글쓰기</a>
+			</sec:authorize>
 			<ul class="pagination my justify-content-center">
 				<!-- Prev -->
 				<c:if test="${pageMaker.prev }">
@@ -275,28 +144,28 @@
 					<c:out value="${pageMaker.cri.searchType == 'n' ? 'selected' : '' }"/>>
 						-
 					</option>
+					<!-- title 선택 -->
 					<option value="t"
 					<c:out value="${pageMaker.cri.searchType == 't' ? 'selected' : '' }"/>>
 						제목
 					</option>
-					<option value="c"
-					<c:out value="${pageMaker.cri.searchType == 'c' ? 'selected' : '' }"/>>
-						본문내용
-					</option>
+					<!-- writer 선택 -->
 					<option value="w"
 					<c:out value="${pageMaker.cri.searchType == 'w' ? 'selected' : '' }"/>>
 						글쓴이
 					</option>
-					<option value="tc"
-					<c:out value="${pageMaker.cri.searchType == 'tc' ? 'selected' : '' }"/>>
-						제목+본문내용
+					<!--g = gameDate  -->
+					<option value="g"
+					<c:out value="${pageMaker.cri.searchType == 'g' ? 'selected' : '' }"/>>
+						경기날짜
 					</option>
-					<option value="cw"
-					<c:out value="${pageMaker.cri.searchType == 'cw' ? 'selected' : '' }"/>>
-						글쓴이+본문내용
+					<!-- p =gamePlace -->
+					<option value="p"
+					<c:out value="${pageMaker.cri.searchType == 'p' ? 'selected' : '' }"/>>
+						경기장소
 					</option>
-					<option value="tcw"
-					<c:out value="${pageMaker.cri.searchType == 'tcw' ? 'selected' : '' }"/>>
+					<option value="twgp"
+					<c:out value="${pageMaker.cri.searchType == 'twgp' ? 'selected' : '' }"/>>
 						모든내용
 					</option>
 				</select>
@@ -306,12 +175,14 @@
 			</div><!-- .box-body  -->
 		</div><!-- .row  -->
 	</div><!-- .container  -->
+
+	<!-- footer start -->
 	<footer class="footer">
 		<div class="footer-container">
 			<a class="my-3" href="/">
 				<img src="../resources/images/halfspacelogo.png" width="80">
 			</a>
-			<p class="mt-3">사람들과 함께하는 공간</p>
+			<p class="mt-3">축구로 하나되는 공간</p>
 			<div class="copyright">
 				<p class="mb-3">Spring Project A조</p>
 				서울특별시 마포구 백범로 23 3층<br/>

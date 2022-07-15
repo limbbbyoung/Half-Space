@@ -1,5 +1,6 @@
 package com.halfspace.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +31,14 @@ public class UserController {
 	@Autowired
 	private PasswordEncoder pwen;
 	
+	// spring security의 principal을 불러와서 userId(principal.Username)을 처리합니다.
+	
 	@PreAuthorize("hasAnyRole('ROLE_USER, ROLE_MANAGER, ROLE_ADMIN')")
 	@RequestMapping(value="/mypage",
 			method= {RequestMethod.GET, RequestMethod.POST})
-	public String userMypage(@RequestParam(value="userId")String userId, Model model) {
+	public String userMypage(Principal prin, Model model) {
+		
+		String userId = prin.getName();
 		
 		System.out.println("controller 에서 user 권한으로 user read 실행");
 		UserVO user = service.read(userId);
@@ -46,7 +51,9 @@ public class UserController {
 	
 	@PreAuthorize("hasAnyRole('ROLE_USER, ROLE_MANAGER, ROLE_ADMIN')")
 	@PostMapping("/updateForm")
-	public String updateForm(String userId, Model model) {
+	public String updateForm(Principal prin, Model model) {
+		
+		String userId = prin.getName();
 		
 		UserVO user = service.read(userId);
 		
