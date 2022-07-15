@@ -98,5 +98,9 @@ public class AdminController {
 		rttr.addAttribute("searchType", cri.getSearchType());
 		rttr.addAttribute("keyword", cri.getKeyword());
 		return "redirect:/admin/userdetail";
-	}
+	} // updateUserAuthByAdmin
+	
+	
+	
+	
 }
