@@ -28,7 +28,7 @@
 					<tr>
 						<c:forEach var="user" items="${userList}">
 							<tr>
-							<td><a href="/admin/userdetail?userId=${user.userId}&page=${pageMaker.cri.page}
+							<td><a href="/admin/userdetail?page=${pageMaker.cri.page}
 							      &searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${user.userId}</a></td>
 							<td>${user.userName}</td>
 							<td>${user.gender}</td>
