@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,6 +23,7 @@ public class HalfSpaceLoginSuccessHandler implements AuthenticationSuccessHandle
 			Authentication authentication) throws IOException, ServletException {
 		
 		log.warn("로그인 성공");
+		
 		List<String> roleList = new ArrayList<>();
 		
 		for (GrantedAuthority role : authentication.getAuthorities()) {

@@ -22,12 +22,17 @@ user 접속
  	<p>사용자의 권한 목록 : <sec:authentication property="principal.user.authList"/></p><hr/>
 <a href="/hsLogout">로그아웃</a>
 	<br/>
+	
+	
+	
+	
 	<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
 		<a href="/admin/userlist">관리자 페이지로</a>
 	</sec:authorize>
-<a class="btn" href="/user/mypage?userId="" id="btn-filed">
-
-	마이 페이지
-</a>
+	<sec:authorize access="hasAnyRole('ROLE_USER')">
+	<a class="btn" href="/user/mypage" id="btn-filed">
+		마이 페이지
+	</a>
+	</sec:authorize>
 </body>
 </html>
