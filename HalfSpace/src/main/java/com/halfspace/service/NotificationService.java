@@ -18,11 +18,8 @@ public interface NotificationService {
 	// 요청 취소시 알림 삭제
 	public void delete(long notId);
 	
-	// detail
-	public NotificationVO getDetail(long notId);
-	
-	// 전체 글 갯수 가져오기
-	public Long getBoardCount(SearchCriteria cri);
+	// user에게 해당하는 알림 가져오기
+	public Long getNotificationCount(SearchCriteria cri);
 
 
 }
