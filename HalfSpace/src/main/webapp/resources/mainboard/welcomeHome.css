@@ -17,26 +17,22 @@
 	}
 	
 	@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-	
+    
     #HeadLine {
         text-align: center;
+	    display: grid;
+	    place-items: center;
     }
+    
     
     #halfspaceLogo {
-    	margin-top : 100px;
-    	width : 500px;
+    	width : 400px;
+	    text-align: center;
+	    font-family: system-ui, serif;
+	    font-size: 2rem;
+	    padding: 3rem;
+	    border-radius: 1rem;
+	    margin-top: 20%;
     }
-    
-	.nav-link {
-		margin-top : -20px;
-		color : white;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-  		min-height: 65vh;
-  	}
-  	
-  	.footer {
-  		text-align : center;
-  	}
+
 	
