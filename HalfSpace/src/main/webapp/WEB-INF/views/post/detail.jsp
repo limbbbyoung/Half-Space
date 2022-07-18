@@ -9,6 +9,7 @@
 <!-- Styles -->
 <link rel="stylesheet" href="/resources/comment/modal.css">
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<sec:authentication property="principal" var="prin"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +30,7 @@
 <title>postDetail</title>
 </head>
 <body>
+
 	<div class="header">
 	</div><!-- .header -->
 	<div class="container">
@@ -38,22 +40,27 @@
 				글쓴이 : ${post.writer } <br/>
 				카테고리 : ${post.catego } <br/>
 				글내용 : ${post.content } <br/>
-				<form action="/post/delete" method="post">
-					<input type="hidden" name="pono" value="${post.pono}"/>
-					<input type="hidden" name="page" value="${param.page}"/>
-					<input type="hidden" name="searchType" value="${param.searchType}"/>
-					<input type="hidden" name="keyword" value="${param.keyword}"/>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-					<button type="submit" class="btn" id="btn-filed">글 삭제하기</button>
-				</form>
-				<form action="/post/updateForm" method="post">
-					<input type="hidden" name="pono" value="${post.pono}"/>
-					<input type="hidden" name="page" value="${param.page}"/>
-					<input type="hidden" name="searchType" value="${param.searchType}"/>
-					<input type="hidden" name="keyword" value="${param.keyword}"/>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-					<button type="submit" class="btn" id="btn-filed">글 수정하기</button>
-				</form>
+				<sec:authorize access="isAuthenticated()">
+
+					<c:if test="${prin.username eq post.writer}">
+					<form action="/post/delete" method="post">
+						<input type="hidden" name="pono" value="${post.pono}"/>
+						<input type="hidden" name="page" value="${param.page}"/>
+						<input type="hidden" name="searchType" value="${param.searchType}"/>
+						<input type="hidden" name="keyword" value="${param.keyword}"/>
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+						<button type="submit" class="btn" id="btn-filed">글 삭제하기</button>
+					</form>
+					<form action="/post/updateForm" method="post">
+						<input type="hidden" name="pono" value="${post.pono}"/>
+						<input type="hidden" name="page" value="${param.page}"/>
+						<input type="hidden" name="searchType" value="${param.searchType}"/>
+						<input type="hidden" name="keyword" value="${param.keyword}"/>
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+						<button type="submit" class="btn" id="btn-filed">글 수정하기</button>
+					</form>
+					</c:if>
+				</sec:authorize>
 				<a class="btn" id="btn-filed" href="/post/list?page=${param.page}&searchType=${param.searchType}&keyword=${param.keyword}">글 목록</a>
 		    </div><!-- .col-6 -->
 			<div class="col-6">

@@ -15,7 +15,10 @@
 </head>
 <body>
 
+<sec:authentication property="principal" var="prin"/>
 
+타입 : ${prin} <br>
+유저 아이디 : ${prin.username} <br>
 
 	<form action="/post/update" method="post">
 		<input type="text" name="title" value="${post.title }" required/>

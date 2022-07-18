@@ -5,6 +5,11 @@
 			$.ajax({
 				type : 'delete',
 				url : '/comment/' + cno,
+				
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
+				
 				header : {
 					"Content-Type" : "application/json",
 					"X-HTTP-Method-Overide" : "DELETE"
