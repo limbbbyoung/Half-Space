@@ -24,7 +24,7 @@
 		<div class="navi-container">
 			<div class="d-flex justify-content-between align-items-center mx-auto p-0" style="max-width:800px">
 				<a href="/mainBoard/welcomeHome">
-					<img class="ml-3" src="../resources/images/LogoMakr-5Syrbv.png" width="70">
+					<img class="ml-3" src="../resources/images/halfspacelogo.png" width="70">
 				</a>
 				<div class="user-info-container">
 					<input id="isLoggedIn" type="hidden" data-islogin="false">
@@ -180,7 +180,7 @@
 	<footer class="footer">
 		<div class="footer-container">
 			<a class="my-3" href="/">
-				<img src="../resources/images/LogoMakr-2rlJxi.png" width="80">
+				<img src="../resources/images/halfspacelogo.png" width="80">
 			</a>
 			<p class="mt-3">축구로 하나되는 공간</p>
 			<div class="copyright">
@@ -190,44 +190,10 @@
 				김동완<br/>
 				신동호
 				<p class="mb-4">대표 전화번호 010-9966-8908</p>
+				<p>COPYRIGHT HalfSpace C&C ALL RIGHT RESERVED</p>
 			</div>
-		</div>
-		<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-			<a class="text-white" href="https://mdbootstrap.com/">COPYRIGHT HalfSpace C&C ALL RIGHT RESERVED</a>
 		</div>
 	</footer>
-	<nav id="sidebar" class="mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" style="overflow: visible;">
-		<div id="mCSB_1" class="mCustomScrollBox mCS-minimal mCSB_vertical mCSB_outside" style="max-height: 879px;" tabindex="0">
-			<div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0px; left:0;" dir="ltr">
-				<div class="d-flex flex-column justify-content-between h-100">
-					<section>
-						<div class="sidebar-body">
-							<div class="header-wrap">
-								<a href="/users/join">
-									<small>회원가입</small>
-								</a>
-								<a class="text-main btn-sm rounded-pill border ml-2" href="/users/login">
-									<small>로그인</small>
-								</a>
-							</div>
-						</div>
-					</section>
-					<section>
-					</section>
-				</div>
-			</div>
-		</div>
-		<div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal mCSB_scrollTools_vertical" style="display: none;">
-			<div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 0px; height: 0px; top: 0px;">
-				<div class="mCSB_dragger_bar" style="line-height: 0px;">
-				</div>
-			</div>
-			<div class="mCSB_draggerRail">
-			</div>
-			</div>
-		</div>
-	</nav>
-	<div class="overlay"></div>
 	<script type="text/javascript">
 	    // 검색버튼 작동
 		$('#searchBtn').on("click", function(event){
@@ -239,25 +205,8 @@
 				+ "&keyword=" + $('#keywordInput').val();
 		});
 	    
-	    // 사이드바 펼치기
-		$("#sidebarCollapse").on("click", function(event) {
-			if($("#sidebar").hasClass('active')) {
-				$("#sidebar").removeClass('active');
-				$(".overlay").removeClass('active');
-			} else {
-				$("#sidebar").addClass('active');
-				$(".overlay").addClass('active');
-			}
-		})
-		
-		// 사이드바 접기
-		$(".overlay").on("click", function(event) {
-			$("#sidebar").removeClass('active');
-			$(".overlay").removeClass('active');
-		})
+	  
+	    
 	</script>
-	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-analytics.js"></script>
 </body>
 </html>
-
