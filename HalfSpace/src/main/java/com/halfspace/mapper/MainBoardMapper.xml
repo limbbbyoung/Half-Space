@@ -11,28 +11,24 @@
 		    	<if test="searchType == 't'.toString()">
 		    		(TITLE like '%'||#{keyword}||'%') AND
 		    	</if>
-		    	<if test="searchType == 'c'.toString()">
-		    		(CONTENT like '%'||#{keyword}||'%') AND
-		    	</if>
 		    	<if test="searchType == 'w'.toString()">
 		    		(WRITER like '%'||#{keyword}||'%') AND
 		    	</if>
-		    	<if test="searchType == 'tc'.toString()">
+		    	<if test="searchType == 'g'.toString()">
+		    		(GAMEDATE like '%'||#{keyword}||'%') AND
+		    	</if>
+		    	<if test="searchType == 'p'.toString()">
+		    		(GAMEPLACE like '%'||#{keyword}||'%') AND
+		    	</if>
+		    	<if test="searchType == 'twgp'.toString()">
 		    		((TITLE like '%'||#{keyword}||'%')
 		    			OR
-		    		 (CONTENT like '%'||#{keyword}||'%')) AND
-		    	</if>
-		    	<if test="searchType == 'cw'.toString()">
-		    		((CONTENT like '%'||#{keyword}||'%')
+		    		 (WRITER like '%'||#{keyword}||'%')
 		    			OR
-		    		 (WRITER like '%'||#{keyword}||'%')) AND
-		    	</if>
-		    	<if test="searchType == 'tcw'.toString()">
-		    		((TITLE like '%'||#{keyword}||'%')
-		    			OR
-		    		 (CONTENT like '%'||#{keyword}||'%')
-		    			OR
-		    		 (WRITER like '%'||#{keyword}||'%')) AND
+		    		 (GAMEDATE like '%'||#{keyword}||'%')
+		    		 	OR
+		    		 (GAMEPLACE like '%'||#{keyword}||'%'))    		 
+		    		 	AND
 		    	</if>
 		    </if>	
 		</sql>	

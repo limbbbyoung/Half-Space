@@ -1,5 +1,6 @@
 package com.halfspace.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +63,9 @@ public class AdminController {
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@RequestMapping(value="/userdetail",
 			method= {RequestMethod.GET, RequestMethod.POST})
-	public String adminReadUserDetail(@RequestParam(value="userId")String userId, Model model) {
+	public String adminReadUserDetail(Principal principal, Model model) {
+		
+		String userId = principal.getName();
 		
 		System.out.println("controller 에서 admin 권한으로 user read 실행");
 		UserVO user = uservice.read(userId);
@@ -98,5 +101,9 @@ public class AdminController {
 		rttr.addAttribute("searchType", cri.getSearchType());
 		rttr.addAttribute("keyword", cri.getKeyword());
 		return "redirect:/admin/userdetail";
-	}
+	} // updateUserAuthByAdmin
+	
+	
+	
+	
 }

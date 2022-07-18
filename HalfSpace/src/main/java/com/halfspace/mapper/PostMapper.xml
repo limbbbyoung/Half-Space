@@ -15,22 +15,18 @@
 			<if test="searchType == 'w'.toString()">
 				(WRITER like '%' || #{keyword} || '%') AND
 			</if>
-			<if test="searchType == 'tc'.toString()">
-				((TITLE like '%' || #{keyword} || '%')
-					OR
-				(CONTENT like '%' || #{keyword} || '%')) AND
+			<if test="searchType == 'ca'.toString()">
+				(CATEGO like '%' || #{keyword} || '%')  AND
 			</if>
-			<if test="searchType == 'cw'.toString()">
-				((CONTENT like '%' || #{keyword} || '%')
-					OR
-				(WRITER like '%' || #{keyword} || '%')) AND
-			</if>
-			<if test="searchType == 'tcw'.toString()">
+			<if test="searchType == 'tcwca'.toString()">
 				((TITLE like '%' || #{keyword} || '%')
 					OR
 				(CONTENT like '%' || #{keyword} || '%')
 					OR
-				(WRITER like '%' || #{keyword} || '%')) AND
+				(WRITER like '%' || #{keyword} || '%')
+					OR
+				(CATEGO like '%' || #{keyword} || '%'))
+					AND
 			</if>
 		</if>
 	</sql>

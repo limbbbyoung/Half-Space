@@ -3,35 +3,60 @@ package com.halfspace.controller;
 import java.security.Principal;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.halfspace.domain.AuthVO;
-import com.halfspace.domain.HalfSpaceUser;
 import com.halfspace.domain.UserVO;
 import com.halfspace.service.UserService;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 
 @Controller
 @Log4j
+@RequiredArgsConstructor
 @RequestMapping("/login/*")
 public class LoginController { // 수업시간에 배운 교안에서는 SecurityController가 되는 Controller임.
-
+	
 	@Autowired
 	private UserService service;
 	
 	@Autowired
 	private PasswordEncoder pwen;
- 	
+	
+	
+	@PostMapping
+	public String login(@Validated @ModelAttribute UserVO user,
+			BindingResult bindingResult,
+            HttpServletResponse response) {
+		
+		if (bindingResult.hasErrors()) {
+			return "/hsLogin";
+		}
+		
+		// Member loginMember = service.login(user.getUserId(), user.getUserPw());
+	   //   log.info("login", loginMember);
+		
+		
+		
+		return "redirect:/";
+	} // login
+	
+	
 	@PreAuthorize("permitAll")
 	@GetMapping("/all")
 	public void doAll() {
@@ -45,9 +70,7 @@ public class LoginController { // 수업시간에 배운 교안에서는 Securit
 	public void doUser(Principal principal) {
 		
 		log.info(principal.getName());
-		
-		log.info("user 접속 실행");
-		
+	
 	}
 	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
@@ -112,7 +135,7 @@ public class LoginController { // 수업시간에 배운 교안에서는 Securit
 			
 		}catch(Exception e) {
 			e.printStackTrace();
-			return "/login/join";
+			return null;
 		}
 		
 		
