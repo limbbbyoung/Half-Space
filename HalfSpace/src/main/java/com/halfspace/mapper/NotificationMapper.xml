@@ -37,7 +37,7 @@
 		</sql>	
 		
 	<!-- 알림 기록 -->
-	<select id="getList" resultType="com.halfspace.persistence.NotificationVO" resultMap="NotificationMap">
+	<select id="getList" resultType="com.halfspace.persistence.NotificationVO">
 		
 		<![CDATA[
 			SELECT * FROM 
