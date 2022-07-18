@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halfspace.mapper.UserMapper">
+		<insert id="insert">
+		INSERT INTO image_tbl (uuid, uploadpath, filename, filetype, bno)
+			VALUES
+				(#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{bno})
+	</insert>
+	
+	<delete id="delete">
+	
+		DELETE FROM image_tbl WHERE uuid = #{uuid}
+	
+	</delete>
+	
+	<select id="findByBno" resultType="com.halfspace.persistence.BoardAttachVO">
+	
+		SELECT * FROM image_tbl WHERE bno = #{bno}
+	
+	</select>
+	
+
+</mapper>

@@ -144,14 +144,15 @@
 			type : 'post',
 			url : '/comment',
 			
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			},			
+			
 			headers : {
 				"Content-Type" : "application/json",
 				"X-HTTP-Method-Override" : "POST"
 			},
 			
-			beforeSend : function(xhr) {
-				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-			},
 			
 			dataType : 'text',
 			data : JSON.stringify({

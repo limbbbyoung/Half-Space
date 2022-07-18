@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -37,6 +39,7 @@
 				 	<input type="hidden" name="page" value="${param.page }">
 					<input type="hidden" name="searchType" value="${param.searchType}">
 					<input type="hidden" name="keyword" value="${param.keyword}">
+				 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
 				 	<button type="submit" class="btn" id="btn-filed">글 삭제하기</button>
 			 	</form>
 			 	
@@ -45,6 +48,7 @@
 				 	<input type="hidden" name="page" value="${param.page }">
 				    <input type="hidden" name="searchType" value="${param.searchType}">
 				    <input type="hidden" name="keyword" value="${param.keyword}">
+				 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
 				 	<button type="submit" class="btn" id="btn-filed">글 수정하기</button>
 			 	</form>
 			 	<a class="btn" id="btn-filed" href="/mainBoard/list?page=${param.page }&searchType=${param.searchType }&keyword=${param.keyword}">글 목록</a>
@@ -65,6 +69,7 @@
 						<input type="text" name="reply" id="newReplyText" class="form-control">
 					</div><!-- body -->
 					<div class="box-footer">
+				        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
 				        <button type="button" id="replyAddBtn" class="btn">ADD REPLY</button>
 					</div><!-- footer -->
 				</div>
@@ -92,6 +97,8 @@
 	<script src="/resources/reply/getAllList.js"></script>
 	
  	<script type="text/javascript">
+		let csrfHeaderName = ${_csrf.headerName};
+		let csrfTokenValue= ${_csrf.token};
  		
 			// List를 가져오는 로직
 			let bno = ${board.bno };
