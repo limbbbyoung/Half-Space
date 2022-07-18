@@ -57,10 +57,10 @@
 	</select>
 	
 	<!-- 알림 등록, ex) 팀 가입 요청시 새로운 알림이 추가되어 user에게 전송되어야함 -->
-	<insert id="insert">
-		INSERT INTO notification_tbl(not_id, mem_id, target_mem_id, not_type, not_content_id, not_message, not_read_datetime) 
+	<insert id="addNotifi">
+		INSERT INTO notification_tbl(not_id, mem_id, target_mem_id, not_type, not_content_id, not_message) 
 			VALUES
-		(notification_num.nextval, #{memId}, #{targetMemId}, #{notType}, #{notContentId}, #{notMessage}, #{notReadDatetime})
+		(notification_num.nextval, #{mem_id}, #{target_mem_id}, #{not_type}, #{not_content_id}, #{not_message})
 	</insert>
 	
 	<!-- 알림 요청 취소에 대한 알림 삭제 -->

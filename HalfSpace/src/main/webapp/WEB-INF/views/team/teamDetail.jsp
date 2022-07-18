@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -46,6 +47,16 @@
 				</form>
 				<br>
 				
+				<form action="/notification/requestNotifi" method="post">
+					<input type="hidden" name="target_mem_id" value="<sec:authentication property="principal.Username"/>"/>
+					<input type="hidden" name="mem_id" value="${myteam.coach}"/>
+					<input type="hidden" name="TeamName" value="${myteam.name}"/>
+					<input type="hidden" name="listno" value="${listInMyteam.listno}"/>
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+					<button type="submit" class="btn btn-primary" id="registerTeam">팀 가입 신청하기</button>
+				</form>
+				<br>
+				
 				<a class="btn" id="btn-filed" href="/team/teamlist?page=${param.page }">팀 목록</a>			
 			</div><!-- .col-6 -->
 			<div class="col-3"></div><!-- .col-3 -->
@@ -55,6 +66,13 @@
 	<!-- jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
+	<script type="text/javascript">
+	
+		$("#registerTeam").on("click", function(){
+			alert("팀 가입 요청이 처리되었습니다.");
+		}); // 팀 가입 요청 버튼 클릭시
+	
+	</script>
 
 </body>
 </html>
