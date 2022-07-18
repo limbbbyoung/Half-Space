@@ -17,48 +17,12 @@
 </head>
 <body>
 	<div class="bgimg">
-		<div class="header">
-			<div id="HeadLine">
-				<img id="halfspaceLogo" src="../../resources/images/halfspacelogo.png">
-			</div>
-		</div>
-		
-		<div class="container">
-			<div class="row">
-				<div class="col-2">
-				</div>
-				<div class="col-8">
-					<ul class="nav justify-content-center">
-					  <li class="nav-item">
-					    <h1><a class="nav-link" aria-current="page" href="/mainBoard/list">
-					    소셜매치
-					    </a></h1>
-					  </li>
-					  <li class="nav-item">
-					    <h1><a class="nav-link" href="/weather/today">
-					    날씨
-					    </a></h1>
-					  </li>
-					  <li class="nav-item">
-					    <h1><a class="nav-link" href="/post/list">
-					    자유게시판
-					    </a></h1>
-					  </li>
-					  <li class="nav-item">
-					    <h1><a class="nav-link" href="/team/teamlist">
-					    팀 둘러보기
-					    </a></h1>
-					  </li>
-					</ul>
-				</div>
-				<div class="col-2">
-				</div>
-			</div>
-		</div>
-		
-		<div class="footer">
-			<a href="https://kr.freepik.com/vectors/sport">Sport 벡터는 pikisuperstar - kr.freepik.com가 제작함</a>
+		<div id="HeadLine">
+			<a id="halfspaceLogo" href="/mainBoard/list">
+				<img src="../../resources/images/LogoMakr-2rlJxi.png">
+			</a>
 		</div>
 	</div>
+	<!-- Sport 벡터는 pikisuperstar - kr.freepik.com가 제작함 -->
 </body>
 </html>
