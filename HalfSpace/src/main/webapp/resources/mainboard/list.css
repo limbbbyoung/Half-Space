@@ -389,6 +389,66 @@ body {
 	    font-weight: lighter;
 	}
 	
+	#btn-join-wrap {
+	    z-index: 100;
+	    position: sticky;
+	}
+	
+	.py-3 {
+	    padding-bottom: 1rem!important;
+	}
+	
+	.py-3 {
+	    padding-top: 1rem!important;
+	}
+	
+	.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+	    width: 100%;
+	    padding-right: 15px;
+	    padding-left: 15px;
+	    margin-right: auto;
+	    margin-left: auto;
+	}
+	
+	#btn-join {
+	    border: none;
+	    padding: 20px 40px;
+	    border-radius: 50px;
+	    background-color: #a9d4ff;
+	    color: #0074ff;
+	    z-index: 50;
+	}
+	
+	#btn-join h5 {
+	    font-size: 21px;
+	    font-weight: normal;
+	}
+	
+	#btn-join small {
+	    font-size: 13px;
+	}
+	
+	#match-list .apply-wrap[data-status=full] {
+	    background-color: #f2f2f2;
+	    color: #9a9a9a;
+	}
+	
+	#match-list .apply-wrap {
+	    width: 80px;
+	    padding: 14px 0 12px;
+	    border-radius: 5px;
+	    color: #fff;
+	    position: relative;
+	}
+	
+	#match-list .apply-wrap[data-status=full] p {
+	    word-spacing: 15px;
+	}
+
+	#match-list .apply-wrap p {
+	    font-size: 15px;
+	}
+		
 	#nav_pill_btn1 {
 		margin-right: +5px;
 	}

@@ -89,7 +89,7 @@
 										<div class="ground-wrap">
 											<small class="game-badge" data-game="rank">${board.bno}</small>
 											<p>
-												<strong class="ground-name">${board.title}</strong>
+												<strong class="ground-name">${board.title}(${board.gameplace})</strong>
 											</p>
 											<p class="parking-wrap">
 												<small data-gender="3">${board.catego}</small>
@@ -98,16 +98,22 @@
 										</div>
 									</div>
 									<div class="apply-wrap" data-status="full">
-										<span>
-											조회수
-										</span>
-										<p>${board.hit}</p>
+										<p>
+											조회수<br/>
+											${board.hit}
+										</p>
 									</div>
 								</li>					
 							</c:forEach>
 						</ul>
 					</section>
 				</div>
+			</div>
+			<div class="container-fluid text-center py-3" id="btn-join-wrap" style="bottom:0; max-width:960px;">
+				<button id="btn-join" onclick="javascript:location.href=&quot;/login/join&quot;">
+					<h5>회원가입</h5>
+					<small>회원가입 후 다양한 매치에 참여해보세요!</small>
+				</button>
 			</div>
 			</div>
 			</div>
