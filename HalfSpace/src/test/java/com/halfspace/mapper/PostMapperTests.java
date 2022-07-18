@@ -25,8 +25,9 @@ public class PostMapperTests {
 	private PostMapper mapper;
 	
 	@Test
-	public void getListTest(SearchCriteria cri) {
-		
+	public void getListTest() {
+		SearchCriteria cri = new SearchCriteria();
+		cri.setPage(1);
 		log.info(mapper.getList(cri));
 	}
 	
@@ -47,7 +48,7 @@ public class PostMapperTests {
 		mapper.delete(9229L);
 	}
 	
-	@Test
+	//@Test
 	public void updateTest() {
 		
 		PostVO vo = new PostVO();		

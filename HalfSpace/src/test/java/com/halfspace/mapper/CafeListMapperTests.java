@@ -20,12 +20,12 @@ public class CafeListMapperTests {
 	@Autowired
 	private CafeListMapper mapper;
 	
-	//@Test
+	@Test
 	public void getListTest() {
 		log.info(mapper.getList());
 	}
 	
-	@Test
+	//@Test
 	public void addListTest() {
 		
 		CafeListVO vo = new CafeListVO();

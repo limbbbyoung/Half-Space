@@ -167,30 +167,6 @@
 </head>
 <body>
 	<div class="header">
-<<<<<<< HEAD
-		<nav class="navbar">
-		  <div class="container-fluid">
-		    <a class="navbar-brand" href="/mainBoard/welcomeHome"><img src="../resources/images/halfspacelogo.png" alt="" width="334" height="110" class="d-inline-block align-text-top">
-		    </a>
-		     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-		      <span class="navbar-toggler-icon"></span>
-		    </button>
-		    <div class="collapse navbar-collapse" id="navbarNav">
-		      <ul class="navbar-nav">
-		        <li class="nav-item">
-		          <a class="nav-link active" aria-current="page" href="/mainBoard/welcomeHome">Home</a>
-		        </li>
-		      </ul>
-		    </div>
-		    <form class="d-flex">
-		      <!--  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
-		      <button class="btn btn-outline-success"><a href="/login/join">회원가입</a></button>
-		    </form>
-		  </div>
-		</nav>
-	</div><!-- .header -->
-	<hr/>
-=======
 		<div class="navi-container">
 			<div class="d-flex justify-content-between align-items-center mx-auto p-0" style="max-width:800px">
 				<a href="/mainBoard/welcomeHome">
@@ -221,7 +197,6 @@
 			</div>
 		</div>
 	</div>
->>>>>>> sage
 	<div class="container">
 		<div class="row">
 			<h1>

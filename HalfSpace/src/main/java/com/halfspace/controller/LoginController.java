@@ -1,5 +1,6 @@
 package com.halfspace.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,9 @@ public class LoginController { // 수업시간에 배운 교안에서는 Securit
 
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_USER')")
 	@GetMapping("/user")
-	public void doUser() {
+	public void doUser(Principal principal) {
+		
+		log.info(principal.getName());
 		
 		log.info("user 접속 실행");
 		
@@ -73,7 +76,6 @@ public class LoginController { // 수업시간에 배운 교안에서는 Securit
 	@PostMapping("/join")
 	public String join(UserVO vo, String[] role, RedirectAttributes rttr) {
 		// vo에 정보들을 잘 받아오는지 체크
-		
 		log.info(vo);
 		log.info(role);
 		

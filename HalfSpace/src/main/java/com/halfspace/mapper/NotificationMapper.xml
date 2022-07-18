@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 위의 스키마 작성 후, 어떤 인터페이스의 메서드를 쿼리문과 
+연결해 줄지 아래와 같이 인터페이스 파일부터 mapper태그로 연결합니다. -->
+<mapper namespace="com.halfspace.mapper.NotificationMapper">
+	  <sql id="search">
+		    <if test="searchType != null">
+		    	<if test="searchType == 't'.toString()">
+		    		(TITLE like '%'||#{keyword}||'%') AND
+		    	</if>
+		    	<if test="searchType == 'c'.toString()">
+		    		(CONTENT like '%'||#{keyword}||'%') AND
+		    	</if>
+		    	<if test="searchType == 'w'.toString()">
+		    		(WRITER like '%'||#{keyword}||'%') AND
+		    	</if>
+		    	<if test="searchType == 'tc'.toString()">
+		    		((TITLE like '%'||#{keyword}||'%')
+		    			OR
+		    		 (CONTENT like '%'||#{keyword}||'%')) AND
+		    	</if>
+		    	<if test="searchType == 'cw'.toString()">
+		    		((CONTENT like '%'||#{keyword}||'%')
+		    			OR
+		    		 (WRITER like '%'||#{keyword}||'%')) AND
+		    	</if>
+		    	<if test="searchType == 'tcw'.toString()">
+		    		((TITLE like '%'||#{keyword}||'%')
+		    			OR
+		    		 (CONTENT like '%'||#{keyword}||'%')
+		    			OR
+		    		 (WRITER like '%'||#{keyword}||'%')) AND
+		    	</if>
+		    </if>	
+		</sql>	
+		
+	<!-- 알림 기록 -->
+	<select id="getList" resultType="com.halfspace.persistence.NotificationVO" resultMap="NotificationMap">
+		
+		<![CDATA[
+			SELECT * FROM 
+			(SELECT 
+			/*+ INDEX_DESC(notification_tbl pk_notification) */
+			ROWNUM rn, notification_tbl.* FROM notification_tbl 
+				WHERE 		
+		]]>
+		
+	    <!-- 동적쿼리조건이 들어올 자리 -->
+	    <include refid="search"></include>
+	    
+		<![CDATA[	
+			rownum <= (${page}*10))
+			WHERE rn > (${page}-1)*10 
+		]]>	  
+	</select>
+	
+	<!-- 알림 등록, ex) 팀 가입 요청시 새로운 알림이 추가되어 user에게 전송되어야함 -->
+	<insert id="insert">
+		INSERT INTO notification_tbl(not_id, mem_id, target_mem_id, not_type, not_content_id, not_message, not_read_datetime) 
+			VALUES
+		(notification_num.nextval, #{memId}, #{targetMemId}, #{notType}, #{notContentId}, #{notMessage}, #{notReadDatetime})
+	</insert>
+	
+	<!-- 알림 요청 취소에 대한 알림 삭제 -->
+	<delete id="delete">
+		DELETE FROM notification_tbl WHERE target_mem_id=#{targetMemId}
+	</delete>
+	
+	<!-- 알림 수정하는 경우는 아직까지 고려가 되지 않기 때문에 따로 작성 X -->
+	<!-- 
+	<update id="update">
+		UPDATE board_tbl SET title=#{title}, content=#{content}, writer=#{writer},
+			updatedate=SYSDATE WHERE bno=#{bno}
+	</update>
+	 -->
+	
+	<!-- 알림 상세 정보 : 알림에 대한 정보를 상세적으로 보는 메서드 -->
+	<!-- 
+	<select id="getDetail" resultType="com.halfspace.persistence.NotificationVO">
+		<![CDATA[
+			SELECT * FROM notification_tbl WHERE bno=#{bno}
+		]]>
+	</select>
+	 -->
+	 
+	<!-- User에게 띄워줘야하는 알림 갯수 가져오기 for Pagination -->
+	<select id="getNotificationCount" resultType="long">
+			SELECT count(*) FROM notification_tbl WHERE
+			<!-- 여기에 sql태그에 저장된 조건절 넣기
+			기존 코드는 검색조건에 무관하게 전체 DB글만 가져왔으므로
+			검색조건에 따른 총 글 개수를 조건에 맞게 출력하도록 수정
+			검색조건은 seachType 변수를 전달받아야 하므로
+			컨트롤러, 서비스, 매퍼쪽에도 searchType을 받을 수 있게 
+			getBoardCount 메서드에도 SearchCriteria를 전달합니다. -->
+				<include refid="search"></include>
+				<!-- 조건이 없을때도 WHERE절 뒤에 뭔가 붙여야 하므로 bno가 0보다 큰 경우라는 조건을 붙입니다. -->
+			mem_id=#{memId}
+	</select>
+</mapper>

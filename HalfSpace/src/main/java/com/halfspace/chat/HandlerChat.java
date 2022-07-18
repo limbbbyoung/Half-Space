@@ -37,6 +37,7 @@ public class HandlerChat extends TextWebSocketHandler{
 			map.put("room_id", mapReceive.get("room_id"));
 			map.put("session", session);
 			sessionList.add(map);
+			System.out.println("방번호 디버깅 : " + sessionList);
 			
 			// 같은 채팅방에서 입장 메세지 전송
 			for(int i = 0; i < sessionList.size(); i++) {
@@ -61,9 +62,10 @@ public class HandlerChat extends TextWebSocketHandler{
 				}
 				
 			}
+			
 			break;
 			
-			// CLIENT 메세지 
+		// CLIENT 메세지 
 		case "CMD_MSG_SEND":
 			// 같은 채팅방에 메세지 전송
 			for(int i = 0; i < sessionList.size(); i++) {
@@ -71,6 +73,7 @@ public class HandlerChat extends TextWebSocketHandler{
 				Map<String, Object> mapSessionList = sessionList.get(i);
 				// 방번호 추출
 				String room_id = (String) mapSessionList.get("room_id");
+				System.out.println("방번호 : " + room_id);
 				// 세션 추출
 				WebSocketSession sess = (WebSocketSession) mapSessionList.get("session");
 				
@@ -86,6 +89,7 @@ public class HandlerChat extends TextWebSocketHandler{
 					sess.sendMessage(new TextMessage(jsonStr));
 				}
 			}
+			break;
 		}
 	
 	} // handleTextMessage end
