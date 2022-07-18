@@ -20,7 +20,7 @@ public class NotificationMapperTests {
 	
 	@Test
 	public void getListTest() {
-		    
+		
 		SearchCriteria cri = new SearchCriteria();
 		
 		cri.setPage(1);

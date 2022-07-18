@@ -35,14 +35,13 @@
 		    	</if>
 		    </if>	
 		</sql>	
-
-
+		
 	<!-- 알림 기록 -->
-	<select id="getList" resultType="com.halfspace.persistence.NotificationVO">
-	`	
+	<select id="getList" resultType="com.halfspace.persistence.NotificationVO" resultMap="NotificationMap">
+		
 		<![CDATA[
-			SELECT * FROM (
-			SELECT 
+			SELECT * FROM 
+			(SELECT 
 			/*+ INDEX_DESC(notification_tbl pk_notification) */
 			ROWNUM rn, notification_tbl.* FROM notification_tbl 
 				WHERE 		
@@ -53,9 +52,8 @@
 	    
 		<![CDATA[	
 			rownum <= (${page}*10))
-			WHERE rn >(${page}-1)*10 
+			WHERE rn > (${page}-1)*10 
 		]]>	  
-		
 	</select>
 	
 	<!-- 알림 등록, ex) 팀 가입 요청시 새로운 알림이 추가되어 user에게 전송되어야함 -->
