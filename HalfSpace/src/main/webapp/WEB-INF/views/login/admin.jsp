@@ -11,7 +11,7 @@
 <body>
  <h1>admin 로그인 성공</h1>
  <h2>페이지 정보</h2>
- 	
+
  	<p>principal : <sec:authentication property="principal"/></p><hr/>
  	<p>UserVO : <sec:authentication property="principal.user"/></p><hr/>
  	<p>principal로 꺼낸 ID : <sec:authentication property="principal.Username"/></p><hr/>

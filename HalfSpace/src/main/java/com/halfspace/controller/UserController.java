@@ -50,7 +50,7 @@ public class UserController {
 	} // userMypage END
 	
 	@PreAuthorize("hasAnyRole('ROLE_USER, ROLE_MANAGER, ROLE_ADMIN')")
-	@PostMapping("/updateForm")
+	@RequestMapping(value= "/updateForm", method= {RequestMethod.GET, RequestMethod.POST})
 	public String updateForm(Principal prin, Model model) {
 		
 		String userId = prin.getName();
