@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.halfspace.mapper.MainBoardMapper;
+import com.halfspace.mapper.ReplyMapper;
 import com.halfspace.persistence.MainBoardVO;
 import com.halfspace.persistence.SearchCriteria;
 
@@ -16,6 +17,9 @@ public class MainBoardServiceImpl implements MainBoardService{
 	
 	@Autowired
 	private MainBoardMapper mapper;
+	
+	@Autowired
+	private ReplyMapper replyMapper;
 
 	@Override
 	public List<MainBoardVO> getList(SearchCriteria cri) {
@@ -29,6 +33,9 @@ public class MainBoardServiceImpl implements MainBoardService{
 
 	@Override
 	public void delete(long bno) {
+	    
+		replyMapper.deleteAll(bno);
+		
 		mapper.delete(bno);
 	}
 

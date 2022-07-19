@@ -1,9 +1,7 @@
 package com.halfspace.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
+import java.sql.Time;
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -78,8 +76,11 @@ public class MainBoardController {
 	}
 	
 	@PostMapping("/insert")
-	public String insertBoard(MainBoardVO board) {
-		log.info(board);
+	public String insertBoard(MainBoardVO board, @RequestParam Time gamedateTime) {
+		log.info("경기 시간 : " + gamedateTime);
+		
+		log.info("받아온 MainBoardVO : " + board);
+		
 		service.insert(board);
 		// redirect를 사용해야 전체 글 목록을 로딩해온 다음 화면을 열어줍니다.
 		// 스프링 컨트롤러에서 리다이렉트를 할 때는 
