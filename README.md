@@ -43,7 +43,7 @@
 
 ###  🌌 ERD 설계
 
-![](C:\Users\a\Desktop\HalfSpaceERD(7월 19일 기준).png)
+<img src="C:\halfSpace\HalfSpace\src\main\webapp\resources\images\HalfSpaceERD(7월 19일 기준).png" alt="HalfSpaceERD(7월 19일 기준)" style="zoom:100%;" />
 
 
 
