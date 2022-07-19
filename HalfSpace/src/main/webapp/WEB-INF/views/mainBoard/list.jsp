@@ -41,24 +41,20 @@
 								<strong>로그인</strong>
 							</a>
 						</sec:authorize>
+							&nbsp;
 						<sec:authorize access="isAuthenticated()">
-							<a class="text-main btn-sm btn-neutral" href="#">
-								<strong>
-									<!-- 미확인 알림이 있을 경우 c:if 를 통한 조건비교 구문이 필요-->
-									<a href="#">
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
-										<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
-									</svg>
-									</a>
+							<!-- 미확인 알림이 있을 경우 c:if 를 통한 조건비교 구문이 필요-->
+							<a class="px-3" id="sidebarCollapse2" href="#">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+									<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+								</svg>
+							</a>
 									
-									<!-- 확인할 알림미 없는 경우 -->
-									<a href="#">
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
-										<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
-									</svg>
-									</a>
-							
-								</strong>
+							<!-- 확인할 알림이 없는 경우 -->
+							<a href="#">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+									<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+								</svg>
 							</a>
 						</sec:authorize>
 						<a class="px-3" id="sidebarCollapse" href="#">
@@ -84,7 +80,7 @@
 		<div class="row">
 			<div class="root-container"> 
 			    <div class="img-container">
-			        <img class="img-slider" src="https://placekitten.com/g/800/400">
+			        <img class="img-slider" src="../resources/images/soccer_zone.jpg">
 			    </div>
 				<div class="match-list-container">
 					<div class="header-wrap px-4">
@@ -266,20 +262,24 @@
 			</div>
 		</div>
 		<div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal mCSB_scrollTools_vertical" style="display: none;">
-			<div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 0px; height: 0px; top: 0px;">
-				<div class="mCSB_dragger_bar" style="line-height: 0px;">
+			<div class="mCSB_draggerContainer">
+				<div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 0px; height: 0px; top: 0px;">
+					<div class="mCSB_dragger_bar" style="line-height: 0px;">
+					</div>
+				</div>
+				<div class="mCSB_draggerRail">
 				</div>
 			</div>
-			<div class="mCSB_draggerRail">
-			</div>
-			</div>
 		</div>
+	</nav>
+	<div class="overlay"></div>
+	<nav id="sidebar2" class="mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" style="overflow: visible;">
+		여기가 알림을 넣는 곳입니다.
 	</nav>
 	<div class="overlay"></div>
 	<script type="text/javascript">
 	    // 검색버튼 작동
 		$('#searchBtn').on("click", function(event){
-			
 			self.location = "list"
 				+ "?page=1"
 				+ "&searchType="
@@ -298,9 +298,21 @@
 			}
 		})
 		
+		// 사이드바2 펼치기
+		$("#sidebarCollapse2").on("click", function(event) {
+			if($("#sidebar2").hasClass('active')) {
+				$("#sidebar2").removeClass('active');
+				$(".overlay").removeClass('active');
+			} else {
+				$("#sidebar2").addClass('active');
+				$(".overlay").addClass('active');
+			}
+		})
+		
 		// 사이드바 접기
 		$(".overlay").on("click", function(event) {
 			$("#sidebar").removeClass('active');
+			$("#sidebar2").removeClass('active');
 			$(".overlay").removeClass('active');
 		})
 	</script>
