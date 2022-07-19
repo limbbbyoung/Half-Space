@@ -1,5 +1,6 @@
 package com.halfspace.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.halfspace.domain.UserVO;
 import com.halfspace.persistence.PageMaker;
 import com.halfspace.persistence.PostVO;
 import com.halfspace.persistence.SearchCriteria;
 import com.halfspace.service.PostService;
+import com.halfspace.service.UserService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -26,6 +29,9 @@ public class PostController {
 	
 	@Autowired
 	private PostService service;
+	
+	@Autowired
+	private UserService userservice;
 	
 	@RequestMapping(value="/list",
 			method= {RequestMethod.GET, RequestMethod.POST})
@@ -66,18 +72,23 @@ public class PostController {
 		System.out.println("detail 실행");
 		
 		PostVO post = service.getDetail(bno);
+		UserVO user = userservice.read(post.getWriter());
 		// debug
 		log.info(post);
 		
 		model.addAttribute("post", post);
-		
+		model.addAttribute("user", user);
 		return "/post/detail";
 	
 	} // postDetail END
 	
 	@GetMapping("/insert")
-	public String insertPostForm() {
+	public String insertPostForm(Principal prin, Model model) {
 		
+		String userId = prin.getName();
+		UserVO user = userservice.read(userId);
+		
+		model.addAttribute("user", user);
 		return "/post/insertForm";
 	
 	} // insertPostForm END

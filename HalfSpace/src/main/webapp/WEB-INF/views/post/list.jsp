@@ -75,6 +75,7 @@
 				<thead>
 					<tr>
 						<th>글번호</th>
+						<th>카테고리</th>
 						<th>제목</th>
 						<th>글쓴이</th>
 						<th>쓴날짜</th>
@@ -85,6 +86,7 @@
 					<c:forEach var="post" items="${postList}">
 						<tr>
 							<td>${post.pono}</td>
+							<td>${post.catego}</td>
 							<td><a href="/post/detail?page=${pageMaker.cri.page}&pono=${post.pono}&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${post.title }[${post.commentCnt}]</a></td>
 							<td>${post.writer}</td>
 							<td>${post.regDate}</td>
@@ -143,7 +145,7 @@
 					카테고리
 					</option>
 					<option value="tcwca" ${pageMaker.cri.searchType == 'tcwca' ? 'selected' : '' }>
-					제목 + 본문 + 글쓴이
+					모든 내용
 					</option>
 				</select>
 				
