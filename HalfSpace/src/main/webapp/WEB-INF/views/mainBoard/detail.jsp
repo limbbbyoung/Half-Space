@@ -64,7 +64,7 @@
 					</div><!-- header -->
 					<div class="box-body">
 						<strong>Writer</strong>
-						<input type="text" name="replyer" id="newReplyWriter" class="form-control">
+						<input type="text" name="replyer" id="newReplyWriter" class="form-control" value="<sec:authentication property="principal.Username"/>" readonly>
 						<strong>ReplyText</strong>
 						<input type="text" name="reply" id="newReplyText" class="form-control">
 					</div><!-- body -->
@@ -97,8 +97,10 @@
 	<script src="/resources/reply/getAllList.js"></script>
 	
  	<script type="text/javascript">
-		let csrfHeaderName = ${_csrf.headerName};
-		let csrfTokenValue= ${_csrf.token};
+		
+ 		let csrfHeaderName = "${_csrf.headerName}";
+		
+		let csrfTokenValue= "${_csrf.token}";
  		
 			// List를 가져오는 로직
 			let bno = ${board.bno };
@@ -169,9 +171,6 @@
 				let replyer = $("#newReplyWriter").val();
 				let reply = $("#newReplyText").val();
 				
-				var csrfHeaderName = "${_csrf.headerName}";
-				var csrfTokenValue="${_csrf.token}";
-				
 				$.ajax({
 					type : 'post',
 					url : '/replies',
@@ -193,18 +192,51 @@
 							
 							alert("등록되었습니다.");
 							getAllList();
-							$("#newReplyWriter").val('');
 							$("#newReplyText").val('');
 						}
 					}
 					
 				});
 			});
+		
+		// reply insert JS코드
+		$("#replyAddBtn").on("click", function(){
+			
+			let replyer = $("#newReplyWriter").val();
+			let reply = $("#newReplyText").val();
+			
+			$.ajax({
+				type : 'post',
+				url : '/replies',
+				beforeSend : function(xhr) {
+					 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+					 },
+				headers: {
+					"Content-Type" : "application/json",
+					"X-HTTP-Method-Override" : "POST"
+				},
+				dataType : 'text',
+				data : JSON.stringify({
+					bno : bno,
+					replyer : replyer,
+					reply_content : reply
+				}),
+				success : function(result){
+					if(result == "SUCCESS"){
+						
+						alert("등록되었습니다.");
+						getAllList();
+						$("#newReplyWriter").val('');
+						$("#newReplyText").val('');
+					}
+				}
+				
+			});
+		}); // insert end
  	</script>
  	
  	<!-- modal 기능들 -->
-	<!-- insert 기능 -->
-	<script src="/resources/reply/insert.js"></script>
+	<!-- insert 기능 <script src="/resources/reply/insert.js"></script> -->
  	<!-- delete 기능 -->
 	<script src="/resources/reply/delete.js"></script>
 	<!-- update 기능 -->
