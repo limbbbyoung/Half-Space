@@ -9,11 +9,11 @@
 	     text-decoration-line : none;
 	  }
 	  
-	 #btn-filed, #searchBtn{
+	 #btn-filed, #searchBtn {
         display: inline-block;
         padding: 13px 20px;
-        background-color:#244875; 
-        color: white;
+        background-color:#3678f1; 
+        color: whitesmoke;
         border-radius: 20px;
         text-align: center;
         line-height: 100%;
@@ -133,6 +133,11 @@ body {
 	    margin: auto;
 	}
 	
+	p {
+	    margin-top: 0;
+	    margin-bottom: 0;
+	}
+	
 	.footer {
 	    text-align: left;
 	    color: #1a1a1a;
@@ -166,7 +171,7 @@ body {
 	    box-sizing: border-box;
 	    margin-top: 1rem!important;
 	    margin: 0;
-	    color: #9a9a9a;
+	    color: whitesmoke;
 	    font-weight: 300;
 	    font-family: "sbaggro";
 	    font-size: 12px;
@@ -177,7 +182,7 @@ body {
 	    text-align: center;
 	    box-sizing: border-box;
 	    margin: 0;
-	    color: #9a9a9a;
+	    color: whitesmoke;
 	    font-weight: 300;
 	    font-family: "sbaggro";
 	    font-size: 12px;
@@ -280,12 +285,16 @@ body {
 	    padding: 0 20px;
 	}
 	
-	.root .match-list-container #match-list .match-wrap .ground-wrap {
+	#match-list .match-wrap .ground-wrap {
 	    display: flex;
 	    align-items: center;
 	    flex-direction: column;
 	    justify-content: center;
 	    align-items: flex-start;
+	}
+	
+	.match-list-container {
+		margin: 0;
 	}
 	
 	section {
@@ -308,7 +317,7 @@ body {
 	
 	#match-list .match-wrap .ground-wrap p {
 	    padding-left: 10px;
-	    width: 250px;
+	    width: 500px;
 	    overflow: hidden;
 	    white-space: nowrap;
 	    text-overflow: ellipsis;
@@ -348,10 +357,6 @@ body {
 	    font-weight: lighter;
 	}
 	
-	#match-list .match-wrap .ground-wrap p strong.ground-name {
-    font-size: 13px;
-	}
-	
 	.match-list-container b, .root .match-list-container strong {
     	font-weight: normal;
 	}
@@ -366,22 +371,6 @@ body {
 	    width: 100%;
 	    margin: auto;
 	    text-align: center;
-	}
-	
-	#match-list .match-wrap .ground-wrap p {
-	    padding-left: 10px;
-	    width: 250px;
-	    overflow: hidden;
-	    white-space: nowrap;
-	    text-overflow: ellipsis;
-	}
-	
-	#match-list .match-wrap .ground-wrap p {
-	    padding-left: 10px;
-	    width: 250px;
-	    overflow: hidden;
-	    white-space: nowrap;
-	    text-overflow: ellipsis;
 	}
 	
 	.match-list-container * {
@@ -448,8 +437,100 @@ body {
 	#match-list .apply-wrap p {
 	    font-size: 15px;
 	}
-		
+	
+	.match-list-container strong {
+	    font-weight: normal;
+	}
+	
+	#match-list li.list-group-item {
+	    display: flex;
+	    justify-content: space-between;
+	    align-items: center;
+	    border: none;
+	    cursor: pointer;
+	    border-bottom: 1px solid #f2f2f2;
+	    padding: 10px;
+	}
+	
+	#match-list .match-wrap .ground-wrap p.parking-wrap small {
+	    padding-left: 7px;
+	    position: relative;
+	    display: inline-block;
+	}
+	
+	#match-list .match-wrap .ground-wrap p small {
+	    color: #212120;
+	}
+	
+	#match-list .match-wrap .ground-wrap p.parking-wrap small[data-gender="3"]::before {
+	    background-color: #6d00e0;
+	}
+	
+	#match-list .match-wrap .ground-wrap p.parking-wrap small[data-gender]::before {
+	    content: "";
+	    position: absolute;
+	    display: block;
+	    width: 5px;
+	    height: 5px;
+	    border-radius: 50%;
+	    left: 0px;
+	    top: 3.4px;
+	}
+	
+	#match-list .match-wrap .ground-wrap p.parking-wrap small::before {
+	    content: "·";
+	    position: absolute;
+	    display: block;
+	    left: 2px;
+	}
+	
+	::after, ::before {
+	    box-sizing: border-box;
+	}
+	
+	#match-list .apply-wrap span {
+	    position: absolute;
+	    background-image: url(../../resources/images/badge_hit.svg);
+	    background-repeat: no-repeat;
+	    background-position: center;
+	    top: -20px;
+	    right: -16px;
+	    font-size: 10px;
+	    padding: 13px 13px 10px 13px;
+	    line-height: 1;
+	    font-weight: normal;
+	    transform: scale(0.7);
+	    color: #1a1a1a;
+	}
+	
+	.ml-3 {
+	    margin-left: 1rem!important;
+	}
+	
+	.match-list-container .header-wrap h5 {
+	    font-weight: normal;
+	    text-align : center;
+	}
+	
+	.match-list-container .header-wrap {
+	    justify-content: space-between;
+	    align-items: center;
+	    padding: 15px 15px 10px 15px;
+	}
+			
 	#nav_pill_btn1 {
 		margin-right: +5px;
 	}
 	
+	/*경계선 좀 만들자 힘들다*/
+
+	.img-container {
+		height: 30vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.img-slider {
+		width: 500px;
+	}
