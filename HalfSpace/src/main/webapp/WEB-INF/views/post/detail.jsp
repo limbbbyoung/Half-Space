@@ -25,6 +25,27 @@
         text-align: center;
         line-height: 100%;
     }
+    
+    #uploadResult {
+		width:100%;
+		background-color: aqua;
+	}
+	
+	#uploadResult ul {
+		display : flex;
+		flex-flow : row;
+		justify-content : center;
+		align-items : center;
+	}
+	#uploadResult ul li {
+		list-style : none;
+		padding: 10px;
+		align-content : center;
+		text-align : center;
+	}
+	#uploadResult ul li img {
+		width : 100px;
+	}
 </style>
 <meta charset="UTF-8">
 <title>postDetail</title>
@@ -150,7 +171,52 @@
 	}
 	getAllList();
 	
+	// 익명함수 선언 및 호출
+	// 우선 함수이기 때문에 호출한다는 점을 명시하기 위해 마지막에 () 를 추가로 붙여준다.
+	(function(){
+		$.getJSON("/board/getAttachList", {bno:bno}, function(arr){
+			console.log(arr);
+			
+			let str = "";
+			
+			$(arr).each(function(i, attach){
+				// 이미지파일인 경우
+				if(attach.fileType){
+					let fileCallPath = encodeURIComponent(attach.uploadPath + 
+										"/s_" + attach.uuid + "_" + attach.fileName);
+					
+					str += `<li data-path='\${attach.uploadPath}' data-uuid='\${attach.uuid}'
+							data-filename='\${attach.fileName}' data-type='\${attach.fileType}'>
+								<div>
+									<img src='/display?fileName=\${fileCallPath}'>
+								</div>
+							</li>`;
+				} else {
+					// 이미지가 아닌 파일의 경우
+					str += `<li data-path='\${attach.uploadPath}' data-uuid='\${attach.uuid}'
+								data-filename='\${attach.fileName}' data-type='\${attach.fileType}'>
+								<div>
+									<span>\${attach.fileName}</span><br/>
+									<img src='/resources/attach.png' width='100px' height='100px'>
+								</div>
+							</li>`;
+				}
+			});// .each 반복문 닫는부분
+			// 위에서 str변수에 작성된 태그 형식을 화면에 끼워넣기
+			$("#uploadResult ul").html(str);
+		});
+	})();// 익명함수 닫는부분
 	
+		$("#uploadResult").on("click", "li", function(e){
+			let liObj = $(this);
+			
+			let path = encodeURIComponent(liObj.data("path") + "/" + liObj.data("uuid") + "_"
+										+ liObj.data("filename"));
+			
+			// download
+			self.location = "/download?fileName=" + path;
+			
+		});
 	
 	</script>
 	

@@ -3,12 +3,12 @@ package com.halfspace.persistence;
 import lombok.Data;
 
 @Data
-public class BoardAttachVO {
+public class PostAttachVO {
 
 	private String uuid;
 	private String uploadPath;
 	private String fileName;
-	private boolean image;
+	private boolean fileType;
 	
-	private Long bno;
+	private Long pono;
 }

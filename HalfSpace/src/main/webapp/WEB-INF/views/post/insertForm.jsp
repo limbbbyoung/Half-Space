@@ -7,9 +7,43 @@
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Styles -->
+<link rel="stylesheet" href="/resources/uploadAjax.css">
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+	 #btn-filed, #commentAdd{
+	 	margin-bottom : 10px;
+	 	padding : 10px 10px;
+        display: inline-block;
+        background-color:#244875; 
+        color: white;
+        border-radius: 20px;
+        text-align: center;
+        line-height: 100%;
+    }
+    
+    #uploadResult {
+		width:100%;
+		background-color: aqua;
+	}
+	
+	#uploadResult ul {
+		display : flex;
+		flex-flow : row;
+		justify-content : center;
+		align-items : center;
+	}
+	#uploadResult ul li {
+		list-style : none;
+		padding: 10px;
+		align-content : center;
+		text-align : center;
+	}
+	#uploadResult ul li img {
+		width : 100px;
+	}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -31,7 +65,7 @@
 		</div>	
 		<textarea name="content" required></textarea>
 		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
-		<input type="submit">
+		<input type="submit" id="submitBtn">
 	</form>
 	<div class="uploadDiv">
 		<input type="file" name="uploadFile" multiple>
@@ -49,8 +83,9 @@
 	
 	<script>
 		let csrfHeaderName = "${_csrf.headerName}"
-		let csrfTokenValue= "${_csrf.token}"
-
+		let csrfTokenValue="${_csrf.token}"
+	
+	
 		$(document).ready(function(){
 			
 			// 정규표현식 : 예).com 끝나는 문장 등의 조건이 복잡한 문장을 컴퓨터에게 이해시키기 위한 구문
@@ -95,12 +130,12 @@
 				console.log(formData);
 				
 				$.ajax({
-					url: '/board/uploadAjaxFormAction', 
-					beforeSend : function(xhr) {
-						 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-						 },
+					url: '/uploadFormAction', 
 					processData : false,
 					contentType: false,
+					beforeSend : function(xhr) {
+						xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+					},
 					data : formData,
 					dataType:'json',
 					type : 'POST',
@@ -116,123 +151,116 @@
 				
 			});// uploadBtn onclick
 			
-			
 			let uploadResult = $(".uploadResult ul");
 			
 			function showUploadedFile(uploadResultArr){
 				let str = "";
 				
-				//      json데이터    하나씩      i = 인덱스 번호입니다 obj = json본체
 				$(uploadResultArr).each(function(i, obj){
-					
 					console.log(obj);
 					console.log(obj.image);
-					
 					if(!obj.image){
-						// 이미지가 아니라면
-						let fileCallPath = encodeURIComponent(
-											obj.uploadPath + "/"
-											+ obj.uuid + "_" + obj.fileName);
+						
+						let fileCallPath = encodeURIComponent(obj.uploadPath + "/" + 
+													obj.uuid + "_" + obj.fileName);
 						
 						str += `<li data-path='\${obj.uploadPath}' data-uuid='\${obj.uuid}'
 									data-filename='\${obj.fileName}' data-type='\${obj.image}'>
-									<a href='/board/download?fileName=\${fileCallPath}'>
-										<img src='/resources/fileThumbnail.png'>\${obj.fileName}
+									<a href='/download?fileName=\${fileCallPath}'>
+										<img src='/resources/attach.png'>\${obj.fileName}
 									</a>
-									<span class='btn btn-min' data-file='\${fileCallPath}' data-type='file'> X </span>
+									<span data-file='\${fileCallPath}' data-type='file'>X</span>
 								</li>`;
-						
-					}else{
-						// 이미지 파일이라면
-						//str += `<li>\${obj.fileName}</li>`;
-						//이미지 썸네일이 출력되도록 처리
-						
+					} else{
+						// str += `<li>\${obj.fileName}</li>`;
+						// 수정 후 코드
+						//썸네일은 display에 배치 						
 						let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" +
 															obj.uuid + "_" + obj.fileName);
-						
-						// 썸네일을 다운 받지 않도록 fileCallPath를 하나 더 만들어주세요
-						let fileCallPath2 = encodeURIComponent(
-								obj.uploadPath + "/"
-								+ obj.uuid + "_" + obj.fileName);
-						
+						// 실제 파일은 download 배치
+						let fileCallPath2 = encodeURIComponent(obj.uploadPath +	"/" +
+															obj.uuid + "_" + obj.fileName);
+						console.log(fileCallPath2);
 						
 						str += `<li data-path='\${obj.uploadPath}' data-uuid='\${obj.uuid}'
-									data-filename='\${obj.fileName}' data-type='\${obj.image}'>
-									<a href='/board/download?fileName=\${fileCallPath2}'>
-										<img src='/board/display?fileName=\${fileCallPath}'>\${obj.fileName}
+								data-filename='\${obj.fileName}' data-type='\${obj.image}'>
+									<a href='download?fileName=\${fileCallPath2}'>
+										<img src='/display?fileName=\${fileCallPath}'>\${obj.fileName}
 									</a>
-									<span data-file='\${fileCallPath}' data-type='image'> X </span>
+									<span data-file='\${fileCallPath}' data-type='image'>X</span>
 								</li>`;
-					} //  if/else END
-					
+					}
 				});
-				console.log(str);
-
 				uploadResult.append(str);
-			}// showUploadedFile
+			}// showUploadedFile END
 			
 			$(".uploadResult").on("click", "span", function(e){
-				
-				
-				// .data 는 데어터 뒤에 있는 것 data-type의 type, date-file의 file을 가져옵니다.
+				// 파일이름을 span태그 내부의 data-file에서 얻어와서 저장
 				let targetFile = $(this).data("file");
+				// 이미지 여부를 span태그 내부의 data-type에서 얻어와서 저장
 				let type = $(this).data("type");
 				
-				// 클릭한 span 태그와 엮여있는 li를 지정
-				let targetLi = $(this).closest("li");
+				// 클릭한 span태그와 엮여있는 li를 targetLi에 저장
+				let targetLi = $(this).closest("li"); 
+				console.log(targetLi);
 				
 				$.ajax({
-					url : '/board/deleteFile',
+					url : '/deleteFile',
 					beforeSend : function(xhr) {
-						 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-						 },
-				//fileName이란 이름으로 targetFile, type이란 이름으로 type 보내기
-					data : {fileName: targetFile, type:type},
+						xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+					},
+					data: {fileName : targetFile, type:type},
 					dataType : 'text',
 					type : 'POST',
-					success: function(result) {
+					success : function(result){
 						alert(result);
-						// 클릭한 li요소를 화면에서 삭제하는 remove(화면에서 삭제됨)
+						// 클릭한 li요소를 화면에서 삭제함(파일삭제 후 화면에서도 삭제.)
 						targetLi.remove();
 					}
-					
-				}); //  ajax
-				
-			}); // .uploadResult onclick span END
+				});//ajax
+			});//click span END
 			
 			
+			// 제출버튼 막기
 			$("#submitBtn").on("click", function(e){
 				
-				//버튼의 기능 실행을 막는 e.preventDefault
+				// 1. 버튼의 제출기능을 막습니다.
 				e.preventDefault();
 				
+				// 2. let formObj = $("form");으로 폼태그를 가져옵니다.
 				let formObj = $("form");
 				
+				// 3. 첨부파일과 관련된 정보를 hidden태그들로 만들어 문자로 먼저 저장합니다.
 				let str = "";
-				
+			
 				$(".uploadResult ul li").each(function(i, obj){
-					 
-					let jobj = $(obj);
+
+					// $(obj)에 대해서만 .data() 를 활용해 데이터를 얻어올 수 있음
+					let jobj =$(obj);
 					
-					str += `<input type='hidden' name='attachList[\${i}].fileName'
-							value ='\${jobj.data("filename")}'>
-							<input type='hidden' name='attachList[\${i}].uuid'
-							value ='\${jobj.data("uuid")}'>
-							<input type='hidden' name='attachList[\${i}].uploadPath'
-							value ='\${jobj.data("path")}'>	
-							<input type='hidden' name='attachList[\${i}].image'
-							value ='\${jobj.data("image")}'>`;
-				
+					str += `<input type='hidden' name='attachList[\${i}].fileName' 
+								value='\${jobj.data("filename")}'>
+							<input type='hidden' name='attachList[\${i}].uuid' 
+								value='\${jobj.data("uuid")}'>
+							<input type='hidden' name='attachList[\${i}].uploadPath' 
+								value='\${jobj.data("path")}'>
+							<input type='hidden' name='attachList[\${i}].fileType' 
+								value='\${jobj.data("type")}'>`
+					
 				});
-				
 				console.log(str);
+				
+				// 4. formObj에 append를 이용해 str을 끼워넣습니다.
 				formObj.append(str);
-			}); // $("#submitBtn").on("click", function End
-			
-			
-			
+				
+				// 5. formObj.submit()을 이용해 제출기능이 실행되도록합니다.
+				formObj.submit();	
+			});
+	
+		
 			
 		});	// document ready END
+	
 	
 	</script>	
 	

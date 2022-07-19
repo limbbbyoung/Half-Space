@@ -1,6 +1,13 @@
 package com.halfspace.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.Principal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.halfspace.domain.UserVO;
 import com.halfspace.persistence.PageMaker;
+import com.halfspace.persistence.PostAttachVO;
 import com.halfspace.persistence.PostVO;
 import com.halfspace.persistence.SearchCriteria;
 import com.halfspace.service.PostService;
@@ -32,6 +40,71 @@ public class PostController {
 	
 	@Autowired
 	private UserService userservice;
+	
+	// 파일 업로드 보조 메서드
+	private boolean checkImageType(File file) {
+		
+		try {
+			String contentType = Files.probeContentType(file.toPath());
+			
+			return contentType.startsWith("image");
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+		
+		
+	} // checkImageType END
+	
+	// 폴더 가져오기 메서드
+	private String getFoleder() {
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date date = new Date();
+		log.info("post controller입니다. 날짜 첫 생성 : " + date);
+		String str = sdf.format(date);
+		log.info("format된 날짜 return 대기 중 : " + str);
+		return str.replace("_", File.separator);
+		
+	} // getFolder END
+	
+	// file 삭제 보조 메서드
+	private void deleteFiles(List<PostAttachVO> attachList) {
+		// 파일이 없다면 메서드 종료
+		if(attachList == null || attachList.size()==0) {
+			return;
+		}
+		
+		log.info(attachList);
+		// attachList 하나씩 forEach로 반복 로직
+		attachList.forEach(attach -> {
+			
+			try {
+				
+				Path file = Paths.get("C:\\upload_data\\temp\\"+ attach.getUploadPath() + "\\" + attach.getUuid()
+							+ "_" + attach.getFileName());
+				
+				Files.deleteIfExists(file);
+				
+				// fileType이 이미지일 때
+				if(Files.probeContentType(file).startsWith("image")) {
+					Path thumbNail = Paths.get("C:\\upload_data\\temp\\" + attach.getUploadPath() +
+								"\\s_" + attach.getUuid() + "_" + attach.getFileName());
+				
+					Files.delete(thumbNail);
+				}
+				
+			}catch (Exception e) {
+				log.error(e.getMessage());
+			} // try~catch END
+			
+		}); // forEach END
+		
+	} // deleteFiles END
+	
 	
 	@RequestMapping(value="/list",
 			method= {RequestMethod.GET, RequestMethod.POST})
@@ -67,11 +140,11 @@ public class PostController {
 	// post 조회
 	@RequestMapping(value="/detail",
 			method= {RequestMethod.GET, RequestMethod.POST})
-	public String postDetail(@RequestParam(value="pono")Long bno,Model model) {
+	public String postDetail(@RequestParam(value="pono")Long pono,Model model) {
 		
 		System.out.println("detail 실행");
 		
-		PostVO post = service.getDetail(bno);
+		PostVO post = service.getDetail(pono);
 		UserVO user = userservice.read(post.getWriter());
 		// debug
 		log.info(post);

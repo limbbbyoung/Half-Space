@@ -33,5 +33,9 @@
 		SELECT pono FROM comment_tbl
 			WHERE cno = #{cno}
 	</select>
+	
+	<delete id="deleteAll">
+		DELETE FROM comment_tbl WHERE pono = #{pono}
+	</delete>
 
 </mapper>
