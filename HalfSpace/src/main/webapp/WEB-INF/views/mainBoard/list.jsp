@@ -28,6 +28,11 @@
 				<div class="user-info-container">
 					<input id="isLoggedIn" type="hidden" data-islogin="false">
 					<div class="user-info-wrap">
+						<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+							<a class="text-main btn-sm rounded-pill border" href="/admin/userlist">
+								<strong>관리자 페이지</strong>
+							</a>
+						</sec:authorize>
 						<sec:authorize access="isAnonymous()">
 							<a class="text-main btn-sm btn-neutral" href="/login/join">
 								<strong>회원가입</strong>
@@ -39,9 +44,20 @@
 						<sec:authorize access="isAuthenticated()">
 							<a class="text-main btn-sm btn-neutral" href="#">
 								<strong>
+									<!-- 미확인 알림이 있을 경우 c:if 를 통한 조건비교 구문이 필요-->
+									<a href="#">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
-									  <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+										<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
 									</svg>
+									</a>
+									
+									<!-- 확인할 알림미 없는 경우 -->
+									<a href="#">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+										<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+									</svg>
+									</a>
+							
 								</strong>
 							</a>
 						</sec:authorize>
@@ -66,50 +82,64 @@
 	<!-- body start -->
 	<div class="container">
 		<div class="row">
-			<h1>
-			<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-			  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-			</svg>
-			매칭 글 목록</h1>
-			<div class="root-container">
-			<div class="match-list-container">
-			<div class="container p-0 mb-5" id="match-list">
-				<div class="ground-list-slider">
-					<section class="ground-list">
-						<ul class="list-group list-group-flush text-center">
-							<c:forEach var="board" items="${boardList}">
-								<li class="list-group-item">
-									<div class="time-wrap">
-										<p>${board.gamedate}</p>
-										<small>09:00</small>
-									</div>
-									<div class="match-wrap">
-										<div class="gender-icon d-none" data-gender="3" data-battle="false">
-										</div>
-										<div class="ground-wrap">
-											<small class="game-badge" data-game="rank">${board.bno}</small>
-											<p>
-												<strong class="ground-name">${board.title}</strong>
-											</p>
-											<p class="parking-wrap">
-												<small data-gender="3">${board.catego}</small>
-												<small>${board.regdate}</small>
-											</p>
-										</div>
-									</div>
-									<div class="apply-wrap" data-status="full">
-										<span>
-											조회수
-										</span>
-										<p>${board.hit}</p>
-									</div>
-								</li>					
-							</c:forEach>
-						</ul>
-					</section>
+			<div class="root-container"> 
+			    <div class="img-container">
+			        <img class="img-slider" src="https://placekitten.com/g/800/400">
+			    </div>
+				<div class="match-list-container">
+					<div class="header-wrap px-4">
+						<h5>총 ${pageMaker.totalBoard}매치</h5>
+					</div>
+					<div class="container p-0 mb-5" id="match-list">
+						<div class="ground-list-slider">
+							<section class="ground-list">
+								<ul class="list-group list-group-flush text-center">
+									<c:forEach var="board" items="${boardList}">
+										<a href="/mainBoard/detail?bno=${board.bno}&page=${pageMaker.cri.page}&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">
+											<li class="list-group-item">
+												<div class="time-wrap">
+													<p>${board.gamedate.getDate()}일</p>
+													<small>13:00</small>
+												</div>
+												<div class="match-wrap">
+													<div class="gender-icon d-none" data-gender="3" data-battle="false">
+													</div>
+													<div class="ground-wrap">
+														<small class="game-badge" data-game="rank">${board.bno}</small>
+														<p>
+															<strong class="ground-name">${board.title} (${board.gameplace}) [${board.replycount}]</strong>
+														</p>
+														<p class="parking-wrap">
+															<small data-gender="3">${board.catego}</small>
+															<small>${board.regdate.getMonth() + 1}월 ${board.regdate.getDate()}일 등록</small>
+														</p>
+													</div>
+												</div>
+												<div class="apply-wrap" data-status="full">
+													<p>
+														조회수<br/>
+														${board.hit}
+													</p>
+													<c:if test="${board.hit >= 10}">
+														<span>
+															Hit
+														</span>
+													</c:if>
+												</div>
+											</li>
+										</a>					
+									</c:forEach>
+								</ul>
+							</section>
+						</div>
+					</div>
+					<div class="container-fluid text-center py-3" id="btn-join-wrap" style="bottom:0; max-width:960px;">
+						<button id="btn-join" onclick="javascript:location.href=&quot;/login/join&quot;">
+							<h5>회원가입</h5>
+							<small>회원가입 후 다양한 매치에 참여해보세요!</small>
+						</button>
+					</div>
 				</div>
-			</div>
-			</div>
 			</div>
 			<sec:authorize access="isAuthenticated()">
 				<a class="btn" href="/mainBoard/insert" id="btn-filed">글쓰기</a>
@@ -218,10 +248,11 @@
 									</a>
 								</sec:authorize>
 								<sec:authorize access="isAuthenticated()"><!-- collapse했을 때 보이게끔 -->
-									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn1"href="/user/mypage">
+									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn1" href="/user/mypage">
 										<small>내 정보</small>
 									</a>
-									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn2"href="/team/teamDetail">
+									&nbsp;
+									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn2" href="/team/teamDetail">
 										<small>내 팀</small>
 									</a>
 								</sec:authorize>
@@ -230,8 +261,6 @@
 								<a href="#"><img src="../resources/images/faq.svg" class="mCS_img_loaded">FAQ</a>
 							</div>
 						</div>
-					</section>
-					<section>
 					</section>
 				</div>
 			</div>
@@ -275,8 +304,6 @@
 			$(".overlay").removeClass('active');
 		})
 	</script>
-	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-analytics.js"></script>
 </body>
 </html>
 
