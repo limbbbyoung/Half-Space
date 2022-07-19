@@ -43,7 +43,7 @@
 
 ###  🌌 ERD 설계
 
-<img src="C:\halfSpace\HalfSpace\src\main\webapp\resources\images\HalfSpaceERD(7월 19일 기준).png" alt="HalfSpaceERD(7월 19일 기준)" style="zoom:100%;" />
+<img alt="HalfSpace ERD" src="https://user-images.githubusercontent.com/96836408/179691180-19a7042e-4d1c-47f4-97e7-a8d85a54385a.png">
 
 
 
