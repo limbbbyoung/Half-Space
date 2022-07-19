@@ -9,6 +9,7 @@
 <!-- Styles -->
 <link rel="stylesheet" href="/resources/comment/modal.css">
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<sec:authentication property="principal" var="prin"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +30,8 @@
 <title>postDetail</title>
 </head>
 <body>
+
+
 	<div class="header">
 	</div><!-- .header -->
 	<div class="container">
@@ -38,22 +41,26 @@
 				글쓴이 : ${post.writer } <br/>
 				카테고리 : ${post.catego } <br/>
 				글내용 : ${post.content } <br/>
-				<form action="/post/delete" method="post">
-					<input type="hidden" name="pono" value="${post.pono}"/>
-					<input type="hidden" name="page" value="${param.page}"/>
-					<input type="hidden" name="searchType" value="${param.searchType}"/>
-					<input type="hidden" name="keyword" value="${param.keyword}"/>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-					<button type="submit" class="btn" id="btn-filed">글 삭제하기</button>
-				</form>
-				<form action="/post/updateForm" method="post">
-					<input type="hidden" name="pono" value="${post.pono}"/>
-					<input type="hidden" name="page" value="${param.page}"/>
-					<input type="hidden" name="searchType" value="${param.searchType}"/>
-					<input type="hidden" name="keyword" value="${param.keyword}"/>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-					<button type="submit" class="btn" id="btn-filed">글 수정하기</button>
-				</form>
+				<sec:authorize access="isAuthenticated()">
+					<c:if test="${prin.authorities eq '[ROLE_ADMIN]' || prin.username eq post.writer}">
+					<form action="/post/delete" method="post">
+						<input type="hidden" name="pono" value="${post.pono}"/>
+						<input type="hidden" name="page" value="${param.page}"/>
+						<input type="hidden" name="searchType" value="${param.searchType}"/>
+						<input type="hidden" name="keyword" value="${param.keyword}"/>
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+						<button type="submit" class="btn" id="btn-filed">글 삭제하기</button>
+					</form>
+					<form action="/post/updateForm" method="post">
+						<input type="hidden" name="pono" value="${post.pono}"/>
+						<input type="hidden" name="page" value="${param.page}"/>
+						<input type="hidden" name="searchType" value="${param.searchType}"/>
+						<input type="hidden" name="keyword" value="${param.keyword}"/>
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+						<button type="submit" class="btn" id="btn-filed">글 수정하기</button>
+					</form>
+					</c:if>
+				</sec:authorize>
 				<a class="btn" id="btn-filed" href="/post/list?page=${param.page}&searchType=${param.searchType}&keyword=${param.keyword}">글 목록</a>
 		    </div><!-- .col-6 -->
 			<div class="col-6">
@@ -64,13 +71,14 @@
 				</div>
 				
 				<!-- comment add btn -->
+			<sec:authorize access="isAuthenticated()">
 				<div class = "row box-box-success">
 					<div class="box-header">
 						<h2 style="color: #244875;">댓글 작성</h2>
 					</div>
 					<div class="box-body">
 						<strong>Writer</strong>
-						<input type="text" id="newWriter" value="" class="form-control">
+						<input type="text" id="newWriter" value="${prin.username}" class="form-control" readonly>
 						<strong>CommentText</strong>
 						<input type="text" id="newContent" placeholder="c_content" class="form-control">
 					</div><!-- body end -->
@@ -78,6 +86,8 @@
 						<button type="button" id="commentAdd" class="btn">댓글 작성</button>
 					</div>
 				</div><!-- comadd btn END -->
+			</sec:authorize>
+			
 			</div><!-- .col-6 -->
 		</div><!-- .row -->
 	</div><!-- .container -->
@@ -90,9 +100,13 @@
 			<input type="text" id="comText">
 		</div>
 		<div>
-				<button type="button" id="comModBtn">수정하기</button>
-				<button type="button" id="comDelBtn">삭제하기</button>
-			<button type="button" id="closeBtn">닫기</button>
+			<sec:authorize access="isAuthenticated()">
+				<c:if test="${prin.authorities eq '[ROLE_ADMIN]' || prin.username eq post.writer}">
+					<button type="button" id="comModBtn">수정하기</button>
+					<button type="button" id="comDelBtn">삭제하기</button>
+					<button type="button" id="closeBtn">닫기</button>
+				</c:if>
+			</sec:authorize>
 		</div>
 	</div>
 
@@ -136,49 +150,6 @@
 	}
 	getAllList();
 	
-	// 아래는 commentAdd 로직
-
-	$("#commentAdd").on("click", function() {
-		
-		let writer = $("#newWriter").val();
-		let c_content = $("#newContent").val();
-		
-		$.ajax({
-			type : 'post',
-			url : '/comment',
-			
-			beforeSend : function(xhr) {
-				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-			},			
-			
-			headers : {
-				"Content-Type" : "application/json",
-				"X-HTTP-Method-Override" : "POST"
-			},
-			
-			
-			dataType : 'text',
-			data : JSON.stringify({
-				pono : pono,
-				user_id : writer,
-				c_content : c_content
-			}),
-			
-			success : function(result) {
-				
-				if(result == 'SUCCESS') {
-					alert("등록되었습니다.")
-					
-					getAllList();
-					
-					$("#newWriter").val('');
-					$("newContent").val('');
-					
-				}
-			}
-			
-		});
-	});// 댓글 등록 END
 	
 	
 	</script>

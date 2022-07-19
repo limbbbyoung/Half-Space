@@ -15,12 +15,25 @@
 </head>
 <body>
 
+<sec:authentication property="principal" var="prin"/>
 
+타입 : ${prin} <br>
+유저 아이디 : ${prin.username} <br>
 
 	<form action="/post/update" method="post">
 		<input type="text" name="title" value="${post.title }" required/>
 		<input type="text" name="writer" value="${post.writer  }" readonly/>
-		<input type="text" name="catego" value="${post.catego}" required />
+		<div class="col-md-1 mb-3">
+			<select class="form-select" name="catego" aria-label="selelt-catego" required>
+			  <option selected>잡담</option>
+			  <option value="질문">질문</option>
+			  <option value="정보/기사">정보/기사</option>
+			  <option value="사진/영상">사진/영상</option>
+			  <sec:authorize access="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
+			  	<option value="공지">공지</option>
+			  </sec:authorize>	
+			</select>			
+		</div>
 		<textarea name="content" required>${post.content }</textarea>
 		<input type="hidden" name="pono" value="${post.pono}">
 		<input type="hidden" name="page" value="${param.page}"/>
