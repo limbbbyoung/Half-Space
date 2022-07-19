@@ -142,7 +142,7 @@
 				</div>
 			</div>
 			<sec:authorize access="isAuthenticated()">
-				<a class="btn" href="/mainBoard/insert" id="btn-filed">글쓰기</a>
+				<a class="btn w-100" href="/mainBoard/insert" id="btn-filed">글쓰기</a>
 			</sec:authorize>
 			<ul class="pagination my justify-content-center">
 				<!-- Prev -->

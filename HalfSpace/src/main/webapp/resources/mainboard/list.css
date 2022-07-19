@@ -532,5 +532,11 @@ body {
 	}
 	
 	.img-slider {
-		width: 500px;
+	    max-height: 100%;
+	    max-width: 100%;
+	    display: block;
+	}
+	
+	.w-100 {
+	    width: 100%!important;
 	}
