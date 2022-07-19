@@ -7,6 +7,9 @@
 				$.ajax({
 					type : 'post',
 					url : '/replies',
+					beforeSend : function(xhr) {
+						 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+						 },
 					headers: {
 						"Content-Type" : "application/json",
 						"X-HTTP-Method-Override" : "POST"
@@ -22,7 +25,6 @@
 							
 							alert("등록되었습니다.");
 							getAllList();
-							$("#newReplyWriter").val('');
 							$("#newReplyText").val('');
 						}
 					}

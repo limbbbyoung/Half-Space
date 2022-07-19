@@ -5,6 +5,9 @@ $("#replyDelBtn").on("click", function(){
 		    $.ajax({
 		        type : 'delete',
 		        url : '/replies/' + rno, 
+		        beforeSend : function(xhr) {
+						 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+						 },
 		        header : {
 		            "Content-Type" : "application/json",
 		            "X-HTTP-Method-Override" : "DELETE"

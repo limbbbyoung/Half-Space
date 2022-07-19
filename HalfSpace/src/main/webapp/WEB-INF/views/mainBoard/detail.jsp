@@ -7,6 +7,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/resources/reply/modal.css">
+<sec:authentication property="principal" var="prin"/>
 <head>
 <style>
 	 #btn-filed, #replyAddBtn{
@@ -34,23 +35,27 @@
 			 	경기날짜 : ${board.gamedate } <br/>
 			 	경기장소 : ${board.gameplace } <br/>
 			 	글내용 : ${board.content }
-			 	<form action="/mainBoard/delete" method="post">
-				 	<input type="hidden" value="${board.bno }" name="bno">
-				 	<input type="hidden" name="page" value="${param.page }">
-					<input type="hidden" name="searchType" value="${param.searchType}">
-					<input type="hidden" name="keyword" value="${param.keyword}">
-				 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
-				 	<button type="submit" class="btn" id="btn-filed">글 삭제하기</button>
-			 	</form>
-			 	
-			 	<form action="/mainBoard/updateForm" method="post">
-				 	<input type="hidden" value="${board.bno }" name="bno">
-				 	<input type="hidden" name="page" value="${param.page }">
-				    <input type="hidden" name="searchType" value="${param.searchType}">
-				    <input type="hidden" name="keyword" value="${param.keyword}">
-				 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
-				 	<button type="submit" class="btn" id="btn-filed">글 수정하기</button>
-			 	</form>
+			 	<sec:authorize access="isAuthenticated()">
+					<c:if test="${prin.authorities eq '[ROLE_ADMIN]' || prin.username eq post.writer}">
+					 	<form action="/mainBoard/delete" method="post">
+						 	<input type="hidden" value="${board.bno }" name="bno">
+						 	<input type="hidden" name="page" value="${param.page }">
+							<input type="hidden" name="searchType" value="${param.searchType}">
+							<input type="hidden" name="keyword" value="${param.keyword}">
+						 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
+						 	<button type="submit" class="btn" id="btn-filed">글 삭제하기</button>
+					 	</form>
+					 	
+					 	<form action="/mainBoard/updateForm" method="post">
+						 	<input type="hidden" value="${board.bno }" name="bno">
+						 	<input type="hidden" name="page" value="${param.page }">
+						    <input type="hidden" name="searchType" value="${param.searchType}">
+						    <input type="hidden" name="keyword" value="${param.keyword}">
+						 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
+						 	<button type="submit" class="btn" id="btn-filed">글 수정하기</button>
+					 	</form>
+					 </c:if>
+			 	</sec:authorize>
 			 	<a class="btn" id="btn-filed" href="/mainBoard/list?page=${param.page }&searchType=${param.searchType }&keyword=${param.keyword}">글 목록</a>
  			</div><!-- .col 끝나는 지점 -->
  			<div class="col-6">
@@ -58,21 +63,24 @@
 				 	<ul id="replies">
 				 	
 				 	</ul>
-				 	<div class="row box-box-success" style="width: 400px; padding: 20px;">
-					<div class="box-header">
-						<h2 style="color: #244875;">댓글 작성</h2>
-					</div><!-- header -->
-					<div class="box-body">
-						<strong>Writer</strong>
-						<input type="text" name="replyer" id="newReplyWriter" class="form-control" value="<sec:authentication property="principal.Username"/>" readonly>
-						<strong>ReplyText</strong>
-						<input type="text" name="reply" id="newReplyText" class="form-control">
-					</div><!-- body -->
-					<div class="box-footer">
-				        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
-				        <button type="button" id="replyAddBtn" class="btn">ADD REPLY</button>
-					</div><!-- footer -->
-				</div>
+				 	
+				 	<sec:authorize access="isAuthenticated()">
+						<div class="row box-box-success" style="width: 400px; padding: 20px;">
+							<div class="box-header">
+								<h2 style="color: #244875;">댓글 작성</h2>
+							</div><!-- header -->
+							<div class="box-body">
+								<strong>Writer</strong>
+								<input type="text" name="replyer" id="newReplyWriter" class="form-control" value="<sec:authentication property="principal.Username"/>" readonly>
+								<strong>ReplyText</strong>
+								<input type="text" name="reply" id="newReplyText" class="form-control">
+							</div><!-- body -->
+							<div class="box-footer">
+						        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
+						        <button type="button" id="replyAddBtn" class="btn">ADD REPLY</button>
+							</div><!-- footer -->
+						</div>
+					</sec:authorize>
  			</div><!-- .col 끝나는 지점 -->
  		</div><!-- .row 끝나는 지점 -->
  	</div><!-- .container 끝나는 지점 -->
@@ -84,11 +92,15 @@
 		<div>
 			<input type="text" id="replyText" style="width: 200px; height: 50px;">
 		</div>
-		<div>
-			<button type="button" id="replyModBtn">수정하기</button>
-			<button type="button" id="replyDelBtn">삭제하기</button>
-			<button type="button" id="closeBtn">닫기</button>
-		</div>
+			<sec:authorize access="isAuthenticated()">
+				<c:if test="${prin.authorities eq '[ROLE_ADMIN]' || prin.username eq post.writer}">
+					<div>
+						<button type="button" id="replyModBtn">수정하기</button>
+						<button type="button" id="replyDelBtn">삭제하기</button>
+						<button type="button" id="closeBtn">닫기</button>
+					</div>
+			    </c:if>
+			</sec:authorize>
 	</div>
 	 	
  	<!-- jquery는 이곳에 -->
@@ -98,9 +110,9 @@
 	
  	<script type="text/javascript">
 		
- 		let csrfHeaderName = "${_csrf.headerName}";
+ 		let csrfHeaderName = "${_csrf.headerName}"
 		
-		let csrfTokenValue= "${_csrf.token}";
+		let csrfTokenValue= "${_csrf.token}"
  		
 			// List를 가져오는 로직
 			let bno = ${board.bno };
@@ -164,79 +176,10 @@
 				// 화면 기능을 구성할 때 원하는 태그만을 골라서 디테일하게 기능을 구현하는데 있어서
 				// 어려움을 느낄 것으로 예상, 그러므로 이 점에 집중해서 화면단 기능 구성
 			});  
-			
-			
-		$("#replyAddBtn").on("click", function(){
-				
-				let replyer = $("#newReplyWriter").val();
-				let reply = $("#newReplyText").val();
-				
-				$.ajax({
-					type : 'post',
-					url : '/replies',
-					beforeSend : function(xhr) {
-						 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-						 },
-					headers: {
-						"Content-Type" : "application/json",
-						"X-HTTP-Method-Override" : "POST"
-					},
-					dataType : 'text',
-					data : JSON.stringify({
-						bno : bno,
-						replyer : replyer,
-						reply_content : reply
-					}),
-					success : function(result){
-						if(result == "SUCCESS"){
-							
-							alert("등록되었습니다.");
-							getAllList();
-							$("#newReplyText").val('');
-						}
-					}
-					
-				});
-			});
-		
-		// reply insert JS코드
-		$("#replyAddBtn").on("click", function(){
-			
-			let replyer = $("#newReplyWriter").val();
-			let reply = $("#newReplyText").val();
-			
-			$.ajax({
-				type : 'post',
-				url : '/replies',
-				beforeSend : function(xhr) {
-					 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-					 },
-				headers: {
-					"Content-Type" : "application/json",
-					"X-HTTP-Method-Override" : "POST"
-				},
-				dataType : 'text',
-				data : JSON.stringify({
-					bno : bno,
-					replyer : replyer,
-					reply_content : reply
-				}),
-				success : function(result){
-					if(result == "SUCCESS"){
-						
-						alert("등록되었습니다.");
-						getAllList();
-						$("#newReplyWriter").val('');
-						$("#newReplyText").val('');
-					}
-				}
-				
-			});
-		}); // insert end
  	</script>
  	
  	<!-- modal 기능들 -->
-	<!-- insert 기능 <script src="/resources/reply/insert.js"></script> -->
+	<script src="/resources/reply/insert.js"></script>
  	<!-- delete 기능 -->
 	<script src="/resources/reply/delete.js"></script>
 	<!-- update 기능 -->

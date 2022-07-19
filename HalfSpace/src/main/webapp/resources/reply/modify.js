@@ -7,6 +7,9 @@ $("#replyModBtn").on("click", function(){
 		    $.ajax({
 		        type : 'put',
 		        url : '/replies/' + rno, 
+		        beforeSend : function(xhr) {
+						 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+						 },
 		        header : {
 		            "Content-Type" : "application/json",
 		            "X-HTTP-Method-Override" : "PUT"
