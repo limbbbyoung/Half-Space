@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halfspace.mapper.PostAttachMapper">
+
+
+	<insert id="insert">
+		INSERT INTO post_image (uuid, uploadpath, filename, filetype, pono)
+			VALUES (#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{pono})
+	</insert>
+	
+	<delete id="delete">
+		DELETE FROM post_image WHERE uuid = #{uuid}
+	</delete>
+	
+	<select id="findByPono" resultType="com.halfspace.persistence.PostAttachVO">
+		SELECT * FROM post_image WHERE pono = #{pono}
+	</select>
+	
+	<delete id="deleteAll">
+		DELETE FROM post_image WHERE pono = #{pono}
+	</delete>
+
+
+
+
+</mapper>

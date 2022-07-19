@@ -16,4 +16,6 @@ public interface CommentMapper {
 	public void delete(Long cno);
 	
 	public Long getPono(Long pono);
+	
+	public void deleteAll(Long pono);
 }

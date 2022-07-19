@@ -33,7 +33,6 @@
 						
 						getAllList();
 						
-						$("#newWriter").val('');
 						$("newContent").val('');
 						
 					}
