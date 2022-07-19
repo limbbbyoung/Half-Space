@@ -15,11 +15,10 @@
 </head>
 <body>
 	<sec:authentication property="principal" var="prin"/>
-	${prin}
 	<form action="/post/insert" method="post">
 		<input type="text" name="title" placeholder="title" required/>
 		<input type="text" name="writer" value="${user.userId}"readonly/>
-		<div class="col-md-2 mb-3">
+		<div class="col-md-1 mb-3">
 			<select class="form-select" name="catego" aria-label="selelt-catego" required>
 			  <option selected>잡담</option>
 			  <option value="질문">질문</option>
@@ -27,7 +26,7 @@
 			  <option value="사진/영상">사진/영상</option>
 			  <sec:authorize access="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
 			  	<option value="공지">공지</option>
-				</sec:authorize>	
+			  </sec:authorize>	
 			  </select>			
 		</div>	
 		<textarea name="content" required></textarea>
@@ -43,7 +42,6 @@
 			<!-- 업로드된 파일들이 여기 나열됨. -->
 		</ul>
 	</div>
-	
 	
 	<button id="uploadBtn">Upload</button>
 	
