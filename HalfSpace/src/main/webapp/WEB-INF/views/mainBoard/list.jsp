@@ -212,18 +212,17 @@
 					<section>
 						<div class="sidebar-body">
 							<div class="header-wrap">
-								<a href="/user/mypage">
-									<small>마이페이지</small>
-								</a>
-								<a class="text-main btn-sm rounded-pill border ml-2" href="/users/login">
-									<small>로그인</small>
-								</a>
+								<sec:authorize access="isAnonymous()">
+									<a class="text-main btn-sm rounded-pill border ml-2" href="/users/login">
+										<small>로그인</small>
+									</a>
+								</sec:authorize>
 								<sec:authorize access="isAuthenticated()"><!-- collapse했을 때 보이게끔 -->
 									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn1"href="/user/mypage">
-										<strong>내 정보</strong>
+										<small>내 정보</small>
 									</a>
 									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn2"href="/team/teamDetail">
-										<strong>내 팀</strong>
+										<small>내 팀</small>
 									</a>
 								</sec:authorize>
 							</div>
