@@ -6,7 +6,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,17 +15,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<sec:authentication property="principal" var="prin"/>
-
-타입 : ${prin} <br>
-유저 아이디 : ${prin.username} <br>
-
 	<form action="/post/update" method="post">
-		<input type="text" name="title" value="${post.title }" required/>
-		<input type="text" name="writer" value="${post.writer  }" readonly/>
+		<input type="text" name="title" class="form-class" value="${post.title }" required/>
+		<input type="text" name="writer" class="form-class" value="${post.writer  }" readonly/>
 		<div class="col-md-1 mb-3">
-			<select class="form-select" name="catego" aria-label="selelt-catego" required>
+			<select class="form-select" name="catego" class="form-class" aria-label="selelt-catego" required>
 			  <option selected>잡담</option>
 			  <option value="질문">질문</option>
 			  <option value="정보/기사">정보/기사</option>
@@ -36,13 +29,13 @@
 			  </sec:authorize>	
 			</select>			
 		</div>
-		<textarea name="content" required>${post.content }</textarea>
+		<textarea name="content" class="form-textarea" required>${post.content }</textarea>
 		<input type="hidden" name="pono" value="${post.pono}">
 		<input type="hidden" name="page" value="${param.page}"/>
 		<input type="hidden" name="searchType" value="${param.searchType}"/>
 		<input type="hidden" name="keyword" value="${param.keyword}"/>
 		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
-		<input type="submit" id="submitBtn">
+		<button id="submitBtn" class = "btnPost btnBlue">Post</button>
 	</form>
 <div class="row">
 	<h3 class="text-primary">첨부파일</h3>
@@ -64,7 +57,6 @@
 	<script>
 	let csrfHeaderName = "${_csrf.headerName}"
 	let csrfTokenValue="${_csrf.token}"
-	// 어떤 글의 첨부파일인지 확인하기위해 bno를 선언해 받아넣어주세요.
 	let pono = ${post.pono};
 	
 	// 정규표현식 : 예).com 끝나는 문장 등의 조건이 복잡한 문장을 컴퓨터에게 이해시키기 위한 구문
@@ -266,6 +258,8 @@
 		// 5. formObj.submit()을 이용해 제출기능이 실행되도록합니다.
 		formObj.submit();	
 	});	
+	
+	</script>
 	
 	</script>
 

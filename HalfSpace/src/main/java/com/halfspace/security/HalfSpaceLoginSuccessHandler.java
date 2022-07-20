@@ -48,13 +48,13 @@ public class HalfSpaceLoginSuccessHandler implements AuthenticationSuccessHandle
 		
 		if(roleList.contains("ROLE_USER")) {
 			
-			response.sendRedirect("/mainBoard/welcomeHome");
+			response.sendRedirect("/mainBoard/list");
 			return;
 			
 		}
 		
 		//all
-		response.sendRedirect("/welcomeHome");
+		response.sendRedirect("/mainBoard/list");
 		
 	} // onAuthenticationSuccess END
 

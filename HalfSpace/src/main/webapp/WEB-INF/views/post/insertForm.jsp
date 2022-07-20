@@ -22,7 +22,7 @@
 		<input type="text" name="title" placeholder="title" required/>
 		<input type="text" name="writer" value="${user.userId}" readonly/>
 		<div class="col-md-1 mb-3">
-			<select class="form-select" name="catego" aria-label="selelt-catego" required>
+			<select class=" form-select" name="catego" aria-label="selelt-catego" required>
 			  <option selected>잡담</option>
 			  <option value="질문">질문</option>
 			  <option value="정보/기사">정보/기사</option>
