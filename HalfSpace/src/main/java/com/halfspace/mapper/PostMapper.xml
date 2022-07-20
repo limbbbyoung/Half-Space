@@ -50,10 +50,15 @@
 		]]>
 	</select>
 	
+	
+	<!-- pono를 미리 알 수 있도록 select key 설정 -->
 	<insert id="insert">
+		<selectKey keyProperty="pono" resultType="long" order="BEFORE">
+			SELECT post_num.nextval FROM dual
+		</selectKey>
 		INSERT INTO post_tbl (pono, title, content, writer, catego)
 			VALUES
-		(post_num.nextval, #{title}, #{content}, #{writer}, #{catego})
+		(#{pono}, #{title}, #{content}, #{writer}, #{catego})
 	</insert>
 	
 	<delete id="delete">
@@ -86,7 +91,7 @@
 			SET
 		commentCnt = commentCnt + #{amount} WHERE pono = #{pono}
 	</update>
-
 	
+
 
 </mapper>

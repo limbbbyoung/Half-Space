@@ -9,7 +9,6 @@
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Styles -->
-<link rel="stylesheet" href="/resources/css/styles.css">
 <link rel="stylesheet" type="text/css" href="/resources/mainboard/list.css">
 <link href="https://webfontworld.github.io/sandbox/SBAggro.css" rel="stylesheet">
 <!-- 웹사이트 배경 이미지 -->

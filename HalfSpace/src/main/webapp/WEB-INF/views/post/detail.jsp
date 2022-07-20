@@ -84,6 +84,17 @@
 				</sec:authorize>
 				<a class="btn" id="btn-filed" href="/post/list?page=${param.page}&searchType=${param.searchType}&keyword=${param.keyword}">글 목록</a>
 		    </div><!-- .col-6 -->
+			
+				<!-- 첨부파일 영역 작성 -->
+			<div class="row">
+				<h3 class="text-primary">첨부파일</h3>
+				<div id="uploadResult">
+					<ul>
+						<!-- 첨부파일이 들어갈 위치 -->
+					</ul>
+				</div>
+			</div><!-- row -->
+	
 			<div class="col-6">
 			
 				<!-- 자유 게시판 상세글의 댓글 comment -->
@@ -174,7 +185,7 @@
 	// 익명함수 선언 및 호출
 	// 우선 함수이기 때문에 호출한다는 점을 명시하기 위해 마지막에 () 를 추가로 붙여준다.
 	(function(){
-		$.getJSON("/board/getAttachList", {bno:bno}, function(arr){
+		$.getJSON("/post/getAttachList", {pono:pono}, function(arr){
 			console.log(arr);
 			
 			let str = "";
