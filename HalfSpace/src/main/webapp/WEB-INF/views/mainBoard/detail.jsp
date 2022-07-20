@@ -96,46 +96,47 @@
 						<h3 class="ground-name">
 							${board.gameplace}
 						</h3>
-						<div class="parking-wrap" style="float:left;">
-							<strong class="pl" data-gender="3">
-								${board.gamedate.getMonth() + 1}월 ${board.gamedate.getDate()}일 ${board.gamedate.getHours()}시 경기
-							</strong>
-						</div>
-						<div class="apply-wrap" style="float:left; width:100%">
-						 	<sec:authorize access="isAuthenticated()">
-								<c:if test="${prin.authorities eq '[ROLE_ADMIN]' || prin.username eq post.writer}">
-									<div style="float:right;">
-									 	<form action="/mainBoard/delete" method="post">
-										 	<input type="hidden" value="${board.bno }" name="bno">
-										 	<input type="hidden" name="page" value="${param.page }">
-											<input type="hidden" name="searchType" value="${param.searchType}">
-											<input type="hidden" name="keyword" value="${param.keyword}">
-										 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
-										 	<button type="submit" class="btn" id="btn-filed">삭제</button>
-									 	</form>
-									 </div>
-									 <div style="float:right; width: 60px;">
-									 	<form action="/mainBoard/updateForm" method="post">
-										 	<input type="hidden" value="${board.bno }" name="bno">
-										 	<input type="hidden" name="page" value="${param.page }">
-										    <input type="hidden" name="searchType" value="${param.searchType}">
-										    <input type="hidden" name="keyword" value="${param.keyword}">
-										 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
-										 	<button type="submit" class="btn" id="btn-filed">수정</button>
-									 	</form>
-									 </div>
-								 </c:if>
-						 	</sec:authorize>
+						<div style="width : 100%">
+							<div class="parking-wrap" style="float:left;">
+								<strong class="pl" data-gender="3">
+									${board.gamedate.getMonth() + 1}월 ${board.gamedate.getDate()}일 ${board.gamedate.getHours()}시 ${board.gamedate.getMinutes()}분 경기
+								</strong>
+							</div>
+							<div class="apply-wrap" style="float:right;">
+							 	<sec:authorize access="isAuthenticated()">
+									<c:if test="${prin.authorities eq '[ROLE_ADMIN]' || prin.username eq post.writer}">
+										<div style="float:right;">
+										 	<form action="/mainBoard/delete" method="post">
+											 	<input type="hidden" value="${board.bno }" name="bno">
+											 	<input type="hidden" name="page" value="${param.page }">
+												<input type="hidden" name="searchType" value="${param.searchType}">
+												<input type="hidden" name="keyword" value="${param.keyword}">
+											 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
+											 	<button type="submit" class="btn" id="btn-filed">삭제</button>
+										 	</form>
+										 </div>
+										 <div style="float:right; width: 60px;">
+										 	<form action="/mainBoard/updateForm" method="post">
+											 	<input type="hidden" value="${board.bno }" name="bno">
+											 	<input type="hidden" name="page" value="${param.page }">
+											    <input type="hidden" name="searchType" value="${param.searchType}">
+											    <input type="hidden" name="keyword" value="${param.keyword}">
+											 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
+											 	<button type="submit" class="btn" id="btn-filed">수정</button>
+										 	</form>
+										 </div>
+									 </c:if>
+							 	</sec:authorize>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="profile">
-					<img src="../resources/images/soccer_zone.jpg">
+				<div class="profile" style="width : 100%">
+					<img src="../resources/images/soccer_zone.jpg" style="float:left;">
+					<div style="float:left;">
+						${board.writer}
+					</div>
 				</div>
-				<div>
-					${board.writer}
-				</div>
-				<hr/>
 				<div class="gameContent">
 				 	<p>${board.content}</p><br/>
 				 	<p>누구든지 병역의무의 이행으로 인하여 불이익한 처우를 받지 아니한다. 신체장애자 및 질병·노령 기타의 사유로 생활능력이 없는 국민은 법률이 정하는 바에 의하여 국가의 보호를 받는다. 군인 또는 군무원이 아닌 국민은 대한민국의 영역안에서는 중대한 군사상 기밀·초병·초소·유독음식물공급·포로·군용물에 관한 죄중 법률이 정한 경우와 비상계엄이 선포된 경우를 제외하고는 군사법원의 재판을 받지 아니한다.</p><br/>
@@ -144,19 +145,19 @@
 					<p>국회는 국무총리 또는 국무위원의 해임을 대통령에게 건의할 수 있다. 군사법원의 조직·권한 및 재판관의 자격은 법률로 정한다. 타인의 범죄행위로 인하여 생명·신체에 대한 피해를 받은 국민은 법률이 정하는 바에 의하여 국가로부터 구조를 받을 수 있다. 국민경제자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다.</p><br/>
 					<p>행정각부의 장은 국무위원 중에서 국무총리의 제청으로 대통령이 임명한다. 정당은 법률이 정하는 바에 의하여 국가의 보호를 받으며, 국가는 법률이 정하는 바에 의하여 정당운영에 필요한 자금을 보조할 수 있다. 국회는 헌법 또는 법률에 특별한 규정이 없는 한 재적의원 과반수의 출석과 출석의원 과반수의 찬성으로 의결한다. 가부동수인 때에는 부결된 것으로 본다.</p>
 				</div>
-				<hr/>
  			</div><!-- .col 끝나는 지점 -->
  			<div>
 			 	<sec:authorize access="isAuthenticated()">
-					<div class="row box-box-success" style="width: 400px; padding: 20px;">
+					<div class="row box-box-success" style="width: 100%; padding: 20px; margin: auto;">
 						<div class="box-header">
-							<h2 style="color: #244875;">${board.replycount}개의 댓글</h2>
+							<h2 style="color: #244875; text-align: left;">댓글</h2>
 						</div><!-- header -->
 						<div class="box-body">
 							<input type="text" name="reply" id="newReplyText" class="form-control" placeholder="여기에 댓글을 작성하세요.">
 						</div><!-- body -->
-						<div class="box-footer">
+						<div class="box-footer" style="margin-top: 15px; text-align: right;">
 					        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
+					        <input type="hidden" name="replyer" id="newReplyWriter" class="form-control" value="<sec:authentication property="principal.Username"/>">
 					        <button type="button" id="replyAddBtn" class="btn btn-primary">댓글 작성</button>
 						</div><!-- footer -->
 					</div>
@@ -228,7 +229,6 @@
 			</div>
 		</div>
 	</nav>
-	<div class="overlay"></div>
 	<nav id="sidebar2" class="mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" style="overflow: visible;">
 		여기가 알림을 넣는 곳입니다.
 	</nav>
@@ -236,10 +236,10 @@
 
 	<!-- modal -->
 	<div id="modDiv" style="display:none;">
-		<div class="modal-title"></div>
-		<div>
-			<input type="text" id="replyText" style="width: 200px; height: 50px;">
-		</div>
+		<div class="modal-title">
+			<div>
+				<input type="text" id="replyText" style="width: 200px; height: 50px;">
+			</div>
 			<sec:authorize access="isAuthenticated()">
 				<c:if test="${prin.authorities eq '[ROLE_ADMIN]' || prin.username eq post.writer}">
 					<div>
@@ -249,6 +249,7 @@
 					</div>
 			    </c:if>
 			</sec:authorize>
+		</div>
 	</div>
 	 	
  	<!-- jquery는 이곳에 -->

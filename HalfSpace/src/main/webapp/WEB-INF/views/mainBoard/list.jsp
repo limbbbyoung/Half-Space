@@ -95,7 +95,7 @@
 											<li class="list-group-item">
 												<div class="time-wrap">
 													<p>${board.gamedate.getDate()}일</p>
-													<small>13:00</small>
+													<small>${board.gamedate.getHours()}시 ${board.gamedate.getMinutes()}분</small>
 												</div>
 												<div class="match-wrap">
 													<div class="gender-icon d-none" data-gender="3" data-battle="false">
