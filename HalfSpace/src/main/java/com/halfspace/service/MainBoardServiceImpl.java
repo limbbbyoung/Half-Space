@@ -33,12 +33,14 @@ public class MainBoardServiceImpl implements MainBoardService{
 		mapper.insert(vo);
 	}
 
+	@Transactional
 	@Override
 	public void delete(long bno) {
 	    
 		replyMapper.deleteAll(bno);
 		
 		mapper.delete(bno);
+		
 	}
 
 	@Override

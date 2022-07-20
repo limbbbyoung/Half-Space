@@ -150,7 +150,7 @@
 			 	<sec:authorize access="isAuthenticated()">
 					<div class="row box-box-success" style="width: 100%; padding: 20px; margin: auto;">
 						<div class="box-header">
-							<h2 style="color: #244875; text-align: left;">댓글</h2>
+							<h2 style="color: #244875;" id="newReplyCount">${board.replycount}개의 댓글</h2>
 						</div><!-- header -->
 						<div class="box-body">
 							<input type="text" name="reply" id="newReplyText" class="form-control" placeholder="여기에 댓글을 작성하세요.">
