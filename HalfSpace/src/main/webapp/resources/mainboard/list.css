@@ -226,11 +226,6 @@
     	right: 0;
 	}
 	
-	#sidebar {
-	    width: 300px;
-	    right: -300px;
-	}
-	
 	#sidebar2 {
 	    text-align: left;
 	    font-size: 14px;
@@ -259,11 +254,6 @@
 	
 	#sidebar2.active {
     	right: 0;
-	}
-	
-	#sidebar2 {
-	    width: 300px;
-	    right: -300px;
 	}
 	
 	.overlay.active {
@@ -345,16 +335,6 @@
 	    display: block;
 	}
 	
-	#match-list .match-wrap .ground-wrap small.game-badge {
-	    font-size: 10px;
-	    transform: scale(0.8);
-	    border-radius: 10px;
-	    padding: 3px 9px 1px;
-	    color: #fff;
-	    font-weight: normal;
-	    margin-left: -3px;
-	}
-	
 	#match-list .match-wrap .ground-wrap p strong.ground-name {
 	    font-size: 13px;
 	}
@@ -404,10 +384,6 @@
 	.match-list-container b, .root .match-list-container strong {
     	font-weight: normal;
 	}
-	.match-list-container * {
-	    font-family: "sbaggro","NanumSquareRound","nucleo-icons";
-	    font-weight: lighter;
-	}
 	
 	.root-container {
 	    max-width: 800px;
@@ -429,9 +405,6 @@
 	
 	.py-3 {
 	    padding-bottom: 1rem!important;
-	}
-	
-	.py-3 {
 	    padding-top: 1rem!important;
 	}
 	
@@ -611,4 +584,9 @@
 	    font-size: inherit;
 	    line-height: inherit;
 	    font-weight: lighter;
+	}
+	
+	.navi-container .menu-container .navi-content a.active {
+	    border-bottom: 3px solid rgba(30,30,30,.97);
+	    font-weight: normal;
 	}

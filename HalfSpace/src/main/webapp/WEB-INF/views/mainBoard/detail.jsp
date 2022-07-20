@@ -72,64 +72,101 @@
 			</div>
 		</div>
 	</div><!-- .header끝나는 지점 -->
+	
  	<div class="container">
  		<div class="row">
- 			<div class="col-6">
- 				글제목 : ${board.title } <br/>
-			 	글쓴이 : ${board.writer } <br/>
-			 	카테고리 : ${board.catego } <br/>
-			 	경기날짜 : ${board.gamedate } <br/>
-			 	경기장소 : ${board.gameplace } <br/>
-			 	글내용 : ${board.content }
-			 	<sec:authorize access="isAuthenticated()">
-					<c:if test="${prin.authorities eq '[ROLE_ADMIN]' || prin.username eq post.writer}">
-					 	<form action="/mainBoard/delete" method="post">
-						 	<input type="hidden" value="${board.bno }" name="bno">
-						 	<input type="hidden" name="page" value="${param.page }">
-							<input type="hidden" name="searchType" value="${param.searchType}">
-							<input type="hidden" name="keyword" value="${param.keyword}">
-						 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
-						 	<button type="submit" class="btn" id="btn-filed">글 삭제하기</button>
-					 	</form>
-					 	
-					 	<form action="/mainBoard/updateForm" method="post">
-						 	<input type="hidden" value="${board.bno }" name="bno">
-						 	<input type="hidden" name="page" value="${param.page }">
-						    <input type="hidden" name="searchType" value="${param.searchType}">
-						    <input type="hidden" name="keyword" value="${param.keyword}">
-						 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
-						 	<button type="submit" class="btn" id="btn-filed">글 수정하기</button>
-					 	</form>
-					 </c:if>
-			 	</sec:authorize>
-			 	<a class="btn" id="btn-filed" href="/mainBoard/list?page=${param.page }&searchType=${param.searchType }&keyword=${param.keyword}">글 목록</a>
- 			</div><!-- .col 끝나는 지점 -->
- 			<div class="col-6">
- 					<!-- 댓글 -->
-				 	<ul id="replies">
-				 	
-				 	</ul>
-				 	
-				 	<sec:authorize access="isAuthenticated()">
-						<div class="row box-box-success" style="width: 400px; padding: 20px;">
-							<div class="box-header">
-								<h2 style="color: #244875;">댓글 작성</h2>
-							</div><!-- header -->
-							<div class="box-body">
-								<strong>Writer</strong>
-								<input type="text" name="replyer" id="newReplyWriter" class="form-control" value="<sec:authentication property="principal.Username"/>" readonly>
-								<strong>ReplyText</strong>
-								<input type="text" name="reply" id="newReplyText" class="form-control">
-							</div><!-- body -->
-							<div class="box-footer">
-						        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
-						        <button type="button" id="replyAddBtn" class="btn">ADD REPLY</button>
-							</div><!-- footer -->
+ 			<div class="root-container">
+ 				<div class="header-wrap px-4">
+					<h2>${board.title}</h2>
+					<p class="parking-wrap">
+						<small data-gender="3">${board.regdate.getMonth() + 1}월 ${board.regdate.getDate()}일 등록</small>
+						<small>${board.updatedate.getMonth() + 1}월 ${board.updatedate.getDate()}일 수정</small>
+					</p>
+				</div>
+				<div class="img-container">
+			        <img class="img-slider" src="../resources/images/soccer_zone.jpg">
+			    </div>
+				<div class="match-wrap">
+					<div class="gender-icon d-none" data-gender="3" data-battle="false">
+					</div>
+					<div class="ground-wrap">
+						<strong class="game-badge" data-game="rank">
+							${board.catego}
+						</strong>
+						<h3 class="ground-name">
+							${board.gameplace}
+						</h3>
+						<div class="parking-wrap" style="float:left;">
+							<strong class="pl" data-gender="3">
+								${board.gamedate.getMonth() + 1}월 ${board.gamedate.getDate()}일 ${board.gamedate.getHours()}시 경기
+							</strong>
 						</div>
-					</sec:authorize>
+						<div class="apply-wrap" style="float:left; width:100%">
+						 	<sec:authorize access="isAuthenticated()">
+								<c:if test="${prin.authorities eq '[ROLE_ADMIN]' || prin.username eq post.writer}">
+									<div style="float:right;">
+									 	<form action="/mainBoard/delete" method="post">
+										 	<input type="hidden" value="${board.bno }" name="bno">
+										 	<input type="hidden" name="page" value="${param.page }">
+											<input type="hidden" name="searchType" value="${param.searchType}">
+											<input type="hidden" name="keyword" value="${param.keyword}">
+										 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
+										 	<button type="submit" class="btn" id="btn-filed">삭제</button>
+									 	</form>
+									 </div>
+									 <div style="float:right; width: 60px;">
+									 	<form action="/mainBoard/updateForm" method="post">
+										 	<input type="hidden" value="${board.bno }" name="bno">
+										 	<input type="hidden" name="page" value="${param.page }">
+										    <input type="hidden" name="searchType" value="${param.searchType}">
+										    <input type="hidden" name="keyword" value="${param.keyword}">
+										 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
+										 	<button type="submit" class="btn" id="btn-filed">수정</button>
+									 	</form>
+									 </div>
+								 </c:if>
+						 	</sec:authorize>
+						</div>
+					</div>
+				</div>
+				<div class="profile">
+					<img src="../resources/images/soccer_zone.jpg">
+				</div>
+				<div>
+					${board.writer}
+				</div>
+				<hr/>
+				<div class="gameContent">
+				 	<p>${board.content}</p><br/>
+				 	<p>누구든지 병역의무의 이행으로 인하여 불이익한 처우를 받지 아니한다. 신체장애자 및 질병·노령 기타의 사유로 생활능력이 없는 국민은 법률이 정하는 바에 의하여 국가의 보호를 받는다. 군인 또는 군무원이 아닌 국민은 대한민국의 영역안에서는 중대한 군사상 기밀·초병·초소·유독음식물공급·포로·군용물에 관한 죄중 법률이 정한 경우와 비상계엄이 선포된 경우를 제외하고는 군사법원의 재판을 받지 아니한다.</p><br/>
+					<p>모든 국민은 언론·출판의 자유와 집회·결사의 자유를 가진다. 모든 국민은 직업선택의 자유를 가진다. 군인·군무원·경찰공무원 기타 법률이 정하는 자가 전투·훈련등 직무집행과 관련하여 받은 손해에 대하여는 법률이 정하는 보상외에 국가 또는 공공단체에 공무원의 직무상 불법행위로 인한 배상은 청구할 수 없다.</p><br/>
+					<p>탄핵소추의 의결을 받은 자는 탄핵심판이 있을 때까지 그 권한행사가 정지된다. 누구든지 체포 또는 구속의 이유와 변호인의 조력을 받을 권리가 있음을 고지받지 아니하고는 체포 또는 구속을 당하지 아니한다. 체포 또는 구속을 당한 자의 가족등 법률이 정하는 자에게는 그 이유와 일시·장소가 지체없이 통지되어야 한다.</p><br/>
+					<p>국회는 국무총리 또는 국무위원의 해임을 대통령에게 건의할 수 있다. 군사법원의 조직·권한 및 재판관의 자격은 법률로 정한다. 타인의 범죄행위로 인하여 생명·신체에 대한 피해를 받은 국민은 법률이 정하는 바에 의하여 국가로부터 구조를 받을 수 있다. 국민경제자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다.</p><br/>
+					<p>행정각부의 장은 국무위원 중에서 국무총리의 제청으로 대통령이 임명한다. 정당은 법률이 정하는 바에 의하여 국가의 보호를 받으며, 국가는 법률이 정하는 바에 의하여 정당운영에 필요한 자금을 보조할 수 있다. 국회는 헌법 또는 법률에 특별한 규정이 없는 한 재적의원 과반수의 출석과 출석의원 과반수의 찬성으로 의결한다. 가부동수인 때에는 부결된 것으로 본다.</p>
+				</div>
+				<hr/>
  			</div><!-- .col 끝나는 지점 -->
- 		</div><!-- .row 끝나는 지점 -->
+ 			<div>
+			 	<sec:authorize access="isAuthenticated()">
+					<div class="row box-box-success" style="width: 400px; padding: 20px;">
+						<div class="box-header">
+							<h2 style="color: #244875;">${board.replycount}개의 댓글</h2>
+						</div><!-- header -->
+						<div class="box-body">
+							<input type="text" name="reply" id="newReplyText" class="form-control" placeholder="여기에 댓글을 작성하세요.">
+						</div><!-- body -->
+						<div class="box-footer">
+					        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
+					        <button type="button" id="replyAddBtn" class="btn btn-primary">댓글 작성</button>
+						</div><!-- footer -->
+					</div>
+				</sec:authorize>
+				<!-- 댓글 -->
+			 	<ul id="replies"></ul>
+ 			</div>
+ 		</div>
  	</div><!-- .container 끝나는 지점 -->
+ 	
  	<div class="footer">
  		<div class="footer-container">
 			<a class="my-3" href="/">
@@ -149,6 +186,7 @@
 			<a class="text-white" href="https://mdbootstrap.com/">COPYRIGHT HalfSpace C&C ALL RIGHT RESERVED</a>
 		</div>
  	</div><!-- .footer 끝나는 지점 -->
+ 	
  	<nav id="sidebar" class="mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" style="overflow: visible;">
 		<div id="mCSB_1" class="mCustomScrollBox mCS-minimal mCSB_vertical mCSB_outside" style="max-height: 879px;" tabindex="0">
 			<div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0px; left:0;" dir="ltr">
