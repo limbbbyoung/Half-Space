@@ -482,9 +482,22 @@
 	    object-fit: cover;
 	}
 	
+	.profile {
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: center;
+	    align-items: flex-start;
+	    border-bottom: 1px solid #f2f2f2;
+	    padding-bottom: 10px;
+	}
+	
 	.gameContent {
 		text-align:left;
 		font-weight: lighter;
+		margin-top: 15px;
+		margin-bottom: 15px;
+		border-bottom: 1px solid #f2f2f2;
+    	padding-bottom: 10px;
 	}
 	
 	strong.game-badge {
@@ -531,4 +544,15 @@
 	
 	.pl {
 		font-weight: lighter;
+		font-size: 1rem;
 	}
+	
+	#replies {
+		padding-left: 0;
+	}
+	
+	.replyLi {
+		font-size: large;
+		font-weight: lighter;
+	}
+
