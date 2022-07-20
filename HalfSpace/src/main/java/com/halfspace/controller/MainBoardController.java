@@ -1,6 +1,7 @@
 package com.halfspace.controller;
 
 import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,7 +79,6 @@ public class MainBoardController {
 	@PostMapping("/insert")
 	public String insertBoard(MainBoardVO board) { //, @RequestParam Time gamedateTime
 		// log.info("경기 시간 : " + gamedateTime);
-		
 		log.info("받아온 MainBoardVO : " + board);
 		
 		service.insert(board);

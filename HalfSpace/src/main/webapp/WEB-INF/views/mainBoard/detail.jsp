@@ -98,7 +98,7 @@
 						</h3>
 						<div class="parking-wrap" style="float:left;">
 							<strong class="pl" data-gender="3">
-								${board.gamedate.getMonth() + 1}월 ${board.gamedate.getDate()}일 ${board.gamedate.getHours()}시 경기
+								${board.gamedate.getMonth() + 1}월 ${board.gamedate.getDate()}일 
 							</strong>
 						</div>
 						<div class="apply-wrap" style="float:left; width:100%">
@@ -157,12 +157,14 @@
 						</div><!-- body -->
 						<div class="box-footer">
 					        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
+					        <input type="hidden" name="replyer" id="newReplyWriter" class="form-control" value="<sec:authentication property="principal.Username"/>">
 					        <button type="button" id="replyAddBtn" class="btn btn-primary">댓글 작성</button>
 						</div><!-- footer -->
 					</div>
 				</sec:authorize>
 				<!-- 댓글 -->
-			 	<ul id="replies"></ul>
+			 	<ul id="replies">
+			 	</ul>
  			</div>
  		</div>
  	</div><!-- .container 끝나는 지점 -->

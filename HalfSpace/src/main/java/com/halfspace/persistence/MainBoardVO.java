@@ -1,9 +1,6 @@
 package com.halfspace.persistence;
 
-import java.time.LocalDateTime;
-import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import java.sql.Date;
 
 import lombok.Data;
 

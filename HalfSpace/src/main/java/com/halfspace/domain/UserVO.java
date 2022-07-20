@@ -17,6 +17,7 @@ public class UserVO {
 	private String email;
 	private String phoneNum;
 	private String address;
+	private String myteam;
 	
 	private List<AuthVO> authList;
 

@@ -40,7 +40,7 @@ public class NotificationController {
 	private NotificationService service;
 	
 	@PostMapping("/requestNotifi")
-	public String requestNotification(NotificationVO vo, String TeamName, Long listno,Model model) {
+	public String requestNotification(NotificationVO vo, String TeamName, Long listno, int page,Model model) {
          
 		// 팀 가입 요청시 NotificationType은 "Request Register Team"
 		vo.setNot_type("Request Register Team");
@@ -51,7 +51,7 @@ public class NotificationController {
 		vo.setNot_content_id(0L);
 		
 		// 팀 가입요청시 가게 되는 알림 요청에 대한 메세지
-		vo.setNot_message(vo.getTarget_mem_id() + "님이 "+ TeamName +"가입 요청을 신청했습니다. 팀 가입을 허락하시겠습니까?");
+		vo.setNot_message(vo.getTarget_mem_id() + "님이 "+ TeamName + "가입 요청을 신청했습니다. 팀 가입을 허락하시겠습니까?");
 		
 		log.info("보내는 알림에 관련된 정보 : " + vo);
 		
@@ -60,6 +60,7 @@ public class NotificationController {
 		
 		// 팀 디테일 페이지로 다시 돌아가기 위한 listno 전달
 		model.addAttribute("listno", listno);
+		model.addAttribute("page", page);
 		
 		return "redirect:/team/teamDetail";
 	}

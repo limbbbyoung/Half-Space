@@ -52,6 +52,7 @@
 					<input type="hidden" name="mem_id" value="${myteam.coach}"/>
 					<input type="hidden" name="TeamName" value="${myteam.name}"/>
 					<input type="hidden" name="listno" value="${listInMyteam.listno}"/>
+					<input type="hidden" name="page" value="${param.page}"/>
 					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 					<button type="submit" class="btn btn-primary" id="registerTeam">팀 가입 신청하기</button>
 				</form>
