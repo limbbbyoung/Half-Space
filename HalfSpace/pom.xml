@@ -221,6 +221,14 @@
 			    <artifactId>thumbnailator</artifactId>
 			    <version>0.4.8</version>
 			</dependency>
+			
+			<!-- WebSocket을 위해 jackson-databind 남겨두어야함 -->
+			<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+			<dependency>
+			    <groupId>com.fasterxml.jackson.core</groupId>
+			    <artifactId>jackson-databind</artifactId>
+			    <version>2.13.0</version>
+			</dependency>
 
 
 

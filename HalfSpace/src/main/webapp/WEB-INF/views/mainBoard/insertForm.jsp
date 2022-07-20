@@ -21,9 +21,7 @@
 		     작성자 : <input class="form-control" type="text" name="writer" value="<sec:authentication property="principal.Username"/>" readonly><br/>
 		     카테고리 : <input class="form-control" type="text" name="catego" placeholder="카테고리" required><br/>
 		     경기 장소 : <input class="form-control" type="text" name="gameplace" placeholder="경기 장소" required><br/>
-		     경기 날짜 : <br>
-		     	- 날짜 : <input class="form-control" type="date" name="gamedate" required><br/>			 
-		     	- 시간 : <input class="form-control" type="time" name="gamedateTime" required><br/>
+		     경기 날짜 : <input class="form-control" type="date" name="gamedate" required><br/>			 
 		     <p>글내용 : </p> <textarea class="form-control" cols="50" rows="12" name="content" required></textarea><br/>
 		    <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
 		     <button type="submit" class="btn btn-success" >글 작성하기</button>

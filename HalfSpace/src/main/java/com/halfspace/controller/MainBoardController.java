@@ -76,8 +76,8 @@ public class MainBoardController {
 	}
 	
 	@PostMapping("/insert")
-	public String insertBoard(MainBoardVO board, @RequestParam Time gamedateTime) {
-		log.info("경기 시간 : " + gamedateTime);
+	public String insertBoard(MainBoardVO board) { //, @RequestParam Time gamedateTime
+		// log.info("경기 시간 : " + gamedateTime);
 		
 		log.info("받아온 MainBoardVO : " + board);
 		
