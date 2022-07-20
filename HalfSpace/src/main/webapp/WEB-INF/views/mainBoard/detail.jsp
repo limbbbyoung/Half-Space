@@ -150,13 +150,14 @@
 			 	<sec:authorize access="isAuthenticated()">
 					<div class="row box-box-success" style="width: 400px; padding: 20px;">
 						<div class="box-header">
-							<h2 style="color: #244875;">${board.replycount}개의 댓글</h2>
+							<h2 style="color: #244875;" id="newReplyCount">${board.replycount}개의 댓글</h2>
 						</div><!-- header -->
 						<div class="box-body">
 							<input type="text" name="reply" id="newReplyText" class="form-control" placeholder="여기에 댓글을 작성하세요.">
 						</div><!-- body -->
 						<div class="box-footer">
 					        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
+					        <input type="hidden" name="replyer" id="newReplyWriter" class="form-control" value="<sec:authentication property="principal.Username"/>">
 					        <button type="button" id="replyAddBtn" class="btn btn-primary">댓글 작성</button>
 						</div><!-- footer -->
 					</div>

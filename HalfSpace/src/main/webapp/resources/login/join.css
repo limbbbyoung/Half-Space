@@ -1,47 +1,6 @@
 @charset "UTF-8";
-	 #btn-filed, #commentAdd{
-	 	margin-bottom : 10px;
-	 	padding : 10px 10px;
-        display: inline-block;
-        background-color:#244875; 
-        color: white;
-        border-radius: 20px;
-        text-align: center;
-        line-height: 100%;
-    }
-    
-    #uploadResult {
-		width:100%;
-		background-color: aqua;
-	}
-	
-	#uploadResult ul {
-		display : flex;
-		flex-flow : row;
-		justify-content : center;
-		align-items : center;
-	}
-	#uploadResult ul li {
-		list-style : none;
-		padding: 10px;
-		align-content : center;
-		text-align : center;
-	}
-	#uploadResult ul li img {
-		width : 100px;
-	}
-	
-	
-	
-/*
 
-*********************************************
-*********************************************
-*********************************************
-*********************************************
-
-*/	
-	
+	/*메인화면 구성, header부분*/
 
 	.container{
 		padding: 20px;
@@ -173,7 +132,9 @@
 	    margin-top: 0;
 	    margin-bottom: 0;
 	}
-	
+
+	/*footer 부분*/
+
 	.footer {
 	    text-align: left;
 	    color: #1a1a1a;
@@ -223,7 +184,9 @@
 	    font-family: "sbaggro";
 	    font-size: 12px;
 	}
-	
+
+	/*사이드바 부분*/
+
 	#sidebar {
 	    text-align: left;
 	    font-size: 14px;
@@ -305,22 +268,41 @@
 	    text-align: center!important;
 	}
 	
-	.list-group-flush {
-	    border-radius: 0;
+	
+	/* join form */
+	
+ 	.narrow-container {
+    	max-width: 540px;
+    	margin: auto;
+    	font-family: "sbaggro","nucleo-icons";
+    	font-weight: lighter;
 	}
 	
-	.list-group {
-	    display: -ms-flexbox;
-	    display: flex;
-	    -ms-flex-direction: column;
-	    flex-direction: column;
-	    padding-left: 0;
-	    margin-bottom: 0;
-	    border-radius: 0.25rem;
+	 .mx-auto {
+    	margin-left: auto!important;
+    	margin-right: auto!important;
 	}
 	
-	section {
-	    display: block;
+	.py-5 {
+	    padding-bottom: 3rem!important;
+	    padding-top: 3rem!important;
+	}
+	
+	div {
+    	display: block;
+	}
+	
+	html {
+	    font-family: sans-serif;
+	    line-height: 1.15;
+	    -webkit-text-size-adjust: 100%;
+	    -webkit-tap-highlight-color: transparent;
+	}
+	
+	.sidebar-body .menu-wrap img {
+	    width: 15px;
+	    margin-right: 10px;
+	    vertical-align: middle;
 	}
 	
 	.sidebar-body .menu-wrap {
@@ -328,251 +310,6 @@
 	    border-bottom: 1px solid #f2f2f2;
 	}
 	
-	.sidebar-body .menu-wrap a {
-	    display: block;
-	    padding: 5px 0;
-	}
 	
-	.sidebar-body .menu-wrap img {
-	    width: 15px;
-	    margin-right: 10px;
-	}
 	
-	#btn-join-wrap {
-	    z-index: 100;
-	    position: sticky;
-	}
-	
-	.py-3 {
-	    padding-bottom: 1rem!important;
-	}
-	
-	.py-3 {
-	    padding-top: 1rem!important;
-	}
-	
-	.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
-	    width: 100%;
-	    padding-right: 15px;
-	    padding-left: 15px;
-	    margin-right: auto;
-	    margin-left: auto;
-	}
-	
-	#btn-join {
-	    border: none;
-	    padding: 20px 40px;
-	    border-radius: 50px;
-	    background-color: #a9d4ff;
-	    color: #0074ff;
-	    z-index: 50;
-	}
-	
-	#btn-join h5 {
-	    font-size: 21px;
-	    font-weight: normal;
-	}
-	
-	#btn-join small {
-	    font-size: 13px;
-	}
-	
-	::after, ::before {
-	    box-sizing: border-box;
-	}
-	
-	.ml-3 {
-	    margin-left: 1rem!important;
-	}
-			
-	#nav_pill_btn1 {
-		margin-right: +5px;
-	}
-
-	.img-container {
-		height: 30vh;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-	
-	.img-slider {
-	    max-height: 100%;
-	    max-width: 100%;
-	    display: block;
-	}
-	
-	.w-100 {
-	    width: 100%!important;
-	    max-width: 515px;
-	    text-align: center;
-	    position: relative;
-	    margin: auto;
-	}
-	
-	.selectpicker {
-		font-family: "sbaggro","nucleo-icons";
-    	height: 35px;
-		width: 100px;
-	}
-	
-	option {
-	    font-weight: lighter;
-	    display: block;
-	    white-space: nowrap;
-	    min-height: 1.2em;
-	    padding: 0px 2px 1px;
-	}
-	
-	.navi-container .menu-container .navi-content a.active {
-	    border-bottom: 3px solid rgba(30,30,30,.97);
-	    font-weight: normal;
-	}
-	
-	.header-wrap h2 {
-	    font-weight: normal;
-	    text-align : center;
-	}
-	
-	.header-wrap {
-	    justify-content: space-between;
-	    align-items: center;
-	    text-align:left;
-	    padding: 15px 15px 15px 15px;
-	}
-	
-	p.parking-wrap small {
-	    padding-left: 7px;
-	    position: relative;
-	    display: inline-block;
-	    font-weight: lighter;
-	}
-	
-	p small {
-	    color: #212120;
-	}
-	
-	p.parking-wrap small[data-gender="3"]::before {
-	    background-color: #6d00e0;
-	}
-	
-	p.parking-wrap small[data-gender]::before {
-	    content: "";
-	    position: absolute;
-	    display: block;
-	    width: 5px;
-	    height: 5px;
-	    border-radius: 50%;
-	    left: 0px;
-	    top: 3.4px;
-	}
-	
-	p.parking-wrap small::before {
-	    content: "·";
-	    position: absolute;
-	    display: block;
-	    left: 2px;
-	}
-	
-	*, ::after, ::before {
-	    box-sizing: border-box;
-	}
-	
-	.row {
-	    --bs-gutter-x: 1.5rem;
-	    --bs-gutter-y: 0;
-	    display: flex;
-	    flex-wrap: wrap;
-	    margin-top: calc(-1 * var(--bs-gutter-y));
-	    margin-right: calc(-.5 * var(--bs-gutter-x));
-	    margin-left: calc(-.5 * var(--bs-gutter-x));
-	}
-	
-	.root-container {
-	    max-width: 800px;
-	    position: relative;
-	    width: 100%;
-	    margin: auto;
-	    text-align: center;
-	}
-	
-	.row > * {
-	    flex-shrink: 0;
-	    width: 100%;
-	    padding-right: calc(var(--bs-gutter-x) * .5);
-	    padding-left: calc(var(--bs-gutter-x) * .5);
-	    margin-top: var(--bs-gutter-y);
-	}
-	
-	.img-container {
-		height: 30vh;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-	
-	.img-slider {
-	    max-height: 100%;
-	    max-width: 100%;
-	    display: block;
-	}
-	
-	.profile img {
-	    width: 3.375rem;
-	    height: 3.375rem;
-	    display: block;
-	    border-radius: 50%;
-	    object-fit: cover;
-	}
-	
-	.gameContent {
-		text-align:left;
-		font-weight: lighter;
-	}
-	
-	strong.game-badge {
-	    font-size: 20px;
-	    transform: scale(0.8);
-	    border-radius: 20px;
-	    padding: 3px 9px 1px;
-	    color: #fff;
-	    font-weight: lighter;
-	    margin-left: -3px;
-	}
-	
-	strong.game-badge[data-game=rank] {
-	    background-color: #a341f9;
-	}
-	
-	p.parking-wrap strong {
-	    position: relative;
-	    display: inline-block;
-	    font-weight: normal;
-	}
-	
-	.ground-wrap p strong {
-	    color: #212120;
-	}
-	
-	.ground-wrap {
-	    display: flex;
-	    align-items: center;
-	    flex-direction: column;
-	    justify-content: center;
-	    align-items: flex-start;
-	    margin: 1rem auto;
-	    border-bottom: 1px solid #f2f2f2;
-   		padding-bottom: 10px;
-	}
-	
-	h3 {
-	    margin-top: 0.5rem;
-	    margin-bottom: 0.5rem;
-	    font-weight: lighter;
-	    line-height: 1.2;
-	}
-	
-	.pl {
-		font-weight: lighter;
-	}
 	

@@ -2,19 +2,18 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<!DOCTYPE html>
+<html>
 <!-- BootStrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<link href="https://webfontworld.github.io/sandbox/SBAggro.css" rel="stylesheet">
 <sec:authentication property="principal" var="prin"/>
-<!DOCTYPE html>
-<html>
 <head>
 <!-- Styles -->
 <link rel="stylesheet" href="/resources/comment/modal.css">
 <link rel="stylesheet" href="/resources/post/detail.css">
-<link rel="stylesheet" href="/resources/comment/modal.css">
 <style>
 </style>
 <meta charset="UTF-8">
@@ -25,7 +24,18 @@
 
 	<div class="header">
 	</div><!-- .header -->
+	
 	<div class="container">
+ 		<div class="row">
+ 			<div class="root-container">
+				<div class="img-container">
+			        <img class="img-slider" src="../resources/images/soccer_zone.jpg">
+			    </div>
+			</div>
+		</div>
+	</div>		
+	
+	<div class="post-container">
 		<div class="row">
 			<div class="col-6">
 				글제목 : ${post.title } <br/>

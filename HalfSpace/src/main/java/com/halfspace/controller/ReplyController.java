@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.halfspace.persistence.MainBoardVO;
 import com.halfspace.persistence.ReplyVO;
+import com.halfspace.service.MainBoardService;
 import com.halfspace.service.ReplyService;
 
 @RestController //비동기방식으로 작동함, MVC 방식으로 작동하지 않음| Rest 서버의 방식
@@ -25,6 +27,9 @@ public class ReplyController {
 	@Autowired
 	private ReplyService service;
 	
+	@Autowired
+	private MainBoardService boardservice;
+
 	// consumes는 이 메서드의 파라미터를 넘겨줄 때 어떤 형식으로 넘겨줄지
 	// 를 설정하는데, 기본적으로 rest방식에서는 json을 사용합니다.
 	// produces는 입력받은 데이터를 토대로 로직을 실행한 다음
@@ -45,6 +50,10 @@ public class ReplyController {
 		try {
 			// 먼저 글쓰기 로직 실행 후 에러가 없다면 ..
 			service.addReply(vo);
+			Long bno = vo.getBno();
+			MainBoardVO board = boardservice.getDetail(bno);
+			Long replycount = board.getReplycount();
+			
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch(Exception e) {
 			// catch로 넘어왔다는것은 글쓰기에 문제가 생겼다는 뜻이므로
@@ -62,7 +71,6 @@ public class ReplyController {
 			// 아래와 같이 2개를 모두 얹습니다.
 			// jackson-dataformat-xml을 추가해야 xml도 작동합니다.
 			produces= {MediaType.APPLICATION_XML_VALUE,
-					
 						MediaType.APPLICATION_JSON_UTF8_VALUE})
 			public ResponseEntity<List<ReplyVO>> list(
 						@PathVariable("bno") Long bno) { // URL에서 명시된 파라미터 값 가져오기 @PathVariable									
@@ -84,11 +92,12 @@ public class ReplyController {
 	@DeleteMapping(value="/{rno}",
 				produces= {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> remove(
-				@PathVariable("rno") Long rno) {
+			 @PathVariable("rno") Long rno) {
 		
 		ResponseEntity<String> entity = null;
 		
 		try {
+			
 			service.removeReply(rno);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch(Exception e) {
