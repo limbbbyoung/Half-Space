@@ -6,46 +6,16 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!-- Styles -->
-<link rel="stylesheet" href="/resources/comment/modal.css">
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <sec:authentication property="principal" var="prin"/>
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Styles -->
+<link rel="stylesheet" href="/resources/comment/modal.css">
+<link rel="stylesheet" href="/resources/post/detail.css">
 <link rel="stylesheet" href="/resources/comment/modal.css">
 <style>
-	 #btn-filed, #commentAdd{
-	 	margin-bottom : 10px;
-	 	padding : 10px 10px;
-        display: inline-block;
-        background-color:#244875; 
-        color: white;
-        border-radius: 20px;
-        text-align: center;
-        line-height: 100%;
-    }
-    
-    #uploadResult {
-		width:100%;
-		background-color: aqua;
-	}
-	
-	#uploadResult ul {
-		display : flex;
-		flex-flow : row;
-		justify-content : center;
-		align-items : center;
-	}
-	#uploadResult ul li {
-		list-style : none;
-		padding: 10px;
-		align-content : center;
-		text-align : center;
-	}
-	#uploadResult ul li img {
-		width : 100px;
-	}
 </style>
 <meta charset="UTF-8">
 <title>postDetail</title>
@@ -84,6 +54,17 @@
 				</sec:authorize>
 				<a class="btn" id="btn-filed" href="/post/list?page=${param.page}&searchType=${param.searchType}&keyword=${param.keyword}">글 목록</a>
 		    </div><!-- .col-6 -->
+			
+				<!-- 첨부파일 영역 작성 -->
+			<div class="row">
+				<h3 class="text-primary">첨부파일</h3>
+				<div id="uploadResult">
+					<ul>
+						<!-- 첨부파일이 들어갈 위치 -->
+					</ul>
+				</div>
+			</div><!-- row -->
+	
 			<div class="col-6">
 			
 				<!-- 자유 게시판 상세글의 댓글 comment -->
@@ -174,7 +155,7 @@
 	// 익명함수 선언 및 호출
 	// 우선 함수이기 때문에 호출한다는 점을 명시하기 위해 마지막에 () 를 추가로 붙여준다.
 	(function(){
-		$.getJSON("/board/getAttachList", {bno:bno}, function(arr){
+		$.getJSON("/post/getAttachList", {pono:pono}, function(arr){
 			console.log(arr);
 			
 			let str = "";

@@ -60,12 +60,22 @@ public class PostServiceImpl implements PostService{
 		mapper.delete(pono);
 		
 	}
-
+	
 	@Override
 	public void update(PostVO vo) {
+		// DB의 해당 pono 이미지들을 모두 삭제
+		attachMapper.deleteAll(vo.getPono());
+		
+		// 첨부파일 리스트가 존재한다면
+		// 다시 insert 실행
+		if (vo.getAttachList().size() > 0) {
+			vo.getAttachList().forEach(attach -> {
+				attach.setPono(vo.getPono());
+				attachMapper.insert(attach);
+			});
+		}
 		
 		mapper.update(vo);
-		
 	}
 
 	@Override

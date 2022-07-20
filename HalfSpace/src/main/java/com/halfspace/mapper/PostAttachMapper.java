@@ -14,4 +14,6 @@ public interface PostAttachMapper {
 	
 	public void deleteAll(Long pono);
 	
+	public List<PostAttachVO> getOldFiles();
+	
 }

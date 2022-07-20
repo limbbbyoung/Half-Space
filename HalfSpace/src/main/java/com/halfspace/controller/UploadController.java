@@ -263,7 +263,7 @@ public class UploadController {
 								new String(resourceName.getBytes("UTF-8"), "ISO-8859-1"));
 		} catch(UnsupportedEncodingException e) {
 			e.printStackTrace();
-		}
+		} //  ResponseEntity END
 		
 		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
 	}

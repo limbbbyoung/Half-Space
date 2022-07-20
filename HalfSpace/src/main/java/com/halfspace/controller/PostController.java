@@ -11,6 +11,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.halfspace.domain.UserVO;
@@ -173,14 +177,28 @@ public class PostController {
 		
 		service.insert(post);
 		
+		// 첨부파일 정보가 있다면
+		log.info("입력될 post 정보 : " + post);
+		// post에 첨부파일목록이 존재한다면
+		if(post.getAttachList() != null) {
+			post.getAttachList().forEach(attach -> log.info(attach));
+		}
+		
 		return "redirect:/post/list";
 	} // insertPost END
 	
 	@PostMapping("/delete")
 	public String deletePost(Long pono, SearchCriteria cri, RedirectAttributes rttr) {
 		
-		service.delete(pono);
+		List<PostAttachVO> attachList = service.getAttachList(pono);
 		
+		service.delete(pono);
+		// 첨부 리스트가 존재할 때
+		if(attachList != null || attachList.size() > 0 ) {
+			deleteFiles(attachList);
+		}
+		
+		rttr.addAttribute("pono", pono);
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("searchType", cri.getSearchType());
 		rttr.addAttribute("keyword", cri.getKeyword());
@@ -215,9 +233,17 @@ public class PostController {
 		rttr.addAttribute("searchType", cri.getSearchType());
 		rttr.addAttribute("keyword", cri.getKeyword());
 	
-		return "redirect:/post/detail";
+		return "redirect:/post/detail?pono=" + post.getPono();
 	
 	} //  updatePost END
+	
+	@GetMapping(value="/getAttachList", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<PostAttachVO>> getAttachList(Long pono){
+		
+		return new ResponseEntity<>(service.getAttachList(pono), HttpStatus.OK);
+	}
+ 	
 	
 	
 	

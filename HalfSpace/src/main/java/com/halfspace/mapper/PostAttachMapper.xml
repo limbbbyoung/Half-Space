@@ -22,7 +22,11 @@
 		DELETE FROM post_image WHERE pono = #{pono}
 	</delete>
 
-
+	<!-- 하루 전 날짜 DB 청소 -->
+	<select id="getOldFiles" resultType="com.halfspace.persistence.PostAttachVO">
+		SELECT * FROM post_image WHERE uploadpath = TO_CHAR(sysdate -1, 'yyyy\mm\dd')
+	</select>
+	
 
 
 </mapper>
