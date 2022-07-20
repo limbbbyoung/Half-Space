@@ -23,5 +23,7 @@
 	<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
 		<a href="/admin/userlist">관리자 페이지로</a>
 	</sec:authorize>
+		<a href="/mainBoard/list">메인화면으로</a>
+	
 </body>
 </html>

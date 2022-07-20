@@ -51,19 +51,10 @@ public class LoginController { // 수업시간에 배운 교안에서는 Securit
 		// Member loginMember = service.login(user.getUserId(), user.getUserPw());
 	   //   log.info("login", loginMember);
 		
-		
-		
+
 		return "redirect:/";
 	} // login
 	
-	
-	@PreAuthorize("permitAll")
-	@GetMapping("/all")
-	public void doAll() {
-		
-		log.info("all 접속 실행");
-		
-	}
 
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_USER')")
 	@GetMapping("/user")
@@ -131,7 +122,7 @@ public class LoginController { // 수업시간에 배운 교안에서는 Securit
 		try {
 		
 			service.insertUser(vo);
-			return "/login/welcome";
+			return "/login/joinWelcome";
 			
 		}catch(Exception e) {
 			e.printStackTrace();

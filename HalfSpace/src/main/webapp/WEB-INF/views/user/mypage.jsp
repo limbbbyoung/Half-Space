@@ -12,10 +12,7 @@
 </head>
 <body>
 
-
-
-user user
- <h2>페이지 정보</h2>
+    <h2>USER 정보</h2>
  	
  	<p>principal : <sec:authentication property="principal"/></p><hr/>
  	<p>UserVO : <sec:authentication property="principal.user"/></p><hr/>
@@ -23,15 +20,12 @@ user user
  	<p>사용자의 이름 : <sec:authentication property="principal.user.userName"/></p><hr/>
  	<p>사용자의 아이디 : <sec:authentication property="principal.user.userId"/></p><hr/>
  	<p>사용자의 권한 목록 : <sec:authentication property="principal.user.authList"/></p><hr/>
-<a href="/hsLogout">로그아웃</a>
+    <a href="/hsLogout">로그아웃</a>
 	<form action="/user/updateForm" method="post">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		<input type="submit" value="내 정보 수정">
 	</form>
 	<br/>
-	
-
-	
 	
 </body>
 </html>
