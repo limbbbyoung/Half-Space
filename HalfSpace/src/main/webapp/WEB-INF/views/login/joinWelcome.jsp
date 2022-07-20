@@ -12,6 +12,5 @@
 	<h1>가입을 환영합니다.</h1>
 	<a href="/mainBoard/welcomeHome">홈페이지로</a>
 	<a href="/login/user">로그인 하기</a>
-
 </body>
 </html>
