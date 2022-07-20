@@ -1,0 +1,32 @@
+@charset "UTF-8";
+	 #btn-filed, #commentAdd{
+	 	margin-bottom : 10px;
+	 	padding : 10px 10px;
+        display: inline-block;
+        background-color:#244875; 
+        color: white;
+        border-radius: 20px;
+        text-align: center;
+        line-height: 100%;
+    }
+    
+    #uploadResult {
+		width:100%;
+		background-color: aqua;
+	}
+	
+	#uploadResult ul {
+		display : flex;
+		flex-flow : row;
+		justify-content : center;
+		align-items : center;
+	}
+	#uploadResult ul li {
+		list-style : none;
+		padding: 10px;
+		align-content : center;
+		text-align : center;
+	}
+	#uploadResult ul li img {
+		width : 100px;
+	}
