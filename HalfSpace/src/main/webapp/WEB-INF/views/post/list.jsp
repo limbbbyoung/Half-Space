@@ -80,78 +80,47 @@
 			<div class="header-wrap px-4">
 				<h2>자유게시판</h2>
 			</div>
-			<table class="table table-hover" style="color :  #48734A;">
-				<thead>
-					<tr>
-						<th>글번호</th>
-						<th>카테고리</th>
-						<th>제목</th>
-						<th>글쓴이</th>
-						<th>쓴날짜</th>
-						<th>수정날짜</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="post" items="${postList}">
-						<tr>
-							<td>${post.pono}</td>
-							<td>${post.catego}</td>
-							<td><a href="/post/detail?page=${pageMaker.cri.page}&pono=${post.pono}&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${post.title }[${post.commentCnt}]</a></td>
-							<td>${post.writer}</td>
-							<td>${post.regDate}</td>
-							<td>${post.updateDate}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			
-			
-			
-		<ul class="list-group list-group-flush text-center">
-			<a href="#">
-				<li class="list-group-item">
-					<div class="time-wrap">
-						<img src="/resources/images/main_picture.jpg">
-					</div>
-					<div class="match-wrap">
-						<div class="gender-icon d-none" data-gender="3" data-battle="false">
-						</div>
-						<div class="ground-wrap">
-							<div style="width: 100%; padding-left: 10px;">
-								<div style="float:left;">
-									<small class="game-badge" data-game="rank">321</small>
+			<ul class="list-group list-group-flush text-center">
+				<c:forEach var="post" items="${postList}">
+					<a href="/post/detail?page=${pageMaker.cri.page}&pono=${post.pono}&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}"">
+						<li class="list-group-item">
+							<div class="time-wrap">
+								<img src="/resources/images/main_picture.jpg">
+							</div>
+							<div class="match-wrap">
+								<div class="gender-icon d-none" data-gender="3" data-battle="false">
 								</div>
-								<div style="float:left; margin-left:1.5%">
-									<small class="game-badge" data-game="rank">대충 카테고리</small>
+								<div class="ground-wrap">
+									<div style="width: 100%; padding-left: 10px;">
+										<div style="float:left;">
+											<small class="game-badge" data-game="rank">${post.pono}</small>
+										</div>
+										<div style="float:left; margin-left:1.5%">
+											<small class="game-badge" data-game="rank">${post.catego}</small>
+										</div>
+									</div>
+									<p>
+										<strong class="ground-name">${post.title } [${post.commentCnt}]</strong>
+									</p>
+									<p class="parking-wrap">
+										<small data-gender="3">${post.writer}</small>
+										<small>${post.regDate}</small>
+									</p>
 								</div>
 							</div>
-							<p>
-								<strong class="ground-name">대충 제목이다~ [댓글 개수]</strong>
-							</p>
-							<p class="parking-wrap">
-								<small data-gender="3">작성자</small>
-								<small>7월 19일 등록</small>
-							</p>
-						</div>
-					</div>
-					<div class="apply-wrap" data-status="full">
-						<p>
-							조회수<br>
-							8
-						</p>
-						<span>
-							Hit
-						</span>
-					</div>
-				</li>
-			</a>
-		</ul>
-			
-			
-			
-			
-			
-			
+							<div class="apply-wrap" data-status="full">
+								<p>
+									조회수<br>
+									8
+								</p>
+								<span>
+									Hit
+								</span>
+							</div>
+						</li>
+					</a>
+				</c:forEach>
+			</ul>
 			<sec:authorize access="isAuthenticated()">
 				<a class="btn w-100" href="/post/insert" id="btn-filed">글쓰기</a>
 			</sec:authorize>
