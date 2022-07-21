@@ -41,7 +41,7 @@
 	}
 	
 	.page-link {
-		color: #244875;
+		color: #ffc0cb;
 	}
 	
 	.my {
@@ -589,4 +589,9 @@
 	.navi-container .menu-container .navi-content a.active {
 	    border-bottom: 3px solid rgba(30,30,30,.97);
 	    font-weight: normal;
+	}
+	
+	.pagination {
+	    padding-left: 0;
+	    padding-right: 0;
 	}
