@@ -1,6 +1,7 @@
 package com.halfspace.controller;
 
 import java.security.Principal;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,6 @@ public class UserController {
 	
 	@Autowired
 	private PasswordEncoder pwen;
-	
-	// spring security의 principal을 불러와서 userId(principal.Username)을 처리합니다.
 	
 	@PreAuthorize("hasAnyRole('ROLE_USER, ROLE_MANAGER, ROLE_ADMIN')")
 	@RequestMapping(value="/mypage",

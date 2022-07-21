@@ -8,7 +8,6 @@
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Styles -->
-<link rel="stylesheet" type="text/css" href="/resources/각 css 파일 경로.css">
 <link rel="stylesheet" href="/resources/login/join.css">
 <!-- 글씨체 -->
 <link href="https://webfontworld.github.io/sandbox/SBAggro.css" rel="stylesheet">
@@ -89,7 +88,7 @@
 					<div class="profile-wrap text-center">
 						<div class="fileinput fileinput-new position-relative" data-provides="fileinput">
 							<div class="fileinput-new thumbnail img-circle">
-								<img src="/resources/images/basic-profile.png" width='150px' height='150px'>
+								<img src="/resources/images/main_picture.jpg">
 							</div>
 							<div class="fileinput-preview fileinput-exists thumbnail img-circle">
 							</div>
@@ -485,7 +484,7 @@
 		} 
 		
         if(password.length < 6 || pw.length>16){
-            window.alert('비밀번호는 6글자 이상, 20글자 이하만 이용 가능합니다.');
+            alert('비밀번호는 6글자 이상, 20글자 이하만 이용 가능합니다.');
             password.value='';
         }
 		else { // 만일 두 인풋 필드값이 같을 경우
@@ -548,7 +547,7 @@
 				}
 				return true;
 			}
-	} // document.ready END
+	}); // document.ready END
 	
 
 		
