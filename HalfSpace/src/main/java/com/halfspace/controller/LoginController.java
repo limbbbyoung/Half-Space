@@ -66,18 +66,21 @@ public class LoginController { // 수업시간에 배운 교안에서는 Securit
 	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
 	@GetMapping("/manager")
-	public void doManager() {
+	public String doManager() {
 		
 		log.info("manager 접속 실행");
+		
+		return "redirect:/mainBoard/list";
 		
 	}
 	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/admin")
-	public void doAdmin() {
+	public String doAdmin() {
 		
 		log.info("admin 접속 실행");
 		
+		return "redirect:/mainBoard/list";
 	}
 	
 	@PreAuthorize("permitAll")
