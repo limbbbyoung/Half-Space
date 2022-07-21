@@ -1,6 +1,7 @@
 package com.halfspace.controller;
 
 import java.security.Principal;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletResponse;
@@ -37,6 +38,17 @@ public class LoginController { // 수업시간에 배운 교안에서는 Securit
 	
 	@Autowired
 	private PasswordEncoder pwen;
+	
+	public Date transFormDate(String year, String month, String day) {
+		
+		String date = year + "-" + month + "-" + day;
+		
+		Date d = Date.valueOf(date);
+		
+		return d;
+		
+	} // transFormDate END
+
 	
 	
 	@PostMapping
@@ -91,21 +103,28 @@ public class LoginController { // 수업시간에 배운 교안에서는 Securit
 	
 	@PreAuthorize("permitAll")
 	@PostMapping("/join")
-	public String join(UserVO vo, String[] role, RedirectAttributes rttr) {
-		// vo에 정보들을 잘 받아오는지 체크
-		log.info(vo);
-		log.info(role);
+	public String join(UserVO vo, String[] role, String birthdate_y, String birthdate_m, String birthdate_d,
+			String user_phone, String phone1, String phone2, String emailId, String emailDomain, RedirectAttributes rttr) {
 		
 		// 전화번호 받아오기
-		//String phoneNum = ph1 + ph2 + ph3;
-		//log.info(phoneNum);
-		//vo.setPhoneNum(phoneNum);
+		String phoneNum = user_phone + phone1 + phone2;
+		log.info(phoneNum);
+		vo.setPhoneNum(phoneNum);
 
-		// 주소값 받아오기
-		//String address = address1 + address2 + address3;
-		//log.info(address);
-		//vo.setAddress(address);
+		// 생일 가져오기
+		Date birthdate = transFormDate(birthdate_y, birthdate_m, birthdate_d);
+		log.info(birthdate);
+		vo.setBirthdate(birthdate);
 		
+		// 이메일 가져오기
+		String email = emailId + "@" + emailDomain;
+		log.info(email);
+		vo.setEmail(email);
+		
+		// vo에 정보들을 잘 받아오는지 체크
+				log.info(vo);
+				log.info(role);
+				
 		String beforeCrPw = vo.getUserPw();
 		log.info("암호화 전 : " + vo.getUserPw());
 		vo.setUserPw(pwen.encode(beforeCrPw));

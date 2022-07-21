@@ -79,16 +79,17 @@
 	</div><!-- .header끝나는 지점 -->
 
 
-	<!-- container START -->
+	<!-- id="join-page" narrow-container START -->
 	<div class="narrow-container mx-auto py-5" id="join-page">
 		<h5 class="px-4 py-2">회원가입</h5>
 		<div class="row">
 			<div class="col">
-				<form class="page-wrap" onsubmit="return fnJoin()">
+					<!--onsubmit="return fnJoin()"  -->
+				<form class="page-wrap" action="/login/join" method="post">
 					<div class="profile-wrap text-center">
 						<div class="fileinput fileinput-new position-relative" data-provides="fileinput">
 							<div class="fileinput-new thumbnail img-circle">
-								<img src="/public_images/ranking/rank-profile.png">
+								<img src="/resources/images/basic-profile.png" width='150px' height='150px'>
 							</div>
 							<div class="fileinput-preview fileinput-exists thumbnail img-circle">
 							</div>
@@ -107,46 +108,49 @@
 							</div>
 						</div>
 						<div class="profile-desc text-caution d-flex justify-content-center">
-							<img src="/public_images/svg/caution.svg" width="10">
+							<img src="/resources/images/caution.svg" width="10">
 							<small>150x150사이즈 권장</small>
 						</div>
 					</div>
 					<div class="row-wrap mb-3">
 						<div class="input-wrap">
 							<label>아이디</label>
-							<input class="form-control mt-1" type="text" name="userId" placeholder="아이디">
+							<input class="form-control mt-1" type="text" name="userId" id="userId" placeholder="아이디" maxlength="20">
+							<small>최대 20자</small>
 						</div>
 					</div>
 					<div class="row-wrap mb-3">
 						<div class="input-wrap">
 							<label>비밀번호</label>
-							<input class="form-control mt-1" type="password" name="userPw" id="password" placeholder="비밀번호">
+							<input class="form-control mt-1" type="password" name="userPw" id="password" placeholder="비밀번호" maxlength="20">
+							<small>최대 20자 특수문자 권장</small>
 						</div>
 					</div>
 					<div class="row-wrap mb-3">
 						<div class="input-wrap">
 							<label>비밀번호 확인</label>
-							<input class="form-control mt-1" type="password" name="userPw_chk" id="confirm_password" placeholder="비밀번호 확인">
+							<input class="form-control mt-1" type="password" name="userPw_chk" id="confirm_password" placeholder="비밀번호 확인" maxlength="20">
 						</div>
 					</div>
 					<div class="row-wrap mb-3">
 						<div class="row no-gutters">
 							<div class="input-wrap col-6">
 								<label>이름</label>
-								<input class="form-control mt-1" type="text" name="user_name" placeholder="이름">
+								<input class="form-control mt-1" type="text" name="userName" placeholder="이름">
+								<small>닉네임을 입력해주세요</small>
 							</div>
 							<div class="input-wrap col-6">
 								<label>성별</label>
 								<div class="row py-1">
 									<div class="col-6 form-check-radio radio-wrap wide-wrap">
 									<label class="form-check-label" data-toggle="false" data-name="gender">
-										<input class="form-check-input" type="radio" name="gender" value="male">
+										<input class="form-check-input" type="radio" name="gender" value="Y">
 										<span class="form-check-sign">남성</span>
 									</label>
 									</div>
 									<div class="col-6 form-check-radio radio-wrap wide-wrap">
 										<label class="form-check-label" data-toggle="false" data-name="gender">
-											<input class="form-check-input" type="radio" name="gender" value="female">
+											<input class="form-check-input" type="radio" name="gender" value="N">
 											<span class="form-check-sign">여성</span>
 										</label>
 									</div>
@@ -155,9 +159,10 @@
 						</div>
 					</div>
 					<div class="row no-gutters row-wrap mb-3">
-						<div class="col-4"><div class="select-group form-group mr-2">
+						<div class="col-4">
+						<div class="select-group form-group mr-2">
 							<label>생년월일</label>
-							<select class="form-control" name="birth_y">
+							<select class="form-control" name="birthdate_y">
 								<option value="2022">2022년</option>
 								<option value="2021">2021년</option>
 								<option value="2020">2020년</option>
@@ -259,7 +264,7 @@
 				<div class="col-4">
 					<div class="select-group form-group mx-1">
 						<label>&nbsp;</label>
-							<select class="form-control" name="birth_m">
+							<select class="form-control" name="birthdate_m">
 								<option value="1">1월</option>
 								<option value="2">2월</option>
 								<option value="3">3월</option>
@@ -278,7 +283,7 @@
 				<div class="col-4">
 					<div class="select-group form-group ml-2">
 						<label>&nbsp;</label>
-						<select class="form-control" name="birth_d">
+						<select class="form-control" name="birthdate_d">
 							<option value="1">1일</option>
 							<option value="2">2일</option>
 							<option value="3">3일</option>
@@ -319,37 +324,56 @@
 				<label>휴대폰 번호</label>
 				<div class="d-flex justify-content-between">
 					<div class="input-wrap">
-						<input class="form-control text-center my-0" type="tel" name="user_phone" value="010" maxlength="3">
+						<input class="form-control text-center my-0" type="tel" name="user_phone" id="phoneNum1" value="010" maxlength="3">
 					</div>
-				<div class="my-auto mx-1">-</div>
+					<div class="my-auto mx-1">-</div>
 					<div class="input-wrap">
-						<input class="form-control text-center my-0" type="tel" name="phone1" maxlength="4">
+						<input class="form-control text-center my-0" type="tel" name="phone1" id="phoneNum2" maxlength="4">
 					</div>
-				<div class="my-auto mx-1">-</div>
-				<div class="input-wrap">
-					<input class="form-control text-center my-0" type="tel" name="phone2" maxlength="4">
-				</div>
-				<div class="input-wrap">
-					<button class="btn btn-male rounded-pill text-nowrap m-0 ml-1" type="button" name="btnSendCertify">인증</button>
+					<div class="my-auto mx-1">-</div>
+					<div class="input-wrap">
+						<input class="form-control text-center my-0" type="tel" name="phone2" id="phoneNum3" maxlength="4">
+					</div>
 				</div>
 			</div>
-			<div class="text-caution">
-				<img src="/public_images/svg/caution.svg" width="12">
-				<small class="ml-2">최초 인증 받은 연락처로 매치 및 이벤트 알림이 발송되오니 바르게 작성해 주세요.</small>
+		</div>
+		<div class="row no-gutters mb-3">
+			<div class="form-group">
+				<label>이메일</label>
+				<div class="d-flex justify-content-between">
+					<div class="input-wrap">
+						<input class="form-control text-center my-0" type="text" name="emailId" id="emailId" placeholder="아이디">
+					</div>
+					<div class="my-auto mx-1">@</div>
+					<div class="input-wrap">
+						<input class="form-control text-center my-0" type="text" name="emailDomain" id="emailDomain" placeholder="도메인">
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="row no-gutters mb-3">
-		<div class="row-wrap">
-			<button class="btn btn-main rounded-pill w-100 py-2" type="submit">
-			 	<h4>회원가입</h4>
-			 </button>
-		 	<input type="hidden" name="sessionID">
+
+
+		<div class="row-wrap mb-3">
+			<div class="input-wrap">
+				<label>주소</label>
+				<input class="form-control mt-1" type="text" name="address" placeholder="주소지">
+			</div>
 		</div>
-	</div>
-</form>
+		<div class="row no-gutters mb-3">
+			<div class="row-wrap">
+				<button class="btn btn-success w-100 py-3 mt-3 mb-1 rounded" id="submitBtn" type="submit">
+					<h3 class="font-weight-normal">회원가입</h3>
+				</button>
+				<input type="hidden" name="role" value="ROLE_USER">
+		 		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
+			</div>
+		</div>
+	</form> <!-- form END -->
+	
 </div> <!-- div class col -->
+
 </div> <!-- join page -->
+
 </div>
 
 
@@ -433,16 +457,37 @@
 	
 </body>
 <script type="text/javascript">
-	// 비밀번호 유효성 검사를 위해 id="password"인 속성의 값을 저장
-	let password = document.getElementById("password")
+	// csrf 토큰
+	let csrfHeaderName = "${_csrf.headerName}"
+	let csrfTokenValue="${_csrf.token}"
 	
-		,confirm_password = document.getElementById("confirm_password");
+	
+	// 앞으로 사용할 변수 저장
+	let userId = document.getElementById("userId");
+		
+	let phoneNum = document.getElementById("phoneNum1") + document.getElementById("phoneNum2")
+						+	document.getElementById("phoneNum3");
+
+	let strBirthDate = document.getElementById("birthdate_y") + document.getElementById("birthdate_m")
+						+ document.getElementById("birthdate_d");
+		
+	
+
+	// 비밀번호 유효성 검사를 위해 id="password"인 속성의 값을 저장
+	let password = document.getElementById("password");
+	
+	let confirm_password = document.getElementById("confirm_password");
 
 	function validatePassword(){
 		if(password.value != confirm_password.value) { // 만일 두 인풋 필드값이 같지 않을 경우
   		// setCustomValidity의 값을 지정해 무조건 경고 표시가 나게 하고
- 		 confirm_password.setCustomValidity("Passwords Don't Match"); 
+ 		 confirm_password.setCustomValidity("비밀번호 확인이 일치하지 않습니다."); 
 		} 
+		
+        if(password.length < 6 || pw.length>16){
+            window.alert('비밀번호는 6글자 이상, 20글자 이하만 이용 가능합니다.');
+            password.value='';
+        }
 		else { // 만일 두 인풋 필드값이 같을 경우
   		// 오류가 없으면 메시지를 빈 문자열로 설정해야한다. 오류 메시지가 비어 있지 않은 한 양식은 유효성 검사를 통과하지 않고 제출되지 않는다.
  		 // 따라서 빈값을 주어 submit 처리되게 한다
@@ -482,6 +527,34 @@
 		$("#sidebar2").removeClass('active');
 		$(".overlay").removeClass('active');
 	})
+	
+	$(document).ready(function(){
+			
+			// 정규표현식 : 예).com 끝나는 문장 등의 조건이 복잡한 문장을 컴퓨터에게 이해시키기 위한 구문
+			let regex = new RegExp("(.*)\.(exe|sh|zip|alz)$");
+								// 파일이름 .  exe|sh|zip|alz 인 경우를 체크함
+			let maxSize =5242880; // 5Mb
+			
+			function checkExtension(fileName, fileSize){
+				// 파일크기 초과시 종료시킴
+				if(fileSize >= maxSize){
+					alert("파일 사이즈 초과");
+					return false;// return이 있어서 아래쪽 구문은 실행 안됨
+				}
+				// regex에 표현해둔 정규식과 일치하는지 여부를 체크, 일치하면 true, 아니면 false
+				if(regex.test(fileName)){
+					alert("해당 확장자를 가진 파일은 업로드할 수 없습니다.");
+					return false;
+				}
+				return true;
+			}
+	} // document.ready END
+	
+
+		
+
 
 </script>
+
+<script src="/resources/login/joinDoubleCheck.js"></script>
 </html>

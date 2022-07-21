@@ -114,7 +114,7 @@
 									<span>\${attach.fileName}</span><br/>
 									<button type='button' data-file='\${fileCallPath}' data-type='file' 
 										class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br/>
-									<img src='/resources/attach.png' width='100px' height='100px'>
+									<img src='/resources/images/attach.png' width='100px' height='100px'>
 								</div>
 							</li>`;
 				}

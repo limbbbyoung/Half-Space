@@ -34,9 +34,9 @@
 					  </c:when>
 					  <c:otherwise>
 						<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-						  <input type="radio" class="btn-check" name="gender" id="Y" value="N" autocomplete="off">
+						  <input type="radio" class="btn-check" name="gender" id="Y" value="Y" autocomplete="off">
 						  <label class="btn btn-outline-primary" for="Y">  남성  </label>
-						  <input type="radio" class="btn-check" name="gender" id="N" value="Y" autocomplete="off" checked>
+						  <input type="radio" class="btn-check" name="gender" id="N" value="N" autocomplete="off" checked>
 						  <label class="btn btn-outline-primary" for="N">  여성  </label>
 						</div>
 					  </c:otherwise>
@@ -52,5 +52,7 @@
 			<input class="btn btn-outline-primary" type="submit" value="저장" />	
 		</form>
 	<!-- END form -->
+	
+	<input type="button" value="BACK" id="backBtn" onClick="history.go(-1)"> 
 </body>
 </html>
