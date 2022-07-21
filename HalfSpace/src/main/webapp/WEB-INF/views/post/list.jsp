@@ -82,43 +82,94 @@
 			</div>
 			<ul class="list-group list-group-flush text-center">
 				<c:forEach var="post" items="${postList}">
-					<a href="/post/detail?page=${pageMaker.cri.page}&pono=${post.pono}&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}"">
-						<li class="list-group-item">
-							<div class="time-wrap">
-								<img src="/resources/images/main_picture.jpg">
+				<a href="/post/detail?page=${pageMaker.cri.page}&pono=${post.pono}&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">
+				<c:if test="${post.catego == '공지'}">
+					<li class="list-group-item">
+						<div class="time-wrap">
+							<img src="/resources/images/main_picture.jpg">
+						</div>
+						<div class="match-wrap">
+							<div class="gender-icon d-none" data-gender="3" data-battle="false">
 							</div>
-							<div class="match-wrap">
-								<div class="gender-icon d-none" data-gender="3" data-battle="false">
-								</div>
-								<div class="ground-wrap">
-									<div style="width: 100%; padding-left: 10px;">
-										<div style="float:left;">
-											<small class="game-badge" data-game="rank">${post.pono}</small>
-										</div>
-										<div style="float:left; margin-left:1.5%">
-											<small class="game-badge" data-game="rank">${post.catego}</small>
-										</div>
+							<div class="ground-wrap">
+								<div style="width: 100%; padding-left: 10px;">
+									<div style="float:left;">
+										<small class="game-badge" data-game="num">${post.pono}</small>
 									</div>
-									<p>
-										<strong class="ground-name">${post.title } [${post.commentCnt}]</strong>
-									</p>
-									<p class="parking-wrap">
-										<small data-gender="3">${post.writer}</small>
-										<small>${post.regDate}</small>
-									</p>
+									<div style="float:left; margin-left:1.5%">
+										<small class="game-badge" data-game="${post.catego}">${post.catego}</small>
+									</div>
 								</div>
-							</div>
-							<div class="apply-wrap" data-status="full">
 								<p>
-									조회수<br>
-									8
+									<strong class="ground-name">
+										${post.title} [${post.commentCnt}]
+									</strong>
 								</p>
+								<p class="parking-wrap">
+									<small data-gender="3">${post.writer}</small>
+									<small>${post.regDate}</small>
+								</p>
+							</div>
+						</div>
+						<div class="apply-wrap" data-status="full">
+							<p>
+								조회수<br>
+								${post.hit}
+							</p>
+							<c:if test="${post.hit >= 10}">
 								<span>
 									Hit
 								</span>
+							</c:if>
+						</div>
+					</li>
+				</c:if>
+				</a>
+				</c:forEach>
+				<c:forEach var="post" items="${postList}">
+				<a href="/post/detail?page=${pageMaker.cri.page}&pono=${post.pono}&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">
+				<c:if test="${post.catego != '공지'}">
+					<li class="list-group-item">
+						<div class="time-wrap">
+							<img src="/resources/images/main_picture.jpg">
+						</div>
+						<div class="match-wrap">
+							<div class="gender-icon d-none" data-gender="3" data-battle="false">
 							</div>
-						</li>
-					</a>
+							<div class="ground-wrap">
+								<div style="width: 100%; padding-left: 10px;">
+									<div style="float:left;">
+										<small class="game-badge" data-game="num">${post.pono}</small>
+									</div>
+									<div style="float:left; margin-left:1.5%">
+										<small class="game-badge" data-game="${post.catego}">${post.catego}</small>
+									</div>
+								</div>
+								<p>
+									<strong class="ground-name">
+										${post.title} [${post.commentCnt}]
+									</strong>
+								</p>
+								<p class="parking-wrap">
+									<small data-gender="3">${post.writer}</small>
+									<small>${post.regDate}</small>
+								</p>
+							</div>
+						</div>
+						<div class="apply-wrap" data-status="full">
+							<p>
+								조회수<br>
+								${post.hit}
+							</p>
+							<c:if test="${post.hit >= 10}">
+							<span>
+								Hit
+							</span>
+							</c:if>
+						</div>
+					</li>
+				</c:if>
+				</a>
 				</c:forEach>
 			</ul>
 			<sec:authorize access="isAuthenticated()">
@@ -219,6 +270,10 @@
 									&nbsp;
 									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn2" href="/team/teamDetail">
 										<small>내 팀</small>
+									</a>
+									&nbsp;
+									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn3" href="/hsLogout">
+										<small>로그아웃</small>
 									</a>
 								</sec:authorize>
 							</div>
