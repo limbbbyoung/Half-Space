@@ -81,7 +81,7 @@
 				</div>
 				<ul class="list-group list-group-flush text-center">
 					<c:forEach var="teamList" items="${teamList}">
-						<a href="/team/teamDetail?page=${pageMaker.cri.page}&listno=${teamList.listno}&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">
+						<a href="/team/teamDetail?listno=${teamList.listno}&page=${pageMaker.cri.page}&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">
 							<li class="list-group-item">
 								<div class="time-wrap">
 									<img src="/resources/images/main_picture.jpg">
@@ -153,7 +153,7 @@
 			</div><!-- .row 끝나는 지점 -->
 		</div><!-- container -->
 		
-		 <div class="footer">
+		<div class="footer">
  		<div class="footer-container">
 			<a class="my-3" href="/">
 				<img src="../resources/images/LogoMakr-2rlJxi.png" width="80">
