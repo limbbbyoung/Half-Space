@@ -135,7 +135,7 @@
 							str += `<li data-path='\${obj.uploadPath}' data-uuid='\${obj.uuid}'
 										data-filename='\${obj.fileName}' data-type='\${obj.image}'>
 										<a href='/download?fileName=\${fileCallPath}'>
-											<img src='/resources/attach.png'>\${obj.fileName}
+											<img src='/resources/images/attach.png'>\${obj.fileName}
 										</a>
 										<span data-file='\${fileCallPath}' data-type='file'>X</span>
 									</li>`;
