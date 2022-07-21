@@ -120,7 +120,7 @@
 						<div class="sidebar-body">
 							<div class="header-wrap">
 								<sec:authorize access="isAnonymous()">
-									<a class="text-main btn-sm rounded-pill border ml-2" href="/hsLogin">
+									<a class="text-main btn-sm rounded-pill border ml-2" href="/users/login">
 										<small>로그인</small>
 									</a>
 								</sec:authorize>
@@ -131,6 +131,10 @@
 									&nbsp;
 									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn2" href="/team/teamDetail">
 										<small>내 팀</small>
+									</a>
+									&nbsp;
+									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn3" href="/hsLogout">
+										<small>로그아웃</small>
 									</a>
 								</sec:authorize>
 							</div>

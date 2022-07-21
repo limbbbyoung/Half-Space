@@ -84,7 +84,7 @@
 								<input type="text" class="form-control" name="username" placeholder="아이디 입력">
 							</div>
 							<div class="form-group input-wrap mb-0">
-    							<input type="text" class="form-control mb-0" name="password" placeholder="비밀번호 입력">
+    							<input type="password" class="form-control mb-0" name="password" placeholder="비밀번호 입력">
 							</div><!-- mb-0 -->
 							자동로그인 : <input type="checkbox" name="remember-me"><br>
 							<button class="btn btn-success w-100 py-3 mt-3 mb-1 rounded" type="submit">

@@ -342,11 +342,11 @@
 				<label>이메일</label>
 				<div class="d-flex justify-content-between">
 					<div class="input-wrap">
-						<input class="form-control text-center my-0" type="text" name="emailId" id="emailId" placeholder="아이디">
+						<input class="form-control text-center my-0" type="text" name="emailId" id="emailId" placeholder="이메일">
 					</div>
 					<div class="my-auto mx-1">@</div>
 					<div class="input-wrap">
-						<input class="form-control text-center my-0" type="text" name="emailDomain" id="emailDomain" placeholder="도메인">
+						<input class="form-control text-center my-0" type="text" name="emailDomain" id="emailDomain" placeholder="ex)naver.com">
 					</div>
 				</div>
 			</div>
@@ -428,6 +428,10 @@
 									&nbsp;
 									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn2" href="/team/teamDetail">
 										<small>내 팀</small>
+									</a>
+									&nbsp;
+									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn3" href="/hsLogout">
+										<small>로그아웃</small>
 									</a>
 								</sec:authorize>
 							</div>

@@ -20,8 +20,7 @@
 </head>
 <body>
 
-<!-- header 태그 -->
-
+	<!-- header 태그 -->	
 	<div class="header">
 		<div class="navi-container">
 			<div class="d-flex justify-content-between align-items-center mx-auto p-0" style="max-width:800px">
