@@ -180,14 +180,14 @@
 					</div>
 		<div class="row-wrap mb-3">
 			<div class="input-wrap">
-				<label>생일</label>
+				<label>생년월일</label>
 				<input class="form-control mt-1" type="text" name="birthdate" value="${user.birthdate}">
 			</div>
 		</div>
 		<div class="row-wrap mb-3">
 			<div class="input-wrap">
 				<label>이메일</label>
-				<input class="form-control mt-1" type="email" name="birthdate" value="${user.email}">
+				<input class="form-control mt-1" type="text" name="email" value="${user.email}">
 			</div>
 		</div>
 		<div class="row-wrap mb-3">
@@ -196,11 +196,18 @@
 				<input class="form-control mt-1" type="text" name="address" value="${user.address}">
 			</div>
 		</div>
+		<div class="row-wrap mb-3">
+			<div class="input-wrap">
+				<label>휴대폰</label>
+				<input class="form-control mt-1" type="text" name="phoneNum" value="${user.phoneNum}">
+			</div>
+		</div>
 		<div class="row no-gutters mb-3">
 			<div class="row-wrap">
 				<button class="btn btn-success w-100 py-3 mt-3 mb-1 rounded" id="submitBtn" type="submit">
 					<h3 class="font-weight-normal">내 정보 수정</h3>
 				</button>
+				<input type="hidden" name="role" value="${prin.authorities}">
 		 		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
 			</div>
 		</div>
