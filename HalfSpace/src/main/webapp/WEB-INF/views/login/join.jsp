@@ -474,18 +474,20 @@
 	
 
 	// 비밀번호 유효성 검사를 위해 id="password"인 속성의 값을 저장
-	let password = document.getElementById("password")
+	let password = document.getElementById("password");
 	
-		,confirm_password = document.getElementById("confirm_password");
+	let confirm_password = document.getElementById("confirm_password");
 
-
-	
-	
 	function validatePassword(){
 		if(password.value != confirm_password.value) { // 만일 두 인풋 필드값이 같지 않을 경우
   		// setCustomValidity의 값을 지정해 무조건 경고 표시가 나게 하고
- 		 confirm_password.setCustomValidity("Passwords Don't Match"); 
+ 		 confirm_password.setCustomValidity("비밀번호 확인이 일치하지 않습니다."); 
 		} 
+		
+        if(password.length < 6 || pw.length>16){
+            window.alert('비밀번호는 6글자 이상, 20글자 이하만 이용 가능합니다.');
+            password.value='';
+        }
 		else { // 만일 두 인풋 필드값이 같을 경우
   		// 오류가 없으면 메시지를 빈 문자열로 설정해야한다. 오류 메시지가 비어 있지 않은 한 양식은 유효성 검사를 통과하지 않고 제출되지 않는다.
  		 // 따라서 빈값을 주어 submit 처리되게 한다
