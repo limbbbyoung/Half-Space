@@ -34,6 +34,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.halfspace.domain.AuthVO;
 import com.halfspace.domain.UserAttachVO;
 import com.halfspace.domain.UserVO;
+import com.halfspace.mapper.UserAttachMapper;
+import com.halfspace.mapper.UserMapper;
 import com.halfspace.persistence.PostAttachVO;
 import com.halfspace.service.UserService;
 
@@ -49,6 +51,9 @@ public class LoginController { // 수업시간에 배운 교안에서는 Securit
 	
 	@Autowired
 	private UserService service;
+	
+	@Autowired
+	private UserAttachMapper mapper;
 	
 	@Autowired
 	private PasswordEncoder pwen;
@@ -219,34 +224,26 @@ public class LoginController { // 수업시간에 배운 교안에서는 Securit
 		
 		// 첨부파일 정보가 있다면
 		log.info("입력될 user 정보 : " + vo);
-		// post에 첨부파일목록이 존재한다면
+		// user vo에 첨부파일목록이 존재한다면
 		if(vo.getAttachList() != null) {
 			vo.getAttachList().forEach(attach -> log.info(attach));
 		}
 		
-		
-		try {
-		
-			service.insertUser(vo);
-			return "/login/joinWelcome";
 			
-		}catch(Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-		
+			try {
+			
+				service.insertUser(vo);
+				return "/login/joinWelcome";
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+				return null;
+			}
+			
+
 		
 		} // join END
 		
-		// ajax야 도와줘
-		@GetMapping(value="/getAttachList", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
-		@ResponseBody
-		public ResponseEntity<List<UserAttachVO>> getAttachList(String userId){
-			
-			return new ResponseEntity<>(service.getAttachList(userId), HttpStatus.OK);
-		}
-	 	
 	
 
-
-}
+} //  controller END

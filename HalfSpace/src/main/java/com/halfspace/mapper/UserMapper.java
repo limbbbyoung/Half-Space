@@ -2,6 +2,9 @@ package com.halfspace.mapper;
 
 
 
+import java.util.List;
+
+import com.halfspace.domain.UserAttachVO;
 import com.halfspace.domain.UserVO;
 
 

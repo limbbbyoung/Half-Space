@@ -343,3 +343,12 @@
     padding: 0;
 	}
 	
+	.uploadResult img{
+	   max-height: 150px;
+ 	   border-radius: 50%;
+ 	   display: inline-block;
+ 	   margin-bottom: 9px;
+ 	   position: relative!important;
+	}		
+		
+	

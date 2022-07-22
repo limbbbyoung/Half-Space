@@ -12,17 +12,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.halfspace.domain.AuthVO;
+import com.halfspace.domain.UserAttachVO;
 import com.halfspace.domain.UserVO;
 import com.halfspace.persistence.PostAttachVO;
 import com.halfspace.service.UserService;
@@ -116,6 +124,8 @@ public class UserController {
 		System.out.println("controller 에서 user 권한으로 user read 실행");
 		UserVO user = service.read(userId);
 		log.info("user read map 디버깅 : " + user);
+
+	
 		model.addAttribute("user", user);
 		
 		return "/user/mypage";
@@ -166,6 +176,17 @@ public class UserController {
 		
 	} // userUpdate END
 	
+	// ajax야 도와줘
+	@GetMapping(value="/getAttachList", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<UserAttachVO>> getAttachList(String userId){
+		log.info("제발 uid야 와줘");
+		log.info(userId);
+		return new ResponseEntity<>(service.getAttachList(userId), HttpStatus.OK);
+	} // getAttachList END
+ 	
+	
+
 	
 	
 	

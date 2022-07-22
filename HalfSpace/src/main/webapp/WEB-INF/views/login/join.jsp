@@ -84,17 +84,26 @@
 		<div class="row">
 			<div class="col">
 				<div class="profile-wrap text-center">
-					<div class="uploadResult">
-						<ul>
-							<!-- 업로드된 파일들이 여기 나열됨. -->
-						</ul>
+			
+					<!--  여기에 이미지를 넣는다 -->
+					<div class="user-wrap text-center">
+						<div class="fileinput fileinput-new position-relative" data-provides="fileinput">
+							<div class="uploadResult">
+								<!-- 바로 여기 -->
+								<img src="/resources/images/main_picture.jpg">
+							</div>
+						</div>
 					</div>
+					<!--  이미지 칸 끝 -->
+					
+	
 					<div class="uploadDiv">
-						<input type="file" name="uploadFile" multiple>
-					</div>
+						<input type="file" name="uploadFile">
+					</div>	
 					<button id="uploadBtn">프로필 선택</button>
+					
 					<div class="profile-desc text-caution d-flex justify-content-center">
-						<img src="/resources/images/caution.svg" width="10">
+						<img id="default-image" src="/resources/images/caution.svg" width="10">
 						<small>150x150사이즈 권장</small>
 					</div>
 				</div>
@@ -456,17 +465,6 @@
 	let csrfTokenValue="${_csrf.token}"
 	
 	
-	// 앞으로 사용할 변수 저장
-	let userId = document.getElementById("userId");
-		
-	let phoneNum = document.getElementById("phoneNum1") + document.getElementById("phoneNum2")
-						+	document.getElementById("phoneNum3");
-
-	let strBirthDate = document.getElementById("birthdate_y") + document.getElementById("birthdate_m")
-						+ document.getElementById("birthdate_d");
-		
-	
-
 	// 비밀번호 유효성 검사를 위해 id="password"인 속성의 값을 저장
 	let password = document.getElementById("password");
 	
@@ -478,7 +476,7 @@
  		 confirm_password.setCustomValidity("비밀번호 확인이 일치하지 않습니다."); 
 		} 
 		
-        if(password.length < 6 || pw.length>16){
+        if(password.length < 6 || password.length>16){
             alert('비밀번호는 6글자 이상, 20글자 이하만 이용 가능합니다.');
             password.value='';
         }
@@ -529,6 +527,12 @@
 									// 파일이름 .  exe|sh|zip|alz 인 경우를 체크함
 				let maxSize =5242880; // 5Mb
 				
+				var defaultImg = true;
+				
+				// img tag 안의 기본 이미지를 select
+				let imgselect = document.querySelector(".uploadResult > img");
+				console.log(imgselect);
+				
 				function checkExtension(fileName, fileSize){
 					// 파일크기 초과시 종료시킴
 					if(fileSize >= maxSize){
@@ -550,6 +554,8 @@
 					let formData = new FormData();
 					
 					let inputFile = $("input[name='uploadFile']");
+					
+					console.log(inputFile);
 					
 					let files = inputFile[0].files;
 					console.log(files);
@@ -584,31 +590,19 @@
 						}
 					}); // ajax
 					
-					
+					 defaultImg = false;
 				});// uploadBtn onclick
 				
-				let uploadResult = $(".uploadResult ul");
+				let uploadResult = $(".uploadResult");
 				
 				function showUploadedFile(uploadResultArr){
-					let str = "";
+					let strImage = "";
+					let strSpan = "";
 					
 					$(uploadResultArr).each(function(i, obj){
 						console.log(obj);
 						console.log(obj.image);
-						if(!obj.image){
-							
-							let fileCallPath = encodeURIComponent(obj.uploadPath + "/" + 
-														obj.uuid + "_" + obj.fileName);
-							
-							str += `<li data-path='\${obj.uploadPath}' data-uuid='\${obj.uuid}'
-										data-filename='\${obj.fileName}' data-type='\${obj.image}'>
-										<a href='/download?fileName=\${fileCallPath}'>
-											<img src='/resources/images/attach.png'>\${obj.fileName}
-										</a>
-										<span data-file='\${fileCallPath}' data-type='file'>X</span>
-									</li>`;
-						} else{
-							// str += `<li>\${obj.fileName}</li>`;
+			
 							// 수정 후 코드
 							//썸네일은 display에 배치 						
 							let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" +
@@ -617,28 +611,35 @@
 							let fileCallPath2 = encodeURIComponent(obj.uploadPath +	"/" +
 																obj.uuid + "_" + obj.fileName);
 							console.log(fileCallPath2);
+							strImage = "/display?fileName="+fileCallPath;
 							
-							str += `<li data-path='\${obj.uploadPath}' data-uuid='\${obj.uuid}'
-									data-filename='\${obj.fileName}' data-type='\${obj.image}'>
-										<a href='download?fileName=\${fileCallPath2}'>
-											<img src='/display?fileName=\${fileCallPath}'>\${obj.fileName}
-										</a>
-										<span data-file='\${fileCallPath}' data-type='image'>X</span>
-									</li>`;
-						}
+							strSpan = `<p hidden='hidden' data-path='\${obj.uploadPath}' data-uuid='\${obj.uuid}'
+									data-filename='\${obj.fileName}' data-type='\${obj.image}'></p>
+									<div>
+									<span data-file='\${fileCallPath}' data-type='image'> X </span>
+									</div>`;
+						
 					});
-					uploadResult.append(str);
+
+					$(imgselect).attr({ src: strImage });
+					uploadResult.append(strSpan);
+					
 				}// showUploadedFile END
 				
 				$(".uploadResult").on("click", "span", function(e){
 					// 파일이름을 span태그 내부의 data-file에서 얻어와서 저장
 					let targetFile = $(this).data("file");
+					console.log(targetFile);
 					// 이미지 여부를 span태그 내부의 data-type에서 얻어와서 저장
 					let type = $(this).data("type");
+					console.log(type);
 					
-					// 클릭한 span태그와 엮여있는 li를 targetLi에 저장
-					let targetLi = $(this).closest("li"); 
-					console.log(targetLi);
+					// 클릭한 span태그를 targetLi에 저장
+					let targetDiv = $(this).closest("div"); 
+					console.log(targetDiv);
+					// 하나 더 있네..
+					
+					
 					
 					$.ajax({
 						url : '/deleteFile',
@@ -650,12 +651,19 @@
 						type : 'POST',
 						success : function(result){
 							alert(result);
-							// 클릭한 li요소를 화면에서 삭제함(파일삭제 후 화면에서도 삭제.)
-							targetLi.remove();
+							
+							targetDiv.remove();
+							$(imgselect).attr({ src: "/resources/images/main_picture.jpg" });
+						
 						}
 					});//ajax
 				});//click span END
 				
+				
+				let imgSrc = jQuery('#default-image').attr("src");
+				
+				
+			
 				
 				// 제출버튼 막기
 				$("#submitBtn").on("click", function(e){
@@ -668,22 +676,27 @@
 					
 					// 3. 첨부파일과 관련된 정보를 hidden태그들로 만들어 문자로 먼저 저장합니다.
 					let str = "";
-				
-					$(".uploadResult ul li").each(function(i, obj){
+					
+					if(defaultImg == false) {
+						$(".uploadResult p").each(function(i, obj){
+							
+							// $(obj)에 대해서만 .data() 를 활용해 데이터를 얻어올 수 있음
+							let jobj =$(obj);
 
-						// $(obj)에 대해서만 .data() 를 활용해 데이터를 얻어올 수 있음
-						let jobj =$(obj);
+							str += `<input type='hidden' name='attachList[\${i}].fileName' 
+										value='\${jobj.data("filename")}'>
+									<input type='hidden' name='attachList[\${i}].uuid' 
+										value='\${jobj.data("uuid")}'>
+									<input type='hidden' name='attachList[\${i}].uploadPath' 
+										value='\${jobj.data("path")}'>
+									<input type='hidden' name='attachList[\${i}].fileType' 
+										value='\${jobj.data("type")}'>`
+							
+						});
+					} else {
 						
-						str += `<input type='hidden' name='attachList[\${i}].fileName' 
-									value='\${jobj.data("filename")}'>
-								<input type='hidden' name='attachList[\${i}].uuid' 
-									value='\${jobj.data("uuid")}'>
-								<input type='hidden' name='attachList[\${i}].uploadPath' 
-									value='\${jobj.data("path")}'>
-								<input type='hidden' name='attachList[\${i}].fileType' 
-									value='\${jobj.data("type")}'>`
-						
-					});
+					}
+
 					console.log(str);
 					
 					// 4. formObj에 append를 이용해 str을 끼워넣습니다.
@@ -695,12 +708,12 @@
 		
 			
 				
-			});	// document ready END
+			});// document ready END
 
 		
 
 
 </script>
 
-<script src="/resources/login/joinDoubleCheck.js"></script>
+
 </html>
