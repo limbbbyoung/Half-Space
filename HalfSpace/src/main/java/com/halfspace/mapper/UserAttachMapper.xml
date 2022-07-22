@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halfspace.mapper.UserAttachMapper">
+
+
+	<insert id="insert">
+		INSERT INTO user_image (uuid, uploadpath, filename, filetype, userid)
+			VALUES (#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{userId})
+	</insert>
+	
+	<delete id="delete">
+		DELETE FROM user_image WHERE uuid = #{uuid}
+	</delete>
+	
+	<select id="findByUid" resultType="com.halfspace.domain.UserAttachVO">
+		SELECT * FROM user_image WHERE userid = #{userId}
+	</select>
+	
+
+	<!-- 하루 전 날짜 DB 청소 -->
+	<select id="getOldFiles" resultType="com.halfspace.domain.UserAttachVO">
+		SELECT * FROM post_image WHERE uploadpath = TO_CHAR(sysdate -1, 'yyyy\mm\dd')
+	</select>
+	
+
+
+</mapper>

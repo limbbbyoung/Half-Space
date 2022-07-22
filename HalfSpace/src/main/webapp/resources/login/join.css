@@ -320,20 +320,14 @@
     position: relative!important;
 	}
 	
-	.fileinput {
+	.uploadResult {
     display: inline-block;
     margin-bottom: 9px;
-	}
-	
-	.fileinput .thumbnail.img-circle {
     border-radius: 50%;
-	}
-	
-	
-	.fileinput .thumbnail>img {
     max-height: 150px;
     border-radius: 50%;
 	}
+	
 	
 	*, ::after, ::before {
     box-sizing: border-box;

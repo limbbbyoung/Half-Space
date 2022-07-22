@@ -270,7 +270,7 @@
 										<span data-file='\${fileCallPath}' data-type='file'>X</span>
 									</li>`;
 						} else{
-							// str += `<li>\${obj.fileName}</li>`;
+						
 							// 수정 후 코드
 							//썸네일은 display에 배치 						
 							let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" +
@@ -286,7 +286,8 @@
 											<img src='/display?fileName=\${fileCallPath}'>\${obj.fileName}
 										</a>
 										<span data-file='\${fileCallPath}' data-type='image'>X</span>
-									</li>`;
+									</li>
+									`;
 						}
 					});
 					uploadResult.append(str);

@@ -83,34 +83,24 @@
 		<h5 class="px-4 py-2">회원가입</h5>
 		<div class="row">
 			<div class="col">
-					<!--onsubmit="return fnJoin()"  -->
-				<form class="page-wrap" action="/login/join" method="post">
-					<div class="profile-wrap text-center">
-						<div class="fileinput fileinput-new position-relative" data-provides="fileinput">
-							<div class="fileinput-new thumbnail img-circle">
-								<img src="/resources/images/main_picture.jpg">
-							</div>
-							<div class="fileinput-preview fileinput-exists thumbnail img-circle">
-							</div>
-							<div class="btn-photo-add">
-								<span class="btn btn-round btn-icon btn-file btn-main btn-sm">
-									<span class="fileinput-new">
-										<i class="nc-icon nc-simple-add"></i>
-									</span>
-									<span class="fileinput-exists">
-										<i class="nc-icon nc-settings"></i>
-									</span>
-										<input type="file" name="..." onchange="fnChangeFile(this)" data-src=""></span>
-										<a class="btn btn-danger btn-round fileinput-exists d-none" href="#pablo" data-dismiss="fileinput">
-											<i class="fa fa-times"></i>
-										Remove</a>
-							</div>
-						</div>
-						<div class="profile-desc text-caution d-flex justify-content-center">
-							<img src="/resources/images/caution.svg" width="10">
-							<small>150x150사이즈 권장</small>
-						</div>
+				<div class="profile-wrap text-center">
+					<div class="uploadResult">
+						<ul>
+							<!-- 업로드된 파일들이 여기 나열됨. -->
+						</ul>
 					</div>
+					<div class="uploadDiv">
+						<input type="file" name="uploadFile" multiple>
+					</div>
+					<button id="uploadBtn">프로필 선택</button>
+					<div class="profile-desc text-caution d-flex justify-content-center">
+						<img src="/resources/images/caution.svg" width="10">
+						<small>150x150사이즈 권장</small>
+					</div>
+				</div>
+				
+				<!--onsubmit="return fnJoin()"  -->
+				<form class="page-wrap" action="/login/join" method="post">
 					<div class="row-wrap mb-3">
 						<div class="input-wrap">
 							<label>아이디</label>
@@ -459,7 +449,8 @@
 	<div class="overlay"></div>
 	
 </body>
-<script type="text/javascript">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
 	// csrf 토큰
 	let csrfHeaderName = "${_csrf.headerName}"
 	let csrfTokenValue="${_csrf.token}"
@@ -531,8 +522,7 @@
 		$(".overlay").removeClass('active');
 	})
 		
-	// 이미지 첨부
-	$(document).ready(function(){
+		$(document).ready(function(){
 				
 				// 정규표현식 : 예).com 끝나는 문장 등의 조건이 복잡한 문장을 컴퓨터에게 이해시키기 위한 구문
 				let regex = new RegExp("(.*)\.(exe|sh|zip|alz)$");
@@ -706,7 +696,6 @@
 			
 				
 			});	// document ready END
-			
 
 		
 
