@@ -232,6 +232,10 @@
 		<div class="overlay"></div>
 		
 		<script>
+		
+			// List를 가져오는 로직
+			let tno = ${myteam.tno };
+			console.log(tno);
 		    // 사이드바 펼치기
 			$("#sidebarCollapse").on("click", function(event) {
 				if($("#sidebar").hasClass('active')) {
@@ -270,7 +274,7 @@
 			// 우선 함수이기 때문에 호출한다는 점을 명시하기 위해 마지막에 ()를 추가로 붙여준다.
 			// 파일 첨부 후 해당 글의 첨부된 파일의 데이터 가져오기
 			(function(){
-				$.getJSON("/board/getAttachList", {bno:bno}, function(arr){
+				$.getJSON("/team/getAttachList", {tno:tno}, function(arr){
 					console.log(arr);
 					
 					let str = "";
@@ -314,7 +318,7 @@
 					self.location = "/download?fileName=" + path;
 			});
 			
-				</script>
+			</script>
 
 </body>
 </html>

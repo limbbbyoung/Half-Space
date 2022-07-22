@@ -33,7 +33,7 @@ public interface TeamService {
 	public Long getTeamListCnt(SearchCriteria cri);
 	
 	// DB에 있던 이미지를 다시 글에 표출시키기
-	public List<TeamAttachVO> getAttachList(Long bno);
+	public List<TeamAttachVO> getAttachList(Long tno);
 
 	
 }

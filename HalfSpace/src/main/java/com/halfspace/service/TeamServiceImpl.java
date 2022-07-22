@@ -36,7 +36,6 @@ public class TeamServiceImpl implements TeamService {
 		return team;
 	}
 
-	@Transactional
 	@Override
 	public void teamCreate(TeamVO vo) {
 		

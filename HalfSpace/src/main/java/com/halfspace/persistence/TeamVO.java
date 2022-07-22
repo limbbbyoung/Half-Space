@@ -1,5 +1,7 @@
 package com.halfspace.persistence;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -16,5 +18,5 @@ public class TeamVO {
 	private Long draw; // 무승부
 	private Long lose; // 패배
 
-	
+	private List<TeamAttachVO> attachList;
 }

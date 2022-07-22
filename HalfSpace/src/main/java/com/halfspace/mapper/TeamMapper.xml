@@ -11,7 +11,7 @@
 	<insert id="teamCreate">
 		INSERT INTO team_tbl(tno, name, coach, intro )
 			VALUES
-		(team_num.nextval, #{name}, #{coach}, #{intro})
+		(#{tno}, #{name}, #{coach}, #{intro})
 	</insert>
  	
  	<update id="teamUpdate">
@@ -25,6 +25,5 @@
  		DELETE FROM team_tbl
  			WHERE tno = #{tno}
  	</delete>
-
 
 </mapper>

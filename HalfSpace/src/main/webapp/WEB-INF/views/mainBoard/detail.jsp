@@ -162,6 +162,7 @@
 						</div><!-- footer -->
 					</div>
 				</sec:authorize>
+				
 				<!-- 댓글 -->
 			 	<ul id="replies">
 			 	</ul>
@@ -241,6 +242,7 @@
 			<div>
 				<input type="text" id="replyText" style="width: 200px; height: 50px;">
 			</div>
+			
 			<sec:authorize access="isAuthenticated()">
 				<c:if test="${prin.authorities eq '[ROLE_ADMIN]' || prin.username eq post.writer}">
 					<div>

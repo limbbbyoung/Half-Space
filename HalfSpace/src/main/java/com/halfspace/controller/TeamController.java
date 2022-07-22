@@ -159,6 +159,7 @@ public class TeamController {
 	public ResponseEntity<List<TeamAttachVO>> getAttachList(Long tno){
 		
 		return new ResponseEntity<>(service.getAttachList(tno), HttpStatus.OK);
+		
 	} // getAttachList end
 	
 		// 파일 폴더에서 첨부 파일에 대한 데이터 삭제를 위한 메서드, 삭제 보조 메서드

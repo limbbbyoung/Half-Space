@@ -97,11 +97,13 @@
 			<div class="uploadDiv">
 				<input type="file" name="uploadFile" multiple>
 			</div>
+			
 			<div class="uploadResult">
 				<ul>
 					<!-- 업로드된 파일들이 여기 나열됨. -->
 				</ul>
 			</div>
+			
 			<button id="uploadBtn">작성하기</button>
 		</form>
 	</div>	

@@ -11,4 +11,5 @@ public class TeamAttachVO {
 	private boolean fileType;
 	
 	private Long tno; // Team 고유 number
+	
 }

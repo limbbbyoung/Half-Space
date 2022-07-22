@@ -14,7 +14,7 @@
 		DELETE FROM teamimage WHERE uuid = #{uuid}
 	</delete>
 	
-	<select id="findByPono" resultType="com.halfspace.persistence.TeamAttachVO">
+	<select id="findBytno" resultType="com.halfspace.persistence.TeamAttachVO">
 		SELECT * FROM teamimage WHERE tno = #{tno}
 	</select>
 	
