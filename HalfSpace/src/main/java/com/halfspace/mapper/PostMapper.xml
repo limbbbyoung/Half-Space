@@ -92,6 +92,8 @@
 		commentCnt = commentCnt + #{amount} WHERE pono = #{pono}
 	</update>
 	
-
+	<select id="getInfoList" resultType="com.halfspace.persistence.PostVO">
+		SELECT * FROM post_tbl WHERE catego = '공지'
+	</select>
 
 </mapper>

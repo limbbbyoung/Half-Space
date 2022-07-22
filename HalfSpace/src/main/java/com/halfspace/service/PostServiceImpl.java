@@ -97,4 +97,11 @@ public class PostServiceImpl implements PostService{
 		return attachMapper.findByPono(pono);
 	}
 
+	@Override
+	public List<PostVO> getInfoList() {
+
+		return mapper.getInfoList();
+		
+	}
+
 }

@@ -22,5 +22,7 @@ public interface PostService {
 	
 	// post 번호 pono 입력시 해당 글번호에 연동된 첨부파일 목록 가져오기
 	public List<PostAttachVO> getAttachList(Long pono);
+
+	public List<PostVO> getInfoList();
 	
 }

@@ -25,6 +25,8 @@ public interface PostMapper {
 	public void updateCommentCnt(@Param("pono") Long pono,
 								@Param("amount") int amount);
 	
+	public List<PostVO> getInfoList();
+	
 
 
 }

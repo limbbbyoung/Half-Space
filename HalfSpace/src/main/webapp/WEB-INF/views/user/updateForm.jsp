@@ -304,22 +304,9 @@
 	// csrf 토큰
 	let csrfHeaderName = "${_csrf.headerName}"
 	let csrfTokenValue="${_csrf.token}"
-	
-	
-	// 앞으로 사용할 변수 저장
-	let userId = document.getElementById("userId");
-		
-	let phoneNum = document.getElementById("phoneNum1") + document.getElementById("phoneNum2")
-						+	document.getElementById("phoneNum3");
-
-	let strBirthDate = document.getElementById("birthdate_y") + document.getElementById("birthdate_m")
-						+ document.getElementById("birthdate_d");
-		
-	
 
 	// 비밀번호 유효성 검사를 위해 id="password"인 속성의 값을 저장
 	let password = document.getElementById("password");
-	
 	let confirm_password = document.getElementById("confirm_password");
 
 	$("#submitBtn").on("click", function(event){
@@ -336,9 +323,8 @@
         	window.alert("비밀번호는 6글자 이상 20자 이하로 작성해주세요");
             return false;
         }
-		else { // 만일 두 인풋 필드값이 같을 경우
-  		// 오류가 없으면 메시지를 빈 문자열로 설정해야한다. 오류 메시지가 비어 있지 않은 한 양식은 유효성 검사를 통과하지 않고 제출되지 않는다.
- 		 // 따라서 빈값을 주어 submit 처리되게 한다
+		else { 
+ 		 // 빈값을 주어 submit 처리되게 한다
   		confirm_password.setCustomValidity(''); 
 		return true;
 		}
@@ -379,9 +365,8 @@
 	
 	$(document).ready(function(){
 			
-			// 정규표현식 : 예).com 끝나는 문장 등의 조건이 복잡한 문장을 컴퓨터에게 이해시키기 위한 구문
-			let regex = new RegExp("(.*)\.(exe|sh|zip|alz)$");
-								// 파일이름 .  exe|sh|zip|alz 인 경우를 체크함
+			let regex = new RegExp("(.*)\.(exe|sh|zip|alz|txt|hwp|pdf)$");
+
 			let maxSize =5242880; // 5Mb
 			
 			function checkExtension(fileName, fileSize){
