@@ -16,12 +16,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>User MyPage</title>
 </head>
 <body>
-
-<!-- header 태그 -->
-
+	<!-- header 태그 -->
 	<div class="header">
 		<div class="navi-container">
 			<div class="d-flex justify-content-between align-items-center mx-auto p-0" style="max-width:800px">
@@ -127,132 +125,112 @@
 						<strong>내 팀 생성</strong>
 					</a>
 				</div>
-			</div><!-- END narrow-container -->
-		
-		</div>
+			</div><!-- user-info END -->
+		</div><!-- mypage container END -->
 	
-	</div><!-- narrow container END -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- footer 태그 -->
-
- 	<div class="footer">
- 		<div class="footer-container">
-			<a class="my-3" href="/">
-				<img src="../resources/images/LogoMakr-2rlJxi.png" width="80">
-			</a>
-			<p class="mt-3">축구로 하나되는 공간</p>
-			<div class="copyright">
-				<p class="mb-3">Spring Project A조</p>
-				서울특별시 마포구 백범로 23 3층<br/>
-				임병영<br/>
-				김동완<br/>
-				신동호
-				<p class="mb-4">대표 전화번호 010-9966-8908</p>
-			</div>
-		</div>
-		<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-			<a class="text-white" href="https://mdbootstrap.com/">COPYRIGHT HalfSpace C&C ALL RIGHT RESERVED</a>
-		</div>
- 	</div><!-- .footer 끝나는 지점 -->
-
-<!-- navbar(선택) -->
-
- 	<nav id="sidebar" class="mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" style="overflow: visible;">
-		<div id="mCSB_1" class="mCustomScrollBox mCS-minimal mCSB_vertical mCSB_outside" style="max-height: 879px;" tabindex="0">
-			<div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0px; left:0;" dir="ltr">
-				<div class="d-flex flex-column justify-content-between h-100">
-					<section>
-						<div class="sidebar-body">
-							<div class="header-wrap">
-								<sec:authorize access="isAnonymous()">
-									<a class="text-main btn-sm rounded-pill border ml-2" href="/users/login">
-										<small>로그인</small>
-									</a>
-								</sec:authorize>
-								<sec:authorize access="isAuthenticated()"><!-- collapse했을 때 보이게끔 -->
-									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn1" href="/user/mypage">
-										<small>내 정보</small>
-									</a>
-									&nbsp;
-									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn2" href="/team/teamDetail">
-										<small>내 팀</small>
-									</a>
-								</sec:authorize>
-							</div>
-							<div class="menu-wrap">
-								<a href="#"><img src="../resources/images/faq.svg" class="mCS_img_loaded">FAQ</a>
-							</div>
-						</div>
-					</section>
+		<!-- footer 태그 -->
+	 	<div class="footer">
+	 		<div class="footer-container">
+				<a class="my-3" href="/">
+					<img src="../resources/images/LogoMakr-2rlJxi.png" width="80">
+				</a>
+				<p class="mt-3">축구로 하나되는 공간</p>
+				<div class="copyright">
+					<p class="mb-3">Spring Project A조</p>
+					서울특별시 마포구 백범로 23 3층<br/>
+					임병영<br/>
+					김동완<br/>
+					신동호
+					<p class="mb-4">대표 전화번호 010-9966-8908</p>
 				</div>
 			</div>
-		</div>
-		<div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal mCSB_scrollTools_vertical" style="display: none;">
-			<div class="mCSB_draggerContainer">
-				<div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 0px; height: 0px; top: 0px;">
-					<div class="mCSB_dragger_bar" style="line-height: 0px;">
+			<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+				<a class="text-white" href="https://mdbootstrap.com/">COPYRIGHT HalfSpace C&C ALL RIGHT RESERVED</a>
+			</div>
+	 	</div><!-- .footer 끝나는 지점 -->
+	
+		<!-- navbar(선택) -->
+	 	<nav id="sidebar" class="mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" style="overflow: visible;">
+			<div id="mCSB_1" class="mCustomScrollBox mCS-minimal mCSB_vertical mCSB_outside" style="max-height: 879px;" tabindex="0">
+				<div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0px; left:0;" dir="ltr">
+					<div class="d-flex flex-column justify-content-between h-100">
+						<section>
+							<div class="sidebar-body">
+								<div class="header-wrap">
+									<sec:authorize access="isAnonymous()">
+										<a class="text-main btn-sm rounded-pill border ml-2" href="/users/login">
+											<small>로그인</small>
+										</a>
+									</sec:authorize>
+									<sec:authorize access="isAuthenticated()"><!-- collapse했을 때 보이게끔 -->
+										<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn1" href="/user/mypage">
+											<small>내 정보</small>
+										</a>
+										&nbsp;
+										<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn2" href="/team/teamDetail">
+											<small>내 팀</small>
+										</a>
+									</sec:authorize>
+								</div>
+								<div class="menu-wrap">
+									<a href="#"><img src="../resources/images/faq.svg" class="mCS_img_loaded">FAQ</a>
+								</div>
+							</div>
+						</section>
 					</div>
 				</div>
-				<div class="mCSB_draggerRail">
+			</div>
+			<div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal mCSB_scrollTools_vertical" style="display: none;">
+				<div class="mCSB_draggerContainer">
+					<div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 0px; height: 0px; top: 0px;">
+						<div class="mCSB_dragger_bar" style="line-height: 0px;">
+						</div>
+					</div>
+					<div class="mCSB_draggerRail">
+					</div>
 				</div>
 			</div>
-		</div>
-	</nav>
-	<nav id="sidebar2" class="mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" style="overflow: visible;">
-		여기가 알림을 넣는 곳입니다.
-	</nav>
-	<div class="overlay"></div>
-	
+		</nav>
+		<nav id="sidebar2" class="mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" style="overflow: visible;">
+			여기가 알림을 넣는 곳입니다.
+		</nav>
+		<div class="overlay"></div>
 </body>
-<script type="text/javascript">
-	// csrf 토큰
-	let csrfHeaderName = "${_csrf.headerName}"
-	let csrfTokenValue="${_csrf.token}"
-	
-	
-	// 사이드바 펼치기
-	$("#sidebarCollapse").on("click", function(event) {
-		if($("#sidebar").hasClass('active')) {
+	<script type="text/javascript">
+		// csrf 토큰
+		let csrfHeaderName = "${_csrf.headerName}"
+		let csrfTokenValue="${_csrf.token}"
+		
+		
+		// 사이드바 펼치기
+		$("#sidebarCollapse").on("click", function(event) {
+			if($("#sidebar").hasClass('active')) {
+				$("#sidebar").removeClass('active');
+				$(".overlay").removeClass('active');
+			} else {
+				$("#sidebar").addClass('active');
+				$(".overlay").addClass('active');
+			}
+		});
+		
+		// 사이드바2 펼치기
+		$("#sidebarCollapse2").on("click", function(event) {
+			if($("#sidebar2").hasClass('active')) {
+				$("#sidebar2").removeClass('active');
+				$(".overlay").removeClass('active');
+			} else {
+				$("#sidebar2").addClass('active');
+				$(".overlay").addClass('active');
+			}
+		});
+		
+		// 사이드바 접기
+		$(".overlay").on("click", function(event) {
 			$("#sidebar").removeClass('active');
-			$(".overlay").removeClass('active');
-		} else {
-			$("#sidebar").addClass('active');
-			$(".overlay").addClass('active');
-		}
-	});
-	
-	// 사이드바2 펼치기
-	$("#sidebarCollapse2").on("click", function(event) {
-		if($("#sidebar2").hasClass('active')) {
 			$("#sidebar2").removeClass('active');
 			$(".overlay").removeClass('active');
-		} else {
-			$("#sidebar2").addClass('active');
-			$(".overlay").addClass('active');
-		}
-	});
+		});
 	
-	// 사이드바 접기
-	$(".overlay").on("click", function(event) {
-		$("#sidebar").removeClass('active');
-		$("#sidebar2").removeClass('active');
-		$(".overlay").removeClass('active');
-	});
-
-
-</script>
-
+	
+	</script>
 </html>

@@ -26,8 +26,18 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class TeamServiceTests{
 	
-	//@Test
-	public void TeamReadServiceTest( ) {
+	@Autowired
+	private TeamService service;
+	
+	@Test
+	public void TeamCreateServiceTest( ) {
+			
+		TeamVO vo = new TeamVO();
 		
+		vo.setName("DB");
+		vo.setCoach("user42");
+		vo.setIntro("단단한 수비");
+		
+		service.teamCreate(vo);
 	}
 }

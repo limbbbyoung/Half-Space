@@ -78,6 +78,9 @@
 		SELECT * FROM teamlist WHERE listno = #{listno}
 	</select>
 
+	<select id="getListno" resultType="Long">
+		SELECT listno FROM teamlist WHERE coach = #{coach}
+	</select>
 
 	<!-- 페이지네이션을 위한 팀리스트 글 갯수 구해오기 -->
 	<select id="getTeamListCnt" resultType="long">

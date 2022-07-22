@@ -51,6 +51,8 @@
 	<task:annotation-driven/>
 	
 	<context:component-scan base-package="com.halfspace.task"></context:component-scan>
+	
+	<context:component-scan base-package="com.halfspace.util"></context:component-scan>
 
 	
 </beans>

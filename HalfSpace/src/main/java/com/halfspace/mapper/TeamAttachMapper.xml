@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halfspace.mapper.TeamAttachMapper">
+
+
+	<insert id="insert">
+		INSERT INTO teamimage (uuid, uploadpath, filename, filetype, tno)
+			VALUES (#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{tno})
+	</insert>
+	
+	<delete id="delete">
+		DELETE FROM teamimage WHERE uuid = #{uuid}
+	</delete>
+	
+	<select id="findByPono" resultType="com.halfspace.persistence.TeamAttachVO">
+		SELECT * FROM teamimage WHERE tno = #{tno}
+	</select>
+	
+	<delete id="deleteAll">
+		DELETE FROM teamimage WHERE tno = #{tno}
+	</delete>
+
+	<!-- 하루 전 날짜 DB 청소 -->
+	<select id="getOldFiles" resultType="com.halfspace.persistence.TeamAttachVO">
+		SELECT * FROM teamimage WHERE uploadpath = TO_CHAR(sysdate -1, 'yyyy\mm\dd')
+	</select>
+
+</mapper>
