@@ -1,10 +1,16 @@
 package com.halfspace.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,11 +18,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.halfspace.mapper.TeamListMapper;
 import com.halfspace.persistence.PageMaker;
 import com.halfspace.persistence.SearchCriteria;
+import com.halfspace.persistence.TeamAttachVO;
 import com.halfspace.persistence.TeamListVO;
 import com.halfspace.persistence.TeamVO;
 import com.halfspace.service.TeamService;
@@ -102,7 +111,7 @@ public class TeamController {
 	} // teamCreateForm END
 
 	@PostMapping(value="/teamCreate")
-	public String teamCreate(TeamVO vo) {
+	public String teamCreate(TeamVO vo){ // CRUD 에서의 INSERT가 되는 기능
 		
 		log.info(vo);
 						
@@ -145,7 +154,39 @@ public class TeamController {
 		return "redirect:/team/teamlist";
 	}
 	
+	@GetMapping(value="/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<TeamAttachVO>> getAttachList(Long tno){
+		
+		return new ResponseEntity<>(service.getAttachList(tno), HttpStatus.OK);
+	} // getAttachList end
 	
-	
-	
+		// 파일 폴더에서 첨부 파일에 대한 데이터 삭제를 위한 메서드, 삭제 보조 메서드
+		private void deleteFiles(List<TeamAttachVO> attachList) {
+			
+			if(attachList == null || attachList.size() == 0) {
+				return;
+			}
+			
+			log.info(attachList);
+			
+			attachList.forEach(attach -> {
+				try {
+					Path file = Paths.get("C:\\upload_data\\temp\\" + attach.getUploadPath() + 
+										"\\" + attach.getUuid() + "_" + attach.getFileName());
+					
+					Files.deleteIfExists(file);
+					
+					if(Files.probeContentType(file).startsWith("image")) {
+						
+						Path thumbNail = Paths.get("C:\\upload_data\\temp\\" + attach.getUploadPath()
+													+ "\\s_" + attach.getUuid() + "_" + attach.getFileName());
+						
+						Files.delete(thumbNail);
+					}
+				} catch(Exception e) {
+					log.error(e.getMessage());
+				}// end catch
+			}); // end foreach
+		} // deleteFiles END
 }

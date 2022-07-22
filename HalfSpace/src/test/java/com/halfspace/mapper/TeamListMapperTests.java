@@ -103,6 +103,13 @@ public class TeamListMapperTests {
 	public void getTeamList(){
 		log.info(mapper.getTeamList(null));
 	}
+	
+	//@Test
+	//public Long getListno() {
+		
+	//	mapper.getListno("user42");
+		
+	//}
 
 
 }

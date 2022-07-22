@@ -2,7 +2,10 @@ package com.halfspace.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.halfspace.persistence.SearchCriteria;
+import com.halfspace.persistence.TeamAttachVO;
 import com.halfspace.persistence.TeamListVO;
 import com.halfspace.persistence.TeamVO;
 
@@ -28,6 +31,9 @@ public interface TeamService {
 	
 	// Pagination을 위한 Service
 	public Long getTeamListCnt(SearchCriteria cri);
+	
+	// DB에 있던 이미지를 다시 글에 표출시키기
+	public List<TeamAttachVO> getAttachList(Long bno);
 
 	
 }

@@ -19,6 +19,9 @@ public interface TeamListMapper {
 	// 팀 리스트 추가
 	public void addTeamList(TeamVO vo);
 	
+	// 팀 리스트에 추가된 팀의 listno 가져오기
+	public Long getListno(String coach);
+	
 	// 팀 정보 수정시 팀 리스트 테이블에 등록된 팀 이름과 감독 이름 변경을 위한 메서드
 	public void update(TeamListVO vo);
 	
