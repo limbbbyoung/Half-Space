@@ -1,8 +1,15 @@
 package com.halfspace.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.Principal;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.halfspace.domain.AuthVO;
 import com.halfspace.domain.UserVO;
+import com.halfspace.persistence.PostAttachVO;
 import com.halfspace.service.UserService;
 
 import lombok.extern.log4j.Log4j;
@@ -33,6 +41,69 @@ public class UserController {
 	@Autowired
 	private PasswordEncoder pwen;
 	
+	// 파일 업로드 보조 메서드
+	private boolean checkImageType(File file) {
+		
+		try {
+			String contentType = Files.probeContentType(file.toPath());
+			
+			return contentType.startsWith("image");
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+		
+		
+	} // checkImageType END
+	
+	// 폴더 가져오기 메서드
+	private String getFoleder() {
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		java.util.Date date = new java.util.Date();
+		log.info("user controller입니다. 날짜 첫 생성 : " + date);
+		String str = sdf.format(date);
+		log.info("format된 날짜 return 대기 중 : " + str);
+		return str.replace("_", File.separator);
+		
+	} // getFolder END
+	
+	// file 삭제 보조 메서드
+	private void deleteFiles(List<PostAttachVO> attachList) {
+		// 파일이 없다면 메서드 종료
+		if(attachList == null || attachList.size()==0) {
+			return;
+		}
+		
+		log.info(attachList);
+		// attachList 하나씩 forEach로 반복 로직
+		attachList.forEach(attach -> {
+			
+			try {
+				
+				Path file = Paths.get("C:\\upload_data\\temp\\"+ attach.getUploadPath() + "\\" + attach.getUuid()
+							+ "_" + attach.getFileName());
+				
+				Files.deleteIfExists(file);
+				
+				// fileType이 이미지일 때
+				if(Files.probeContentType(file).startsWith("image")) {
+					Path thumbNail = Paths.get("C:\\upload_data\\temp\\" + attach.getUploadPath() +
+								"\\s_" + attach.getUuid() + "_" + attach.getFileName());
+				
+					Files.delete(thumbNail);
+				}
+				
+			}catch (Exception e) {
+				log.error(e.getMessage());
+			} // try~catch END
+			
+		}); // forEach END
+		
+	} // deleteFiles END
 	
 	
 	@PreAuthorize("hasAnyRole('ROLE_USER, ROLE_MANAGER, ROLE_ADMIN')")
