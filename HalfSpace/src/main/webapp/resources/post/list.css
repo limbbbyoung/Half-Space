@@ -472,7 +472,19 @@
 	}
 	
 	.match-wrap .ground-wrap small.game-badge[data-game=공지] {
-	    background-color: red;
+	    background-color: #dc3545;
+	}
+	
+	.match-wrap .ground-wrap small.game-badge[data-game=잡담] {
+	    background-color: #ffc107;
+	}
+	
+	.match-wrap .ground-wrap small.game-badge[data-game='정보/기사'] {
+	    background-color: #28a745;
+	}
+	
+	.match-wrap .ground-wrap small.game-badge[data-game='사진/영상'] {
+	    background-color: #343a40;
 	}
 	
 	.match-wrap .ground-wrap small.game-badge {

@@ -14,18 +14,12 @@
 <!-- 글씨체 -->
 <link href="https://webfontworld.github.io/sandbox/SBAggro.css" rel="stylesheet">
 <sec:authentication property="principal" var="prin"/>
-<style>
-	.container { width: 400px;
-	  			margin-top: 35px; }
-</style>
 <head>
 <sec:authentication property="principal" var="prin"/>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-
-
 	<div class="header">
 		<div class="navi-container">
 			<div class="d-flex justify-content-between align-items-center mx-auto p-0" style="max-width:800px">
@@ -81,43 +75,36 @@
 		</div>
 	</div><!-- .header끝나는 지점 -->
 
-
-
-
-
-
-<div class="container">
-	<h3>제목</h3>
-	<sec:authentication property="principal" var="prin"/>
-	<form action="/post/insert" method="post">
-		<input type="text" name="title" placeholder="제목" oninvalid="alert('1');" required/>
-		<input type="hidden" name="writer" value="${user.userId}"/>
-		<h3>카테고리</h3>
-		<select class=" form-select" name="catego" aria-label="selelt-catego" required>
-			<option selected>잡담</option>
-			<option value="질문">질문</option>
-		 	<option value="정보/기사">정보/기사</option>
-		  	<option value="사진/영상">사진/영상</option>
-			<sec:authorize access="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
-			  <option value="공지">공지</option>
-			</sec:authorize>	
-		</select>			
-		<h3>글쓰기</h3>
-		<textarea name="content" oninvalid="alert('2');" required></textarea>
-		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
-		<input type="submit" id="submitBtn" value="글쓰기"/>
-	</form>
-	<div class="uploadDiv">
-		<input type="file" name="uploadFile" multiple>
-	</div>
-	<div class="uploadResult">
-		<ul>
-			<!-- 업로드된 파일들이 여기 나열됨. -->
-		</ul>
-	</div>
-	
-	<button id="uploadBtn">Upload</button>
-</div>	
+	<div class="container">
+		<sec:authentication property="principal" var="prin"/>
+		<form action="/post/insert" method="post">
+			<h3>제목</h3>
+			<input type="text" name="title" placeholder="여기에 제목을 적어주세요." oninvalid="alert('제목을 입력해주세요.');" required/>
+			<input type="hidden" name="writer" value="${user.userId}"/>
+			<h3>카테고리</h3>
+			<select class=" form-select" name="catego" aria-label="selelt-catego" required>
+				<option selected>잡담</option>
+				<option value="질문">질문</option>
+			 	<option value="정보/기사">정보/기사</option>
+			  	<option value="사진/영상">사진/영상</option>
+				<sec:authorize access="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
+				  <option value="공지">공지</option>
+				</sec:authorize>	
+			</select>			
+			<h3>글쓰기</h3>
+			<textarea name="content" oninvalid="alert('글을 작성해주세요.');" placeholder="여기에 적고싶은 글을 작성해주세요." required></textarea>
+			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
+			<div class="uploadDiv">
+				<input type="file" name="uploadFile" multiple>
+			</div>
+			<div class="uploadResult">
+				<ul>
+					<!-- 업로드된 파일들이 여기 나열됨. -->
+				</ul>
+			</div>
+			<button id="uploadBtn">작성하기</button>
+		</form>
+	</div>	
 	
 	<div class="footer">
  		<div class="footer-container">

@@ -126,6 +126,8 @@
 				</c:if>
 				</a>
 				</c:forEach>
+			</ul>
+			<ul class="list-group list-group-flush text-center">
 				<c:forEach var="post" items="${postList}">
 				<a href="/post/detail?page=${pageMaker.cri.page}&pono=${post.pono}&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">
 				<c:if test="${post.catego != '공지'}">
