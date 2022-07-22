@@ -221,6 +221,10 @@
 									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn2" href="/team/teamDetail">
 										<small>내 팀</small>
 									</a>
+									&nbsp;
+									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn3" href="/hsLogout">
+										<small>로그아웃</small>
+									</a>
 								</sec:authorize>
 							</div>
 							<div class="menu-wrap">
@@ -253,16 +257,17 @@
 		<div>
 			<input type="text" id="comText">
 		</div>
-		<div>
-			<sec:authorize access="isAuthenticated()">
-				<c:if test="${prin.authorities eq '[ROLE_ADMIN]' || prin.username eq post.writer}">
-					<button type="button" id="comModBtn">수정하기</button>
-					<button type="button" id="comDelBtn">삭제하기</button>
-				</c:if>
-				<button type="button" id="closeBtn">닫기</button>
-			</sec:authorize>
-		</div>
+		<sec:authorize access="isAuthenticated()">
+			<c:if test="${prin.authorities eq '[ROLE_ADMIN]' || prin.username eq post.writer}">
+				<button type="button" id="comModBtn">수정하기</button>
+				<button type="button" id="comDelBtn">삭제하기</button>
+			</c:if>
+			<button type="button" id="closeBtn">닫기</button>
+		</sec:authorize>
 	</div>
+	
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
 	<!-- List 로직 -->
 	<script type="text/javascript">
@@ -303,6 +308,7 @@
 	
 	// 익명함수 선언 및 호출
 	// 우선 함수이기 때문에 호출한다는 점을 명시하기 위해 마지막에 () 를 추가로 붙여준다.
+	
 	(function(){
 		$.getJSON("/post/getAttachList", {pono:pono}, function(arr){
 			console.log(arr);

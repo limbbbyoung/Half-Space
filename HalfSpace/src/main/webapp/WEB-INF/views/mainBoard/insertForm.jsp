@@ -88,19 +88,19 @@
 		     경기 날짜<input class="form-control" type="date" name="gamedate" required><br/>			 
 		     <p>글내용</p> <textarea class="form-control" cols="50" rows="12" name="content" required></textarea><br/>
 		    <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
-		     <button type="submit" class="btn btn-success" >작성</button>
+		    <button type="submit" class="btn btn-success" >작성</button>
 	     </form>
 	     
-	         <div class="uploadDiv">
-				<input type="file" name="uploadFile" multiple>
-			</div>
-			
-			<div class="uploadResult">
-				<ul>
-					<!-- 업로드된 파일들이 여기 나열됨. -->
-				</ul>
-			</div>
-			<button id="uploadBtn">Upload</button>
+        <div class="uploadDiv">
+			<input type="file" name="uploadFile" multiple>
+		</div>
+		
+		<div class="uploadResult">
+			<ul>
+				<!-- 업로드된 파일들이 여기 나열됨. -->
+			</ul>
+		</div>
+		<button id="uploadBtn">Upload</button>
     </div>
 	 <div class="footer">
  		<div class="footer-container">
@@ -142,6 +142,10 @@
 									&nbsp;
 									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn2" href="/team/teamDetail">
 										<small>내 팀</small>
+									</a>
+									&nbsp;
+									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn3" href="/hsLogout">
+										<small>로그아웃</small>
 									</a>
 								</sec:authorize>
 							</div>

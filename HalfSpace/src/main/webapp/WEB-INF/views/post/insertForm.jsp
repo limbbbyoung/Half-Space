@@ -77,6 +77,17 @@
 
 	<div class="container">
 		<sec:authentication property="principal" var="prin"/>
+		
+		<div class="uploadDiv">
+			<input type="file" name="uploadFile" multiple>
+		</div>
+		<div class="uploadResult">
+			<ul>
+				<!-- 업로드된 파일들이 여기 나열됨. -->
+			</ul>
+		</div>
+		<button id="uploadBtn">Upload</button>
+		
 		<form action="/post/insert" method="post">
 			<h3>제목</h3>
 			<input type="text" name="title" placeholder="여기에 제목을 적어주세요." oninvalid="alert('제목을 입력해주세요.');" required/>
@@ -94,17 +105,7 @@
 			<h3>글쓰기</h3>
 			<textarea name="content" oninvalid="alert('글을 작성해주세요.');" placeholder="여기에 적고싶은 글을 작성해주세요." required></textarea>
 			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token}"/>
-			<div class="uploadDiv">
-				<input type="file" name="uploadFile" multiple>
-			</div>
-			
-			<div class="uploadResult">
-				<ul>
-					<!-- 업로드된 파일들이 여기 나열됨. -->
-				</ul>
-			</div>
-			
-			<button id="uploadBtn">작성하기</button>
+			<input type="button" value="작성" id="submitBtn">
 		</form>
 	</div>	
 	
@@ -128,7 +129,6 @@
 		</div>
  	</div><!-- .footer 끝나는 지점 -->
 	
-	
 	 <nav id="sidebar" class="mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" style="overflow: visible;">
 		<div id="mCSB_1" class="mCustomScrollBox mCS-minimal mCSB_vertical mCSB_outside" style="max-height: 879px;" tabindex="0">
 			<div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0px; left:0;" dir="ltr">
@@ -148,6 +148,10 @@
 									&nbsp;
 									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn2" href="/team/teamDetail">
 										<small>내 팀</small>
+									</a>
+									&nbsp;
+									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn3" href="/hsLogout">
+										<small>로그아웃</small>
 									</a>
 								</sec:authorize>
 							</div>

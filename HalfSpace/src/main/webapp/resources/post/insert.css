@@ -317,7 +317,7 @@
 	    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 	}
 	
-	#uploadBtn {
+	#uploadBtn, #submitBtn {
 		max-width: 100px;
 	    border: none;
 	    display: inline-block;
@@ -327,6 +327,7 @@
 	    border-radius: 20px;
 	    text-align: center;
 	    line-height: 100%;
+	    
 	}
 	
 	textarea {

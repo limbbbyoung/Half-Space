@@ -139,11 +139,6 @@
 				</div>
 				<div class="gameContent">
 				 	<p>${board.content}</p><br/>
-				 	<p>누구든지 병역의무의 이행으로 인하여 불이익한 처우를 받지 아니한다. 신체장애자 및 질병·노령 기타의 사유로 생활능력이 없는 국민은 법률이 정하는 바에 의하여 국가의 보호를 받는다. 군인 또는 군무원이 아닌 국민은 대한민국의 영역안에서는 중대한 군사상 기밀·초병·초소·유독음식물공급·포로·군용물에 관한 죄중 법률이 정한 경우와 비상계엄이 선포된 경우를 제외하고는 군사법원의 재판을 받지 아니한다.</p><br/>
-					<p>모든 국민은 언론·출판의 자유와 집회·결사의 자유를 가진다. 모든 국민은 직업선택의 자유를 가진다. 군인·군무원·경찰공무원 기타 법률이 정하는 자가 전투·훈련등 직무집행과 관련하여 받은 손해에 대하여는 법률이 정하는 보상외에 국가 또는 공공단체에 공무원의 직무상 불법행위로 인한 배상은 청구할 수 없다.</p><br/>
-					<p>탄핵소추의 의결을 받은 자는 탄핵심판이 있을 때까지 그 권한행사가 정지된다. 누구든지 체포 또는 구속의 이유와 변호인의 조력을 받을 권리가 있음을 고지받지 아니하고는 체포 또는 구속을 당하지 아니한다. 체포 또는 구속을 당한 자의 가족등 법률이 정하는 자에게는 그 이유와 일시·장소가 지체없이 통지되어야 한다.</p><br/>
-					<p>국회는 국무총리 또는 국무위원의 해임을 대통령에게 건의할 수 있다. 군사법원의 조직·권한 및 재판관의 자격은 법률로 정한다. 타인의 범죄행위로 인하여 생명·신체에 대한 피해를 받은 국민은 법률이 정하는 바에 의하여 국가로부터 구조를 받을 수 있다. 국민경제자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다.</p><br/>
-					<p>행정각부의 장은 국무위원 중에서 국무총리의 제청으로 대통령이 임명한다. 정당은 법률이 정하는 바에 의하여 국가의 보호를 받으며, 국가는 법률이 정하는 바에 의하여 정당운영에 필요한 자금을 보조할 수 있다. 국회는 헌법 또는 법률에 특별한 규정이 없는 한 재적의원 과반수의 출석과 출석의원 과반수의 찬성으로 의결한다. 가부동수인 때에는 부결된 것으로 본다.</p>
 				</div>
  			</div><!-- .col 끝나는 지점 -->
  			<div>
@@ -210,6 +205,10 @@
 									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn2" href="/team/teamDetail">
 										<small>내 팀</small>
 									</a>
+									&nbsp;
+									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn3" href="/hsLogout">
+										<small>로그아웃</small>
+									</a>
 								</sec:authorize>
 							</div>
 							<div class="menu-wrap">
@@ -236,23 +235,19 @@
 	</nav>
 	<div class="overlay"></div>
 
-	<!-- modal -->
+	<!-- 모달창 -->
 	<div id="modDiv" style="display:none;">
-		<div class="modal-title">
-			<div>
-				<input type="text" id="replyText" style="width: 200px; height: 50px;">
-			</div>
-			
-			<sec:authorize access="isAuthenticated()">
-				<c:if test="${prin.authorities eq '[ROLE_ADMIN]' || prin.username eq post.writer}">
-					<div>
-						<button type="button" id="replyModBtn">수정하기</button>
-						<button type="button" id="replyDelBtn">삭제하기</button>
-						<button type="button" id="closeBtn">닫기</button>
-					</div>
-			    </c:if>
-			</sec:authorize>
+		<div class="modal-title"></div>
+		<div>
+			<input type="text" id="replyText">
 		</div>
+		<sec:authorize access="isAuthenticated()">
+			<c:if test="${prin.authorities eq '[ROLE_ADMIN]' || prin.username eq board.writer}">
+				<button type="button" id="replyModBtn">수정하기</button>
+				<button type="button" id="replyDelBtn">삭제하기</button>
+			</c:if>
+			<button type="button" id="closeBtn">닫기</button>
+		</sec:authorize>
 	</div>
 	 	
  	<!-- jquery는 이곳에 -->
