@@ -246,8 +246,6 @@
 		여기가 알림을 넣는 곳입니다.
 	</nav>
 	<div class="overlay"></div>
-	
-
 
 	<!-- 모달창 -->
 	<div id="modDiv" style="display:none;">
@@ -260,14 +258,11 @@
 				<c:if test="${prin.authorities eq '[ROLE_ADMIN]' || prin.username eq post.writer}">
 					<button type="button" id="comModBtn">수정하기</button>
 					<button type="button" id="comDelBtn">삭제하기</button>
-					<button type="button" id="closeBtn">닫기</button>
 				</c:if>
+				<button type="button" id="closeBtn">닫기</button>
 			</sec:authorize>
 		</div>
 	</div>
-
-	<!-- jquery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
 	<!-- List 로직 -->
 	<script type="text/javascript">
