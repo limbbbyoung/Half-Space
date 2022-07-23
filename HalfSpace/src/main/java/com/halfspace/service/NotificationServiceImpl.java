@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.halfspace.mapper.NotificationMapper;
+import com.halfspace.persistence.Criteria;
 import com.halfspace.persistence.NotificationVO;
-import com.halfspace.persistence.SearchCriteria;
 
 @Repository
 @Service
@@ -27,9 +27,9 @@ public class NotificationServiceImpl implements NotificationService{
 	}
 
 	@Override
-	public List<NotificationVO> getList(SearchCriteria cri) {
+	public List<NotificationVO> getList(String mem_id, Criteria cri) {
 		// 유저에게 도착한 알림을 확인하기 위한 List 메서드
-		return mapper.getList(cri);
+		return mapper.getList(mem_id, cri);
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class NotificationServiceImpl implements NotificationService{
 	}
 
 	@Override
-	public Long getNotificationCount(SearchCriteria cri) {
+	public Long getNotificationCount(Criteria cri) {
 		// Notification 페이지네이션을 위해서 받는 mem_id
 		return mapper.getNotificationCount(cri);
 	}

@@ -45,12 +45,12 @@ public class NotificationController {
 			method= {RequestMethod.GET, RequestMethod.POST})
 							// @RequestParam의 defaultValue를 통해 값이 안들어올때
 							// 자동으로 배정할 값을 정할 수 있음
-	public String getList(SearchCriteria cri, Model model) {
+	public String getList(Principal prin, SearchCriteria cri, Model model) {
 		// page 파라미터값이 주어지지 않을때 default 1
 		if(cri.getPage() == 0) {
 			cri.setPage(1);
 		}
-		List<NotificationVO> notificationList = service.getList(cri);
+		List<NotificationVO> notificationList = service.getList(prin.getName(), cri);
 		model.addAttribute("notificationList", notificationList );
 		// PageMaker 생성 
 		PageMaker pageMaker = new PageMaker();

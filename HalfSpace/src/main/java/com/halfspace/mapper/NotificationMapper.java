@@ -2,14 +2,14 @@ package com.halfspace.mapper;
 
 import java.util.List;
 
+import com.halfspace.persistence.Criteria;
 import com.halfspace.persistence.NotificationVO;
-import com.halfspace.persistence.SearchCriteria;
 
 public interface NotificationMapper {
 	
 	
 	// getList 각 유저에게 알림을 뜨게 하기 위해서 필요한 getList
-	public List<NotificationVO> getList(SearchCriteria cri);
+	public List<NotificationVO> getList(String mem_id, Criteria cri);
 	
 	// Insert 어떠한 동작시 알림을 보내기 위한 Insert(구현완료)
 	public void addNotifi(NotificationVO vo);
@@ -18,6 +18,6 @@ public interface NotificationMapper {
 	public void delete(long notId);
 	
 	// NotificationCount 페이지네이션을 위한 알림의 데이터 개수 받아오기
-	public Long getNotificationCount(SearchCriteria cri);
+	public Long getNotificationCount(Criteria cri);
 
 }
