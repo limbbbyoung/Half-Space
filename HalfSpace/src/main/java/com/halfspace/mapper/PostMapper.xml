@@ -96,4 +96,8 @@
 		SELECT * FROM post_tbl WHERE catego = '공지'
 	</select>
 
+	<update id="hit">
+		UPDATE post_tbl SET hit = +1 WHERE pono = #{pono}
+	</update>
+
 </mapper>

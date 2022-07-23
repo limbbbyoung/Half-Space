@@ -54,8 +54,16 @@ public class UserServiceImpl implements UserService{
 		return mapper.read(userId);
 	}
 
+	@Transactional
 	@Override
 	public void updateUser(UserVO vo) {
+		
+		attachMapper.delete(vo.getUserId());
+		
+		if(vo.getAttachList() == null || vo.getAttachList().size() <= 0) {
+			return;
+		}
+		
 		mapper.updateUser(vo);
 		
 	}

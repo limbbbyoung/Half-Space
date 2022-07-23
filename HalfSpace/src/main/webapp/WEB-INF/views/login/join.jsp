@@ -680,7 +680,6 @@
 					if(defaultImg == false) {
 						$(".uploadResult p").each(function(i, obj){
 							
-							// $(obj)에 대해서만 .data() 를 활용해 데이터를 얻어올 수 있음
 							let jobj =$(obj);
 
 							str += `<input type='hidden' name='attachList[\${i}].fileName' 
