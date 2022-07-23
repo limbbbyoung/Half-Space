@@ -31,7 +31,7 @@
 
 ###  🌌 ERD 설계
 
-<img alt="HalfSpace ERD" src="https://user-images.githubusercontent.com/96836408/179691180-19a7042e-4d1c-47f4-97e7-a8d85a54385a.png">
+<img alt="HalfSpace ERD" src="https://user-images.githubusercontent.com/96836408/180601778-5fb56e8d-34a6-4ac6-9470-fac14df6c6e0.png">
 
 <br/><br/><br/>
 
