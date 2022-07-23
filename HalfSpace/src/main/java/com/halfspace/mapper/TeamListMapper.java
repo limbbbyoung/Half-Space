@@ -35,6 +35,7 @@ public interface TeamListMapper {
 	// 페이지네이션을 위한 메서드
 	public Long getTeamListCnt(SearchCriteria cri);
 	
-	
+	// 홈에서의 슬라이드바에서 내정보로 가는 버튼 만들기
+	public Long getTeamListno(String coach);
 
 }

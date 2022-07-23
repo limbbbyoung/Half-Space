@@ -146,7 +146,7 @@
 										<small>내 정보</small>
 									</a>
 									&nbsp;
-									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn2" href="/team/teamDetail">
+									<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn2" href="/team/slideTeamDetail">
 										<small>내 팀</small>
 									</a>
 									&nbsp;

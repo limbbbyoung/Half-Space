@@ -3,6 +3,7 @@ package com.halfspace.controller;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -101,6 +102,42 @@ public class TeamController {
 		
 		return "/team/teamDetail";
 		
+	}
+	
+	@RequestMapping(value="/slideTeamDetail",
+			method= {RequestMethod.GET, RequestMethod.POST})
+	public String slideTeamDetail(Principal prin, Model model) {
+	// TeamListMapper를 통해서 listno를 불러올 수 있도록
+	// teamlist 테이블의 coach가 username의 FK이기 때문에 Security를 활용해서 userid 받아오기
+	Long listno = mapper.getListno(prin.getName());
+		
+	// 팀 상세정보 페이지에 보여줄 내 팀 정보
+	TeamVO myteam = service.teamDetail(listno);
+	log.info("팀의 정보 : " + myteam);
+	
+	// 창단일에 대한 정보를 보여주기 위해 TeamListVO 불러오기
+	TeamListVO listInMyteam = mapper.getDetail(listno);
+	log.info("팀 리스트에 등록된 내 팀 정보 : " + listInMyteam);
+	
+	// 사용자가 보기 좋게 바꾸기 위해 날짜 format
+	Date regdate = listInMyteam.getRegdate();
+	log.info("포맷 지정 전 : " + regdate);
+	
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일"); 
+	//원하는 데이터 포맷 지정
+	String strRegDate = simpleDateFormat.format(regdate); 
+	//지정한 포맷으로 변환 
+	log.info("포맷 지정 후 : " + strRegDate);
+	
+	// TeamVO 전송
+	model.addAttribute("myteam", myteam);
+	// TeamListVO 전송
+	model.addAttribute("listInMyteam", listInMyteam);
+	// 날짜 formatting 후 해당 날짜 전송
+	model.addAttribute("strRegDate", strRegDate);
+	
+	return "/team/teamDetail";
+	
 	}
 	
 	@GetMapping(value="/teamCreateForm")

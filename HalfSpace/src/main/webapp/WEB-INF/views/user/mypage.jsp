@@ -157,20 +157,24 @@
 						<section>
 							<div class="sidebar-body">
 								<div class="header-wrap">
-									<sec:authorize access="isAnonymous()">
-										<a class="text-main btn-sm rounded-pill border ml-2" href="/users/login">
-											<small>로그인</small>
-										</a>
-									</sec:authorize>
-									<sec:authorize access="isAuthenticated()"><!-- collapse했을 때 보이게끔 -->
-										<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn1" href="/user/mypage">
-											<small>내 정보</small>
-										</a>
-										&nbsp;
-										<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn2" href="/team/teamDetail">
-											<small>내 팀</small>
-										</a>
-									</sec:authorize>
+										<sec:authorize access="isAnonymous()">
+											<a class="text-main btn-sm rounded-pill border ml-2" href="/users/login">
+												<small>로그인</small>
+											</a>
+										</sec:authorize>
+										<sec:authorize access="isAuthenticated()"><!-- collapse했을 때 보이게끔 -->
+											<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn1" href="/user/mypage">
+												<small>내 정보</small>
+											</a>
+											&nbsp;
+											<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn2" href="/team/slideTeamDetail">
+												<small>내 팀</small>
+											</a>
+											&nbsp;
+											<a class="text-main btn-sm rounded-pill border" id="nav_pill_btn3" href="/hsLogout">
+												<small>로그아웃</small>
+											</a>
+										</sec:authorize>
 								</div>
 								<div class="menu-wrap">
 									<a href="#"><img src="../resources/images/faq.svg" class="mCS_img_loaded">FAQ</a>

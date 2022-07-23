@@ -100,5 +100,11 @@
 			WHERE listno = #{listno}
 	</update>
 	
+	<!-- 메인 슬라이드바에서 내 팀 정보를 보기 위해 불러오는 listno -->
+	<select id="getTeamListno" resultType="long">
+			SELECT listno FROM teamlist WHERE
+			coach=#{coach}
+	</select>
+	
 	
 </mapper>
