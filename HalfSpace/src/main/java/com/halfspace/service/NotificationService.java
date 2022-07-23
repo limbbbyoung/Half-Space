@@ -6,7 +6,6 @@ import com.halfspace.persistence.NotificationVO;
 import com.halfspace.persistence.SearchCriteria;
 
 public interface NotificationService {
-	
 	// 알림 보내기...팀 요청을 위해서 알림 기능을 만들지만 
 	// 내 글의 댓글이 달리거나 내가 단 댓글에 댓글이 달리거나 여러가지 경우를 
 	// 생각해서 알림을 적용할 수 있는 부분은 적용하기
@@ -20,6 +19,4 @@ public interface NotificationService {
 	
 	// user에게 해당하는 알림 가져오기
 	public Long getNotificationCount(SearchCriteria cri);
-
-
 }

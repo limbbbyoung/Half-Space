@@ -1,5 +1,6 @@
 package com.halfspace.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,27 @@ public class NotificationController {
 	@Autowired
 	private NotificationService service;
 	
+	// 알림 목록 불러오기
+	@RequestMapping(value="/notificationList",
+			method= {RequestMethod.GET, RequestMethod.POST})
+							// @RequestParam의 defaultValue를 통해 값이 안들어올때
+							// 자동으로 배정할 값을 정할 수 있음
+	public String getList(SearchCriteria cri, Model model) {
+		// page 파라미터값이 주어지지 않을때 default 1
+		if(cri.getPage() == 0) {
+			cri.setPage(1);
+		}
+		List<NotificationVO> notificationList = service.getList(cri);
+		model.addAttribute("notificationList", notificationList );
+		// PageMaker 생성 
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalBoard(service.getNotificationCount(cri));
+		log.info(service.getNotificationCount(cri));
+		model.addAttribute("pagesMaker", pageMaker);
+		return "/notification/notificationList";
+	}
+	
 	@PostMapping("/requestNotifi")
 	public String requestNotification(NotificationVO vo, String TeamName, Long listno, int page,Model model) {
          
@@ -77,26 +99,6 @@ public class NotificationController {
 			// log.info(board);
 			// model.addAttribute("board", board );
 			return "/mainBoard/detail";
-		}
-		
-		// 글쓰기는 말 그대로 글을 써주는 로직인데
-		// 폼으로 연결되는 페이지가 하나 있어야하고
-		// 그 다음 폼에서 날려주는 로직을 처리해주는 페이지가 하나 더 있어야 합니다.
-		// /board/insert 를 get방식으로 접속시 
-		// boardForm.jsp로 연결되도록 만들어주세요.
-		@GetMapping("/insert")
-		public String insertBoardForm() {
-			return "/mainBoard/insertForm";
-		}
-		
-		@PostMapping("/insert")
-		public String insertBoard(MainBoardVO board) {
-			log.info(board);
-			// service.insert(board);
-			// redirect를 사용해야 전체 글 목록을 로딩해온 다음 화면을 열어줍니다.
-			// 스프링 컨트롤러에서 리다이렉트를 할 때는 
-			// 목적주소 앞에 redirect: 을 추가로 붙입니다.
-			return "redirect:/mainBoard/list";
 		}
 		
 		// 글삭제 post방식으로 처리하도록 합니다.

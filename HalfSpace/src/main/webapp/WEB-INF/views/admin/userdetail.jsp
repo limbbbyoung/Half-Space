@@ -39,10 +39,7 @@
      <button type="submit" class="btn btn-success" >권한 수정 요청</button>
      </form>
      <br>
-   
-    </div>
-
-	<a href="">이 유저</a>
+		<a href="">이 유저</a>
 
 </body>
 </html>

@@ -21,7 +21,7 @@ public class NotificationMapperTests {
 	@Autowired
 	private NotificationMapper mapper;
 	
-	//@Test
+	@Test
 	public void getListTest() {
 		
 		// Test 코드 작성시 파라미터에 값을 입력하게 하면 
@@ -34,7 +34,7 @@ public class NotificationMapperTests {
 		log.info(mapper.getList(cri));
 		} // getListTest end
 	
-	@Test
+	//@Test
 	public void addNotifi() {
 		
 		NotificationVO vo = new NotificationVO();

@@ -28,8 +28,8 @@ public class NotificationServiceImpl implements NotificationService{
 
 	@Override
 	public List<NotificationVO> getList(SearchCriteria cri) {
-		// TODO Auto-generated method stub
-		return null;
+		// 유저에게 도착한 알림을 확인하기 위한 List 메서드
+		return mapper.getList(cri);
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class NotificationServiceImpl implements NotificationService{
 
 	@Override
 	public Long getNotificationCount(SearchCriteria cri) {
-		// TODO Auto-generated method stub
-		return null;
+		// Notification 페이지네이션을 위해서 받는 mem_id
+		return mapper.getNotificationCount(cri);
 	}
 
 }
