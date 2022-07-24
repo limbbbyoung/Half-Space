@@ -21,7 +21,6 @@ import com.halfspace.service.MainBoardService;
 import lombok.extern.log4j.Log4j;
 
 @Controller 
-// 주소 /board
 @RequestMapping("/mainBoard")
 @Log4j
 public class MainBoardController {

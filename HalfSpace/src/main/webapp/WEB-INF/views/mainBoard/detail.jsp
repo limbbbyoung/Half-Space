@@ -104,7 +104,7 @@
 							</div>
 							<div class="apply-wrap" style="float:right;">
 							 	<sec:authorize access="isAuthenticated()">
-									<c:if test="${prin.authorities eq '[ROLE_ADMIN]' || prin.username eq post.writer}">
+									<c:if test="${prin.authorities eq '[ROLE_ADMIN]' || prin.username eq board.writer}">
 										<div style="float:right;">
 										 	<form action="/mainBoard/delete" method="post">
 											 	<input type="hidden" value="${board.bno }" name="bno">

@@ -19,5 +19,5 @@ public interface NotificationService {
 	public void delete(long notId);
 	
 	// user에게 해당하는 알림 가져오기
-	public Long getNotificationCount(Criteria cri);
+	public Long getNotificationCount();
 }

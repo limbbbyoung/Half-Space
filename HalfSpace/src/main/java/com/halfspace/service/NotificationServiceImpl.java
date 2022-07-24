@@ -38,9 +38,9 @@ public class NotificationServiceImpl implements NotificationService{
 	}
 
 	@Override
-	public Long getNotificationCount(Criteria cri) {
+	public Long getNotificationCount() {
 		// Notification 페이지네이션을 위해서 받는 mem_id
-		return mapper.getNotificationCount(cri);
+		return mapper.getNotificationCount();
 	}
 
 }

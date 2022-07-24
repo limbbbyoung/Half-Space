@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.halfspace.persistence.Criteria;
 import com.halfspace.persistence.NotificationVO;
 import com.halfspace.persistence.SearchCriteria;
 
@@ -24,14 +25,17 @@ public class NotificationMapperTests {
 	@Test
 	public void getListTest() {
 		
-		// Test 코드 작성시 파라미터에 값을 입력하게 하면 
-		// 파라미터를 가져오지 못한다고 오류가 뜸
-		// 따라서 테스트 코드 내부에서 생성자를 생성해서 사용
-		SearchCriteria cri = new SearchCriteria();
+		NotificationVO vo = new NotificationVO();
+		 
+		vo.setMem_id("user41");
+		
+		String mem_id = vo.getMem_id();
+		
+		Criteria cri = new Criteria();
 		
 		cri.setPage(1);
 			
-		// log.info(mapper.getList(cri));
+		log.info(mapper.getList(mem_id, cri));
 		} // getListTest end
 	
 	//@Test
