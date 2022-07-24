@@ -36,6 +36,7 @@ public class UserServiceImpl implements UserService{
 		
 		// vo에 attachList(이미지 리스트)가 없다면 여기서 insert service 종료
 		if(vo.getAttachList() == null || vo.getAttachList().size() <= 0) {
+
 			return;
 		}
 		
@@ -53,15 +54,23 @@ public class UserServiceImpl implements UserService{
 		return mapper.read(userId);
 	}
 
+	@Transactional
 	@Override
 	public void updateUser(UserVO vo) {
+		
+		attachMapper.delete(vo.getUserId());
+		
+		if(vo.getAttachList() == null || vo.getAttachList().size() <= 0) {
+			return;
+		}
+		
 		mapper.updateUser(vo);
 		
 	}
 
 	@Override
 	public List<UserAttachVO> getAttachList(String userId) {
-		
+		log.info("여기는 service에요" + userId);
 		return attachMapper.findByUid(userId);
 	}
 

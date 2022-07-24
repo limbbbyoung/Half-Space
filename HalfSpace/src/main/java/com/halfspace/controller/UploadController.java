@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -26,7 +27,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.halfspace.mapper.UserAttachMapper;
 import com.halfspace.persistence.AttachFileDTO;
+import com.halfspace.service.UserService;
 
 import lombok.extern.log4j.Log4j;
 import net.coobird.thumbnailator.Thumbnailator;
@@ -34,6 +37,7 @@ import net.coobird.thumbnailator.Thumbnailator;
 @Controller
 @Log4j
 public class UploadController {
+	
 	
 	// image 인지 아닌지 확인하는 boolean 메서드
 	private boolean checkImageType(File file) {
@@ -66,28 +70,7 @@ public class UploadController {
 		log.info("upload form");
 	}
 	
-	@PostMapping("uploadFormAction")
-	public void uploadFormPost(MultipartFile[] uploadFile, Model model) {
-		
-		String uploadFolder= "C:\\upload_data\\temp";
-		// MultipartFile은 폼에서 보낸 파일을 자바 내부에서 명령을 받을 수 있도록 도와줍니다.
-		for(MultipartFile multipartFile : uploadFile) {
-			
-			log.info("---------------------");
-			log.info("Upload File Name : " + multipartFile.getOriginalFilename());
-			log.info("Upload File Size : " + multipartFile.getSize());
-			
-			// 다시 자바 변수였던 multipartFile을 외부 파일로 변환하기 위해서는
-			// new File(저장위치, 원본MultipartFile) 을 이용해야 합니다.
-			File saveFile = new File(uploadFolder, multipartFile.getOriginalFilename());
-			
-			try {
-				multipartFile.transferTo(saveFile);
-			} catch(Exception e) {
-				log.error(e.getMessage());
-			}// end try~catch
-		}// end for
-	}
+
 
 	@GetMapping("/uploadAjax")
 	public void uploadAjax() {
@@ -146,7 +129,7 @@ public class UploadController {
 							new FileOutputStream(
 									new File(uploadPath, "s_" + uploadFileName));
 					
-					Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
+					Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 150, 150);
 				}
 				
 			} catch(Exception e) {
@@ -201,7 +184,7 @@ public class UploadController {
 					FileOutputStream thumbnail = new FileOutputStream(
 							new File(uploadPath, "s_" + uploadFileName));
 					
-					Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
+					Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 150, 150);
 					
 					thumbnail.close();
 				}
@@ -300,7 +283,8 @@ public class UploadController {
 	}// delete file method
 	
 	
-}
+
+} // controller END
 
 
 

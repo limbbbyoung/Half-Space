@@ -77,14 +77,17 @@
 
 	<div class="narrow-container mx-auto py-5" id="mypage-container">
 		<h5 class="px-4 py-2">내 정보</h5>
+		
+		<!--  여기에 이미지를 넣는다 -->
 		<div class="user-wrap text-center">
 			<div class="fileinput fileinput-new position-relative" data-provides="fileinput">
-				<div class="fileinput-new thumbnail img-circle">
+				<div class="uploadResult">
+					<!-- 바로 여기 -->
 					<img src="/resources/images/main_picture.jpg">
 				</div>
-				</div>
 			</div>
-			
+		</div>
+			<!--  이미지 칸 끝 -->
 			
 			<div class="user-info">
 				<div class="mypage-info">
@@ -127,7 +130,7 @@
 				</div>
 			</div><!-- user-info END -->
 		</div><!-- mypage container END -->
-	
+
 		<!-- footer 태그 -->
 	 	<div class="footer">
 	 		<div class="footer-container">
@@ -200,7 +203,9 @@
 		</nav>
 		<div class="overlay"></div>
 </body>
-	<script type="text/javascript">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+		let userId = "${user.userId}";
 		// csrf 토큰
 		let csrfHeaderName = "${_csrf.headerName}"
 		let csrfTokenValue="${_csrf.token}"
@@ -235,6 +240,42 @@
 			$(".overlay").removeClass('active');
 		});
 	
+	
+	$(document).ready(function(){
+	
+		let imgselect = document.querySelector(".uploadResult > img");
+		console.log(imgselect);
+		
+		
+			(function(){
+				$.getJSON("/user/getAttachList", {userId:userId}, function(arr){
+					console.log(arr);
+					
+					let str = "";
+					
+					
+						$(arr).each(function(i, attach){
+							let fileCallPath = encodeURIComponent(attach.uploadPath
+									+ "/" + attach.uuid + "_" + attach.fileName);
+						
+							str += "/display?fileName="+fileCallPath;
+								
+							console.log(str);
+						});
+					
+					$(imgselect).attr({ src: str });
+				
+					
+				}); // END getJSON
+			
+			})(); //  END annonymous
+			
+		
+		let imgselect2 = document.querySelector(".uploadResult > img");
+		console.log(imgselect2);
+		
+		
+	}); // document END
 	
 	</script>
 </html>

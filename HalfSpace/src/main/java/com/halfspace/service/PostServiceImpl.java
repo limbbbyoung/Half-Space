@@ -80,7 +80,7 @@ public class PostServiceImpl implements PostService{
 
 	@Override
 	public PostVO getDetail(Long pono) {
-		
+		mapper.hit(pono);
 		return mapper.getDetail(pono);
 		
 	}

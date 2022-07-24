@@ -27,6 +27,8 @@ public interface PostMapper {
 	
 	public List<PostVO> getInfoList();
 	
+	public void hit(Long pono);
+	
 
 
 }

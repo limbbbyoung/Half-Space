@@ -341,7 +341,7 @@
 			// 위에서 str변수에 작성된 태그 형식을 화면에 끼워넣기
 			$("#uploadResult ul").html(str);
 		});
-	})();// 익명함수 닫는부분
+	});// 익명함수 닫는부분
 	
 		$("#uploadResult").on("click", "li", function(e){
 			let liObj = $(this);
