@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.halfspace.persistence.Criteria;
 import com.halfspace.persistence.MainBoardVO;
 import com.halfspace.persistence.NotificationVO;
 import com.halfspace.persistence.PageMaker;
@@ -45,7 +46,7 @@ public class NotificationController {
 			method= {RequestMethod.GET, RequestMethod.POST})
 							// @RequestParam의 defaultValue를 통해 값이 안들어올때
 							// 자동으로 배정할 값을 정할 수 있음
-	public String getList(Principal prin, SearchCriteria cri, Model model) {
+	public String getList(Principal prin, Criteria cri, Model model) {
 		// page 파라미터값이 주어지지 않을때 default 1
 		if(cri.getPage() == 0) {
 			cri.setPage(1);
@@ -55,8 +56,8 @@ public class NotificationController {
 		// PageMaker 생성 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalBoard(service.getNotificationCount(cri));
-		log.info(service.getNotificationCount(cri));
+		pageMaker.setTotalBoard(service.getNotificationCount());
+		log.info(service.getNotificationCount());
 		model.addAttribute("pagesMaker", pageMaker);
 		return "/notification/notificationList";
 	}

@@ -373,18 +373,9 @@
 </div> <!-- join page -->
 
 </div>
-
-
-
-
-
-
-
-
-
 <!-- container END -->
-<!-- footer 태그 -->
-
+	
+	<!-- footer 태그 -->
  	<div class="footer">
  		<div class="footer-container">
 			<a class="my-3" href="/">
@@ -405,8 +396,7 @@
 		</div>
  	</div><!-- .footer 끝나는 지점 -->
 
-<!-- navbar(선택) -->
-
+	<!-- navbar(선택) -->
  	<nav id="sidebar" class="mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" style="overflow: visible;">
 		<div id="mCSB_1" class="mCustomScrollBox mCS-minimal mCSB_vertical mCSB_outside" style="max-height: 879px;" tabindex="0">
 			<div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0px; left:0;" dir="ltr">

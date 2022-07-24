@@ -14,9 +14,6 @@
 			/*+ INDEX_DESC(notification_tbl pk_notification) */
 			ROWNUM rn, notification_tbl.* FROM notification_tbl 
 				WHERE 		
-		]]>
-	    
-		<![CDATA[	
 			rownum <= (${page}*10))
 			WHERE rn > (${page}-1)*10 
 			AND mem_id=#{mem_id}

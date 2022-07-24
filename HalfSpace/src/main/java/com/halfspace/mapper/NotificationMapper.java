@@ -18,6 +18,6 @@ public interface NotificationMapper {
 	public void delete(long notId);
 	
 	// NotificationCount 페이지네이션을 위한 알림의 데이터 개수 받아오기
-	public Long getNotificationCount(Criteria cri);
+	public Long getNotificationCount();
 
 }
