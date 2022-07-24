@@ -130,11 +130,7 @@
 				</div>
 			</div><!-- user-info END -->
 		</div><!-- mypage container END -->
-		
-		${user.attachList}<hr/>
-		${fileName}
-		
-		
+
 		<!-- footer 태그 -->
 	 	<div class="footer">
 	 		<div class="footer-container">
@@ -248,8 +244,6 @@
 		
 		
 			(function(){
-				
-				
 				$.getJSON("/user/getAttachList", {userId:userId}, function(arr){
 					console.log(arr);
 					
