@@ -60,10 +60,12 @@ public class UserServiceImpl implements UserService{
 		
 		attachMapper.delete(vo.getUserId());
 		
-		if(vo.getAttachList() == null || vo.getAttachList().size() <= 0) {
-			return;
+		if (vo.getAttachList().size() > 0) {
+			vo.getAttachList().forEach(attach -> {
+				attach.setUserId(vo.getUserId());
+				attachMapper.insert(attach);
+			});
 		}
-		
 		mapper.updateUser(vo);
 		
 	}

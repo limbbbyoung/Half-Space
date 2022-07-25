@@ -313,7 +313,7 @@
 		$.getJSON("/post/getAttachList", {pono:pono}, function(arr){
 			console.log(arr);
 			
-			let str = "";
+			let str = "";	
 			
 			$(arr).each(function(i, attach){
 				// 이미지파일인 경우
@@ -333,7 +333,7 @@
 								data-filename='\${attach.fileName}' data-type='\${attach.fileType}'>
 								<div>
 									<span>\${attach.fileName}</span><br/>
-									<img src='/resources/attach.png' width='100px' height='100px'>
+									<img src='/resources/attach.png' width='150px' height='150px'>
 								</div>
 							</li>`;
 				}
