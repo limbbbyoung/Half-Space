@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halfspace.mapper.LeagueMapper">
+
+	<select id="detail" resultType="com.halfspace.persistence.LeagueVO">
+		SELECT * FROM league_tbl WHERE tno = #{tno}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO 
+			league_tbl
+		(tno, name, won, draw, loss, played, gf, ga, gd, points, round) 
+			VALUES 
+		(#{tno}, #{name}, 0, 0, 0, 0, 0, 0, 0, 0, '하프스페이스 2022시즌') 
+	</insert>	
+ 	
+ 	<update id="update">
+ 		UPDATE league_tbl
+ 			SET
+ 		won = #{won}, draw = #{draw}, played = 1, 
+ 		GF = #{GF}, GA = #{GA}, GD = #{GD}, points = #{points}
+ 			WHERE tno = #{tno}
+ 	</update>
+ 	
+
+</mapper>
