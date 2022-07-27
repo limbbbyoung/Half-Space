@@ -10,12 +10,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	${user}
-	<br/>
+
 	<sec:authentication property="principal.user.authList"/></p><hr/>
 	<form action="/admin/update" method="post">
      유저명 : <input class="form-control" type="text" name="userId" value="${user.userId}" readonly><br/>
-		<div class="form-check">
+			<div class="form-check">
 		  <input class="form-check-input" type="radio" name="auth" value="ROLE_USER" id="flexRadio1">
 		  <label class="form-check-label" for="flexRadio1">
 		    회원 권한
@@ -34,12 +33,11 @@
 		  </label>
 		</div>
 	 <input type="hidden" name="page" value="${param.page}">
-     
+     <input class="form-control" type="hidden" name="userId" value="${user.userId}" readonly>
      <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
      <button type="submit" class="btn btn-success" >권한 수정 요청</button>
      </form>
      <br>
-		<a href="">이 유저</a>
-
+	 <a href="">이 유저</a>
 </body>
 </html>
