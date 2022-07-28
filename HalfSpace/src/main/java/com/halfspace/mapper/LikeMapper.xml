@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halfspace.mapper.LikeMapper">
+	  	
+	<insert id="likey">
+		INSERT INTO
+			like_tbl
+		(likeno, userid, pono, likecheck)
+			VALUES
+		(like_num.nextval, #{userId}, #{pono}, 1)
+	</insert>
+	
+	<select id="getLike" resultType="com.halfspace.persistence.LikeVO">
+		SELECT * FROM like_tbl 
+			WHERE 
+		userid  = #{userId} AND pono = #{pono}
+	</select>
+	
+	
+	<delete id="unlikey">
+		DELETE FROM
+			like_tbl
+		WHERE
+			userid = #{userId}
+		AND
+			pono = #{pono}
+	</delete>
+	
+	<update id="likeCntUp">
+		UPDATE post_tbl SET likeCnt = +1 WHERE pono = #{pono}
+	</update>
+	
+	
+	<update id="likeCntDown">
+		UPDATE post_tbl SET likeCnt = -1 WHERE pono = #{pono}
+	</update>
+	
+	
+</mapper>

@@ -25,10 +25,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.halfspace.domain.UserVO;
+import com.halfspace.persistence.LikeVO;
 import com.halfspace.persistence.PageMaker;
 import com.halfspace.persistence.PostAttachVO;
 import com.halfspace.persistence.PostVO;
 import com.halfspace.persistence.SearchCriteria;
+import com.halfspace.service.LikeService;
 import com.halfspace.service.PostService;
 import com.halfspace.service.UserService;
 
@@ -44,6 +46,9 @@ public class PostController {
 	
 	@Autowired
 	private UserService userservice;
+	
+	@Autowired
+	private LikeService likeservice;
 	
 	// 파일 업로드 보조 메서드
 	private boolean checkImageType(File file) {
@@ -153,7 +158,7 @@ public class PostController {
 		UserVO user = userservice.read(post.getWriter());
 		// debug
 		log.info(post);
-		
+
 		model.addAttribute("post", post);
 		model.addAttribute("user", user);
 		return "/post/detail";

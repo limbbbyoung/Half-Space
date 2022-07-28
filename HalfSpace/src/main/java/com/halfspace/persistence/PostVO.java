@@ -17,6 +17,7 @@ public class PostVO {
 	private Date regDate;
 	private Date updateDate;
 	private Long commentCnt;
+	private Long likeCnt;
 	
 	// post의 이미지 list를 저장
 	private List<PostAttachVO> attachList;

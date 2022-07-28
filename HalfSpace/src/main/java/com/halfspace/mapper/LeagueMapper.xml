@@ -13,7 +13,7 @@
 			league_tbl
 		(tno, name, won, draw, loss, played, gf, ga, gd, points, round) 
 			VALUES 
-		(#{tno}, #{name}, 0, 0, 0, 0, 0, 0, 0, 0, '하프스페이스 2022시즌') 
+		(#{tno}, #{name}, 0, 0, 0, 0, 0, 0, 0, 0, ' 2022시즌 하프스페이스컵') 
 	</insert>	
  	
  	<update id="update">

@@ -99,5 +99,5 @@
 	<update id="hit">
 		UPDATE post_tbl SET hit = +1 WHERE pono = #{pono}
 	</update>
-
+	
 </mapper>

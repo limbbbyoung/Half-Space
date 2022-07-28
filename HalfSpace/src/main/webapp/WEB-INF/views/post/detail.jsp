@@ -20,6 +20,9 @@
 <title>postDetail</title>
 </head>
 <body>
+
+${like}
+	
 	<div class="header">
 		<div class="navi-container">
 			<div class="d-flex justify-content-between align-items-center mx-auto p-0" style="max-width:800px">
@@ -126,8 +129,25 @@
 								</sec:authorize>
 							</div>
 						</div>
+						<sec:authorize access="isAnonymous()">
+							<img src="/resources/images/likepng.png" id="likeimg" width="60px" height="60px"
+								class="rounded-circle mt-2">
+								${post.likeCnt} <br><br>
+							추천 기능은 <a href="/login/user" type="button" id="newLogin"
+							class="btn btn-outline-success">로그인</a> 후 사용 가능합니다.
+						</sec:authorize>
+						<sec:authorize access="isAuthenticated()">
+							<div>
+								<input type="hidden" id="likecheck" value="${like.likecheck}">
+								<input type="hidden" id="userId" value="${prin.username}">
+								<img class="rounded-circle likeimg" id="likeimg" src="/resources/images/likepng.png"
+								width="60px" height="60px"> ${post.likeCnt}
+							</div>
+						</sec:authorize>
 					</div>
 				</div>
+				
+				
 				<div class="profile" style="width : 100%">
 					<img src="${post.image ? post.image : '../resources/images/main_picture.jpg'}">
 					<div class="profile-info">
@@ -309,7 +329,8 @@
 	// 익명함수 선언 및 호출
 	// 우선 함수이기 때문에 호출한다는 점을 명시하기 위해 마지막에 () 를 추가로 붙여준다.
 	
-	(function(){
+	(function(){		
+		
 		$.getJSON("/post/getAttachList", {pono:pono}, function(arr){
 			console.log(arr);
 			
@@ -383,6 +404,126 @@
 			$(".overlay").removeClass('active');
 		})
 	
+	$(document).ready(function () {
+			let likeCnt = document.getElementById('likeCnt')
+			let likeval = document.getElementById('likecheck').value
+			let userId = document.getElementById('userId').value
+			//let m_id = "${sessionScope.loginId}";
+			let likeimg = document.getElementById("likeimg")
+		
+			console.log(likeval);
+			
+			if(userId != null) {
+				
+				function getLike(){
+					// json 데이터를 얻어오는 로직 실행
+					$.getJSON("/like/" + pono +"/"+userId, function(data){
+						console.log(data);
+						console.log(data.likecheck);
+						let newLikecheck = data.likecheck;
+						
+						likeval = document.getElementById('likecheck').val(newLikecheck);
+						//$("#likecheck").val('newlikecheck');
+						console.log(likeval);
+					});
+				}
+				getLike();
+				
+			} //  if END
+			
+			
+			if (likeval == 1) {
+				likeimg.src = "/resources/images/likepng.png";
+			
+					$(".likeimg").on("click", function () {
+						$.ajax({
+							headers: {
+								"Content-Type" : "application/json",
+								"X-HTTP-Method-Override" : "DELETE"
+							},
+	
+							type: 'delete',
+					      	url: '/like/' + userId,
+					      
+							beforeSend : function(xhr) {
+								xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+							},
+	
+							dataType : 'text',
+				    	  
+					    	 success: function (data) {
+					          
+					    		  if (data == 1) {
+					              $("#likeimg").attr("src", "/resources/images/likepng.png");
+					              location.reload();
+					          } else {
+					              $("#likeimg").attr("src", "/resources/images/likepng.png");
+					              location.reload();
+					          }
+					     	 }, error: function () {
+						          $("#likeimg").attr("src", "/resources/images/likepng.png");
+						          console.log('오타가 있나봐요')
+					     	 }
+					     	 
+					  	}); // ajax END
+	
+			  		}); // img onclick END
+						
+			
+			} // if END
+			else {
+				likeimg.src = "/resources/images/likepng.png";
+			} // END else
+	    // 좋아요 버튼을 클릭 시 실행되는 코드
+		$(".likeimg").on("click", function () {
+			$.ajax({
+				headers: {
+					"Content-Type" : "application/json",
+					"X-HTTP-Method-Override" : "POST"
+				},
+				
+				
+				type: 'POST',
+		      	url: '/like',
+		      
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
+
+				dataType : 'text',
+				data : JSON.stringify({
+					pono : pono,
+					userId : userId
+				}),
+	    	  
+		    	 success: function (data) {
+		          
+		    		  if (data == 1) {
+		              $("#likeimg").attr("src", "/resources/images/likepng.png");
+		              location.reload();
+		          } else {
+		              $("#likeimg").attr("src", "/resources/images/likepng.png");
+		              location.reload();
+		          }
+		     	 }, error: function () {
+			          $("#likeimg").attr("src", "/resources/images/likepng.png");
+			          console.log('오타가 있나봐요')
+		     	 }
+		     	 
+		  	}); // ajax END
+
+  		}); // img onclick END
+  		
+	
+  		
+  		
+  }); //  document ready END
+		
+		
+		
+		
+		
+		
 	</script>
 	
 	<!--comment script src -->

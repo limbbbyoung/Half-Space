@@ -29,6 +29,8 @@ public interface PostMapper {
 	
 	public void hit(Long pono);
 	
+	public Long getLikeCnt(Long pono);
+	
 
 
 }
