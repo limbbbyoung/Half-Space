@@ -18,6 +18,7 @@
 </style>
 </head>
 <body>
+${notificationList }
 <!-- header start -->
 	<div class="header">
 		<div class="navi-container">

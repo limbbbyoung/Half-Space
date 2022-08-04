@@ -29,7 +29,7 @@ public class NotificationServiceImpl implements NotificationService{
 	@Override
 	public List<NotificationVO> getList(String mem_id, Criteria cri) {
 		// 유저에게 도착한 알림을 확인하기 위한 List 메서드
-		return mapper.getList(mem_id, cri);
+		return mapper.getList(mem_id, cri.getPage());
 	}
 
 	@Override
