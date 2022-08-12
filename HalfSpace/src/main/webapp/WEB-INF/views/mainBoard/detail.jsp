@@ -324,35 +324,6 @@
 				// 어려움을 느낄 것으로 예상, 그러므로 이 점에 집중해서 화면단 기능 구성
 			});  
 	
-		    // 사이드바 펼치기
-			$("#sidebarCollapse").on("click", function(event) {
-				if($("#sidebar").hasClass('active')) {
-					$("#sidebar").removeClass('active');
-					$(".overlay").removeClass('active');
-				} else {
-					$("#sidebar").addClass('active');
-					$(".overlay").addClass('active');
-				}
-			})
-			
-			// 사이드바2 펼치기
-			$("#sidebarCollapse2").on("click", function(event) {
-				if($("#sidebar2").hasClass('active')) {
-					$("#sidebar2").removeClass('active');
-					$(".overlay").removeClass('active');
-				} else {
-					$("#sidebar2").addClass('active');
-					$(".overlay").addClass('active');
-				}
-			})
-			
-			// 사이드바 접기
-			$(".overlay").on("click", function(event) {
-				$("#sidebar").removeClass('active');
-				$("#sidebar2").removeClass('active');
-				$(".overlay").removeClass('active');
-			})
-			
  	</script>
  	
  	<!-- modal 기능들 -->
@@ -363,6 +334,7 @@
 	<script src="/resources/reply/modify.js"></script>
 	<!-- close 기능 -->
 	<script src="/resources/reply/modalclose.js"></script>
-	
+	<!-- sidebar 기능-->
+	<script src="/resources/basic/sideBar.js"></script>
 </body>
 </html>

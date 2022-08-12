@@ -374,36 +374,7 @@
 			self.location = "/download?fileName=" + path;
 			
 		});
-	
-	    // 사이드바 펼치기
-		$("#sidebarCollapse").on("click", function(event) {
-			if($("#sidebar").hasClass('active')) {
-				$("#sidebar").removeClass('active');
-				$(".overlay").removeClass('active');
-			} else {
-				$("#sidebar").addClass('active');
-				$(".overlay").addClass('active');
-			}
-		})
-		
-		// 사이드바2 펼치기
-		$("#sidebarCollapse2").on("click", function(event) {
-			if($("#sidebar2").hasClass('active')) {
-				$("#sidebar2").removeClass('active');
-				$(".overlay").removeClass('active');
-			} else {
-				$("#sidebar2").addClass('active');
-				$(".overlay").addClass('active');
-			}
-		})
-		
-		// 사이드바 접기
-		$(".overlay").on("click", function(event) {
-			$("#sidebar").removeClass('active');
-			$("#sidebar2").removeClass('active');
-			$(".overlay").removeClass('active');
-		})
-	
+
 	$(document).ready(function () {
 			let likeCnt = document.getElementById('likeCnt')
 			let likeval = document.getElementById('likecheck').value
@@ -534,5 +505,7 @@
 	<script src="/resources/comment/modalclose.js"></script>
 	<script src="/resources/comment/modify.js"></script>
 	<script src="/resources/comment/delete.js"></script>	
+	<!-- sidebar 기능-->
+	<script src="/resources/basic/sideBar.js"></script>
 </body>
 </html>

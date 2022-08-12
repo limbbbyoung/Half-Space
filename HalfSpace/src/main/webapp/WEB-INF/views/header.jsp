@@ -8,7 +8,7 @@
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Styles -->
-<link rel="stylesheet" type="text/css" href="/resources/각 css 파일 경로.css">
+<link rel="stylesheet" type="text/css" href="/resources/basic/basic.css">
 <!-- 글씨체 -->
 <link href="https://webfontworld.github.io/sandbox/SBAggro.css" rel="stylesheet">
 <sec:authentication property="principal" var="prin"/>

@@ -339,33 +339,7 @@ function validatePassword(){
 password.onchange = validatePassword;
 confirm_password.onkeyup = validatePassword;
 // 여기까지 패스워드 로직
-// 사이드바 펼치기
-$("#sidebarCollapse").on("click", function(event) {
-	if($("#sidebar").hasClass('active')) {
-		$("#sidebar").removeClass('active');
-		$(".overlay").removeClass('active');
-	} else {
-		$("#sidebar").addClass('active');
-		$(".overlay").addClass('active');
-	}
-})
-// 사이드바2 펼치기
-$("#sidebarCollapse2").on("click", function(event) {
-	if($("#sidebar2").hasClass('active')) {
-		$("#sidebar2").removeClass('active');
-		$(".overlay").removeClass('active');
-	} else {
-		$("#sidebar2").addClass('active');
-		$(".overlay").addClass('active');
-	}
-})
-// 사이드바 접기
-$(".overlay").on("click", function(event) {
-	$("#sidebar").removeClass('active');
-	$("#sidebar2").removeClass('active');
-	$(".overlay").removeClass('active');
-})
-	
+
 	$(document).ready(function(){
 			
 			// 정규표현식 : 예).com 끝나는 문장 등의 조건이 복잡한 문장을 컴퓨터에게 이해시키기 위한 구문
@@ -555,4 +529,6 @@ $(".overlay").on("click", function(event) {
 </script>
 
 <script src="/resources/login/joinDoubleCheck.js"></script>
+	<!-- sidebar 기능-->
+	<script src="/resources/basic/sideBar.js"></script>
 </html>

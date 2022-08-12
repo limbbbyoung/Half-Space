@@ -186,7 +186,7 @@ public class UserController {
 	} // getAttachList END
  	
 	/*
-	비밀번호 복호화를 위한 ajax REST 통신 컨트롤러 생성 중
+	//비밀번호 복호화를 위한 ajax REST 통신 컨트롤러 생성 중
 	@PostMapping(value="/userPwTest", 
 			produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
