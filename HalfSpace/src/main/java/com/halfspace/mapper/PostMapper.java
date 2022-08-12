@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.halfspace.persistence.LikeVO;
 import com.halfspace.persistence.PostAttachVO;
 import com.halfspace.persistence.PostVO;
 import com.halfspace.persistence.SearchCriteria;
@@ -31,6 +32,7 @@ public interface PostMapper {
 	
 	public Long getLikeCnt(Long pono);
 	
+
 
 
 }

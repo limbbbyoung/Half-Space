@@ -97,7 +97,7 @@
 	</select>
 
 	<update id="hit">
-		UPDATE post_tbl SET hit = +1 WHERE pono = #{pono}
+		UPDATE post_tbl SET hit = hit+1 WHERE pono = #{pono}
 	</update>
 	
 </mapper>

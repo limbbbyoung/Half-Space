@@ -33,15 +33,15 @@ public class LikeServiceImpl implements LikeService{
 
 
 	@Override
-	public LikeVO getLike(LikeVO vo) {
+	public LikeVO getLike(String userId, Long pono) {
 	
-		return mapper.getLike(vo);
+		return mapper.getLike(userId, pono);
 	}
 
 	@Override
-	public void unlikey(LikeVO vo) {
-		mapper.likeCntDown(vo.getPono());
-		mapper.unlikey(vo);
+	public void unlikey(String userId, Long pono) {
+		mapper.likeCntDown(pono);
+		mapper.unlikey(userId, pono);
 		
 	}
 

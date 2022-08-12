@@ -8,12 +8,12 @@ public interface LikeService {
 	
 	public List<LikeVO> getLikeList();
 
-	public LikeVO getLike(LikeVO vo);
+	public LikeVO getLike(String userId, Long pono);
 	
 	// like 생성
 	public void likey(LikeVO vo);
 	
 	// like 삭제
-	public void unlikey(LikeVO vo);
+	public void unlikey(String userId, Long pono);
 
 }

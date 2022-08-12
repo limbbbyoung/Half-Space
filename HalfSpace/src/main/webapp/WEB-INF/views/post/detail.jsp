@@ -408,7 +408,6 @@ ${like}
 			let likeCnt = document.getElementById('likeCnt')
 			let likeval = document.getElementById('likecheck').value
 			let userId = document.getElementById('userId').value
-			//let m_id = "${sessionScope.loginId}";
 			let likeimg = document.getElementById("likeimg")
 		
 			console.log(likeval);
@@ -422,7 +421,7 @@ ${like}
 						console.log(data.likecheck);
 						let newLikecheck = data.likecheck;
 						
-						likeval = document.getElementById('likecheck').val(newLikecheck);
+						
 						//$("#likecheck").val('newlikecheck');
 						console.log(likeval);
 					});
@@ -443,7 +442,7 @@ ${like}
 							},
 	
 							type: 'delete',
-					      	url: '/like/' + userId,
+					      	url: '/like/delete/' + userId +'/'+ pono,
 					      
 							beforeSend : function(xhr) {
 								xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
@@ -462,7 +461,8 @@ ${like}
 					          }
 					     	 }, error: function () {
 						          $("#likeimg").attr("src", "/resources/images/likepng.png");
-						          console.log('오타가 있나봐요')
+						          console.log('오타가 있나봐요');
+						          
 					     	 }
 					     	 
 					  	}); // ajax END
@@ -472,48 +472,53 @@ ${like}
 			
 			} // if END
 			else {
+				
+			    // 좋아요 버튼을 클릭 시 실행되는 코드 '좋아요 생성'
+				$(".likeimg").on("click", function () {
+					$.ajax({
+						headers: {
+							"Content-Type" : "application/json",
+							"X-HTTP-Method-Override" : "POST"
+						},
+						
+						
+						type: 'POST',
+				      	url: '/like',
+				      
+						beforeSend : function(xhr) {
+							xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+						},
+
+						dataType : 'text',
+						data : JSON.stringify({
+							pono : pono,
+							userId : userId
+						}),
+			    	  
+				    	 success: function (data) {
+				          
+				    		  if (data == 1) {
+				              $("#likeimg").attr("src", "/resources/images/likepng.png");
+				              location.reload();
+				          } else {
+				              $("#likeimg").attr("src", "/resources/images/likepng.png");
+				              location.reload();
+				          }
+				     	 }, error: function () {
+					          $("#likeimg").attr("src", "/resources/images/likepng.png");
+					          console.log('오타가 있나봐요')
+				     	 }
+				     	 
+				  	}); // ajax END
+
+		  		}); // img onclick END
+		  		
+				
+				
 				likeimg.src = "/resources/images/likepng.png";
 			} // END else
-	    // 좋아요 버튼을 클릭 시 실행되는 코드
-		$(".likeimg").on("click", function () {
-			$.ajax({
-				headers: {
-					"Content-Type" : "application/json",
-					"X-HTTP-Method-Override" : "POST"
-				},
 				
-				
-				type: 'POST',
-		      	url: '/like',
-		      
-				beforeSend : function(xhr) {
-					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-				},
 
-				dataType : 'text',
-				data : JSON.stringify({
-					pono : pono,
-					userId : userId
-				}),
-	    	  
-		    	 success: function (data) {
-		          
-		    		  if (data == 1) {
-		              $("#likeimg").attr("src", "/resources/images/likepng.png");
-		              location.reload();
-		          } else {
-		              $("#likeimg").attr("src", "/resources/images/likepng.png");
-		              location.reload();
-		          }
-		     	 }, error: function () {
-			          $("#likeimg").attr("src", "/resources/images/likepng.png");
-			          console.log('오타가 있나봐요')
-		     	 }
-		     	 
-		  	}); // ajax END
-
-  		}); // img onclick END
-  		
 	
   		
   		

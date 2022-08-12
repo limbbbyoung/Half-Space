@@ -29,12 +29,12 @@
 	</delete>
 	
 	<update id="likeCntUp">
-		UPDATE post_tbl SET likeCnt = +1 WHERE pono = #{pono}
+		UPDATE post_tbl SET likeCnt = likeCnt+1 WHERE pono = #{pono}
 	</update>
 	
 	
 	<update id="likeCntDown">
-		UPDATE post_tbl SET likeCnt = -1 WHERE pono = #{pono}
+		UPDATE post_tbl SET likeCnt = likeCnt-1 WHERE pono = #{pono}
 	</update>
 	
 	

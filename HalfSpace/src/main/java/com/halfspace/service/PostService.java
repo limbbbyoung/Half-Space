@@ -24,5 +24,5 @@ public interface PostService {
 	public List<PostAttachVO> getAttachList(Long pono);
 
 	public List<PostVO> getInfoList();
-	
+
 }

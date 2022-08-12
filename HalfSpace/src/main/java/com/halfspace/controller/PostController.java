@@ -150,7 +150,7 @@ public class PostController {
 	// post 조회
 	@RequestMapping(value="/detail",
 			method= {RequestMethod.GET, RequestMethod.POST})
-	public String postDetail(@RequestParam(value="pono")Long pono,Model model) {
+	public String postDetail(@RequestParam(value="pono")Long pono,Model model, Principal prin) {
 		
 		System.out.println("detail 실행");
 		
@@ -158,7 +158,18 @@ public class PostController {
 		UserVO user = userservice.read(post.getWriter());
 		// debug
 		log.info(post);
+		log.info("글쓴이의 정보 : " + user);
+		
+		if(prin != null) {
+			log.info(prin.getName());
+			String userId = prin.getName();
+			LikeVO like = likeservice.getLike(userId, pono);
+		
+			model.addAttribute("like", like);
+			log.info(like);
+		}
 
+		
 		model.addAttribute("post", post);
 		model.addAttribute("user", user);
 		return "/post/detail";

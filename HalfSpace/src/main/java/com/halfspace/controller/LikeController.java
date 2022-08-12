@@ -50,17 +50,16 @@ public class LikeController {
 		return entity;
 	} // END likey
 	
-	@DeleteMapping(value="/delete",
-			consumes="application/json",
+	@DeleteMapping(value="/delete/{userId}/{pono}",
 			produces= {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> unlikey(
-			@RequestBody LikeVO vo) {
+			@PathVariable("userId") String userId, @PathVariable("pono") Long pono){
 		
 		ResponseEntity<String> entity = null;
 		
 		try {
 			
-			likeservice.unlikey(vo);
+			likeservice.unlikey(userId, pono);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch(Exception e) {
 			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -78,12 +77,9 @@ public class LikeController {
 					ResponseEntity<LikeVO> entity = null;
 		
 					try {
-						LikeVO newlike = new LikeVO();
-						newlike.setPono(pono);
-						newlike.setUserId(userId);
-						
-						LikeVO like = likeservice.getLike(newlike);
-						log.info(like);
+			
+						LikeVO like = likeservice.getLike(userId, pono);
+						log.info("여기는 getLike Ajax 입니다. : " + like);
 						
 						entity = new ResponseEntity<>(like, HttpStatus.OK);
 						log.info("엔티티님 제발요");
