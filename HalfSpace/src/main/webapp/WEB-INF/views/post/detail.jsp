@@ -146,7 +146,7 @@
 				</div>
 				
 				
-				<div class="profile" style="width : 100%">
+				<div class="profile" id="profile" style="width : 100%">
 					<img src="${post.image ? post.image : '../resources/images/main_picture.jpg'}">
 					<div class="profile-info">
 						<p>
@@ -290,6 +290,7 @@
 	<!-- List 로직 -->
 	<script type="text/javascript">
 	let pono = ${post.pono}
+	let postWriter = ${post.writer}
 	let csrfHeaderName = "${_csrf.headerName}"
 	let csrfTokenValue = "${_csrf.token}"
 		
@@ -323,6 +324,7 @@
 		});
 	}
 	getAllList();
+	
 	
 	// 익명함수 선언 및 호출
 	// 우선 함수이기 때문에 호출한다는 점을 명시하기 위해 마지막에 () 를 추가로 붙여준다.

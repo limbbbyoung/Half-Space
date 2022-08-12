@@ -158,16 +158,29 @@
 								</p>
 							</div>
 						</div>
-						<div class="apply-wrap" data-status="full">
-							<p>
-								조회수<br>
-								${post.hit}
-							</p>
-							<c:if test="${post.hit >= 10}">
-							<span>
-								Hit
-							</span>
-							</c:if>
+						<div class="post-wrap">
+							<div class="apply-wrap" data-status="full">
+								<p>
+									조회수<br>
+									${post.hit}
+								</p>
+								<c:if test="${post.hit >= 10}">
+								<span>
+									Hit
+								</span>
+								</c:if>
+							</div>
+							<div class="apply-wrap" data-status="full">
+								<p class="inline-block">
+									좋아요<br>
+									${post.likeCnt}
+								</p>
+								<c:if test="${post.likeCnt >= 10}">
+								<span>
+									Hit
+								</span>
+								</c:if>
+							</div>
 						</div>
 					</li>
 				</c:if>

@@ -558,6 +558,7 @@
 	.apply-wrap[data-status=full] {
 	    background-color: #f2f2f2;
 	    color: #9a9a9a;
+	    display: inline-block;
 	}
 	
 	.apply-wrap {

@@ -3,9 +3,6 @@ package com.halfspace.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-
-import com.halfspace.persistence.LikeVO;
-import com.halfspace.persistence.PostAttachVO;
 import com.halfspace.persistence.PostVO;
 import com.halfspace.persistence.SearchCriteria;
 
@@ -13,6 +10,8 @@ public interface PostMapper {
 
 	public List<PostVO> getList(SearchCriteria cri);
 
+	public List<PostVO> getRankingList();
+	
 	public void insert(PostVO vo);
 	
 	public void delete(Long pono);
@@ -32,7 +31,5 @@ public interface PostMapper {
 	
 	public Long getLikeCnt(Long pono);
 	
-
-
 
 }

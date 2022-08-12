@@ -118,11 +118,20 @@
 						<strong>내 정보 수정</strong>
 					</a>
 				</div>
-				<div class="ahref-div2">
-					<a href="#">	
-						<strong>매니저 지원하기</strong>
-					</a>
-				</div>
+				<c:if test="${prin.authorities eq '[ROLE_ADMIN]' || prin.authorities eq '[ROLE_MANAGER]'}">
+					<div class="ahref-div2">
+						<a href="#">	
+							<strong>매니저 요청 수락하기</strong>
+						</a>
+					</div>
+				</c:if>
+				<c:if test="${prin.authorities eq '[ROLE_USER]'}">
+					<div class="ahref-div2">
+						<a href="#">	
+							<strong>매니저 지원하기</strong>
+						</a>
+					</div>
+				</c:if>
 				<div class="ahref-div3">
 					<a href="#">	
 						<strong>내 팀 생성</strong>

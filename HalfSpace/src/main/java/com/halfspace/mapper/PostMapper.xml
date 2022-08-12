@@ -49,7 +49,7 @@
 			WHERE rn > (${page} - 1) * 10
 		]]>
 	</select>
-	
+
 	
 	<!-- pono를 미리 알 수 있도록 select key 설정 -->
 	<insert id="insert">
@@ -99,5 +99,16 @@
 	<update id="hit">
 		UPDATE post_tbl SET hit = hit+1 WHERE pono = #{pono}
 	</update>
+	
+	<select id="getRankinList" resultType="com.halfspace.persistence.PostVO">
+		<![CDATA[
+			SELECT
+				post_tbl.*, RANK() OVER(ORDER BY likecnt DESC ) AS LIKE_RANK
+	   		 FROM
+	        	(SELECT * FROM post_tbl ORDER BY likecnt DESC)
+	    	post_tbl WHERE rownum <= 10  ORDER BY hit DESC
+    	]]>
+	</select>
+	
 	
 </mapper>
