@@ -100,7 +100,7 @@
 			
 			
 					<!--onsubmit="return fnJoin()"  -->
-				<form class="page-wrap" action="/user/update" method="post">
+			
 					<div class="profile-wrap text-center">
 						
 								
@@ -117,10 +117,12 @@
 							</div>
 						</div>
 					</div>
+					
+				<form class="page-wrap" action="/user/update" method="post">
 					<div class="row-wrap mb-3">
 						<div class="input-wrap">
 							<label>아이디</label>
-							<input class="form-control mt-1" type="text" name="userId" value="${user.userId}" id="userId" maxlength="20">
+							<input class="form-control mt-1" type="text" name="userId" value="${user.userId}" id="userId" maxlength="20" readonly>
 							<small>최대 20자</small>
 						</div>
 					</div>
@@ -218,12 +220,12 @@
 		</div>
 	</form> <!-- form END -->
 	<a href="javascript:history.go(-1);"><strong>뒤로가기</strong></a>
-	
+
 </div> <!-- div class col -->
 
 </div> <!-- join page -->
 
-</div>
+
 
 
 
@@ -315,13 +317,9 @@
 // csrf 토큰
 let csrfHeaderName = "${_csrf.headerName}"
 let csrfTokenValue="${_csrf.token}"
-
-
 // 비밀번호 유효성 검사를 위해 id="password"인 속성의 값을 저장
 let password = document.getElementById("password");
-
 let confirm_password = document.getElementById("confirm_password");
-
 function validatePassword(){
 	if(password.value != confirm_password.value) { // 만일 두 인풋 필드값이 같지 않을 경우
 		// setCustomValidity의 값을 지정해 무조건 경고 표시가 나게 하고
@@ -338,11 +336,9 @@ function validatePassword(){
 		confirm_password.setCustomValidity(''); 
 	}
 } // validatePassword END
-
 password.onchange = validatePassword;
 confirm_password.onkeyup = validatePassword;
 // 여기까지 패스워드 로직
-
 // 사이드바 펼치기
 $("#sidebarCollapse").on("click", function(event) {
 	if($("#sidebar").hasClass('active')) {
@@ -353,7 +349,6 @@ $("#sidebarCollapse").on("click", function(event) {
 		$(".overlay").addClass('active');
 	}
 })
-
 // 사이드바2 펼치기
 $("#sidebarCollapse2").on("click", function(event) {
 	if($("#sidebar2").hasClass('active')) {
@@ -364,7 +359,6 @@ $("#sidebarCollapse2").on("click", function(event) {
 		$(".overlay").addClass('active');
 	}
 })
-
 // 사이드바 접기
 $(".overlay").on("click", function(event) {
 	$("#sidebar").removeClass('active');
@@ -472,7 +466,6 @@ $(".overlay").on("click", function(event) {
 								</div>`;
 					
 				});
-
 				$(imgselect).attr({ src: strImage });
 				uploadResult.append(strSpan);
 				
@@ -533,7 +526,6 @@ $(".overlay").on("click", function(event) {
 					$(".uploadResult p").each(function(i, obj){
 						
 						let jobj =$(obj);
-
 						str += `<input type='hidden' name='attachList[\${i}].fileName' 
 									value='\${jobj.data("filename")}'>
 								<input type='hidden' name='attachList[\${i}].uuid' 
@@ -547,7 +539,6 @@ $(".overlay").on("click", function(event) {
 				} else {
 					
 				}
-
 				console.log(str);
 				
 				// 4. formObj에 append를 이용해 str을 끼워넣습니다.
@@ -560,10 +551,7 @@ $(".overlay").on("click", function(event) {
 		
 			
 		});// document ready END
-
 		
-
-
 </script>
 
 <script src="/resources/login/joinDoubleCheck.js"></script>

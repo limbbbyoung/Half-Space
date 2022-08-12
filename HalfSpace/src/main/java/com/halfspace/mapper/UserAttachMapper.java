@@ -10,7 +10,7 @@ public interface UserAttachMapper {
 
 	public void insert(UserAttachVO vo);
 	
-	public void delete(String uuid);
+	public void delete(String userId);
 	
 	public List<UserAttachVO> findByUid(String userId);
 	

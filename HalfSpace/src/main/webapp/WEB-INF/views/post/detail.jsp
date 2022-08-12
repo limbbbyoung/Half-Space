@@ -21,8 +21,6 @@
 </head>
 <body>
 
-${like}
-	
 	<div class="header">
 		<div class="navi-container">
 			<div class="d-flex justify-content-between align-items-center mx-auto p-0" style="max-width:800px">
@@ -488,7 +486,6 @@ ${like}
 						beforeSend : function(xhr) {
 							xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
 						},
-
 						dataType : 'text',
 						data : JSON.stringify({
 							pono : pono,
@@ -510,7 +507,6 @@ ${like}
 				     	 }
 				     	 
 				  	}); // ajax END
-
 		  		}); // img onclick END
 		  		
 				
@@ -518,7 +514,6 @@ ${like}
 				likeimg.src = "/resources/images/likepng.png";
 			} // END else
 				
-
 	
   		
   		

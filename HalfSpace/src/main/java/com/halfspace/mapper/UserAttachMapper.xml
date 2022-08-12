@@ -11,7 +11,7 @@
 	</insert>
 	
 	<delete id="delete">
-		DELETE FROM user_image WHERE uuid = #{uuid}
+		DELETE FROM user_image WHERE userId = #{userId}
 	</delete>
 	
 	<select id="findByUid" resultType="com.halfspace.domain.UserAttachVO">
