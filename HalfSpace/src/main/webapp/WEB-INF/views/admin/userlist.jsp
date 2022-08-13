@@ -12,6 +12,11 @@
 </head>
 <body>
 
+	<jsp:include page="../header.jsp" flush="true" />
+	<jsp:include page="../sidebar.jsp" flush="true" />
+	
+
+
 			 <table class="table table-hover" style="color: #48734A">
 				<thead>
 					<tr> 
@@ -111,23 +116,9 @@
 			</div><!-- .box-body  -->
 		</div><!-- .row  -->
 	</div><!-- .container  -->
-	<hr/>
-	<div class="footer">
-		<div class="row">
-			<div class="col-4"></div><!-- .col -->
-			<div class="col-4" style="text-align: center;">
-				<img src="../resources/images/halfspacelogo.png" alt="halfspaceLogo" width="254" height="80" class="d-inline-block align-text-top">
-			    <br/>
-			    <p>Spring Project A조<br/>
-				임병영<br/>
-		        김동완<br/>
-		        신동호<br/>
-			    | 서울특별시 마포구 백범로 23 3층<br/> 
-			    | 대표 전화번호 010-0000-0000<br/>
-				<b>COPYRIGHT HalfSpace C&C ALL RIGHT RESERVED</b></p>
-			</div><!-- .col -->
-			<div class="col-4"></div><!-- .col -->
-		</div><!-- .row -->
-	</div><!-- .footer 끝나는 지점 -->
+
+
+	<jsp:include page="../footer.jsp" flush="true" /> 
+
 </body>
 </html>

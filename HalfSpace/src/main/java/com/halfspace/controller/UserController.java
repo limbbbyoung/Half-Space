@@ -187,18 +187,32 @@ public class UserController {
  	
 	/*
 	//비밀번호 복호화를 위한 ajax REST 통신 컨트롤러 생성 중
-	@PostMapping(value="/userPwTest", 
+	@PostMapping(value="/pwDecode", 
 			produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
-	public ResponseEntity<String> userPwTest(String userPw) {
-		if(pwen.matches(userPw, user.getUserPw())) {
-			model.addAttribute("user", user);
-			model.addAttribute("userPw", userPw);
-			return new ResponseEntity<>(, HttpStatus.OK);
+	public ResponseEntity<String> pwDecoder(String userPw, Principal prin, Model model) {
+		
+		ResponseEntity<String> entity = null;
+		
+		String uid = prin.getName();
+		UserVO user = service.read(uid);
+		
+		try {
+			
+						//유저가 입력한 pw , DB의 인코딩된 pw
+			if(pwen.matches(userPw, user.getUserPw())) {
+				model.addAttribute("user", user);
+				model.addAttribute("userPw", userPw);
+				entity = new ResponseEntity<String>(HttpStatus.OK);
+			
+			}else {
+				return ;
+			}
+		}catch(Exception e) {
+			
 		}
-		return "#";
-
-	} // userPwTest END
+		
+	} // pwDecoder END
 	*/
 
 	/*

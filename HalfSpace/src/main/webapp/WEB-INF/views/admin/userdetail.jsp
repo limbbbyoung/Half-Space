@@ -10,6 +10,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="../header.jsp" flush="true" />
+	<jsp:include page="../sidebar.jsp" flush="true" />
+	
+
 	${user}
 	<br/>
 	<sec:authentication property="principal.user.authList"/></p><hr/>
@@ -39,7 +43,8 @@
      <button type="submit" class="btn btn-success" >권한 수정 요청</button>
      </form>
      <br>
-		<a href="">이 유저</a>
+
+	<jsp:include page="../footer.jsp" flush="true" /> 
 
 </body>
 </html>
