@@ -4,6 +4,18 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.halfspace.mapper.LeagueMapper">
 
+	<sql id = "tree">
+		<![CDATA[
+     	SELECT tno FROM
+      		(
+      		SELECT tno, RANK() OVER(PARTITION BY round ORDER BY points) AS points_RANK 
+          		FROM league_tbl
+          	WHERE round = #{round} AND rownum < 3
+      		)
+		]]>
+	</sql>
+
+
 	<select id="detail" resultType="com.halfspace.persistence.LeagueVO">
 		SELECT * FROM league_tbl WHERE tno = #{tno}
 	</select>
@@ -13,7 +25,7 @@
 			league_tbl
 		(tno, name, won, draw, loss, played, gf, ga, gd, points, round) 
 			VALUES 
-		(#{tno}, #{name}, 0, 0, 0, 0, 0, 0, 0, 0, ' 2022시즌 하프스페이스컵') 
+		(#{tno}, #{name}, 0, 0, 0, 0, 0, 0, 0, 0, #{round}) 
 	</insert>	
  	
  	<update id="update">
@@ -24,5 +36,53 @@
  			WHERE tno = #{tno}
  	</update>
  	
+ 	<update id="round16Tree">
+ 		UPDATE 
+    		league_tbl
+    	SET 
+    		round = '16강'
+    	WHERE 
+    		tno IN
+    		(
+			<include refid="tree"></include>
+    		)
+ 	</update>
+ 	
+ 	<update id="quarterFinalTree">
+ 		UPDATE 
+    		league_tbl
+    	SET 
+    		round = '8강'
+    	WHERE 
+    		tno IN
+    		(
+			<include refid="tree"></include>
+    		) 		
+ 	
+ 	</update>
+ 	
+ 	<update id="semiFinalTree">
+ 		UPDATE 
+    		league_tbl
+    	SET 
+    		round = '4강'
+    	WHERE 
+    		tno IN
+    		(
+			<include refid="tree"></include>
+    		) 	
+ 	</update>
+ 	
+ 	<update id="theFinal">
+ 		UPDATE 
+    		league_tbl
+    	SET 
+    		round = '결승'
+    	WHERE 
+    		tno IN
+    		(
+			<include refid="tree"></include>
+    		) 	
+ 	</update> 	
 
 </mapper>

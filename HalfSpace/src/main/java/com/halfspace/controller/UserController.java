@@ -185,12 +185,13 @@ public class UserController {
 		return new ResponseEntity<>(service.getAttachList(userId), HttpStatus.OK);
 	} // getAttachList END
  	
+	
 	/*
 	//비밀번호 복호화를 위한 ajax REST 통신 컨트롤러 생성 중
-	@PostMapping(value="/pwDecode", 
+	@PostMapping(value="/pwDecoder", 
 			produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
-	public ResponseEntity<String> pwDecoder(String userPw, Principal prin, Model model) {
+	public ResponseEntity<String> pwDecoder(String userPw, Principal prin) {
 		
 		ResponseEntity<String> entity = null;
 		
@@ -198,23 +199,23 @@ public class UserController {
 		UserVO user = service.read(uid);
 		
 		try {
-			
 						//유저가 입력한 pw , DB의 인코딩된 pw
 			if(pwen.matches(userPw, user.getUserPw())) {
-				model.addAttribute("user", user);
-				model.addAttribute("userPw", userPw);
+
 				entity = new ResponseEntity<String>(HttpStatus.OK);
 			
 			}else {
-				return ;
+				entity = new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
 			}
 		}catch(Exception e) {
-			
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(HttpStatus.BAD_GATEWAY);
 		}
 		
 	} // pwDecoder END
 	*/
-
+	
+	
 	/*
 	@PreAuthorize("hasAnyRole('ROLE_USER, ROLE_MANAGER, ROLE_ADMIN')")
 	@RequestMapping(value="/requestManagerForm",
