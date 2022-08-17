@@ -375,6 +375,29 @@
 	 	background-color: #79d1ff;
 	 }
 	 
+	 	.registBtn {
+	 	line-height: 1.5;
+	    text-align: left;
+	    font-size: 14px;
+	    -webkit-font-smoothing: antialiased;
+	    color: inherit;
+	    box-sizing: border-box;
+	    margin-top: 1rem!important;
+	    margin: 0;
+	    font-family: "sbaggro","nucleo-icons";
+	    font-weight: lighter;
+	    display: flex;
+	    justify-content: space-between;
+	    padding: 0 20px;
+	    border-radius: 13px;
+	    height: 80px;
+	    align-items: center;
+	    background-repeat: no-repeat;
+	    background-position-x: calc(100% + 15px);
+	    background-position-y: 13px;
+	 	background-color: #a0f730;
+	 }
+	 
 	 	
 	 		
  	.narrow-container {

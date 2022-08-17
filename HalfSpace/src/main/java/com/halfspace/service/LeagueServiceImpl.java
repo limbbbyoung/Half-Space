@@ -11,7 +11,7 @@ import com.halfspace.persistence.LeagueVO;
 
 @Repository
 @Service
-public class ManagerServiceImpl implements ManagerService{
+public class LeagueServiceImpl implements LeagueService{
 
 	@Autowired
 	private LeagueMapper mapper;

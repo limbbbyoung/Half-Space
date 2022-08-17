@@ -37,7 +37,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "mainBoard/welcomeHome";
 	}
 	
 	    // ajax_reply 사용을 위한 테스트

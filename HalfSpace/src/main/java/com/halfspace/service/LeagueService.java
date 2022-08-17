@@ -5,7 +5,7 @@ import java.util.List;
 import com.halfspace.persistence.LeagueVO;
 import com.halfspace.persistence.SearchCriteria;
 
-public interface ManagerService {
+public interface LeagueService {
 	
 	// getList
 	public List<LeagueVO> getList();

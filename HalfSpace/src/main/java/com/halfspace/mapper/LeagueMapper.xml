@@ -48,6 +48,10 @@
     		)
  	</update>
  	
+ 	
+ 	
+ 	
+ 	<!-- 
  	<update id="quarterFinalTree">
  		UPDATE 
     		league_tbl
@@ -84,5 +88,7 @@
 			<include refid="tree"></include>
     		) 	
  	</update> 	
-
+	 -->
+	 
+	 
 </mapper>

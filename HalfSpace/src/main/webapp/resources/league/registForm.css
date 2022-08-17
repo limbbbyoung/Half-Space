@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+	p {
+	    margin-top: 0;
+	    margin-bottom: 0;
+	}
+
+	
+	.mt-3 {
+	    -webkit-font-smoothing: antialiased;
+	    text-align: center;
+	    box-sizing: border-box;
+	    margin-top: 1rem!important;
+	    margin: 0;
+	    color: whitesmoke;
+	    font-weight: 300;
+	    font-family: "sbaggro";
+	    font-size: 12px;
+	}
+	
+	.copyright {
+	    -webkit-font-smoothing: antialiased;
+	    text-align: center;
+	    box-sizing: border-box;
+	    margin: 0;
+	    color: whitesmoke;
+	    font-weight: 300;
+	    font-family: "sbaggro";
+	    font-size: 12px;
+	}
+
+
+	.text-center {
+	    text-align: center!important;
+	}
+	
+	
+	/* regist form */
+	
+ 	.narrow-container {
+    	max-width: 540px;
+    	margin: auto;
+    	font-family: "sbaggro","nucleo-icons";
+    	font-weight: lighter;
+	}
+	
+	 .mx-auto {
+    	margin-left: auto!important;
+    	margin-right: auto!important;
+	}
+	
+	.py-5 {
+	    padding-bottom: 3rem!important;
+	    padding-top: 3rem!important;
+	}
+	
+	div {
+    	display: block;
+	}
+	
+	html {
+	    font-family: sans-serif;
+	    line-height: 1.15;
+	    -webkit-text-size-adjust: 100%;
+	    -webkit-tap-highlight-color: transparent;
+	}
+	
+	
+	.btn-success {
+	    color: #fff;
+	    background-color: #198754;
+	    border-color: #198754;
+	}
+	
+	.position-relative {
+    position: relative!important;
+	}
+
+	
+	*, ::after, ::before {
+    box-sizing: border-box;
+	}
+		
+	img {
+    vertical-align: middle;
+    border-style: none;
+	}
+	
+
+
+		
+	
