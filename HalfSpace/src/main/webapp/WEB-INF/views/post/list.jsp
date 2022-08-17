@@ -62,15 +62,21 @@
 						</div>
 						<div class="apply-wrap" data-status="full">
 							<p>
-								조회수<br>
+								좋아요<br>
 								${info.hit}
 							</p>
-							<c:if test="${info.hit >= 10}">
+							<c:if test="${info.likeCnt >= 10}">
 							<span>
 								Hit
 							</span>
 							</c:if>
 						</div>
+						<div class="apply-wrap" data-status="full">
+								<p class="inline-block">
+									조회수<br>
+									${post.hit}
+								</p>
+							</div>
 					</li>
 				
 				</a>
@@ -109,17 +115,6 @@
 						<div class="post-wrap">
 							<div class="apply-wrap" data-status="full">
 								<p>
-									조회수<br>
-									${post.hit}
-								</p>
-								<c:if test="${post.hit >= 10}">
-								<span>
-									Hit
-								</span>
-								</c:if>
-							</div>
-							<div class="apply-wrap" data-status="full">
-								<p class="inline-block">
 									좋아요<br>
 									${post.likeCnt}
 								</p>
@@ -128,6 +123,12 @@
 									Hit
 								</span>
 								</c:if>
+							</div>
+							<div class="apply-wrap" data-status="full">
+								<p class="inline-block">
+									조회수<br>
+									${post.hit}
+								</p>
 							</div>
 						</div>
 					</li>
