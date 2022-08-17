@@ -7,20 +7,27 @@ import com.halfspace.persistence.SearchCriteria;
 
 public interface LeagueService {
 	
-	// getList
-	public List<LeagueVO> getList();
+	// 각 팀의 detail
+	public LeagueVO detail(Long tno);
 	
-	// insert
+	// 토너먼트 자격 업데이트
+	public void qualifying(LeagueVO vo);
+	
+	// 16강 대진
+	public List<LeagueVO> round16Tree();
+	
+	// 대진에 팀 insert
 	public void insert(LeagueVO vo);
-	
-	// delete
-	public void delete(long tno);
-	
-	// update
+
+	// 경기결과에 따라 update
 	public void update(LeagueVO vo);
 	
-	// detail
-	public LeagueVO getDetail(long tno);
+	// 팀 탈락, 퇴출
+	public void delete(Long tno);
+	
+	// 리그에 속한 전체 팀 목록
+	public List<LeagueVO> leagueList();
+
 	
 
 

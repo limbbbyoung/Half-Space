@@ -14,6 +14,12 @@
       		)
 		]]>
 	</sql>
+	
+	<select id="leagueList" resultType="com.halfspace.persistence.LeagueVO">
+	
+		SELECT * FROM league_tbl ORDER BY round
+	
+	</select>
 
 
 	<select id="detail" resultType="com.halfspace.persistence.LeagueVO">
@@ -31,9 +37,16 @@
  	<update id="update">
  		UPDATE league_tbl
  			SET
- 		won = #{won}, draw = #{draw}, played = 1, 
- 		GF = #{GF}, GA = #{GA}, GD = #{GD}, points = #{points}
+ 		won = #{won}, draw = #{draw}, played = played + 1, 
+ 		GF = #{GF}, GA = #{GA}, points = #{points}
  			WHERE tno = #{tno}
+ 	</update>
+ 	
+ 	<update id="updatePoints">
+ 		  UPDATE league_tbl SET
+               GD = GF - GA, points = (WON*3) + draw
+          WHERE tno = #{tno}
+ 	
  	</update>
  	
  	<update id="round16Tree">
@@ -48,47 +61,20 @@
     		)
  	</update>
  	
- 	
- 	
- 	
- 	<!-- 
- 	<update id="quarterFinalTree">
- 		UPDATE 
-    		league_tbl
-    	SET 
-    		round = '8강'
-    	WHERE 
-    		tno IN
-    		(
-			<include refid="tree"></include>
-    		) 		
+ 	<update id="qualifying">
+ 		UPDATE
+ 			league_tbl
+ 		SET
+ 			round = #{round},
+ 			qualify = {qualify}
+ 		WHERE
+ 			tno = #{tno}
  	
  	</update>
  	
- 	<update id="semiFinalTree">
- 		UPDATE 
-    		league_tbl
-    	SET 
-    		round = '4강'
-    	WHERE 
-    		tno IN
-    		(
-			<include refid="tree"></include>
-    		) 	
- 	</update>
  	
- 	<update id="theFinal">
- 		UPDATE 
-    		league_tbl
-    	SET 
-    		round = '결승'
-    	WHERE 
-    		tno IN
-    		(
-			<include refid="tree"></include>
-    		) 	
- 	</update> 	
-	 -->
+ 	
+ 	
 	 
 	 
 </mapper>

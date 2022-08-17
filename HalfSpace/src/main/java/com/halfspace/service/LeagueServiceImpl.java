@@ -16,33 +16,50 @@ public class LeagueServiceImpl implements LeagueService{
 	@Autowired
 	private LeagueMapper mapper;
 	
-	@Override
-	public List<LeagueVO> getList( ) {
-		// TODO Auto-generated method stub
-		return mapper.round16Tree();
-	}
 
 	@Override
 	public void insert(LeagueVO vo) {
 		mapper.insert(vo);
 	}
 
+
 	@Override
-	public void delete(long tno) {
-		// TODO Auto-generated method stub
-		
+	public LeagueVO detail(Long tno) {
+	
+		return mapper.detail(tno);
 	}
+
+
+	@Override
+	public void qualifying(LeagueVO vo) {
+		mapper.qualifying(vo);
+	}
+
+
+	@Override
+	public List<LeagueVO> round16Tree() {
+	
+		return mapper.round16Tree();
+	}
+
 
 	@Override
 	public void update(LeagueVO vo) {
-		// TODO Auto-generated method stub
-		
+		mapper.update(vo);
+		mapper.updatePoints(vo);
 	}
 
+
 	@Override
-	public LeagueVO getDetail(long tno) {
-		// TODO Auto-generated method stub
-		return null;
+	public void delete(Long tno) {
+		mapper.delete(tno);
+	}
+
+
+	@Override
+	public List<LeagueVO> leagueList() {
+		
+		return mapper.leagueList();
 	}
 
 }
