@@ -67,10 +67,10 @@
 			</div>
 			<div class="menu-container">
 				<div class="navi-content">
-					<a class="active" href="/mainBoard/list">소셜매치</a>
-					<a href="/post/list">자유게시판</a>
+					<a id="mainBoardList" href="/mainBoard/list">소셜매치</a>
+					<a id="postList" href="/post/list">자유게시판</a>
 					<a href="/weather/today">날씨</a>
-					<a href="/team/teamlist">팀 찾기</a>
+					<a id="teamList" href="/team/teamlist">팀 찾기</a>
 				</div>
 			</div>
 		</div>
@@ -78,4 +78,22 @@
 
 
 </body>
+
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
+<script>
+let link =  document.location.href;
+console.log(link);
+
+if(link == 'http://localhost:60000/mainBoard/list') {
+	document.getElementById('mainBoardList').className += 'active';
+		
+} else if(link == 'http://localhost:60000/post/list') {
+	document.getElementById('postList').className += 'active';
+} else if(link == 'http://localhost:60000/team/teamList') {
+	document.getElementById('teamList').className += 'active';
+}
+
+</script>
 </html>

@@ -74,7 +74,7 @@
 						<div class="apply-wrap" data-status="full">
 								<p class="inline-block">
 									조회수<br>
-									${post.hit}
+									${info.hit}
 								</p>
 							</div>
 					</li>
