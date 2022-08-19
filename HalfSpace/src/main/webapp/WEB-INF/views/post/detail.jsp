@@ -170,8 +170,7 @@
 	
 	<!-- List 로직 -->
 	<script type="text/javascript">
-	let pono = ${post.pono}
-	let postWriter = ${post.writer}
+	let pono = ${post.pono};
 	let csrfHeaderName = "${_csrf.headerName}"
 	let csrfTokenValue = "${_csrf.token}"
 		
@@ -331,9 +330,7 @@
 						headers: {
 							"Content-Type" : "application/json",
 							"X-HTTP-Method-Override" : "POST"
-						},
-						
-						
+						},		
 						type: 'POST',
 				      	url: '/like',
 				      
@@ -362,9 +359,7 @@
 				     	 
 				  	}); // ajax END
 		  		}); // img onclick END
-		  		
-				
-				
+
 				likeimg.src = "/resources/images/likepng.png";
 			} // END else
 				

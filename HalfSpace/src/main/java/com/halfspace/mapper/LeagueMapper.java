@@ -14,8 +14,8 @@ public interface LeagueMapper {
 	// 토너먼트 자격 업데이트
 	public void qualifying(LeagueVO vo);
 	
-	// 16강 대진
-	public List<LeagueVO> round16Tree();
+	// 16강 대진 만들기
+	public List<LeagueVO> round16Tree(String round);
 	
 	// 대진에 팀 insert
 	public void insert(LeagueVO vo);
@@ -32,5 +32,7 @@ public interface LeagueMapper {
 	// 리그에 속한 전체 팀 목록
 	public List<LeagueVO> leagueList();
 
+	// 16강 대진 불러오기
+	public List<LeagueVO> roundOf16();
 
 }

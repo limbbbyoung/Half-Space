@@ -37,9 +37,8 @@ public class LeagueServiceImpl implements LeagueService{
 
 
 	@Override
-	public List<LeagueVO> round16Tree() {
-	
-		return mapper.round16Tree();
+	public List<LeagueVO> round16Tree(String round) {
+		return mapper.round16Tree(round);
 	}
 
 
@@ -60,6 +59,13 @@ public class LeagueServiceImpl implements LeagueService{
 	public List<LeagueVO> leagueList() {
 		
 		return mapper.leagueList();
+	}
+
+
+	@Override
+	public List<LeagueVO> roundOf16() {
+		
+		return mapper.roundOf16();
 	}
 
 }

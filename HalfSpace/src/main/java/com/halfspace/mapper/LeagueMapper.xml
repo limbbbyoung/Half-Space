@@ -4,16 +4,6 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.halfspace.mapper.LeagueMapper">
 
-	<sql id = "tree">
-		<![CDATA[
-     	SELECT tno FROM
-      		(
-      		SELECT tno, RANK() OVER(PARTITION BY round ORDER BY points) AS points_RANK 
-          		FROM league_tbl
-          	WHERE round = #{round} AND rownum < 3
-      		)
-		]]>
-	</sql>
 	
 	<select id="leagueList" resultType="com.halfspace.persistence.LeagueVO">
 	
@@ -57,7 +47,14 @@
     	WHERE 
     		tno IN
     		(
-			<include refid="tree"></include>
+			<![CDATA[
+	     	SELECT tno FROM
+	      		(
+	      		SELECT tno, RANK() OVER(PARTITION BY round ORDER BY points) AS points_RANK 
+	          		FROM league_tbl
+	          	WHERE round = #{round} AND rownum < 3
+	      		)
+			]]>
     		)
  	</update>
  	
@@ -72,6 +69,13 @@
  	
  	</update>
  	
+ 	<select id="roundOf16" resultType="com.halfspace.persistence.LeagueVO">
+ 		
+ 		SELECT * FROM league_tbl WHERE round = '16강'
+ 	
+ 	</select>
+ 	
+ 
  	
  	
  	

@@ -14,7 +14,7 @@ public interface LeagueService {
 	public void qualifying(LeagueVO vo);
 	
 	// 16강 대진
-	public List<LeagueVO> round16Tree();
+	public List<LeagueVO> round16Tree(String round);
 	
 	// 대진에 팀 insert
 	public void insert(LeagueVO vo);
@@ -27,6 +27,8 @@ public interface LeagueService {
 	
 	// 리그에 속한 전체 팀 목록
 	public List<LeagueVO> leagueList();
+	
+	public List<LeagueVO> roundOf16();
 
 	
 
