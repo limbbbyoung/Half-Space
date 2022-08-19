@@ -357,7 +357,7 @@
 				
 				// 정규표현식 : 예).com 끝나는 문장 등의 조건이 복잡한 문장을 컴퓨터에게 이해시키기 위한 구문
 				let regex = new RegExp("(.*)\.(exe|sh|zip|alz)$");
-									// 파일이름 .  exe|sh|zip|alz 인 경우를 체크함
+				// 파일이름 .  exe|sh|zip|alz 인 경우를 체크함
 				let maxSize =5242880; // 5Mb
 				
 				var defaultImg = true;

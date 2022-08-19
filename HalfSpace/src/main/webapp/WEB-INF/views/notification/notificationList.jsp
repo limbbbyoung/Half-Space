@@ -75,134 +75,15 @@
 	</div>
 	<!-- header END -->
 	
-	<!-- body start -->
-	<div class="container">
-		<div class="row">
-			<div class="root-container"> 
-			    <div class="img-container">
-			        <img class="img-slider" src="../resources/images/soccer_zone.jpg">
-			    </div>
-				<div class="match-list-container">
-					<div class="header-wrap px-4">
-						<h5>${notificationList }</h5>
-					</div>
-					<div class="container p-0 mb-5" id="match-list">
-						<div class="ground-list-slider">
-							<section class="ground-list">
-								<ul class="list-group list-group-flush text-center">
-									<c:forEach var="notification" items="${notificationList}">
-										<a href="/notification/detail?listno=${notification.not_id}&page=${pageMaker.cri.page}&searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">
-											<li class="list-group-item">
-												<div class="time-wrap">
-													<p></p>
-													<small>13:00</small>
-												</div>
-												<div class="match-wrap">
-													<div class="gender-icon d-none" data-gender="3" data-battle="false">
-													</div>
-													<div class="ground-wrap">
-														<small class="game-badge" data-game="rank">${notification.not_id}</small>
-														<p>
-															<strong class="ground-name"></strong>
-														</p>
-														<p class="parking-wrap">
-															<small data-gender="3"></small>
-															<small></small>
-														</p>
-													</div>
-												</div>
-												<div class="apply-wrap" data-status="full">
-													<p>
-														조회수<br/>
-														
-													</p>
-												</div>
-											</li>
-										</a>					
-									</c:forEach>
-								</ul>
-							</section>
-						</div>
-					</div>
-					<div class="container-fluid text-center py-3" id="btn-join-wrap" style="bottom:0; max-width:960px;">
-						<button id="btn-join" onclick="javascript:location.href=&quot;/login/join&quot;">
-							<h5>회원가입</h5>
-							<small>회원가입 후 다양한 매치에 참여해보세요!</small>
-						</button>
-					</div>
-				</div>
-			</div>s
-			<ul class="pagination my justify-content-center">
-				<!-- Prev -->
-				<c:if test="${pageMaker.prev }">
-					<li class="page-item">
-						<a class="page-link" href="/notification/notificationList?page=${pageMaker.startPage - 1 }
-						&searchType=${pageMaker.cri.searchType }&keyword=${pageMaker.cri.keyword}" aria-lable="Prev">
-							<span aria-hidden="true">&laquo;</span>
-						</a>
-					</li>
-				</c:if>
-				<c:forEach begin="${pageMaker.startPage }"
-						end="${pageMaker.endPage }"
-						var="pNum">
-					<li class="page-item 
-						<c:out value="${pageMaker.cri.page == pNum ? 'active' : '' }"/>">
-						<a class="page-link"
-							href="/notification/notificationList?page=${pNum }&searchType=${pageMaker.cri.searchType }&keyword=${pageMaker.cri.keyword}">
-							${pNum }
-						</a>
-					</li>	
-				</c:forEach>
-				<!-- Next -->
-				<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
-					<li class="page-item">
-						<a class="page-link"
-							href="/notification/notificationList?page=${pageMaker.endPage + 1}&searchType=${pageMaker.cri.searchType }&keyword=${pageMaker.cri.keyword}">
-							&raquo;	
-						</a>
-					</li>
-				</c:if>
-			</ul>
-		</div><!-- .row 끝나는 지점 -->
-		<div class="row">
-			<div class="box-body" style="text-align: center">
-				<select name="searchType" class="selectpicker">
-				<option value="n"
-					<c:out value="${pageMaker.cri.searchType == 'n' ? 'selected' : '' }"/>>
-						-
-					</option>
-					<!-- title 선택 -->
-					<option value="t"
-					<c:out value="${pageMaker.cri.searchType == 't' ? 'selected' : '' }"/>>
-						제목
-					</option>
-					<!-- writer 선택 -->
-					<option value="w"
-					<c:out value="${pageMaker.cri.searchType == 'w' ? 'selected' : '' }"/>>
-						글쓴이
-					</option>
-					<!--g = gameDate  -->
-					<option value="g"
-					<c:out value="${pageMaker.cri.searchType == 'g' ? 'selected' : '' }"/>>
-						경기날짜
-					</option>
-					<!-- p =gamePlace -->
-					<option value="p"
-					<c:out value="${pageMaker.cri.searchType == 'p' ? 'selected' : '' }"/>>
-						경기장소
-					</option>
-					<option value="twgp"
-					<c:out value="${pageMaker.cri.searchType == 'twgp' ? 'selected' : '' }"/>>
-						모든내용
-					</option>
-				</select>
-				<input type="text" name="keyword" id="keywordInput" 
-					value="${pageMaker.cri.keyword }">
-				<button class="btn" id="searchBtn">Search</button>
-			</div><!-- .box-body  -->
-		</div><!-- .row  -->
-	</div><!-- .container  -->
-
+	<h5>${notificationList }</h5>
+	
+	<c:forEach var="notifi" items="${notificationList}">
+		<a href="/notification/detail?not_id=">
+			<h5>${notifi.not_message }</h5>
+		</a>
+	</c:forEach>
+	
+	
 	<!-- footer start -->
 	<footer class="footer">
 		<div class="footer-container">
@@ -270,7 +151,13 @@
 	</nav>
 	<div class="overlay"></div>
 	<nav id="sidebar2" class="mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" style="overflow: visible;">
-		여기가 알림을 넣는 곳입니다.
+		여기가 알림을 넣는 곳입니다.<br><br>✔
+		✔
+		<c:forEach var="notifi" items="${notificationList}">
+			<a href="/notification/detail?not_id=">
+				${notifi.not_message }
+			</a>
+		</c:forEach>
 	</nav>
 	<div class="overlay"></div>
 	<script type="text/javascript">

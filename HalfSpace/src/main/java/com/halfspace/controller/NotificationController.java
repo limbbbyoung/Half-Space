@@ -94,12 +94,10 @@ public class NotificationController {
 		// getBoardList처럼 포워딩해서 화면에 해당 글 하나에 대한 정보만 보여주면 됩니다.
 		@RequestMapping(value="/detail",
 				method= {RequestMethod.GET, RequestMethod.POST})
-		public String boardDetail(@RequestParam(value="bno")Long bno,Model model) {
-			System.out.println("detail 실행");
-			// MainBoardVO board = service.getDetail(bno);
-			// log.info(board);
-			// model.addAttribute("board", board );
-			return "/mainBoard/detail";
+		public String notiDetail(@RequestParam(value="not_id")Long not_id,Model model) {
+			System.out.println("notiDetail 실행");
+			
+			return "/notification/detail";
 		}
 		
 		// 글삭제 post방식으로 처리하도록 합니다.

@@ -35,7 +35,7 @@ public class NotificationMapperTests {
 		
 		cri.setPage(1);
 			
-		log.info(mapper.getList(mem_id, cri));
+		log.info(mapper.getList(mem_id, cri.getPage()));
 		} // getListTest end
 	
 	//@Test

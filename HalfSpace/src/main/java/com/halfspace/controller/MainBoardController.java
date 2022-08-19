@@ -1,6 +1,7 @@
 package com.halfspace.controller;
 
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.halfspace.persistence.MainBoardVO;
+import com.halfspace.persistence.NotificationVO;
 import com.halfspace.persistence.PageMaker;
 import com.halfspace.persistence.SearchCriteria;
 import com.halfspace.service.MainBoardService;
+import com.halfspace.service.NotificationService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -29,23 +32,37 @@ public class MainBoardController {
 	@Autowired
 	private MainBoardService service;
 	
+	// 알림을 위해서 알림 서비스 객체 생성
+	@Autowired
+	private NotificationService notiService;
+	
 	// /mainBoard/list 주소로 게시물 전체의 목록을 표현하는 컨트롤러를 만들어주세요.
 	@RequestMapping(value="/list",
 			method= {RequestMethod.GET, RequestMethod.POST})
 							// @RequestParam의 defaultValue를 통해 값이 안들어올때
 							// 자동으로 배정할 값을 정할 수 있음
-	public String getList(SearchCriteria cri, Model model) {
+	public String getList(Principal prin, SearchCriteria cri, Model model) {
 		// page 파라미터값이 주어지지 않을때 default 1
 		if(cri.getPage() == 0) {
 			cri.setPage(1);
 		}
+		// Main 글 조회
 		List<MainBoardVO> boardList = service.getList(cri);
 		model.addAttribute("boardList", boardList );
+		// 알림 조회, 로그인 안한 유저들의 접근 또한 가능하도록 설정
+		if(prin != null) {
+		List<NotificationVO> notificationList = notiService.getList(prin.getName(), cri);
+		model.addAttribute("notificationList", notificationList );
+		}
 		// PageMaker 생성 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalBoard(service.getBoardCount(cri));
+		// 알림의 페이지 카운트
+		pageMaker.setTotalBoard(notiService.getNotificationCount());
 		log.info(service.getBoardCount(cri));
+		// 알림 목록 디버깅
+		log.info(notiService.getNotificationCount());
 		model.addAttribute("pageMaker", pageMaker);
 		return "/mainBoard/list";
 	}

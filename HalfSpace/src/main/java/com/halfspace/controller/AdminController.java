@@ -63,9 +63,7 @@ public class AdminController {
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@RequestMapping(value="/userdetail",
 			method= {RequestMethod.GET, RequestMethod.POST})
-	public String adminReadUserDetail(Principal principal, Model model) {
-		
-		String userId = principal.getName();
+	public String adminReadUserDetail(@RequestParam String userId, Model model) {
 		
 		System.out.println("controller 에서 admin 권한으로 user read 실행");
 		UserVO user = uservice.read(userId);
@@ -90,9 +88,7 @@ public class AdminController {
 	
 	
 	@PostMapping("/update")
-	public String updateUserAuthByAdmin(AuthVO vo, SearchCriteria cri, RedirectAttributes rttr) {
-		
-		log.info(vo);
+	public String updateUserAuthByAdmin(@RequestParam AuthVO vo, SearchCriteria cri, RedirectAttributes rttr) {
 		
 		aservice.updateUserAuth(vo);
 		

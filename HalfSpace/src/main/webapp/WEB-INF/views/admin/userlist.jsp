@@ -4,19 +4,22 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- BootStrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="/resources/mainBoard/list.css">
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Styles -->
+<link rel="stylesheet" type="text/css" href="/resources/mainboard/list.css">
+<link href="https://webfontworld.github.io/sandbox/SBAggro.css" rel="stylesheet">
+<head>
 </head>
 <body>
 
 	<jsp:include page="../header.jsp" flush="true" />
 	<jsp:include page="../sidebar.jsp" flush="true" />
 	
-
-
+	
+	<div>
 			 <table class="table table-hover" style="color: #48734A">
 				<thead>
 					<tr> 
@@ -33,7 +36,7 @@
 					<tr>
 						<c:forEach var="user" items="${userList}">
 							<tr>
-							<td><a href="/admin/userdetail?page=${pageMaker.cri.page}
+							<td><a href="/admin/userdetail?userId=${user.userId }&page=${pageMaker.cri.page}
 							      &searchType=${pageMaker.cri.searchType}&keyword=${pageMaker.cri.keyword}">${user.userId}</a></td>
 							<td>${user.userName}</td>
 							<td>${user.gender}</td>
@@ -77,6 +80,7 @@
 					</li>
 				</c:if>
 			</ul>
+
 		</div><!-- .row 끝나는 지점 -->
 		<div class="row">
 			<div class="box-body" style="text-align: center">
@@ -119,6 +123,15 @@
 
 
 	<jsp:include page="../footer.jsp" flush="true" /> 
+
+
+			<hr/>
+	
+	<script type="text/javascript">
+
+	</script>
+		<!-- sidebar 기능-->
+	<script src="/resources/basic/sideBar.js"></script>
 
 </body>
 </html>
