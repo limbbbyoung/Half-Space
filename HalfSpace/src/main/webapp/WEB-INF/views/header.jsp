@@ -83,15 +83,15 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
 <script>
-let link =  document.location.href;
-console.log(link);
+let curLink =  document.location.href;
+console.log(curLink);
 
-if(link == 'http://localhost:60000/mainBoard/list') {
+if(curLink == 'http://localhost:60000/mainBoard/list') {
 	document.getElementById('mainBoardList').className += 'active';
 		
-} else if(link == 'http://localhost:60000/post/list') {
+} else if(curLink == 'http://localhost:60000/post/list') {
 	document.getElementById('postList').className += 'active';
-} else if(link == 'http://localhost:60000/team/teamList') {
+} else if(curLink == 'http://localhost:60000/team/teamList') {
 	document.getElementById('teamList').className += 'active';
 }
 

@@ -1,16 +1,20 @@
 package com.halfspace.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.halfspace.persistence.CommentVO;
 import com.halfspace.persistence.LeagueVO;
 import com.halfspace.persistence.TeamVO;
 import com.halfspace.service.LeagueService;
@@ -34,8 +38,6 @@ public class LeagueController {
 			produces= {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> regist(@RequestBody LeagueVO league) {
 
-		
-		
 		log.info("leagueVO 생성" + league);
 
 		ResponseEntity<String> entity = null;
@@ -52,6 +54,14 @@ public class LeagueController {
 		return entity;
 	} // regist END
 	
+	/*
+	@PreAuthorize("hasAnyRole('ROLE_USER, ROLE_MANAGER, ROLE_ADMIN')")
+	@GetMapping(value="", consumes="application/json",
+							produces= {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<List<LeagueVO>> leagueTree(){
+		
+	};
+	*/
 	
 	
 }

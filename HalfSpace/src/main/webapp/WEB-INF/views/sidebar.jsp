@@ -48,6 +48,9 @@
 							<div class="menu-wrap">
 								<a href="#"><img src="../resources/images/faq.svg" class="mCS_img_loaded">FAQ</a>
 							</div>
+							<div class="menu-wrap">
+								<a href="/league/tree"><img src="../resources/images/faq.svg" class="mCS_img_loaded">2022 하프스페이스컵</a>
+							</div>
 						</div>
 					</section>
 				</div>
